@@ -11,13 +11,6 @@
             </button>
             <!-- END Toggle Sidebar -->
 
-            <!-- Open Search Section -->
-            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="header_search_on">
-                <i class="fa fa-search"></i>
-            </button>
-            <!-- END Open Search Section -->
-
             <!-- Layout Options (used just for demonstration) -->
             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
             <div class="btn-group" role="group">
@@ -106,34 +99,25 @@
             <div class="btn-group" role="group">
                 <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user d-sm-none"></i>
-                    <span class="d-none d-sm-inline-block">J. Smith</span>
+                    <span class="d-none d-sm-inline-block">{{Auth::user()->name}}</span>
                     <i class="fa fa-angle-down ml-5"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
-                    <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">User</h5>
-                    <a class="dropdown-item" href="be_pages_generic_profile.html">
+                    <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">User Setting</h5>
+                    <a style="padding-left: 1.7rem!important;" class="dropdown-item" href="{{route('profile')}}">
                         <i class="si si-user mr-5"></i> Profile
                     </a>
-                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_inbox.html">
-                        <span><i class="si si-envelope-open mr-5"></i> Inbox</span>
-                        <span class="badge badge-primary">3</span>
-                    </a>
-                    <a class="dropdown-item" href="be_pages_generic_invoice.html">
-                        <i class="si si-note mr-5"></i> Invoices
-                    </a>
                     <div class="dropdown-divider"></div>
 
-                    <!-- Toggle Side Overlay -->
-                    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                    <a class="dropdown-item" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
-                        <i class="si si-wrench mr-5"></i> Settings
-                    </a>
-                    <!-- END Side Overlay -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
 
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/logout">
-                        <i class="si si-logout mr-5"></i> Sign Out
-                    </a>
+                        <x-jet-dropdown-link href="{{ route('logout') }}"
+                                 onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                            <i class="si si-logout"></i>&nbsp;&nbsp; Sing Out
+                        </x-jet-dropdown-link>
+                    </form>
                 </div>
             </div>
             <!-- END User Dropdown -->

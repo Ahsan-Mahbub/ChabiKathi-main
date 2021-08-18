@@ -1,3 +1,5 @@
+@extends('backend.layouts.app')
+@section('content')
 <!-- Main Container -->
 <main id="main-container">
     <!-- Page Content -->
@@ -328,3 +330,4 @@
     <!-- END Page Content -->
 </main>
 <!-- END Main Container -->
+@endsection

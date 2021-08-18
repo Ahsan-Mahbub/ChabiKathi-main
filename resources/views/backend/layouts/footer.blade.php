@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer id="page-footer" class="opacity-0">
+<footer id="page-footer">
     <div class="content py-20 font-size-sm clearfix">
         <div class="float-right">
             Crafted with <i class="fa fa-heart text-pulse"></i> by <a class="font-w600" href="https://bizitbd.com/" target="_blank">BIZ IT BD</a>

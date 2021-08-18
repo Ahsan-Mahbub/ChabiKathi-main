@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     @include('auth.auth_css')
 
-    <title>Clip &amp; Photo</title>
+    <title>ChabiKathi</title>
 
 
 </head>
@@ -23,7 +23,7 @@
                         <div class="py-30 text-center">
                             <a class="link-effect font-w700" href="index.html">
                                 <i class="si si-picture"></i>
-                                <span class="font-size-xl text-primary-dark">Clip</span><span class="font-size-xl"> Photo</span>
+                                <span class="font-size-xl text-primary-dark">Chabi</span><span class="font-size-xl"> Kathi</span>
                             </a>
                         </div>
 
@@ -43,7 +43,7 @@
 
                             <div class="block block-themed block-rounded block-shadow">
                                 <div class="block-header bg-gd-dusk">
-                                    <h3 class="block-title">Please Sign In</h3>
+                                    <h3 class="block-title text-center">Please Sign In</h3>
                                 </div>
                                 <div class="block-content">
                                     <div class="form-group row">
