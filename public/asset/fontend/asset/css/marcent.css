@@ -1,0 +1,199 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.left-side {
+    height: auto;
+    background-image: url(../img/marcent_bg.png);
+    background-size: cover;
+    background-position: 50%;
+    padding-top: 190px;
+    padding-bottom: 190px;
+    display: inline-block;
+}
+.right-side{
+	display: inline-block;
+    float: right;
+}
+.content-side{
+    padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.img-logo img{
+	height: 90px;
+	padding-bottom: 15px;
+}
+.sfont {
+    color: #505050;
+    font-size: 57px;
+    font: Uni Neue;
+    font-style: normal;
+    font-weight: 400;
+}
+.customer, .put {
+    margin-top: 0;
+    margin-left: 1%;
+    color: #505050;
+    font-size: 20px;
+    font: Uni Neue;
+    font-style: normal;
+    font-weight: 400;
+}
+.p-5 {
+    padding: 1.25rem;
+}
+.p-6 {
+    padding: 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+.become {
+    color: red;
+    font-size: 35px;
+    font: Uni Neue;
+    font-style: normal;
+    font-weight: 500;
+}
+.seller {
+    color: #000;
+    font-size: 35px;
+    font: Uni Neue;
+    font-style: normal;
+    font-weight: 300;
+}
+.get {
+    margin-top: 18px;
+    color: #505050;
+    font-size: 16px;
+    font: Uni Neue;
+    font-style: normal;
+    font-weight: 300;
+}
+.lunlock, .luser {
+    height: 27px;
+    max-width: 330px;
+    margin: 35px auto 0;
+    background-color: #fff;
+}
+.text-current {
+    color: currentColor;
+}
+.mt-8 {
+    margin-top: 2rem;
+}
+.flex {
+    display: flex;
+}
+.border-b-2 {
+    border-bottom: 2px solid #505050;
+}
+.h-12 {
+    height: 2rem;
+}
+.d-icon {
+    width: 15px;
+    height: 15px;
+    background: transparent;
+}
+audio, canvas, embed, iframe, img, object, svg, video {
+    display: block;
+    vertical-align: middle;
+}
+.ustyle {
+    font-size: 14px;
+    margin-top: -4%;
+    width: 100%;
+    margin-left: 9px;
+    border: none;
+}
+.pstyle{
+	font-size: 14px;
+    margin-top: -4%;
+    width: 100%;
+    margin-left: 9px;
+	border: none;
+}
+button, input, optgroup, select, textarea {
+    padding: 0;
+    line-height: inherit;
+    color: inherit;
+}
+button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+.rememberstyle {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.forgot {
+    margin-top: 9px;
+    color: #000;
+    font-size: 14px;
+    font: Uni Neue;
+    font-style: normal;
+    font-weight: 300px;
+    float: left;
+}
+.ant-typography a, a.ant-typography {
+    color: #1890ff;
+    outline: none;
+    cursor: pointer;
+    transition: color .3s;
+    text-decoration: none;
+}
+.button {
+    background-color: #762027;
+    border: #762027;
+    color: #fff;
+    font-size: 14px;
+    height: 44px;
+    width: 300px;
+    display: block;
+    margin: 13px auto auto;
+    border-radius: 5px;
+}
+.create {
+    height: 40px;
+    background-color: #fff;
+    text-align: center;
+}
+.mt-3 {
+    margin-top: .75rem;
+}
+create .fcreate {
+    color: "black";
+    font-size: 14px;
+    font: Uni Neue;
+    font-style: "normal";
+    font-weight: 350px;
+    text-align: center;
+}
+.ant-typography a, a.ant-typography {
+    color: #1890ff;
+    outline: none;
+    cursor: pointer;
+    -webkit-transition: color .3s;
+    transition: color .3s;
+    text-decoration: none;
+}
+@media only screen and (min-width: 999px) {
+  	body{
+		overflow: hidden;
+	}
+}
+@media only screen and (max-width: 768px) {
+  	.left-side {
+  		padding-top: 100px;
+    	padding-bottom: 100px;
+  	}
+}

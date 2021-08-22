@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Color;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ColorController extends Controller
 {
@@ -14,7 +15,8 @@ class ColorController extends Controller
      */
     public function index()
     {
-        //
+        $colors = Color::orderBy('id', 'desc')->paginate();
+        return view('backend.color.index', compact('colors'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ColorController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.color.create');
     }
 
     /**
@@ -35,7 +37,14 @@ class ColorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $color = new Color();
+        $requested_data = $request->all();
+        $color->status = 1;
+        $color->fill($requested_data)->save();
+        Toastr::success('Save Successfully');
+        return redirect()->route('color-code.list')
+            ->with('success', 'Color created successfully.');
+
     }
 
     /**
@@ -44,9 +53,17 @@ class ColorController extends Controller
      * @param  \App\Models\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function show(Color $color)
+    public function status($id)
     {
-        //
+        $status = Color::findOrFail($id);
+        if ($status->status == 0) {
+            $status->status = 1;
+        } else {
+            $status->status = 0;
+        }
+        $status->save();
+        Toastr::success('Status Change Successfully', 'Success');
+        return redirect()->back();
     }
 
     /**
@@ -55,9 +72,10 @@ class ColorController extends Controller
      * @param  \App\Models\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function edit(Color $color)
+    public function edit($id)
     {
-        //
+        $color = Color::findOrFail($id);
+        return view('backend.color.edit', compact('color'));
     }
 
     /**
@@ -67,9 +85,14 @@ class ColorController extends Controller
      * @param  \App\Models\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Color $color)
+    public function update(Request $request, $id)
     {
-        //
+        $update = Color::findOrFail($id);
+        $formData = $request->all();
+
+        $update->fill($formData)->save();
+        Toastr::success('Update Successfully');
+        return redirect()->route('color-code.list');
     }
 
     /**
@@ -78,8 +101,10 @@ class ColorController extends Controller
      * @param  \App\Models\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Color $color)
+    public function destroy($id)
     {
-        //
+        $delete = Color::findOrFail($id);
+        $delete->delete();
+        return response()->json();
     }
 }

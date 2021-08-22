@@ -40,8 +40,8 @@
                 </div>
                 <div class="form-group row">
                 	<div class="col-12">
-                        <div class="form-material">
-                            <textarea disabled="" class="form-control">{{$product->product_desc}}</textarea>
+                        <div class="form-material" style="height: auto;">
+                                {!! $product->product_desc !!}
                             <label for="login2-username">Product Details</label>
                         </div>
                     </div>
@@ -90,14 +90,6 @@
                         <div class="form-material">
                             <textarea disabled="" class="form-control">{{$product->sku}}</textarea>
                             <label for="login2-username">SKU</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                	<div class="col-12">
-                        <div class="form-material">
-                            <textarea disabled="" class="form-control">{{$product->product_desc}}</textarea>
-                            <label for="login2-username">Product Details</label>
                         </div>
                     </div>
                 </div>

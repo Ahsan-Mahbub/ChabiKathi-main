@@ -1,0 +1,79 @@
+.table-wrap{
+    padding: 10px 0px 20px 0px;
+}
+.place-order .place-order-button {
+    display: block;
+    padding: 12px 10px;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #f8f8f8;
+    background-color: #565656;
+    border-radius: 3px;
+    width: 100%;
+    font-weight: 500;
+    line-height: 22px;
+    border: none;
+}
+.place-order-upper{
+    display: inline;
+    float: right;
+}
+.text-upper{
+    display: inline-block;
+}
+.cart-item-heading {
+    justify-content: space-between;
+    border-bottom: 1px solid #ebebeb;
+    margin: 0 -15px;
+    padding: 0 15px 10px;
+    font-size: 13px;
+}
+.quantity {
+    justify-content: flex-end;
+}
+.quantity .decrease, .cart-items .table-wrap table .quantity .increase {
+    background-color: #dddddd;
+    color: #f8f8f8;
+    border: none;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100%;
+    cursor: pointer;
+    font-size: 22px;
+}
+.quantity .input-text {
+    text-align: center;
+    padding: 0;
+    border-radius: 0;
+    width: 60px;
+    height: 30px;
+}
+.quantity .increase {
+    background-color: #dddddd;
+    color: #f8f8f8;
+    border: none;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100%;
+    cursor: pointer;
+    font-size: 22px;
+}
+.quantity .delete-item {
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 15px;
+    line-height: 32px;
+}
+@media only screen and (max-width: 999px){
+    .place-order-button{
+        margin-top: 10px;
+    }
+}
+.table-wrap {
+    margin: 0 -15px;
+    overflow-x: overlay;
+}

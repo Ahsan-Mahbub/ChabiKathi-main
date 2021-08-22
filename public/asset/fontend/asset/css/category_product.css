@@ -1,0 +1,32 @@
+.showing-more{
+	height: 40px;
+}
+.nav-content{
+	border: 1px solid #c1c3c5;
+	border-radius: 4px;
+	height: 50px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+.pagination{
+	padding: 0px 0px 0px 0px;
+}
+.page-item{
+	padding: 5px;
+}
+.page-link{
+	border: none;
+	background-color: #ddd;
+	border-radius: 5px;
+	color: #565c61;
+}
+.active{
+	background-color: #792128;
+	color: #fff;
+}
+
+@media only screen and (min-width: 999px){
+    .ex-padding{
+        padding: 250px 0px 20px 0px;
+    }
+}

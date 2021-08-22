@@ -12,6 +12,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\WeightController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\SliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +25,15 @@ use App\Http\Controllers\ColorController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [HomeController::class, 'fontview'])->name('home');
-
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/product', [HomeController::class, 'product'])->name('product');
+Route::get('/vendor', [HomeController::class, 'vendor'])->name('vendor');
+Route::get('/campaign', [HomeController::class, 'campaign'])->name('campaign');
+Route::get('/category-all-product', [HomeController::class, 'allproduct'])->name('category-all-product');
+Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
+Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
+Route::get('/marchent-login', [HomeController::class, 'marchentlogin'])->name('marchent-login');
+Route::get('/marchent-registration', [HomeController::class, 'marchentregistration'])->name('marchent-registration');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
@@ -84,6 +93,16 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('update/{id}', [ColorController::class, 'update'])->name('color-code.update');
         Route::delete('delete/{id}', [ColorController::class, 'destroy'])->name('color-code.delete');
     });
+    // Brand Route
+    Route::group(['prefix' => 'brand'], function () {
+        Route::get('/list', [BrandController::class, 'index'])->name('brand.list');
+        Route::get('create', [BrandController::class, 'create'])->name('brand.create');
+        Route::post('store', [BrandController::class, 'store'])->name('brand.store');
+        Route::get('status/{id}', [BrandController::class, 'status'])->name('brand.status');
+        Route::get('edit/{id}', [BrandController::class, 'edit'])->name('brand.edit');
+        Route::post('update/{id}', [BrandController::class, 'update'])->name('brand.update');
+        Route::delete('delete/{id}', [BrandController::class, 'destroy'])->name('brand.delete');
+    });
     // Product Route
     Route::group(['prefix' => 'product'], function () {
         Route::get('/list', [ProductController::class, 'index'])->name('product.list');
@@ -95,5 +114,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
         Route::post('update/{id}', [ProductController::class, 'update'])->name('product.update');
         Route::delete('delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
+        Route::get('category/{cat_id}', [ProductController::class, 'category'])->name('product.category');
     });
+    // Slider Route
+    Route::get('slider', [SliderController::class, 'index'])->name('slider');
+    Route::post('slider-update/{id}', [SliderController::class, 'update'])->name('slider.update');
 });

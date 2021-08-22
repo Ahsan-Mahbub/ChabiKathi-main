@@ -151,6 +151,17 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-badge"></i><span class="sidebar-mini-hide">Brand</span></a>
+                    <ul>
+                        <li>
+                            <a href="{{route('brand.list')}}">Brand List</a>
+                        </li>
+                        <li>
+                            <a href="{{route('brand.create')}}">Add Brand</a>
+                        </li>
+                    </ul>
+                </li>
 
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">S.S</span><span class="sidebar-mini-hidden">Settings Section</span></li>
                 <li>
@@ -174,7 +185,7 @@
                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-settings"></i><span class="sidebar-mini-hide">Fontend Settings</span></a>
                     <ul>
                         <li>
-                            <a href="be_pages_error_all.html">All</a>
+                            <a href="{{route('slider')}}">Slider Update</a>
                         </li>
                         <li>
                             <a href="op_error_400.html">400</a>

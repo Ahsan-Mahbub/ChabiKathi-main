@@ -12,18 +12,23 @@ class Product extends Model
     protected $primaryKey = 'id';
     protected $fillable =[
         'product_name',
+        'product_slug',
         'product_desc',
         'cat_id',
         'sub_cat_id',
         'price',
         'discount',
         'quantity',
-        'band',
-        'shop'
+        'brand_id',
+        'shop',
+        'size_id',
+        'weight_id',
+        'color_id',
+        'product_img',
+        'product_img_2',
+        'product_img_3'
     ];
-    public function setMultiProductsAttribute($value)
-    {
-        $this->attributes['cat_id'] = json_encode($value);
-        $this->attributes['sub_cat_id'] = json_encode($value);
+    public function parent(){
+        return $this->belongsTo(Category::class,'cat_id');
     }
 }

@@ -60,15 +60,10 @@
                         <input type="password" class="form-control form-control-lg" id="profile-settings-password" name="password" placeholder="Enter Password if you Change..">
                     </div>
                     <div class="col-12">
-                            <div class="push mt-10">
-                                <img class="img-avatar" src="{{Auth::user()->image==''? asset('asset/backend/assets/media/avatars/avatar15.jpg'): '/'.Auth::user()->image}}" alt="">
-                                <a href="{{'/'.Auth::user()->image}}" type="button" class="btn btn-outline-secondary min-width-125 js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;">View Image</a>
-                            </div>
-                            <div class="custom-file">
-                            	<label>Choose new avatar</label>
-                                <input type="file" class="form-control"id="previmage" name="image" onchange="readURL(this);" value="{{Auth::user()->image}}">
-                            </div>
-                        </div>
+                        <label>Optional Image</label>
+                        <input type='file' name="image" value="{{Auth::user()->image}}" onchange="readURL3(this);" />
+                        <img id="blah3" src="{{Auth::user()->image==''? asset('asset/backend/assets/media/photos/image.png'): '/'.Auth::user()->image}}" height="200" width="200" alt="your image" /><br>
+                    </div>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-alt-primary">Submit</button>
@@ -79,5 +74,18 @@
     <!-- END User Profile -->
 </div>
 </div>
-
+@endsection
+@section('script')
+<script type="text/javascript">
+    function readURL3(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#blah3')
+                .attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
 @endsection
