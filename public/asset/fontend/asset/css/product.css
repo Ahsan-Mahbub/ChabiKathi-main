@@ -1,6 +1,12 @@
 ul{
     padding-left: 0;
 }
+.site-banners{
+    display: none;
+}
+.sc-fixed-nav{
+    display: none;
+}
 .main-header{
     background-color: #fff;
 }

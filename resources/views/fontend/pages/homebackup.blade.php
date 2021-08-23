@@ -70,127 +70,7 @@
 <body>
 <div class="main-page">
 	<header class="main-header stikybar">
-		<!-- Top Header Section -->
-		<section class="top-header bg-white">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-lg-6 col-xl-6 col-sm-6 col-6 left-side-top">
-						<div class="phone-details-top">
-							<i class="fas fa-phone"></i>
-							<span>01600000000</span>
-						</div>
-						<div class="mail-details-top">
-							<i class="far fa-envelope"></i>
-							<span>sapport@chabikathi.com</span>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-6 col-xl-6 col-sm-12 col-12 right-side-top">
-						<div class="sell-details-top">
-							<i class="far fa-store"></i>
-							<span>Sell on Chabikathi</span>
-						</div>
-						<div class="app-details-top">
-							<!-- <img class="img-fluid" src="asset/img/Logo-2.png"> -->
-							<i class="fas fa-mobile-alt"></i>
-							<span>Save big on our App!</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- End Top Header Section -->
-		<!-- Header Section -->
-		<section class="main-top-header bg-white">
-			<div class="container">
-				<div class="row">
-					<!-- Header Logo Section -->
-					<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 site-header-logo">
-						<a href="/">
-							<img src="asset/img/Logo-2.png">
-						</a>
-					</div>
-					<!-- End Header Logo Section -->
-					<!-- Header Search Section -->
-					<div class="col-9 col-sm-9 col-md-6 col-lg-7 col-xl-7 site-header-search">
-						<div class="search-box-area">
-							<div>
-								<div class="search-box">
-									<div class="search-box-border">
-										<div class="search-box-border-select">
-											<div class="pr-5 s-container">
-												<div class="selecton-wrapper">
-													<div class="select " style="width: 150px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-														<span>product</span>
-														<span>
-															<i class="fas fa-chevron-down"></i>
-														</span>
-													</div>
-													<div class="selection-values dropdown-menu">
-														<ul>
-															<li value="product">Product</li>
-															<li value="shop">Shop</li>
-															<li value="brand">Brand</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										<div class="searching-area-wrapper">
-											<div class="ant-select-show-search ant-select-auto-complete ant-select">
-												<div class="ant-select-selection">
-													<ul>
-														<li class="ant-select-search">
-															<input placeholder="Search Product..." class="ant-input ant-input-lg" type="text" value="">
-																<button>
-																	<i class="fas fa-search"></i>
-																</button>
-															<span class="ant-select-search__field__mirror">&nbsp;</span>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Header Search Section -->
-					<!-- Header icon Section -->
-					<div class="col-12 col-sm-12 col-md-3 col-lg-2 col-xl-2 site-header-cart">
-						<div class="cart-logo-img">
-							<img src="asset/img/Logo-2.png">
-						</div>
-						<div class="wish-icon">
-							<i class="far fa-heart"></i>
-						</div>
-						<div class="cart-icon">
-							<div class="dropdown">
-								<i class="fas fa-shopping-bag">
-								  <div class="dropdown-content">
-								    <a href="#">My Account</a>
-								    <a href="#">Login</a>
-								  </div>
-							  </i>
-						</div>
-						<span class="cart-add">0</span>
-						</div>
-						<div class="profile-icon">
-							<div class="dropdown">
-								<i class="fas fa-user-circle">
-								  <div class="dropdown-content">
-								    <a href="#">My Account</a>
-								    <a href="#">Login</a>
-								  </div>
-							  </i>
-						</div>
-						</div>
-					</div>
-					<!-- End Header icon Section -->
-				</div>
-			</div>
-		</section>
+		@include('fontend.layouts.topheader')
 		<!-- On Scroll Fixed Nav -->
 		<section class="header-nav sc-fixed-nav">
 			<div class="container">
@@ -223,19 +103,19 @@
 				        <!-- Category Box Section -->
 				        <div class="category-box">
 				        	<div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-					        	<img src="asset/img/voucher.svg">
+					        	<img src="{{ asset('asset/fontend/asset/img/voucher.svg')}}">
 					        	<span><a href="/">Voucher Shop</a></span>
 					        </div>
 					        <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-					        	<img src="asset/img/prime.svg">
+					        	<img src="{{ asset('asset/fontend/asset/img/prime.svg')}}">
 					        	<span><a href="/">Prime Shops</a></span>
 					        </div>
 					        <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-					        	<img src="asset/img/rocket.svg">
+					        	<img src="{{ asset('asset/fontend/asset/img/rocket.svg')}}">
 					        	<span><a href="/">Dhamaka Rocket</a></span>
 					        </div>
 					        <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-					        	<img src="asset/img/offers.jpeg">
+					        	<img src="{{ asset('asset/fontend/asset/img/offers.jpeg')}}">
 					        	<span><a href="/">Dhamaka Offers</a></span>
 					        </div>
 				        </div>
@@ -246,9 +126,7 @@
 		</section>	
 	</header>
 	<!-- End Header Section -->
-	<!-- Slider Section -->
-	<main>
-		<section class="site-banner ptb-20">
+	<section class="site-banner ptb-20">
 			<div class="container">
 				<div class="row">
 					<!-- Main-Category Section -->
@@ -415,19 +293,19 @@
 				        <!-- Category Box Section -->
 				        <div class="category-box">
 				        	<div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-					        	<img src="asset/img/voucher.svg">
+					        	<img src="{{ asset('asset/fontend/asset/img/voucher.svg')}}">
 					        	<span><a href="/">Voucher Shop</a></span>
 					        </div>
 					        <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-					        	<img src="asset/img/prime.svg">
+					        	<img src="{{ asset('asset/fontend/asset/img/prime.svg')}}">
 					        	<span><a href="/">Prime Shops</a></span>
 					        </div>
 					        <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-					        	<img src="asset/img/rocket.svg">
+					        	<img src="{{ asset('asset/fontend/asset/img/rocket.svg')}}">
 					        	<span><a href="/">Dhamaka Rocket</a></span>
 					        </div>
 					        <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-					        	<img src="asset/img/offers.jpeg">
+					        	<img src="{{ asset('asset/fontend/asset/img/offers.jpeg')}}">
 					        	<span><a href="/">Dhamaka Offers</a></span>
 					        </div>
 				        </div>
@@ -436,6 +314,8 @@
 				</div>
 			</div>
 		</section>
+	<!-- Slider Section -->
+	<main>
 		<!-- End Slider Section -->
 		<!-- Flash Sale Section -->
 		<section class="product-part">
@@ -445,7 +325,7 @@
 						<div class="search-and-more">
 							<a class="highlighted-txt dev-flex" href="/">
 								<b class="highlighted-txt">View All</b>
-								<img src="asset/img/side.svg" alt="" height="30px">
+								<img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px">
 							</a>
 						</div>
 					</div>
@@ -475,7 +355,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/product1.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -488,7 +368,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/product1.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -501,7 +381,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/product1.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -514,7 +394,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/product1.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -527,7 +407,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/product1.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -540,7 +420,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/product1.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -563,7 +443,7 @@
 						<div class="search-and-more">
 							<a class="highlighted-txt dev-flex" href="/">
 								<b class="highlighted-txt">View All</b>
-								<img src="asset/img/side.svg" alt="" height="30px">
+								<img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px">
 							</a>
 					</div>
 					</div>
@@ -572,7 +452,7 @@
 						<div class="col-md-2 product-box shop-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/shop.png">
+									<img src="{{ asset('asset/fontend/asset/img/shop.png')}}">
 								</div>
 								<span class="product-name">Shop name here</span>
 							</a>
@@ -580,7 +460,7 @@
 						<div class="col-md-2 product-box shop-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/shop.png">
+									<img src="{{ asset('asset/fontend/asset/img/shop.png')}}">
 								</div>
 								<span class="product-name">Shop name here</span>
 							</a>
@@ -588,7 +468,7 @@
 						<div class="col-md-2 product-box shop-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/shop.png">
+									<img src="{{ asset('asset/fontend/asset/img/shop.png')}}">
 								</div>
 								<span class="product-name">Shop name here</span>
 							</a>
@@ -596,7 +476,7 @@
 						<div class="col-md-2 product-box shop-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/shop.png">
+									<img src="{{ asset('asset/fontend/asset/img/shop.png')}}">
 								</div>
 								<span class="product-name">Shop name here</span>
 							</a>
@@ -604,7 +484,7 @@
 						<div class="col-md-2 product-box shop-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/shop.png">
+									<img src="{{ asset('asset/fontend/asset/img/shop.png')}}">
 								</div>
 								<span class="product-name">Shop name here</span>
 							</a>
@@ -612,7 +492,7 @@
 						<div class="col-md-2 product-box shop-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/shop.png">
+									<img src="{{ asset('asset/fontend/asset/img/shop.png')}}">
 								</div>
 								<span class="product-name">Shop name here</span>
 							</a>
@@ -630,7 +510,7 @@
 						<div class="search-and-more">
 							<a class="highlighted-txt dev-flex" href="/">
 								<b class="highlighted-txt">View All</b>
-								<img src="asset/img/side.svg" alt="" height="30px">
+								<img src="shop.pngasset/img/side.svg')}}" alt="" height="30px">
 							</a>
 					</div>
 					</div>
@@ -639,7 +519,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/product1.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -652,7 +532,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/product1.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -665,7 +545,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/product1.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -678,7 +558,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/product1.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -691,7 +571,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/product1.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -704,7 +584,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/product1.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -725,7 +605,7 @@
 						<div class="search-and-more">
 							<a class="highlighted-txt dev-flex" href="/">
 								<b class="highlighted-txt">View All</b>
-								<img src="asset/img/side.svg" alt="" height="30px">
+								<img src="shop.pngasset/img/side.svg')}}" alt="" height="30px">
 							</a>
 					</div>
 					</div>
@@ -734,7 +614,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/accesory.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/accesory.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -747,7 +627,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/accesory.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/accesory.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -760,7 +640,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/accesory.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/accesory.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -773,7 +653,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/accesory.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/accesory.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -786,7 +666,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/accesory.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/accesory.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -799,7 +679,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/accesory.jpeg">
+									<img src="{{ asset('asset/fontend/asset/img/accesory.jpeg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -820,7 +700,7 @@
 						<div class="search-and-more">
 							<a class="highlighted-txt dev-flex" href="/">
 								<b class="highlighted-txt">View All</b>
-								<img src="asset/img/side.svg" alt="" height="30px">
+								<img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px">
 							</a>
 					</div>
 					</div>
@@ -829,7 +709,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/football.png">
+									<img src="{{ asset('asset/fontend/asset/img/football.png')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -842,7 +722,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/football.png">
+									<img src="{{ asset('asset/fontend/asset/img/football.png')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -855,7 +735,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/football.png">
+									<img src="{{ asset('asset/fontend/asset/img/football.png')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -868,7 +748,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/football.png">
+									<img src="{{ asset('asset/fontend/asset/img/football.png')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -881,7 +761,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/football.png">
+									<img src="{{ asset('asset/fontend/asset/img/football.png')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -894,7 +774,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/football.png">
+									<img src="{{ asset('asset/fontend/asset/img/football.png')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -915,7 +795,7 @@
 						<div class="search-and-more">
 							<a class="highlighted-txt dev-flex" href="/">
 								<b class="highlighted-txt">View All</b>
-								<img src="asset/img/side.svg" alt="" height="30px">
+								<img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px">
 							</a>
 					</div>
 					</div>
@@ -924,7 +804,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/clothes.jpg">
+									<img src="{{ asset('asset/fontend/asset/img/clothes.jpg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -937,7 +817,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/clothes.jpg">
+									<img src="{{ asset('asset/fontend/asset/img/clothes.jpg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -950,7 +830,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/clothes.jpg">
+									<img src="{{ asset('asset/fontend/asset/img/clothes.jpg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -963,7 +843,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/clothes.jpg">
+									<img src="{{ asset('asset/fontend/asset/img/clothes.jpg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -976,7 +856,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/clothes.jpg">
+									<img src="{{ asset('asset/fontend/asset/img/clothes.jpg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -989,7 +869,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/clothes.jpg">
+									<img src="{{ asset('asset/fontend/asset/img/clothes.jpg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -1010,7 +890,7 @@
 						<div class="search-and-more">
 							<a class="highlighted-txt dev-flex" href="/">
 								<b class="highlighted-txt">View All</b>
-								<img src="asset/img/side.svg" alt="" height="30px">
+								<img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px">
 							</a>
 					</div>
 					</div>
@@ -1019,7 +899,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/toys.webp">
+									<img src="{{ asset('asset/fontend/asset/img/toys.webp')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -1032,7 +912,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/toys.webp">
+									<img src="{{ asset('asset/fontend/asset/img/toys.webp')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -1045,7 +925,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/toys.webp">
+									<img src="{{ asset('asset/fontend/asset/img/toys.webp')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -1058,7 +938,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/toys.webp">
+									<img src="{{ asset('asset/fontend/asset/img/toys.webp')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -1071,7 +951,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/toys.webp">
+									<img src="{{ asset('asset/fontend/asset/img/toys.webp')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -1084,7 +964,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/toys.webp">
+									<img src="{{ asset('asset/fontend/asset/img/toys.webp')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -1105,7 +985,7 @@
 						<div class="search-and-more">
 							<a class="highlighted-txt dev-flex" href="/">
 								<b class="highlighted-txt">View All</b>
-								<img src="asset/img/side.svg" alt="" height="30px">
+								<img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px">
 							</a>
 					</div>
 					</div>
@@ -1114,7 +994,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/cosmetics.jpg">
+									<img src="{{ asset('asset/fontend/asset/img/cosmetics.jpg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -1127,7 +1007,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/cosmetics.jpg">
+									<img src="{{ asset('asset/fontend/asset/img/cosmetics.jpg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -1140,7 +1020,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/cosmetics.jpg">
+									<img src="{{ asset('asset/fontend/asset/img/cosmetics.jpg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -1153,7 +1033,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/cosmetics.jpg">
+									<img src="{{ asset('asset/fontend/asset/img/cosmetics.jpg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -1166,7 +1046,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/cosmetics.jpg">
+									<img src="{{ asset('asset/fontend/asset/img/cosmetics.jpg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -1179,7 +1059,7 @@
 						<div class="col-md-2 product-box">
 							<a href="">
 								<div class="product-img">
-									<img src="asset/img/cosmetics.jpg">
+									<img src="{{ asset('asset/fontend/asset/img/cosmetics.jpg')}}">
 								</div>
 								<span class="product-name">product name here</span>
 								<span class="previous-price">$ 200</span>
@@ -1301,22 +1181,22 @@
 					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-right">
 						<div class="footer-lower-imgs">
 							<div class="footer-lower-imgs-img">
-								<img src="asset/img/visa.svg">
+								<img src="{{ asset('asset/fontend/asset/img/visa.svg')}}">
 							</div>
 						</div>
 						<div class="footer-lower-imgs">
 							<div class="footer-lower-imgs-img">
-								<img src="asset/img/mastercard.svg">
+								<img src="{{ asset('asset/fontend/asset/img/mastercard.svg')}}">
 							</div>
 						</div>
 						<div class="footer-lower-imgs">
 							<div class="footer-lower-imgs-img">
-								<img src="asset/img/nogod.png">
+								<img src="{{ asset('asset/fontend/asset/img/nogod.png')}}">
 							</div>
 						</div>
 						<div class="footer-lower-imgs">
 							<div class="footer-lower-imgs-img">
-								<img src="asset/img/okwallet.png">
+								<img src="{{ asset('asset/fontend/asset/img/okwallet.png')}}">
 							</div>
 						</div>
 					</div>
@@ -1337,9 +1217,9 @@
 	</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="asset/js/main.js"></script>
-<script src="asset/js/scroll.js"></script>
-<script src="asset/js/cursol.js"></script>
-<script src="asset/js/timer.js"></script>
+<script src="{{ asset('asset/fontend/asset/js/main.js')}}"></script>
+<script src="{{ asset('asset/fontend/asset/js/scroll.js')}}"></script>
+<script src="{{ asset('asset/fontend/asset/js/cursol.js')}}"></script>
+<script src="{{ asset('asset/fontend/asset/js/timer.js')}}"></script>
 </body>
 </html>
