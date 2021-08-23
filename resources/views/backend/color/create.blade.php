@@ -3,7 +3,7 @@
 <div class="container">
     <div class="block">
         <div class="block-header block-header-default">
-            <h3 class="block-title text-center"> Add Ccolor Code</h3>
+            <h3 class="block-title text-center"> Add Color Code</h3>
             <div class="block-options">
                 <a href="{{route('color-code.list')}}">
                     <i class="si si-list"></i>

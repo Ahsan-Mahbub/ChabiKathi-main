@@ -26,6 +26,7 @@ use App\Http\Controllers\SliderController;
 |
 */
 Route::get('/', [HomeController::class, 'home'])->name('home');
+// Route::get('/category', [HomeController::class, 'category']);
 Route::get('/product', [HomeController::class, 'product'])->name('product');
 Route::get('/vendor', [HomeController::class, 'vendor'])->name('vendor');
 Route::get('/campaign', [HomeController::class, 'campaign'])->name('campaign');
@@ -117,6 +118,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('category/{cat_id}', [ProductController::class, 'category'])->name('product.category');
     });
     // Slider Route
-    Route::get('slider', [SliderController::class, 'index'])->name('slider');
-    Route::post('slider-update/{id}', [SliderController::class, 'update'])->name('slider.update');
+    Route::group(['prefix' => 'slider'], function () {
+        Route::get('/list', [SliderController::class, 'index'])->name('slider.list');
+        Route::get('create', [SliderController::class, 'create'])->name('slider.create');
+        Route::post('store', [SliderController::class, 'store'])->name('slider.store');
+        Route::get('status/{id}', [SliderController::class, 'status'])->name('slider.status');
+        Route::get('edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
+        Route::post('update/{id}', [SliderController::class, 'update'])->name('slider.update');
+        Route::delete('delete/{id}', [SliderController::class, 'destroy'])->name('slider.delete');
+    });
 });

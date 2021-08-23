@@ -1,0 +1,132 @@
+/* Start Slider */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 2s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  display: flex;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #000;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 2.5s;
+  animation-name: fade;
+  animation-duration: 2.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+
+/*End Slider*/
+
+
+/*Start Sticky*/
+.site-banner{
+	display: none;
+}
+.sc-fixed-nav {
+	transform: scale(0);
+	transition: all 500ms ease-out;
+}
+.header-nav {
+	background: #fff;
+	padding: 10px 0px;
+}
+.header-nav .category-box {
+padding: 0; 
+}
+.header-nav .box span a {
+    font-size: 15px;
+}
+.category-navigation-title::after{
+	background: transparent;
+}
+/*.category-navigation-title ul{
+	padding-left: 0;
+}*/
+.category-navigation-menus{
+  margin-top: 5px;
+  background-color: #fff !important;
+  max-height: 100%;
+  overflow-y: scroll;
+  padding: 0 10px;
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+  border: none;
+  width: 19%;
+}
+.category-navigation-menus li {
+  padding: 8px 10px;
+  color: #565656;
+  cursor: pointer;
+  border-bottom: 1px solid #ebebeb;
+  text-transform: capitalize;
+  font-size: 13px;
+  line-height: 18px;
+}
+.category-navigation-menus li a{
+  color: #565656;
+}
+.category-navigation-menus ul{
+  border-top: 2px solid #9c2918;
+}
+/*End Sticky*/

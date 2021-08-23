@@ -13,12 +13,7 @@ class Slider extends Model
     protected $fillable = [
         'slider_name',
         'slider_link',
+        'slider_title',
         'slider_img',
-        'slider_name_2',
-        'slider_link_2',
-        'slider_img_2',
-        'slider_name_3',
-        'slider_link_3',
-        'slider_img_3',
     ];
 }

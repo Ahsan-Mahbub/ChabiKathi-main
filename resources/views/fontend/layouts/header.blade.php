@@ -236,45 +236,23 @@
       <!-- Main Slider Section -->
       <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 home-banner">
         <div class="slider" >
-              <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <div class="slideshow-container">
+            @foreach($sliders as $slider)
+              <div class="mySlides fade">
+                <a href="">
+                  <img src="/{{$slider->slider_img}}" style="width:100%">
+                </a>
+                <div class="text">
+                  <h5>{{$slider->slider_name}}</h5>
+                  <p>{{$slider->slider_title}}</p>
                 </div>
-                <div class="carousel-inner">
-                  <div class="carousel-item active" data-bs-interval="10000">
-                    <img src="{{ asset('asset/fontend/asset/img/banner1.jpeg')}}" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5>First slide label</h5>
-                      <p>Some representative placeholder content for the first slide.</p>
-                    </div>
-                  </div>
-                  <div class="carousel-item" data-bs-interval="2000">
-                    <img src="{{ asset('asset/fontend/asset/img/banner2.jpeg')}}" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5>Second slide label</h5>
-                      <p>Some representative placeholder content for the second slide.</p>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('asset/fontend/asset/img/banner3.jpg')}}" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5>Third slide label</h5>
-                      <p>Some representative placeholder content for the third slide.</p>
-                    </div>
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"  data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"  data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
+                <span class="dot"></span> 
               </div>
+            @endforeach
+              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+              <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
+        </div>
             <!-- End Main Slider Section -->
             <!-- Category Box Section -->
             <div class="category-box">
@@ -296,6 +274,7 @@
               </div>
             </div>
             <!-- End Category Box Section -->
+          </div>
       </div>
     </div>
   </div>

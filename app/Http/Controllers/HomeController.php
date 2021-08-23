@@ -4,13 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Slider;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
     public function home(){
-        $slider = Slider::get();
-        return view('fontend.pages.home', compact('slider'));
+        $sliders = Slider::get();
+        return view('fontend.pages.home', [
+                'sliders' => $sliders,
+            ]);
     }
+
+    // public function category(){
+    //     $categories = Category::get();
+    //     return view('fontend.layouts.header', [
+    //         'categories' => $categories,
+    //     ]);
+    // }
+
+
+
+
     public function product(){
         return view('fontend.pages.product');
     }

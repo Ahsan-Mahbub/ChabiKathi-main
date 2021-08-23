@@ -1,56 +1,6 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('asset/fontend/asset/css/style.css')}}" />
-<style type="text/css">
-	.site-banner{
-		display: none;
-	}
-	.sc-fixed-nav {
-		transform: scale(0);
-		transition: all 500ms ease-out;
-	}
-	.header-nav {
-		background: #fff;
-		padding: 10px 0px;
-	}
-	.header-nav .category-box {
-    padding: 0; 
-	}
-	.header-nav .box span a {
-	    font-size: 15px;
-	}
-	.category-navigation-title::after{
-		background: transparent;
-	}
-	/*.category-navigation-title ul{
-		padding-left: 0;
-	}*/
-	.category-navigation-menus{
-	  margin-top: 5px;
-	  background-color: #fff !important;
-	  max-height: 100%;
-	  overflow-y: scroll;
-	  padding: 0 10px;
-	  border-radius: 0 0 4px 4px;
-	  overflow: hidden;
-	  border: none;
-	  width: 19%;
-	}
-	.category-navigation-menus li {
-	  padding: 8px 10px;
-	  color: #565656;
-	  cursor: pointer;
-	  border-bottom: 1px solid #ebebeb;
-	  text-transform: capitalize;
-	  font-size: 13px;
-	  line-height: 18px;
-	}
-	.category-navigation-menus li a{
-	  color: #565656;
-	}
-	.category-navigation-menus ul{
-	  border-top: 2px solid #9c2918;
-	}
-</style>
+<link rel="stylesheet" href="{{ asset('asset/fontend/asset/css/slider_stiky.css')}}" />
 @endsection
 @extends('fontend.layouts.app')
 @section('content')

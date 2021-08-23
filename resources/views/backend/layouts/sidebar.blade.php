@@ -163,6 +163,20 @@
                     </ul>
                 </li>
 
+
+                <li class="nav-main-heading"><span class="sidebar-mini-visible">E.C</span><span class="sidebar-mini-hidden"> Extra Change</span></li>
+                <li>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-sliders"></i><span class="sidebar-mini-hide">Slider</span></a>
+                    <ul>
+                        <li>
+                            <a href="{{route('slider.list')}}">Sliders List</a>
+                        </li>
+                        <li>
+                            <a href="{{route('slider.create')}}">Add Slider</a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">S.S</span><span class="sidebar-mini-hidden">Settings Section</span></li>
                 <li>
                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-cog"></i><span class="sidebar-mini-hide">Backend Settings</span></a>
@@ -184,9 +198,6 @@
                 <li>
                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-settings"></i><span class="sidebar-mini-hide">Fontend Settings</span></a>
                     <ul>
-                        <li>
-                            <a href="{{route('slider')}}">Slider Update</a>
-                        </li>
                         <li>
                             <a href="op_error_400.html">400</a>
                         </li>

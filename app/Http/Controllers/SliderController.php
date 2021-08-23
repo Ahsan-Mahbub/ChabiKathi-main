@@ -18,8 +18,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $slider = Slider::first();
-        return view('backend.slider.slider',compact('slider'));
+        $sliders = Slider::orderBy('id', 'desc')->get();
+        return view('backend.slider.index',compact('sliders'));
     }
 
     /**
@@ -29,7 +29,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.slider.create');
     }
 
     /**
@@ -40,7 +40,21 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $slider = new Slider();
+        $formData = $request->all();
+        $slider->status = 1;
+        if ($request->hasFile('slider_img')) {
+            Helper::delete($slider->slider_img);
+            $extension = $request->file('slider_img')->getClientOriginalExtension();
+            $name = 'image' . Str::random(5) . '.' . $extension;
+            $path = "asset/backend/assets/images/slider/";
+            $request->file('slider_img')->move($path, $name);
+            $formData['slider_img'] = $path . $name;
+        }
+        $slider->fill($formData)->save();
+        Toastr::success('Update Successfully');
+        return redirect()->route('slider.list')
+            ->with('success', 'Slider created successfully.');;
     }
 
     /**
@@ -49,9 +63,17 @@ class SliderController extends Controller
      * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function show(Slider $slider)
+    public function status($id)
     {
-        //
+        $status = Slider::findOrFail($id);
+        if ($status->status == 0) {
+            $status->status = 1;
+        } else {
+            $status->status = 0;
+        }
+        $status->save();
+        Toastr::success('Status Change Successfully', 'Success');
+        return redirect()->back();
     }
 
     /**
@@ -60,9 +82,10 @@ class SliderController extends Controller
      * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function edit(Slider $slider)
+    public function edit($id)
     {
-        //
+        $slider = Slider::findOrFail($id);
+        return view('backend.slider.edit', compact('slider'));
     }
 
     /**
@@ -84,27 +107,9 @@ class SliderController extends Controller
             $request->file('slider_img')->move($path, $name);
             $formData['slider_img'] = $path . $name;
         }
-
-        if ($request->hasFile('slider_img_2')) {
-            Helper::delete($update->slider_img_2);
-            $extension = $request->file('slider_img_2')->getClientOriginalExtension();
-            $name = 'image' . Str::random(5) . '.' . $extension;
-            $path = "asset/backend/assets/images/slider/";
-            $request->file('slider_img_2')->move($path, $name);
-            $formData['slider_img_2'] = $path . $name;
-        }
-
-        if ($request->hasFile('slider_img_3')) {
-            Helper::delete($update->slider_img_3);
-            $extension = $request->file('slider_img_3')->getClientOriginalExtension();
-            $name = 'image' . Str::random(5) . '.' . $extension;
-            $path = "asset/backend/assets/images/slider/";
-            $request->file('slider_img_3')->move($path, $name);
-            $formData['slider_img_3'] = $path . $name;
-        }
         $update->fill($formData)->save();
         Toastr::success('Update Successfully');
-        return redirect()->route('slider');
+        return redirect()->route('slider.list');
     }
 
     /**
@@ -113,8 +118,10 @@ class SliderController extends Controller
      * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Slider $slider)
+    public function destroy($id)
     {
-        //
+        $delete = Slider::findOrFail($id);
+        $delete->delete();
+        return response()->json();
     }
 }
