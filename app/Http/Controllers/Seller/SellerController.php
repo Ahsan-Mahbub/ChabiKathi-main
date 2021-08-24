@@ -11,9 +11,9 @@ use File;
 
 class SellerController extends Controller
 {
-    public function index()
-
-    {
-        return  'hey';
-    }
+    public function register()
+{
+    return view('fontend.seller.register');
+}
+   
 }
