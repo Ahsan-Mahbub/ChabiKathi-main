@@ -3,9 +3,9 @@
 <div class="container">
     <div class="block">
         <div class="block-header block-header-default">
-            <h3 class="block-title text-center"> Update Category</h3>
+            <h3 class="block-title text-center"> Update Color Code</h3>
             <div class="block-options">
-                <a href="{{route('category.list')}}">
+                <a href="{{route('color-code.list')}}">
                     <i class="si si-list"></i>
                 </a>
                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
@@ -17,18 +17,12 @@
         <div class="block-content">
             <div class="row justify-content-center py-20">
                 <div class="col-xl-6">
-                    <form role="form" action="{{route('category.update',$category->id) }}" method="post" enctype="multipart/form-data">
+                    <form role="form" action="{{route('color-code.update',$color->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="text" class="form-control" value="{{$category->category_name}}" id="cat_name" name="category_name" placeholder="Enter Category Name.." required="">
-                                <label for="cat_name">Category Name <span class="text-danger">*</span></label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-material">
-                                <input type="number" class="form-control" value="{{$category->category_priority}}" id="cat_priority" name="category_priority" placeholder="Enter Priority Number.." required="">
-                                <label for="cat_priority">Home Page Priority Number <span class="text-danger">*</span> </label>
+                                <input type="text" class="form-control" value="{{$color->color_code}}" id="cat_name" name="color_code" placeholder="Enter Code (#ffffff).." required="">
+                                <label for="cat_name">Color Code <span class="text-danger">*</span></label>
                             </div>
                         </div>
                         <div class="form-group">

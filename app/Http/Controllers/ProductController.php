@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Toastr;
 use File;
+use App\Helpers\Helper;
+use App\Http\Resources\ProductCollection;
+use Str;
 
 class ProductController extends Controller
 {
@@ -27,9 +31,15 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('backend.product.create');
+        $sub_cat = SubCategory::all();
+        return view('backend.product.create', compact('sub_cat'));
     }
 
+    // public function category($cat_id)
+    // {
+    //     $sub_cat = SubCategory::where('category_name', $cat_id)->get();
+    //     return ProductCollection::collection($sub_cat);
+    // }
     /**
      * Store a newly created resource in storage.
      *
@@ -42,10 +52,39 @@ class ProductController extends Controller
         $requested_data = $request->all();
         $product->status = 1;
         $product->approval = 0;
+        $product->sku .= 'sku-' . $product->product_name.time();
+
+        if ($request->hasFile('product_img')) {
+            Helper::delete($product->product_img);
+            $extension = $request->file('product_img')->getClientOriginalExtension();
+            $name = 'image' . Str::random(5) . '.' . $extension;
+            $path = "asset/backend/assets/images/product/";
+            $request->file('product_img')->move($path, $name);
+            $requested_data['product_img'] = $path . $name;
+        }
+
+        if ($request->hasFile('product_img_2')) {
+            Helper::delete($product->product_img_2);
+            $extension = $request->file('product_img_2')->getClientOriginalExtension();
+            $name = 'image' . Str::random(5) . '.' . $extension;
+            $path = "asset/backend/assets/images/product/";
+            $request->file('product_img_2')->move($path, $name);
+            $requested_data['product_img_2'] = $path . $name;
+        }
+
+        if ($request->hasFile('product_img_3')) {
+            Helper::delete($product->product_img_3);
+            $extension = $request->file('product_img_3')->getClientOriginalExtension();
+            $name = 'image' . Str::random(5) . '.' . $extension;
+            $path = "asset/backend/assets/images/product/";
+            $request->file('product_img_3')->move($path, $name);
+            $requested_data['product_img_3'] = $path . $name;
+        }
+        //dd($requested_data);
         $product->fill($requested_data)->save();
         Toastr::success('Save Successfully');
         return redirect()->route('product.list')
-            ->with('success', 'Sub Category created successfully.');
+            ->with('success', 'Product created successfully.');
     }
 
     /**
@@ -94,7 +133,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return view('backend.product.edit', compact('product'));
     }
 
     /**
@@ -104,9 +144,39 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $update = Product::findOrFail($id);
+        $formData = $request->all();
+        if ($request->hasFile('product_img')) {
+            Helper::delete($update->product_img);
+            $extension = $request->file('product_img')->getClientOriginalExtension();
+            $name = 'image' . Str::random(5) . '.' . $extension;
+            $path = "asset/backend/assets/images/product/";
+            $request->file('product_img')->move($path, $name);
+            $formData['product_img'] = $path . $name;
+        }
+
+        if ($request->hasFile('product_img_2')) {
+            Helper::delete($update->product_img_2);
+            $extension = $request->file('product_img_2')->getClientOriginalExtension();
+            $name = 'image' . Str::random(5) . '.' . $extension;
+            $path = "asset/backend/assets/images/product/";
+            $request->file('product_img_2')->move($path, $name);
+            $formData['product_img_2'] = $path . $name;
+        }
+
+        if ($request->hasFile('product_img_3')) {
+            Helper::delete($update->product_img_3);
+            $extension = $request->file('product_img_3')->getClientOriginalExtension();
+            $name = 'image' . Str::random(5) . '.' . $extension;
+            $path = "asset/backend/assets/images/product/";
+            $request->file('product_img_3')->move($path, $name);
+            $formData['product_img_3'] = $path . $name;
+        }
+        $update->fill($formData)->save();
+        Toastr::success('Update Successfully');
+        return redirect()->route('product.list');
     }
 
     /**

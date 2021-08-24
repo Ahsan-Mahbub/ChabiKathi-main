@@ -7,6 +7,7 @@ use App\Models\User;
 use Hash;
 use Auth;
 use File;
+use Brian2694\Toastr\Facades\Toastr;
 
 class AuthController extends Controller
 {
@@ -43,6 +44,7 @@ class AuthController extends Controller
         }
         
         User::where('id', Auth::user()->id)->update($data);
+        Toastr::success('Profile Update Successfully');
         return back();
     }
 }

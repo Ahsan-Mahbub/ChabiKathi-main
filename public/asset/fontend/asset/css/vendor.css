@@ -1,0 +1,53 @@
+ul{
+	padding-left: 0;
+}
+.button-shop{
+	padding: 1.5rem;
+	padding-top: 0;
+}
+.button-shop .btn-danger {
+    color: #fff;
+    background-color: #7d2227;
+    border-color: #7d2227;
+    font-size: 15px;
+    letter-spacing: 1px;
+    padding: 10px;
+    margin-right: 5px;
+}
+.button-shop .btn-light {
+    color: #000;
+    background-color: #f8f9fa;
+    border-color: #ddd;
+    font-size: 15px;
+    letter-spacing: 1px;
+    padding: 10px;
+    margin-left: 5px;
+}
+.shop-title h2{
+	color: #3a494e;
+    padding: .5rem;
+    font-size: 1.5rem;
+}
+.title-header{
+	display: inline-block;
+}
+.site-header-search{
+	display: inline-block;
+	float: right;
+}
+.vendor-select{
+	background: #fff;
+    border: 0.1px solid #ddd;
+}
+.ex-padding {
+    padding: 170px 0px 20px 0px;
+}
+.shop-view{
+	padding: 15px 0px 15px 0px;
+}
+.shop-view .btn-light{
+	border: 1px solid;
+    padding: 10px;
+    width: 20%;
+    letter-spacing: 1px;
+}

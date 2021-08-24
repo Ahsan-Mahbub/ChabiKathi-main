@@ -15,8 +15,7 @@
             <div class="col-md-6 col-lg-6 col-xl-6 col-sm-12 col-12 right-side-top">
                 <div class="sell-details-top">
                     <i class="far fa-store"></i>
-                    <a href="{{route('registers')}}">Sell on Chabikathi</a>>
-                    {{-- <span>Sell on Chabikathi</span> --}}
+                    <span>Sell on Chabikathi</span>
                 </div>
                 <div class="app-details-top">
                     <!-- <img class="img-fluid" src="asset/img/Logo-2.png"> -->
