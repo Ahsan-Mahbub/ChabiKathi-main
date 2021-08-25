@@ -14,4 +14,8 @@ class Category extends Model
         'category_name',
         'category_priority',
     ];
+
+    public function parent(){
+        return $this->hasMany(SubCategory::class,'cat_id');
+    }
 }

@@ -1,3 +1,11 @@
+/*margin css*/
+.main_cat{
+  border-bottom: 1px solid #cfcfcf;
+  padding: 0px 0px 3px 0px;
+}
+.main_cat:hover {
+    background: #ddd;
+}
 /* Start Slider */
 .slideshow-container {
   max-width: 1000px;
@@ -97,36 +105,11 @@ padding: 0;
 .header-nav .box span a {
     font-size: 15px;
 }
-.category-navigation-title::after{
+.sitcky-title::after{
 	background: transparent;
 }
-/*.category-navigation-title ul{
-	padding-left: 0;
-}*/
-.category-navigation-menus{
-  margin-top: 5px;
-  background-color: #fff !important;
-  max-height: 100%;
-  overflow-y: scroll;
-  padding: 0 10px;
-  border-radius: 0 0 4px 4px;
-  overflow: hidden;
-  border: none;
-  width: 19%;
-}
-.category-navigation-menus li {
-  padding: 8px 10px;
-  color: #565656;
-  cursor: pointer;
-  border-bottom: 1px solid #ebebeb;
-  text-transform: capitalize;
-  font-size: 13px;
-  line-height: 18px;
-}
-.category-navigation-menus li a{
-  color: #565656;
-}
-.category-navigation-menus ul{
-  border-top: 2px solid #9c2918;
+.dropdown-menu{
+  width: 20%;
+  margin-top: 12px;
 }
 /*End Sticky*/

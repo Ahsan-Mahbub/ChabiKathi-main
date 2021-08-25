@@ -478,9 +478,7 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
 .category-navigation-menu .dropdown > li{
     padding: 5px 0px 5px 15px;
 }
-.category-navigation-menu .dropdown > li:hover{
-    background: #ddd;
-}
+
 .category-navigation-menu .dropdown > li > a {
     color: #3a494e;
     padding: 7.5px 0;
@@ -980,7 +978,7 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
   padding: 7px 15px;
   text-decoration: none;
   display: block;
-  border-bottom: 1px solid rgba(195, 195, 195, 0.1);
+  border-bottom: 1px solid #cfcfcf;
 }
 .dropdown:hover .dropdown-content {
     display: block;
@@ -989,6 +987,7 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
 }
 .dropdown-content a:hover {
   color: #7d2227;
+  background: #ddd;
 }
 .profile-icon .dropdown-content a {
   padding: 15px 15px;

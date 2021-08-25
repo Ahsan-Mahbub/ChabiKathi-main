@@ -10,17 +10,16 @@ class HomeController extends Controller
 {
     public function home(){
         $sliders = Slider::get();
-        return view('fontend.pages.home', [
-                'sliders' => $sliders,
-            ]);
+        $categories = Category::get();
+        return view('fontend.pages.home');
     }
 
-    // public function category(){
-    //     $categories = Category::get();
-    //     return view('fontend.layouts.header', [
-    //         'categories' => $categories,
-    //     ]);
-    // }
+    public function category()
+    {
+        $categoryName = Category::Active()->get();
+        // dd($categoryName);
+        return view('frontend.pages.header', compact('categoryName'));
+    }
 
 
 

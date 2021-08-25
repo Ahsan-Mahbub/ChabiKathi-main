@@ -2,6 +2,7 @@
     <!-- Top Header Section -->
     @include('fontend.layouts.topheader')
     <!-- End Header Section -->
+    @php($categories = \App\Models\Category::with(['parent'])->where('status',1)->get()->toArray())
     <section class="site-banner">
       <div class="container site-banner-container">
         <div class="row">
@@ -10,23 +11,25 @@
             <div class="category-navigation d-shadow">
               <div data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-th-large" aria-hidden="true" style="color: #822328;"></i>
-                <h2 class="category-navigation-title">Categories</h2>
+                <h2 class="category-navigation-title sitcky-title">Categories</h2>
                 <i class="fas fa-chevron-down" aria-hidden="true"></i>
               </div>
-              <div class="category-navigation-menu dropdown-menu">
-                <ul>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                </ul>
-              </div>
+              <ul class="category-navigation-menu dropdown-menu">
+                @foreach($categories as $category)
+                  <div class="dropdown main_cat">    
+                    <li>
+                      <a href="/category/{{($category['id'])}}">{{$category['category_name']}}</a>
+                      <div class="dropdown-content">
+                        @if($category['parent'])
+                        @foreach($category['parent'] as $subcategory)
+                        <a href="/sub-category/{{($subcategory['id'])}}">{{$subcategory['sub_category_name']}}</a>
+                        @endforeach
+                        @endif
+                      </div>
+                    </li>
+                  </div>
+                  @endforeach
+              </ul>
             </div>
           </div>
           <!-- End Main-Category Section -->
@@ -64,23 +67,25 @@
             <div class="category-navigation d-shadow">
               <div data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-th-large" aria-hidden="true" style="color: #822328;"></i>
-                <h2 class="category-navigation-title">Categories</h2>
+                <h2 class="category-navigation-title sitcky-title">Categories</h2>
                 <i class="fas fa-chevron-down" aria-hidden="true"></i>
               </div>
-              <div class="category-navigation-menus dropdown-menu" style="position: fixed;">
-                <ul style="padding-left: 0;">
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                  <li><a href="/">Automotive &amp; Motorbike</a></li>
-                </ul>
-              </div>
+              <ul class="category-navigation-menu dropdown-menu">
+                @foreach($categories as $category)
+                  <div class="dropdown main_cat">    
+                    <li>
+                      <a href="/category/{{($category['id'])}}">{{$category['category_name']}}</a>
+                      <div class="dropdown-content">
+                        @if($category['parent'])
+                        @foreach($category['parent'] as $subcategory)
+                        <a href="/sub-category/{{($subcategory['id'])}}">{{$subcategory['sub_category_name']}}</a>
+                        @endforeach
+                        @endif
+                      </div>
+                    </li>
+                  </div>
+                  @endforeach
+              </ul>
             </div>
           </div>
           <!-- Main Slider Section -->
@@ -120,115 +125,20 @@
         <div class="category-navigation d-shadow">
           <h2 class="category-navigation-title">Categories</h2>
           <ul class="category-navigation-menu">
-              <div class="dropdown">
+            @foreach($categories as $category)
+              <div class="dropdown main_cat">    
                 <li>
-                  <a href="#">Automotive &amp; Motorbike</a>
-                <div class="dropdown-content">
-                    <a href="#">Sub Motorbike 1</a>
-                    <a href="#">Sub Motorbike 2</a>
-                    <a href="#">Sub Motorbike 3</a>
-                    <a href="#">Sub Motorbike 4</a>
-                    <a href="#">Sub Motorbike 5</a>
-                    <a href="#">Sub Motorbike 6</a>
-                  </div>
-                </li>
-              </div>
-              <div class="dropdown">
-                <li><a href="#">Automotive &amp; Motorbike</a>
+                  <a href="/category/{{($category['id'])}}">{{$category['category_name']}}</a>
                   <div class="dropdown-content">
-                    <a href="#">Sub Motorbike 1</a>
-                    <a href="#">Sub Motorbike 2</a>
-                    <a href="#">Sub Motorbike 3</a>
-                    <a href="#">Sub Motorbike 4</a>
-                    <a href="#">Sub Motorbike 5</a>
-                    <a href="#">Sub Motorbike 6</a>
+                    @if($category['parent'])
+                    @foreach($category['parent'] as $subcategory)
+                    <a href="/sub-category/{{($subcategory['id'])}}">{{$subcategory['sub_category_name']}}</a>
+                    @endforeach
+                    @endif
                   </div>
                 </li>
               </div>
-              <div class="dropdown">
-                <li><a href="#">Automotive &amp; Motorbike</a>
-                  <div class="dropdown-content">
-                    <a href="#">Sub Motorbike 1</a>
-                    <a href="#">Sub Motorbike 2</a>
-                    <a href="#">Sub Motorbike 3</a>
-                    <a href="#">Sub Motorbike 4</a>
-                    <a href="#">Sub Motorbike 5</a>
-                    <a href="#">Sub Motorbike 6</a>
-                  </div>
-                </li>
-              </div>
-              <div class="dropdown">
-                <li><a href="#">Automotive &amp; Motorbike</a>
-                  <div class="dropdown-content">
-                    <a href="#">Sub Motorbike 1</a>
-                    <a href="#">Sub Motorbike 2</a>
-                    <a href="#">Sub Motorbike 3</a>
-                    <a href="#">Sub Motorbike 4</a>
-                    <a href="#">Sub Motorbike 5</a>
-                    <a href="#">Sub Motorbike 6</a>
-                  </div>
-                </li>
-              </div>
-              <div class="dropdown">
-                <li><a href="#">Automotive &amp; Motorbike</a>
-                  <div class="dropdown-content">
-                    <a href="#">Sub Motorbike 1</a>
-                    <a href="#">Sub Motorbike 2</a>
-                    <a href="#">Sub Motorbike 3</a>
-                    <a href="#">Sub Motorbike 4</a>
-                    <a href="#">Sub Motorbike 5</a>
-                    <a href="#">Sub Motorbike 6</a>
-                  </div>
-                </li>
-              </div>
-              <div class="dropdown">
-                <li><a href="#">Automotive &amp; Motorbike</a>
-                  <div class="dropdown-content">
-                    <a href="#">Sub Motorbike 1</a>
-                    <a href="#">Sub Motorbike 2</a>
-                    <a href="#">Sub Motorbike 3</a>
-                    <a href="#">Sub Motorbike 4</a>
-                    <a href="#">Sub Motorbike 5</a>
-                    <a href="#">Sub Motorbike 6</a>
-                  </div>
-                </li>
-              </div>
-              <div class="dropdown">
-                <li><a href="#">Automotive &amp; Motorbike</a>
-                  <div class="dropdown-content">
-                    <a href="#">Sub Motorbike 1</a>
-                    <a href="#">Sub Motorbike 2</a>
-                    <a href="#">Sub Motorbike 3</a>
-                    <a href="#">Sub Motorbike 4</a>
-                    <a href="#">Sub Motorbike 5</a>
-                    <a href="#">Sub Motorbike 6</a>
-                  </div>
-                </li>
-              </div>
-              <div class="dropdown">
-                <li><a href="#">Automotive &amp; Motorbike</a>
-                  <div class="dropdown-content">
-                    <a href="#">Sub Motorbike 1</a>
-                    <a href="#">Sub Motorbike 2</a>
-                    <a href="#">Sub Motorbike 3</a>
-                    <a href="#">Sub Motorbike 4</a>
-                    <a href="#">Sub Motorbike 5</a>
-                    <a href="#">Sub Motorbike 6</a>
-                  </div>
-                </li>
-              </div>
-              <div class="dropdown">
-                <li><a href="#">Automotive &amp; Motorbike</a>
-                  <div class="dropdown-content">
-                    <a href="#">Sub Motorbike 1</a>
-                    <a href="#">Sub Motorbike 2</a>
-                    <a href="#">Sub Motorbike 3</a>
-                    <a href="#">Sub Motorbike 4</a>
-                    <a href="#">Sub Motorbike 5</a>
-                    <a href="#">Sub Motorbike 6</a>
-                  </div>
-                </li>
-              </div>
+              @endforeach
           </ul>
         </div>
       </div>
@@ -237,6 +147,7 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 home-banner">
         <div class="slider" >
           <div class="slideshow-container">
+            @php($sliders = \App\Models\Slider::where('status',1)->orderBy('id','desc')->get())
             @foreach($sliders as $slider)
               <div class="mySlides fade">
                 <a href="">

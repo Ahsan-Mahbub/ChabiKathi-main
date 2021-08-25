@@ -26,7 +26,13 @@ use App\Http\Controllers\SliderController;
 |
 */
 Route::get('/', [HomeController::class, 'home'])->name('home');
-// Route::get('/category', [HomeController::class, 'category']);
+
+
+//Route::get('/category', [HomeController::class, 'category']);
+
+
+
+
 Route::get('/product', [HomeController::class, 'product'])->name('product');
 Route::get('/vendor', [HomeController::class, 'vendor'])->name('vendor');
 Route::get('/campaign', [HomeController::class, 'campaign'])->name('campaign');
