@@ -15,6 +15,18 @@ class CreateSellersTable extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->unique();
+            $table->string('contact');
+            $table->string('password');
+            $table->string('shop_name');
+            $table->string('shop_address');
+            $table->string('shop_logo')->nullable();
+            $table->string('banner')->nullable();
+            $table->integer('status')->default(0);
+            $table->integer('approve')->default(0);
+            $table->rememberToken();
             $table->timestamps();
         });
     }
