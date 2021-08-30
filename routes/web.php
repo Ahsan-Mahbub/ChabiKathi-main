@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 //BackAuth-Controller
 use App\Http\Controllers\AuthController;
