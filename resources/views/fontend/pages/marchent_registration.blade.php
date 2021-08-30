@@ -1,94 +1,156 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('asset/fontend/asset/css/marcent.css')}}" />
-    <link rel="stylesheet" href="{{ asset('asset/fontend/asset/css/marcent-reg.css')}}" />
-    <title>Chabikathi – Anything At Anywhere</title>
-    <link rel="icon" href="{{ asset('asset/fontend/asset/img/Logo-2.png')}}" sizes="16x16">
+<html lang="en" class="no-focus">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>Chabikathi – Marchent</title>
+        <meta name="author" content="pixelcave">
+        <meta name="robots" content="noindex, nofollow">
+        <!-- Icons -->
+        <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+        <link rel="shortcut icon" href="{{ asset('asset/backend/assets/media/favicons/Logo-2.png')}}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('asset/backend/assets/media/favicons/Logo-2.png')}}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('asset/backend/assets/media/favicons/Logo-2.png')}}">
+        <!-- END Icons -->
+        <!-- Stylesheets -->
+        <!-- Page JS Plugins CSS -->
+        <link rel="stylesheet" href="{{ asset('asset/backend/assets/js/plugins/slick/slick.css')}}">
+        <link rel="stylesheet" href="{{ asset('asset/backend/assets/js/plugins/slick/slick-theme.css')}}">
+        <!-- Fonts and Codebase framework -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700&display=swap">
+        <link rel="stylesheet" id="css-main" href="{{ asset('asset/backend/assets/css/codebase.min.css')}}">
+    </head>
+    <body>
+        <div id="page-container" class="main-content-boxed">
+            <!-- Main Container -->
+            <main id="main-container">
+                <!-- Page Content -->
+                <div class="bg-body-dark bg-pattern" style="background-image: url('/asset/backend/assets/media/various/bg-pattern-inverse.png');">
+                    <div class="row mx-0 justify-content-center">
+                        <div class="hero-static col-lg-6 col-xl-5">
+                            <div class="content content-full overflow-hidden">
+                                <!-- Header -->
+                                <div class="py-10 text-center">
+                                    <h1 class="h4 font-w700 mt-10 mb-10">Create New Account</h1>
+                                </div>
+                                <form class="js-validation-signup" action="be_pages_auth_all.html" method="post">
+                                    <div class="block block-themed block-rounded block-shadow">
+                                        <div class="block-header bg-gd-emerald">
+                                            <h3 class="block-title">Please add your details</h3>
+                                            <div class="block-options">
+                                                <button type="button" class="btn-block-option">
+                                                    <i class="si si-wrench"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="block-content">
+                                            <div class="form-group row">
+                                                <div class="col-12">
+                                                    <label for="signup-username">Username</label>
+                                                    <input type="text" class="form-control" id="signup-username" name="signup-username" placeholder="eg: john_smith">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-12">
+                                                    <label for="signup-email">Email</label>
+                                                    <input type="email" class="form-control" id="signup-email" name="signup-email" placeholder="eg: john@example.com">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-12">
+                                                    <label for="signup-email">Phone</label>
+                                                    <input type="text" maxlength="11" class="form-control" id="signup-email" name="signup-email" placeholder="01**********">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-12">
+                                                    <label for="signup-email">Shop Name</label>
+                                                    <input type="text" class="form-control" id="signup-email" name="signup-email" placeholder="eg: chabikathi shop">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-12">
+                                                    <label for="signup-password">Password</label>
+                                                    <input type="password" class="form-control" id="signup-password" name="signup-password" placeholder="********">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-12">
+                                                    <label for="signup-password-confirm">Password Confirmation</label>
+                                                    <input type="password" class="form-control" id="signup-password-confirm" name="signup-password-confirm" placeholder="********">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-0">
+                                                <div class="col-sm-6 push">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="signup-terms" name="signup-terms">
+                                                        <label class="custom-control-label" for="signup-terms">I agree to Terms &amp; Conditions</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-sm-right push">
+                                                    <button type="submit" class="btn btn-alt-success">
+                                                        <i class="fa fa-plus mr-10"></i> Create Account
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="block-content bg-body-light">
+                                            <div class="form-group text-center">
+                                                <a class="link-effect text-muted mr-10 mb-5 d-inline-block" href="#" data-toggle="modal" data-target="#modal-terms">
+                                                    <i class="fa fa-book text-muted mr-5"></i> Read Terms
+                                                </a>
+                                                <a class="link-effect text-muted mr-10 mb-5 d-inline-block" href="op_auth_signin3.html">
+                                                    <i class="fa fa-user text-muted mr-5"></i> Sign In
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- END Sign Up Form -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Page Content -->
+            </main>
+            <!-- END Main Container -->
+        </div>
+        <!-- END Page Container -->
 
-    <!-- Script -->
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-  </head>
-<body>
-
-	<section class="marcent-login-page">
-		<div class="col-md-12">
-			<div class="col-md-7 left-side">
-				<div class="content-side">
-					<div class="img-logo">
-						<img src="{{ asset('asset/fontend/asset/img/Logo-2.png')}}">
-					</div>
-					<h2 class="sfont">Get started selling </h2>
-					<h2 class="put">Put your products infront of more than 40 million</h2>
-					<h2 class="customer">customers in Bangladesh</h2>
-				</div>
-			</div>
-			<div class="col-md-5 right-side">
-				<form class="bg-white p-5">
-					<div class="bg-white p-6 text-center font-sans-ui-serif marginforp">
-						<h2><b class="become ">BECOME A</b></h2>
-						<h2 class="seller">ChabiKathi MERCHANT</h2>
-						<h2 class="get mt-6">Getting started is quick and simple,</h2>
-						<h2 class="get mt-6">Just fill up the form below</h2>
-					</div>
-					<div class="mt-8 border-b-2 border-fuchsia-600 text-current luser flex">
-						<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" class="svg-inline--fa fa-user fa-w-14 d-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg>
-						<input placeholder="First Name" name="name" maxlength="11" class="ustyle">
-					</div>
-					<div class="luser error flex mt-0">
-						<small class="text-red-light mb-2 block text-center w-96"></small>
-					</div>
-					<div class="mt-8 border-b-2 border-fuchsia-600 text-current luser flex">
-						<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" class="svg-inline--fa fa-user fa-w-14 d-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg>
-						<input placeholder="Last Name" name="name" maxlength="11" class="ustyle">
-					</div>
-					<div class="luser error flex mt-0">
-						<small class="text-red-light mb-2 block text-center w-96"></small>
-					</div>
-					<div class="mt-8 border-b-2 border-fuchsia-600 text-current luser flex">
-						<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="phone" class="svg-inline--fa fa-phone fa-w-16 d-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z"></path></svg>
-						<input placeholder="Mobile Number" name="mobileNumber" maxlength="11" class="ustyle">
-					</div>
-					<div class="luser error flex mt-0">
-						<small class="text-red-light mb-2 block text-center w-96"></small>
-					</div>
-					<div class="mt-3 border-b-2 border-fuchsia-600 lunlock flex">
-						<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="unlock" class="svg-inline--fa fa-unlock fa-w-14 d-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M400 256H152V152.9c0-39.6 31.7-72.5 71.3-72.9 40-.4 72.7 32.1 72.7 72v16c0 13.3 10.7 24 24 24h32c13.3 0 24-10.7 24-24v-16C376 68 307.5-.3 223.5 0 139.5.3 72 69.5 72 153.5V256H48c-26.5 0-48 21.5-48 48v160c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z"></path></svg>
-						<input type="password" placeholder="Password" name="password" class="pstyle">
-					</div>
-					<div class="luser error flex mt-0 text-center">
-						<small class="text-red-light mb-2 block text-center w-96"></small>
-					</div>
-					<div class="mt-3 border-b-2 border-fuchsia-600 lunlock flex">
-						<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="unlock" class="svg-inline--fa fa-unlock fa-w-14 d-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M400 256H152V152.9c0-39.6 31.7-72.5 71.3-72.9 40-.4 72.7 32.1 72.7 72v16c0 13.3 10.7 24 24 24h32c13.3 0 24-10.7 24-24v-16C376 68 307.5-.3 223.5 0 139.5.3 72 69.5 72 153.5V256H48c-26.5 0-48 21.5-48 48v160c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z"></path></svg>
-						<input type="password" placeholder="Confirm Password" name="password" class="pstyle">
-					</div>
-					<div class="luser error flex mt-0 text-center">
-						<small class="text-red-light mb-2 block text-center w-96"></small>
-					</div>
-					<div class="h-12"></div>
-					<div class=" h-12 rememberstyle">
-						<h2 class=" forgot ">By clicking next, you agree to these 
-							<a class="ant-typography" href="/">Terms & Conditions</a>
-						</h2>
-					</div>
-					<div class="bt">
-						<button type="submit" class="button">Next</button>
-					</div>
-					<div class=" mt-3 create">
-						<h2 class="fcreate">Already a Member? <a class="ant-typography" href="/signup">Sing In</a></h2>
-					</div>
-				</form>
-			</div>
-		</div>
-	</section>
-</body>
+        <!-- Terms Modal -->
+        <div class="modal fade" id="modal-terms" tabindex="-1" role="dialog" aria-labelledby="modal-terms" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-slidedown" role="document">
+                <div class="modal-content">
+                    <div class="block block-themed block-transparent mb-0">
+                        <div class="block-header bg-primary-dark">
+                            <h3 class="block-title">Terms &amp; Conditions</h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                    <i class="si si-close"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content">
+                            <p>Potenti elit lectus augue eget iaculis vitae etiam, ullamcorper etiam bibendum ad feugiat magna accumsan dolor, nibh molestie cras hac ac ad massa, fusce ante convallis ante urna molestie vulputate bibendum tempus ante justo arcu erat accumsan adipiscing risus, libero condimentum venenatis sit nisl nisi ultricies sed, fames aliquet consectetur consequat nostra molestie neque nullam scelerisque neque commodo turpis quisque etiam egestas vulputate massa, curabitur tellus massa venenatis congue dolor enim integer luctus, nisi suscipit gravida fames quis vulputate nisi viverra luctus id leo dictum lorem, inceptos nibh orci.</p>
+                            <p>Potenti elit lectus augue eget iaculis vitae etiam, ullamcorper etiam bibendum ad feugiat magna accumsan dolor, nibh molestie cras hac ac ad massa, fusce ante convallis ante urna molestie vulputate bibendum tempus ante justo arcu erat accumsan adipiscing risus, libero condimentum venenatis sit nisl nisi ultricies sed, fames aliquet consectetur consequat nostra molestie neque nullam scelerisque neque commodo turpis quisque etiam egestas vulputate massa, curabitur tellus massa venenatis congue dolor enim integer luctus, nisi suscipit gravida fames quis vulputate nisi viverra luctus id leo dictum lorem, inceptos nibh orci.</p>
+                            <p>Potenti elit lectus augue eget iaculis vitae etiam, ullamcorper etiam bibendum ad feugiat magna accumsan dolor, nibh molestie cras hac ac ad massa, fusce ante convallis ante urna molestie vulputate bibendum tempus ante justo arcu erat accumsan adipiscing risus, libero condimentum venenatis sit nisl nisi ultricies sed, fames aliquet consectetur consequat nostra molestie neque nullam scelerisque neque commodo turpis quisque etiam egestas vulputate massa, curabitur tellus massa venenatis congue dolor enim integer luctus, nisi suscipit gravida fames quis vulputate nisi viverra luctus id leo dictum lorem, inceptos nibh orci.</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-alt-success" data-dismiss="modal">
+                            <i class="fa fa-check"></i> Perfect
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Terms Modal -->
+        <script src="{{ asset('asset/backend/assets/js/codebase.core.min.js')}}"></script>
+        <script src="{{ asset('asset/backend/assets/js/codebase.app.min.js')}}"></script>
+        <!-- Page JS Plugins -->
+        <script src="{{ asset('asset/backend/assets/js/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+        <!-- Page JS Code -->
+        <script src="{{ asset('asset/backend/assets/js/pages/op_auth_signup.min.js')}}"></script>
+    </body>
 </html>

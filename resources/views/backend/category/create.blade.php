@@ -27,6 +27,12 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
+                                <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter Category Slug.." required="">
+                                <label for="slug">Category Slug <span class="text-danger">*</span></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-material">
                                 <input type="number" class="form-control" id="cat_priority" name="category_priority" placeholder="Enter Priority Number.." required="">
                                 <label for="cat_priority">Home Page Priority Number <span class="text-danger">*</span> </label>
                             </div>
@@ -40,4 +46,14 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script type="text/javascript">
+    $("#cat_name").keyup(function(){
+        var Text = $(this).val();
+        Text = Text.toLowerCase();
+        Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
+        $("#slug").val(Text);        
+});
+</script>
 @endsection

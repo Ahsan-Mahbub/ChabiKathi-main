@@ -18,11 +18,11 @@
                 @foreach($categories as $category)
                   <div class="dropdown main_cat">    
                     <li>
-                      <a href="/category/{{($category['id'])}}">{{$category['category_name']}}</a>
+                      <a href="/category/{{($category['slug'])}}">{{$category['category_name']}}</a>
                       <div class="dropdown-content">
                         @if($category['parent'])
                         @foreach($category['parent'] as $subcategory)
-                        <a href="/sub-category/{{($subcategory['id'])}}">{{$subcategory['sub_category_name']}}</a>
+                        <a href="/sub-category/{{($subcategory['slug'])}}">{{$subcategory['sub_category_name']}}</a>
                         @endforeach
                         @endif
                       </div>
@@ -74,11 +74,11 @@
                 @foreach($categories as $category)
                   <div class="dropdown main_cat">    
                     <li>
-                      <a href="/category/{{($category['id'])}}">{{$category['category_name']}}</a>
+                      <a href="/category/{{($category['slug'])}}">{{$category['category_name']}}</a>
                       <div class="dropdown-content">
                         @if($category['parent'])
                         @foreach($category['parent'] as $subcategory)
-                        <a href="/sub-category/{{($subcategory['id'])}}">{{$subcategory['sub_category_name']}}</a>
+                        <a href="/sub-category/{{($subcategory['slug'])}}">{{$subcategory['sub_category_name']}}</a>
                         @endforeach
                         @endif
                       </div>
@@ -128,11 +128,11 @@
             @foreach($categories as $category)
               <div class="dropdown main_cat">    
                 <li>
-                  <a href="/category/{{($category['id'])}}">{{$category['category_name']}}</a>
+                  <a href="/category/{{($category['slug'])}}">{{$category['category_name']}}</a>
                   <div class="dropdown-content">
                     @if($category['parent'])
                     @foreach($category['parent'] as $subcategory)
-                    <a href="/sub-category/{{($subcategory['id'])}}">{{$subcategory['sub_category_name']}}</a>
+                    <a href="/sub-category/{{($subcategory['slug'])}}">{{$subcategory['sub_category_name']}}</a>
                     @endforeach
                     @endif
                   </div>

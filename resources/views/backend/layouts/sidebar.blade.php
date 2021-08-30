@@ -162,6 +162,17 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-basket"></i><span class="sidebar-mini-hide">Shop</span></a>
+                    <ul>
+                        <li>
+                            <a href="{{route('shop.list')}}">Shop List</a>
+                        </li>
+                        <li>
+                            <a href="{{route('shop.create')}}">Add Shop</a>
+                        </li>
+                    </ul>
+                </li>
 
 
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">E.C</span><span class="sidebar-mini-hidden"> Extra Change</span></li>

@@ -21,7 +21,8 @@
                 <tr>
                     <th class="text-center">S/L</th>
                     <th class="text-center"> Categories Name</th>
-                    <th class="d-none d-sm-table-cell text-center">Home Page Categories Priority</th>
+                    <th class="text-center"> Slug</th>
+                    <th class="d-none d-sm-table-cell text-center">Home Page Priority</th>
                     <th class="d-none d-sm-table-cell text-center" style="width: 15%;">Status</th>
                     <th class="text-center">Action</th>
                 </tr>
@@ -32,6 +33,7 @@
                 <tr>
                     <td class="text-center">{{$sl++}}</td>
                     <td class="font-w600 text-center">{{$category->category_name}}</td>
+                    <td class="font-w600 text-center">{{$category->slug}}</td>
                     <td class="d-none d-sm-table-cell text-center">{{$category->category_priority}}</td>
                     <td class="d-none d-sm-table-cell text-center">
                         <?php

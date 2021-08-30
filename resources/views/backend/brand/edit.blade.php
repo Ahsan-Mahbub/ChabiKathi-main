@@ -21,8 +21,14 @@
                     @csrf
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="text" class="form-control" value="{{$brand->brand_name}}" id="size_name" name="brand_name" placeholder="Enter Brand Name.." required="">
-                                <label for="brand_name">Brand Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" value="{{$brand->brand_name}}" id="brand_names" name="brand_name" placeholder="Enter Brand Name.." required="">
+                                <label for="brand_names">Brand Name <span class="text-danger">*</span></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-material">
+                                <input type="text" class="form-control" id="slug" value="{{$brand->slug}}" name="slug" placeholder="Enter Brand Slug.." required="">
+                                <label for="slug">Brand Slug <span class="text-danger">*</span></label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -34,4 +40,14 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script type="text/javascript">
+    $("#brand_names").keyup(function(){
+        var Text = $(this).val();
+        Text = Text.toLowerCase();
+        Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
+        $("#slug").val(Text);        
+});
+</script>
 @endsection

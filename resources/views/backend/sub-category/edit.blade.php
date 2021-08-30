@@ -21,14 +21,20 @@
                     @csrf
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="text" class="form-control" value="{{$subcategory->sub_category_name}}" id="cat_name" name="sub_category_name" placeholder="Enter Sub Category Name.." required="">
-                                <label for="cat_name">Sub Category Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" value="{{$subcategory->sub_category_name}}" id="sub_cat_name" name="sub_category_name" placeholder="Enter Sub Category Name.." required="">
+                                <label for="sub_cat_name">Sub Category Name <span class="text-danger">*</span></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-material">
+                                <input type="text" class="form-control" value="{{$subcategory->slug}}" id="slug" name="slug" placeholder="Enter Sub Category Slug.." required="">
+                                <label for="slug">Sub Category Slug <span class="text-danger">*</span></label>
                             </div>
                         </div>
                         <div class="form-group">
                             @php($category = \App\Models\Category::where('status',1)->orderBy('id','desc')->get())
                             <div class="form-material">
-                                <select class="js-select2 form-control js-select2-enabled select2-hidden-accessible" id="val-select22" name="cat_id" style="width: 100%;" data-placeholder="Choose one.." data-select2-id="val-select22" tabindex="-1" aria-hidden="true">
+                                <select class="js-select2 form-control js-select2-enabled select2-hidden-accessible" id="val-select22" name="category_id" style="width: 100%;" data-placeholder="Choose one.." data-select2-id="val-select22" tabindex="-1" aria-hidden="true">
                                     @foreach($category as $value)
                                     <option value="{{$value->id}}" {{ $subcategory->cat_id == $value->id ? 'selected' : ''}}>{{$value->category_name}} </option>
                                     @endforeach
@@ -45,4 +51,14 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script type="text/javascript">
+    $("#sub_cat_name").keyup(function(){
+        var Text = $(this).val();
+        Text = Text.toLowerCase();
+        Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
+        $("#slug").val(Text);        
+});
+</script>
 @endsection

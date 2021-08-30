@@ -46,8 +46,8 @@
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
 							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
+							<span class="previous-price">৳ 200</span>
+							<span class="present-price">৳ 100</span>
 							<div class="buttons text-center">
 								<button class="btn btn-danger">Add to Cart</button>
 							</div>
@@ -59,8 +59,8 @@
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
 							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
+							<span class="previous-price">৳ 200</span>
+							<span class="present-price">৳ 100</span>
 							<div class="buttons text-center">
 								<button class="btn btn-danger">Add to Cart</button>
 							</div>
@@ -72,8 +72,8 @@
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
 							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
+							<span class="previous-price">৳ 200</span>
+							<span class="present-price">৳ 100</span>
 							<div class="buttons text-center">
 								<button class="btn btn-danger">Add to Cart</button>
 							</div>
@@ -85,8 +85,8 @@
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
 							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
+							<span class="previous-price">৳ 200</span>
+							<span class="present-price">৳ 100</span>
 							<div class="buttons text-center">
 								<button class="btn btn-danger">Add to Cart</button>
 							</div>
@@ -98,8 +98,8 @@
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
 							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
+							<span class="previous-price">৳ 200</span>
+							<span class="present-price">৳ 100</span>
 							<div class="buttons text-center">
 								<button class="btn btn-danger">Add to Cart</button>
 							</div>
@@ -111,8 +111,8 @@
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
 							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
+							<span class="previous-price">৳ 200</span>
+							<span class="present-price">৳ 100</span>
 							<div class="buttons text-center">
 								<button class="btn btn-danger">Add to Cart</button>
 							</div>
@@ -191,576 +191,51 @@
 	</section>
 	<!-- End Shop Section -->
 	<!-- Product Section -->
+	@foreach($products as $product)
 	<section class="product-part">
 		<div class="container">
-				<div class="product-title dev-flex-sb">
-					<a href="/"><h2>Watch Category</h2></a>
-					<div class="search-and-more">
-						<a class="highlighted-txt dev-flex" href="/">
-							<b class="highlighted-txt">View All</b>
-							<img src="shop.pngasset/img/side.svg')}}" alt="" height="30px">
-						</a>
+			<div class="product-title dev-flex-sb">
+				<a href="/category/{{$product->slug}}"><h2>{{$product->category_name}}</h2></a>
+				<div class="search-and-more">
+					<a class="highlighted-txt dev-flex" href="/category/{{$product->slug}}">
+						<b class="highlighted-txt">View All</b>
+						<img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px">
+					</a>
 				</div>
-				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-12">
+					@if($product['product'])
+                    @foreach($product['product'] as $proInfo)
 					<div class="col-md-2 product-box">
-						<a href="">
+						<a href="/product/{{($proInfo['product_slug'])}}">
 							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
+								<img src="{{$proInfo['product_img']}}">
 							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
+							<span class="product-name">{{$proInfo['product_name']}}</span>
+							<span class="previous-price">
+								<?php
+									if($proInfo['discount'])
+									{
+										echo "৳ {$proInfo['discount']}";
+									}
+								?>
+							</span>
+							<span class="present-price">৳ {{$proInfo['price']}}</span>
 							<div class="buttons text-center">
 								<button class="btn btn-danger">Add to Cart</button>
 							</div>
 						</a>
 					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
+					@endforeach
+					@endif
 				</div>
 			</div>
 		</div>
 	</section>
-	<section class="product-part">
-		<div class="container">
-				<div class="product-title dev-flex-sb">
-					<a href="/"><h2>Accessories</h2></a>
-					<div class="search-and-more">
-						<a class="highlighted-txt dev-flex" href="/">
-							<b class="highlighted-txt">View All</b>
-							<img src="shop.pngasset/img/side.svg')}}" alt="" height="30px">
-						</a>
-				</div>
-				</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/accesory.jpeg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/accesory.jpeg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/accesory.jpeg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/accesory.jpeg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/accesory.jpeg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/accesory.jpeg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="product-part">
-		<div class="container">
-				<div class="product-title dev-flex-sb">
-					<a href="/"><h2>Sports</h2></a>
-					<div class="search-and-more">
-						<a class="highlighted-txt dev-flex" href="/">
-							<b class="highlighted-txt">View All</b>
-							<img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px">
-						</a>
-				</div>
-				</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/football.png')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/football.png')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/football.png')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/football.png')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/football.png')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/football.png')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="product-part">
-		<div class="container">
-				<div class="product-title dev-flex-sb">
-					<a href="/"><h2>Clothes</h2></a>
-					<div class="search-and-more">
-						<a class="highlighted-txt dev-flex" href="/">
-							<b class="highlighted-txt">View All</b>
-							<img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px">
-						</a>
-				</div>
-				</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/clothes.jpg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/clothes.jpg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/clothes.jpg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/clothes.jpg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/clothes.jpg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/clothes.jpg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="product-part">
-		<div class="container">
-				<div class="product-title dev-flex-sb">
-					<a href="/"><h2>Toys</h2></a>
-					<div class="search-and-more">
-						<a class="highlighted-txt dev-flex" href="/">
-							<b class="highlighted-txt">View All</b>
-							<img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px">
-						</a>
-				</div>
-				</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/toys.webp')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/toys.webp')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/toys.webp')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/toys.webp')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/toys.webp')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/toys.webp')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="product-part">
-		<div class="container">
-				<div class="product-title dev-flex-sb">
-					<a href="/"><h2>Cosmetics</h2></a>
-					<div class="search-and-more">
-						<a class="highlighted-txt dev-flex" href="/">
-							<b class="highlighted-txt">View All</b>
-							<img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px">
-						</a>
-				</div>
-				</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/cosmetics.jpg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/cosmetics.jpg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/cosmetics.jpg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/cosmetics.jpg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/cosmetics.jpg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-2 product-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/cosmetics.jpg')}}">
-							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">$ 200</span>
-							<span class="present-price">$ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+	@endforeach
+
+
 </main>
 @endsection
 @section('script')
