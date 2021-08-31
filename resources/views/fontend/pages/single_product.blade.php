@@ -54,14 +54,18 @@
                   <div class="dev-flex-sb">
                     <h3 class="small-title mb-10">{{$product->product_name}}</h3>
                   </div>
+                  @if($product->shop_id)
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Shop: </span>
-                    <a class="pdp-shop-link" href="/">{{$product->shop}}</a>
+                    <a class="pdp-shop-link" href="/">{{$product->shop? $product->shop->shop_name : ''}}</a>
                   </div>
+                  @endif
+                  @if($product->brand_id)
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Brand: </span>
-                    <a class="pdp-shop-link" href="/">Brand Name</a>
+                    <a class="pdp-shop-link" href="/">{{$product->brand? $product->brand->brand_name : ''}}</a>
                   </div>
+                  @endif
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Categories: </span>
                     <a class="pdp-shop-link" href="/product/{{$product->category->slug}}">{{$product->category? $product->category->category_name : ''}}</a>
@@ -70,18 +74,24 @@
                     <span class="pdp-label">SKU: </span>
                     <a class="pdp-shop-link">{{$product->sku}}</a>
                   </div>
+                  @if($product->color_id)
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Color: </span>
-                    <a class="pdp-shop-link">{{$product->sku}}</a>
+                    <a class="pdp-shop-link">{{$product->color? $product->color->color_code : ''}}</a>
                   </div>
+                  @endif
+                  @if($product->size_id)
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Size: </span>
-                    <a class="pdp-shop-link">{{$product->sku}}</a>
+                    <a class="pdp-shop-link">{{$product->size? $product->size->size_name : ''}}</a>
                   </div>
+                  @endif
+                  @if($product->weight_id)
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Weight: </span>
-                    <a class="pdp-shop-link">{{$product->sku}}</a>
+                    <a class="pdp-shop-link">{{$product->weight? $product->weight->weight_name : ''}}</a>
                   </div>
+                  @endif
                   <div class="product-view-single-product-area-r-quantity">
                     <form action="#">
                       <div class="attr-wrapper">
@@ -181,8 +191,9 @@
               </div>
               <div class="desc-section">
                 <div id="Description" class="tabcontent">
-                  <h3>London</h3>
-                  <p>London is the capital city of England.</p>
+                  <div class="container">
+                    {!! $product->product_desc !!}
+                  </div>
                 </div>
 
                 <div id="Reviews" class="tabcontent">

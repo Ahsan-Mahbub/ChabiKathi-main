@@ -13,6 +13,7 @@ class HomeController extends Controller
     public function home(){
         $products = Category::has('product')
             ->with(['product' => function($q) {
+                $q->orderBy('id', 'desc');
             }])
             ->where('status', 1)
             ->orderBy('category_priority','asc')

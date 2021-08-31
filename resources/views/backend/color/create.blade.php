@@ -21,8 +21,17 @@
                     @csrf
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="text" class="form-control" id="cat_name" name="color_code" placeholder="Enter Code (#ffffff).." required="">
-                                <label for="cat_name">Color Code <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="color-name" name="color_name" placeholder="Enter Color Name" required="">
+                                <label for="color-name">Color Name <span class="text-danger">*</span></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-material">
+                                <input type="text" class="form-control" id="hex" name="color_code" placeholder="Enter Code (#ffffff).." required="">
+                                <label for="hex">Color Code <span class="text-danger">*</span></label>
+                            </div>
+                            <div class="form-group">
+                                <input type="color" class="form-control" id="color">
                             </div>
                         </div>
                         <div class="form-group">
@@ -34,4 +43,14 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script type="text/javascript">
+    let colorInput = document.querySelector('#color');
+    let hexInput = document.querySelector('#hex');
+    colorInput.addEventListener('input',()=>{
+        let color = colorInput.value;
+        hexInput.value = color;
+    });
+</script>
 @endsection
