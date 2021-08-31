@@ -14,93 +14,124 @@
         </div>
         <div class="block-content">
             <form>
-                <div class="form-group row">
-                    <div class="col-12">
+                <div class="form-group">
+                    <div class="col-md-6 col-12" style="display:inline-block;">
                         <div class="form-material">
                             <input value="{{$product->product_name}}" class="form-control" disabled="">
-                            <label for="login2-username">Productt Name</label>
+                            <label for="login2-username">Product Name</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12" style="float: right;">
+                        <div class="form-material">
+                            <input value="{{$product->product_slug}}" class="form-control" disabled="">
+                            <label for="login2-username">Product Slug</label>
                         </div>
                     </div>
                 </div>
-                <div class="form-group row">
-                	<div class="col-12">
+
+                <div class="form-group">
+                	<div class="col-md-6 col-12" style="display:inline-block;">
                         <div class="form-material">
-                            <input value="{{$product->product_name}}" class="form-control" disabled="">
+                            <input value="{{$product->category? $product->category->category_name : 'null'}}" class="form-control" disabled="">
                             <label for="login2-username">Category Name</label>
                         </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                	<div class="col-12">
+                    <div class="col-md-6 col-12" style="float: right;">
                         <div class="form-material">
-                            <input value="{{$product->product_name}}" class="form-control" disabled="">
+                            <input value="{{$product->subcategory? $product->subcategory->sub_category_name : 'null'}}" class="form-control" disabled="">
                             <label for="login2-username">Sub-Category Name</label>
                         </div>
                     </div>
                 </div>
-                <div class="form-group row">
+
+                <div class="form-group">
                 	<div class="col-12">
-                        <div class="form-material" style="height: auto;">
+                        <div class="form-material">
+                            <div class="form-control" style="height: auto;">
                                 {!! $product->product_desc !!}
+                            </div>
                             <label for="login2-username">Product Details</label>
                         </div>
                     </div>
-                </div><div class="form-group row">
-                	<div class="col-12">
+                </div>
+                <div class="form-group">
+                	<div class="col-md-6 col-12" style="display:inline-block;">
                         <div class="form-material">
-                            <textarea disabled="" class="form-control">{{$product->price}}</textarea>
+                            <input disabled="" class="form-control" value="৳{{$product->price}}">
                             <label for="login2-username">Product Price</label>
                         </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                	<div class="col-12">
+                    <div class="col-md-6 col-12" style="float: right;">
                         <div class="form-material">
-                            <textarea disabled="" class="form-control">{{$product->discount}}</textarea>
+                            <input disabled="" class="form-control" value="৳{{$product->discount? $product->discount : '0'}}">
                             <label for="login2-username">Discount Price</label>
                         </div>
                     </div>
                 </div>
-                <div class="form-group row">
-                	<div class="col-12">
+
+                <div class="form-group">
+                	<div class="col-md-6 col-12" style="display:inline-block;">
                         <div class="form-material">
-                            <textarea disabled="" class="form-control">{{$product->quantity}}</textarea>
+                            <input disabled="" class="form-control" value="{{$product->quantity}}">
                             <label for="login2-username">Product Quantity</label>
                         </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                	<div class="col-12">
+                    <div class="col-md-6 col-12" style="float: right;">
                         <div class="form-material">
-                            <textarea disabled="" class="form-control">{{$product->brand}}</textarea>
-                            <label for="login2-username">Band Name</label>
+                            <input disabled="" class="form-control" value="{{$product->size? $product->size->size_name : 'null'}}">
+                            <label for="login2-username">Size</label>
                         </div>
                     </div>
                 </div>
-                <div class="form-group row">
-                	<div class="col-12">
+
+                <div class="form-group">
+                    <div class="col-md-6 col-12" style="display:inline-block;">
                         <div class="form-material">
-                            <textarea disabled="" class="form-control">{{$product->shop}}</textarea>
+                            <input disabled="" class="form-control" value="{{$product->weight? $product->weight->weight_name : 'null'}}">
+                            <label for="login2-username">Weight</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12" style="float: right;">
+                        <div class="form-material">
+                            <input disabled="" class="form-control" value="{{$product->sku}}">
+                            <label for="login2-username">SKU</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                	<div class="col-md-6 col-12" style="display:inline-block;">
+                        <div class="form-material">
+                            <input disabled="" class="form-control" value="{{$product->brand? $product->brand->brand_name : 'null'}}">
+                            <label for="login2-username">Brand Name</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12" style="float: right;">
+                        <div class="form-material">
+                            <input disabled="" class="form-control" value="{{$product->shop? $product->shop->shop_name : 'null'}}">
                             <label for="login2-username">Shop Name</label>
                         </div>
                     </div>
                 </div>
-                <div class="form-group row">
+
+                <div class="form-group">
                 	<div class="col-12">
                         <div class="form-material">
-                            <textarea disabled="" class="form-control">{{$product->sku}}</textarea>
-                            <label for="login2-username">SKU</label>
+                            {{$product->color? $product->color->color_name : 'null'}}
+                            <div class="form-control" style="height: 40px; width: 40px;border-radius: 50%; margin-right: 10px; border: 1px solid #ddd;background-color: {{$product->color->color_code}}">
+                            </div>
+                            <label for="login2-username">Color Name</label>
                         </div>
                     </div>
                 </div>
                 <label for="login2-username">Main Image</label>
                 <a href="{{$product->product_img==''? asset('asset/backend/assets/media/avatars/avatar15.jpg'): '/'.$product->product_img}}">
 	                <img style="height: 200px; padding: 10px;" src="{{$product->product_img==''? asset('asset/backend/assets/media/avatars/avatar15.jpg'): '/'.$product->product_img}}" alt="">
-	            </a>
+	            </a><br>
 	            <label for="login2-username">Secendary Image</label>
                 <a href="{{$product->product_img_2==''? asset('asset/backend/assets/media/avatars/avatar15.jpg'): '/'.$product->product_img_2}}">
 	                <img style="height: 200px; padding: 10px;" src="{{$product->product_img_2==''? asset('asset/backend/assets/media/avatars/avatar15.jpg'): '/'.$product->product_img_2}}" alt="">
-	            </a>
+	            </a><br>
                 <label for="login2-username">Optional Image</label>
                 <a href="{{$product->product_img_3==''? asset('asset/backend/assets/media/avatars/avatar15.jpg'): '/'.$product->product_img_3}}">
 	                <img style="height: 200px; padding: 10px;" src="{{$product->product_img_3==''? asset('asset/backend/assets/media/avatars/avatar15.jpg'): '/'.$product->product_img_3}}" alt="">
@@ -108,6 +139,5 @@
             </form>
         </div>
     </div>
-    <!-- END Material Login -->
 </div>
 @endsection

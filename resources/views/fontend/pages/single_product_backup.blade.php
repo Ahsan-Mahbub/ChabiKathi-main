@@ -15,10 +15,10 @@
 						<li><a title="Home" href="/">Home</a>
 							<span class="breadcome-separator">&gt;</span>
 						</li>
-						<li><a title="Tools &amp; DIY" href="/categories/5f97c329ca882e1a4853d014?categoryName=Tools &amp; DIY">Tools &amp; DIY</a>
+						<li><a title="{{$product->category? $product->category->category_name : 'null'}}" href="/category/{{$product->category->slug}}">{{$product->category? $product->category->category_name : ''}}</a>
 							<span class="breadcome-separator">&gt;</span>
 						</li>
-						<li>High power mini light- HK-49 (CODAUG21)</li>
+						<li>{{$product->product_name}}</li>
 					</ul>
 				</div>
 			</div>
@@ -33,11 +33,11 @@
 					<div class="product-infos-area">
 						<div class="row">
 							<div class="product-image-display col-sm-12 col-md-5">
-								<a class="mb-15 text-center" href="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
+								<a class="mb-15 text-center" href="/{{$product->product_img}}">
 									<div class="reset-everything">
 										<div class="pdp-display-image-wrap">
 											<div class="img-zoom-container">
-											  <img id="myimage" src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}" alt="Product Image">
+											  <img id="myimage" src="/{{$product->product_img}}" alt="Product Image">
 											  <div id="myresult" class="img-zoom-result" style=""></div>
 											</div>
 										</div>
@@ -45,24 +45,24 @@
 								</a>
 								<div class="single-product-tab mt-15">
 									<div class="pdp-single-product-thumb active">
-										<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}" alt="">
+										<img src="/{{$product->product_img}}" alt="">
 									</div>
 									<div class="pdp-single-product-thumb">
-										<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}" alt="">
+										<img src="/{{$product->product_img_2}}" alt="">
 									</div>
 									<div class="pdp-single-product-thumb">
-										<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}" alt="">
+										<img src="/{{$product->product_img_3}}" alt="">
 									</div>
 								</div>
 							</div>
 							<div class="product-details-section col-sm-12 col-md-7">
 								<div class="product-view-single-product-area-r">
 									<div class="dev-flex-sb">
-										<h3 class="small-title mb-10">High power mini light- HK-49 (CODAUG21)</h3>
+										<h3 class="small-title mb-10">{{$product->product_name}}</h3>
 									</div>
 									<div class="shop-name mb-10">
 										<span class="pdp-label">Shop: </span>
-										<a class="pdp-shop-link" href="/">AK Factory</a>
+										<a class="pdp-shop-link" href="/">{{$product->shop}}</a>
 									</div>
 									<div class="shop-name mb-10">
 										<span class="pdp-label">Brand: </span>
@@ -70,29 +70,33 @@
 									</div>
 									<div class="shop-name mb-10">
 										<span class="pdp-label">Categories: </span>
-										<a class="pdp-shop-link" href="/">Watch Category</a>
+										<a class="pdp-shop-link" href="/product/{{$product->category->slug}}">{{$product->category? $product->category->category_name : ''}}</a>
 									</div>
 									<div class="shop-name mb-10">
 										<span class="pdp-label">SKU: </span>
-										<a class="pdp-shop-link">CODAUG21_DN360521NAJ-3517</a>
-									</div>
-									<div class="product-view-single-product-area-r-description mb-10">
-										<p>High power mini light- HK-49</p>
+										<a class="pdp-shop-link">{{$product->sku}}</a>
 									</div>
 									<div class="product-view-single-product-area-r-quantity">
 										<form action="#">
 											<div class="attr-wrapper">
 												<div class="options">
 													<div class="product-view-single-product-area-r-price mb-20">
-														<span class="old-price">৳650</span>
-														<span class="new-price">৳400</span>
+														<span class="old-price">
+															<?php
+																if($product->discount)
+																{
+																	echo "৳ {{$product->discount}}";
+																}
+															?>
+														</span>
+														<span class="new-price">৳ {{$product->price}}</span>
 													</div>
 														<div class="quantity dev-flex-l mb-20">
 															<label>Quantity</label>
 															<div class="inputArea">
-																<div class="decrease dev-flex">-</div>
-																<input type="text" class="input-text" min="1" max="5" readonly="" value="1">
-																<div class="increase dev-flex">+</div>
+																<div class="decrease dev-flex" type="button" value="-" id="moins" onclick="minus()">-</div>
+																<input type="text" class="input-text" readonly="" value="1" id="count">
+																<div type="button" value="+" class="increase dev-flex" id="plus" onclick="plus()">+</div>
 															</div>
 														</div>
 
@@ -219,104 +223,45 @@
 	</section>
 	<!-- End Details and Review Section -->
 	<!-- Related Product Section -->
+	@if($related_product)
 	<section class="product-part">
 			<div class="container">
 					<div class="product-title dev-flex-sb">
 						<a href="/"><h2>Related Product Section</h2></a>
-						<div class="search-and-more">
-							<a class="highlighted-txt dev-flex" href="/">
-								<b class="highlighted-txt">View All</b>
-								<img src="asset/img/side.svg" alt="" height="30px">
-							</a>
-					</div>
 					</div>
 				<div class="row">
 					<div class="col-md-12">
+						@foreach($related_product as $related)
 						<div class="col-md-2 product-box">
-							<a href="">
+							<a href="/product/{{$related->product_slug}}">
 								<div class="product-img">
-									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
+									<img src="/{{$related->product_img}}">
 								</div>
-								<span class="product-name">product name here</span>
-								<span class="previous-price">$ 200</span>
-								<span class="present-price">$ 100</span>
+								<span class="product-name">{{$related->product_name}}</span>
+								<span class="previous-price">
+									<?php
+										if($related->discount)
+										{
+											echo "৳ {{$related->discount}}";
+										}
+									?>
+								</span>
+								<span class="present-price">৳ {{$related->price}}</span>
 								<div class="buttons text-center">
 									<button class="btn btn-danger">Add to Cart</button>
 								</div>
 							</a>
 						</div>
-						<div class="col-md-2 product-box">
-							<a href="">
-								<div class="product-img">
-									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
-								</div>
-								<span class="product-name">product name here</span>
-								<span class="previous-price">$ 200</span>
-								<span class="present-price">$ 100</span>
-								<div class="buttons text-center">
-									<button class="btn btn-danger">Add to Cart</button>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-2 product-box">
-							<a href="">
-								<div class="product-img">
-									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
-								</div>
-								<span class="product-name">product name here</span>
-								<span class="previous-price">$ 200</span>
-								<span class="present-price">$ 100</span>
-								<div class="buttons text-center">
-									<button class="btn btn-danger">Add to Cart</button>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-2 product-box">
-							<a href="">
-								<div class="product-img">
-									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
-								</div>
-								<span class="product-name">product name here</span>
-								<span class="previous-price">$ 200</span>
-								<span class="present-price">$ 100</span>
-								<div class="buttons text-center">
-									<button class="btn btn-danger">Add to Cart</button>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-2 product-box">
-							<a href="">
-								<div class="product-img">
-									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
-								</div>
-								<span class="product-name">product name here</span>
-								<span class="previous-price">$ 200</span>
-								<span class="present-price">$ 100</span>
-								<div class="buttons text-center">
-									<button class="btn btn-danger">Add to Cart</button>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-2 product-box">
-							<a href="">
-								<div class="product-img">
-									<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
-								</div>
-								<span class="product-name">product name here</span>
-								<span class="previous-price">$ 200</span>
-								<span class="present-price">$ 100</span>
-								<div class="buttons text-center">
-									<button class="btn btn-danger">Add to Cart</button>
-								</div>
-							</a>
-						</div>
+						@endforeach
 					</div>
 				</div>
 			</div>
 		</section>
+		@endif
 	<!-- End Related Product Section -->
 @endsection
 @section('script')
 <script src="{{ asset('asset/fontend/asset/js/zoomimage.js')}}"></script>
 <script src="{{ asset('asset/fontend/asset/js/tabcontent.js')}}"></script>
+<script src="{{ asset('asset/fontend/asset/js/countdown.js')}}"></script>
 @endsection

@@ -31,7 +31,7 @@
                     <td class="font-w600 text-center">
                     	<img style="width: 250px; height: 150px;" src="/{{$product->product_img}}">
                     </td>
-                    <td class="d-none d-sm-table-cell text-center">{{$product->parent? $product->parent->category_name : 'null'}}</td>
+                    <td class="d-none d-sm-table-cell text-center">{{$product->category? $product->category->category_name : 'null'}}</td>
                     <td class="d-none d-sm-table-cell text-center">{{$product->sku}}</td>
                     <td class="d-none d-sm-table-cell text-center">{{$product->price}}</td>
                     <td class="d-none d-sm-table-cell text-center">{{$product->discount}}</td>

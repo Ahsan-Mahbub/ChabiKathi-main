@@ -1,9 +1,12 @@
 <?php
 use Illuminate\Support\Facades\Route;
-//Auth-Controller
+//BackAuth-Controller
 use App\Http\Controllers\AuthController;
-//Font-Controller
-use App\Http\Controllers\HomeController;
+//Fontend-Controller
+use App\Http\Controllers\fontController\HomeController;
+use App\Http\Controllers\fontController\CategoryProductController;
+use App\Http\Controllers\fontController\SubCategoryProductController;
+use App\Http\Controllers\fontController\SingleProductController;
 // Backend-Controller
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
@@ -12,7 +15,9 @@ use App\Http\Controllers\SizeController;
 use App\Http\Controllers\WeightController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\StockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +29,13 @@ use App\Http\Controllers\SliderController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Front View Route
 Route::get('/', [HomeController::class, 'home'])->name('home');
-// Route::get('/category', [HomeController::class, 'category']);
+Route::get('/category/{slug}', [CategoryProductController::class, 'categoryProduct']);
+Route::get('/sub-category/{id}', [SubCategoryProductController::class, 'subCategoryProduct']);
+Route::get('/product/{slug}', [SingleProductController::class, 'singleProduct']);
+
 Route::get('/product', [HomeController::class, 'product'])->name('product');
 Route::get('/vendor', [HomeController::class, 'vendor'])->name('vendor');
 Route::get('/campaign', [HomeController::class, 'campaign'])->name('campaign');
@@ -35,6 +45,8 @@ Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
 Route::get('/marchent-login', [HomeController::class, 'marchentlogin'])->name('marchent-login');
 Route::get('/marchent-registration', [HomeController::class, 'marchentregistration'])->name('marchent-registration');
 
+
+// Back View Route
 Route::group(['prefix' => 'admin'], function () {
     Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
         return view('backend/layouts/content');
@@ -103,6 +115,16 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('update/{id}', [BrandController::class, 'update'])->name('brand.update');
         Route::delete('delete/{id}', [BrandController::class, 'destroy'])->name('brand.delete');
     });
+    // Shop Route
+    Route::group(['prefix' => 'shop'], function () {
+        Route::get('/list', [ShopController::class, 'index'])->name('shop.list');
+        Route::get('create', [ShopController::class, 'create'])->name('shop.create');
+        Route::post('store', [ShopController::class, 'store'])->name('shop.store');
+        Route::get('status/{id}', [ShopController::class, 'status'])->name('shop.status');
+        Route::get('edit/{id}', [ShopController::class, 'edit'])->name('shop.edit');
+        Route::post('update/{id}', [ShopController::class, 'update'])->name('shop.update');
+        Route::delete('delete/{id}', [ShopController::class, 'destroy'])->name('shop.delete');
+    });
     // Product Route
     Route::group(['prefix' => 'product'], function () {
         Route::get('/list', [ProductController::class, 'index'])->name('product.list');
@@ -114,7 +136,22 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
         Route::post('update/{id}', [ProductController::class, 'update'])->name('product.update');
         Route::delete('delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
-        Route::get('category/{cat_id}', [ProductController::class, 'category'])->name('product.category');
+        Route::get('subcategory/{id}', [ProductController::class, 'subcategory'])->name('product.subcategory');
+        Route::get('shop/{id}', [ProductController::class, 'shop'])->name('product.shop');
+    });
+    // Stock Route
+    Route::group(['prefix' => 'stock'], function () {
+        Route::get('/list', [StockController::class, 'index'])->name('stock.list');
+        Route::get('create', [StockController::class, 'create'])->name('stock.create');
+        // Route::post('store', [StockController::class, 'store'])->name('stock.store');
+        // Route::get('show/{id}', [StockController::class, 'show'])->name('stock.show');
+        // Route::get('status/{id}', [StockController::class, 'status'])->name('stock.status');
+        // Route::get('approval/{id}', [StockController::class, 'approval'])->name('stock.approval');
+        // Route::get('edit/{id}', [StockController::class, 'edit'])->name('stock.edit');
+        // Route::post('update/{id}', [StockController::class, 'update'])->name('stock.update');
+        // Route::delete('delete/{id}', [StockController::class, 'destroy'])->name('stock.delete');
+        // Route::get('subcategory/{id}', [StockController::class, 'subcategory'])->name('stock.subcategory');
+        // Route::get('shop/{id}', [StockController::class, 'shop'])->name('stock.shop');
     });
     // Slider Route
     Route::group(['prefix' => 'slider'], function () {

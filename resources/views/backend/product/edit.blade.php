@@ -37,26 +37,27 @@
                                 <label for="editor">Product Details <span class="text-danger">*</span></label>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="example-select" name="cat_id">
-                                    <option disabled="">Select Category</option>
-                                    @php($category = \App\Models\Category::where('status',1)->orderBy('id','desc')->get())
+                                <select class="form-control" id="category_id" name="category_id" onclick="getSubCategory()">
+                                    <option disabled="" selected="">Select Category</option>
                                     @foreach($category as $value)
-                                        <option value="{{$value->id}}" {{ $product->cat_id == $value->id ? 'selected' : ''}}>{{$value->category_name}} </option>
+                                        <option value="{{$value->id}}" {{ $product->category_id == $value->id ? 'selected' : ''}}>{{$value->category_name}} </option>
                                     @endforeach
                                 </select>
-                                <label for="example-select">Select Category<span class="text-danger">*</span></label>
+                                <label for="category_id">Select Category<span class="text-danger">*</span></label>
                             </div>
                         </div>
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="sub_cat_id" name="sub_cat_id">
-                                    <option value="null">Select Sub Category</option>
+                                <select class="form-control" id="subcategory_id" name="subcategory_id">
+                                    <option value="0">Select</option>
                                 </select>
-                                <label for="sub_cat_id">Select Sub Category</label>
+                                <label for="subcategory_id">Select Sub Category</label>
                             </div>
-                        </div> -->
+                        </div>
+
                         <div class="form-group">
                             <div class="form-material">
                                 <select class="form-control" id="example-select" name="size_id">
@@ -115,25 +116,26 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="example-select" name="weight_id">
-                                    <option value="0">Select Brand</option>
-                                    @php($brand = \App\Models\Brand::where('status',1)->orderBy('id','desc')->get())
+                                <select class="form-control" id="brand_id" name="brand_id">
+                                    <option value="0" selected="">Select Brand</option>
                                     @foreach($brand as $value)
                                         <option value="{{$value->id}}" {{ $product->brand_id == $value->id ? 'selected' : ''}}>{{$value->brand_name}} </option>
                                     @endforeach
                                 </select>
-                                <label for="example-select">Select Weight</label>
+                                <label for="brand_id">Select Brand</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="text" class="form-control" id="shop" value="{{$product->shop}}" name="shop" placeholder="Enter Shop Name..">
-                                <label for="shop">Shop Name</label>
+                                <select class="form-control" id="shop_id" name="shop_id"  onclick="getShop()">
+                                    <option value="0" selected="">Select Shop</option>
+                                </select>
+                                <label for="shop_id">Select Shop</label>
                             </div>
                         </div>
 
                         <label>Main Image <span class="text-danger">*</span></label>
-                        <input type='file' name="product_img" value="{{$product->product_img}}" required="" onchange="readURL(this);" />
+                        <input type='file' name="product_img" value="{{$product->product_img}}" onchange="readURL(this);" />
                         <img id="blah" src="{{$product->product_img ? '/' . $product->product_img :  '/asset/backend/assets/media/photos/image.png'}}" height="200" width="200" alt="your image" /><br>
 
                         <label>Secendary Image</label>
@@ -156,37 +158,118 @@
 </div>
 @endsection
 @section('script')
+<script type="text/javascript">
+    $(document).ready(function () {
+        function getSubCategory(){
+        let id = $("#category_id").val();
+        let url = '/admin/product/subcategory/'+id;
+        $.ajax({
+            type: "get",
+            url: url,
+            dataType: "json",
+            success: function (response) {
+                console.log(response)
+               let html = $();
+                $.each(response, function (i, item) {
+                    html = html.add("<option value=" + item.id +" >" + item.sub_category_name + "</option>")
+                });
+                $("#subcategory_id").html(html);
+            }
+        });
+    }
+    getSubCategory();
+    });
+
+    function getSubCategory(){
+        let id = $("#category_id").val();
+        // alert(id);
+        let url = '/admin/product/subcategory/'+id;
+        $.ajax({
+            type: "get",
+            url: url,
+            dataType: "json",
+            success: function (response) {
+                let html = '';
+                console.log(response)
+                response.forEach(element => {
+                    html+='<option value='+element.id+'>'+element.sub_category_name+'</option>'
+                });
+                $("#subcategory_id").html(html);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        function getShop(){
+        let id = $("#brand_id").val();
+        let url = '/admin/product/shop/'+id;
+        $.ajax({
+            type: "get",
+            url: url,
+            dataType: "json",
+            success: function (response) {
+                console.log(response)
+               let html = $();
+                $.each(response, function (i, item) {
+                    html = html.add("<option value=" + item.id +" >" + item.shop_name + "</option>")
+                });
+                $("#shop_id").html(html);
+            }
+        });
+    }
+    getShop();
+    });
+
+    function getShop(){
+        let id = $("#brand_id").val();
+        // alert(id);
+        let url = '/admin/product/shop/'+id;
+        $.ajax({
+            type: "get",
+            url: url,
+            dataType: "json",
+            success: function (response) {
+                let html = '';
+                console.log(response)
+                response.forEach(element => {
+                    html+='<option value='+element.id+'>'+element.shop_name+'</option>'
+                });
+                $("#shop_id").html(html);
+            }
+        });
+    }
+</script>
 <script>
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#blah')
-                .attr('src', e.target.result);
-        };
-        reader.readAsDataURL(input.files[0]);
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
     }
-}
-function readURL2(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#blah2')
-                .attr('src', e.target.result);
-        };
-        reader.readAsDataURL(input.files[0]);
+    function readURL2(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#blah2')
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
     }
-}
-function readURL3(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#blah3')
-                .attr('src', e.target.result);
-        };
-        reader.readAsDataURL(input.files[0]);
+    function readURL3(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#blah3')
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
     }
-}
 </script>
 <script type="text/javascript">
     $("#product_name").keyup(function(){
@@ -194,6 +277,6 @@ function readURL3(input) {
         Text = Text.toLowerCase();
         Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
         $("#product_slug").val(Text);        
-});
+    });
 </script>
 @endsection

@@ -23,7 +23,7 @@
                 @foreach($colors as $color)
                 <tr>
                     <td class="text-center">{{$sl++}}</td>
-                    <td class="font-w600 text-center">{{$color->color_code}}</td>
+                    <td class="font-w600 text-center">{{$color->color_name}}</td>
                     <td class="d-none d-sm-table-cell text-center">
                         <div class="item item-circle mx-auto mb-15" style="border: 1px solid #ddd;background-color: {{$color->color_code}}"></div>
                     </td>

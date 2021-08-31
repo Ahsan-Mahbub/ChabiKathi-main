@@ -13,6 +13,7 @@
                 <tr>
                     <th class="text-center">S/L</th>
                     <th class="text-center">Sub Categories Name</th>
+                    <th class="text-center">Slug</th>
                     <th class="d-none d-sm-table-cell text-center">Categories Name</th>
                     <th class="d-none d-sm-table-cell text-center" style="width: 15%;">Status</th>
                     <th class="text-center">Action</th>
@@ -24,6 +25,7 @@
                 <tr>
                     <td class="text-center">{{$sl++}}</td>
                     <td class="font-w600 text-center">{{$subcategory->sub_category_name}}</td>
+                    <td class="font-w600 text-center">{{$subcategory->slug}}</td>
                     <td class="d-none d-sm-table-cell text-center">
                         {{$subcategory->parent? $subcategory->parent->category_name : 'null'}}
                     </td>

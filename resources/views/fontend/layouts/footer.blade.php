@@ -62,25 +62,25 @@
                       </p>
                     </div>
                     <div>
-                      <ul class="social-icon">
+                      <ul class="social-icon" style="padding-left: 0">
                         <li class="social-icon-li">
                           <a href="" title="Facebook" class="facebook" target="_blank">
                             <i class="fab fa-facebook"></i>
                           </a>
                         </li>
                         <li class="social-icon-li">
-                          <a href="" title="Facebook" class="facebook" target="_blank">
-                            <i class="fab fa-facebook"></i>
+                          <a href="" title="Youtube" class="youtube" target="_blank">
+                            <i class="fab fa-youtube"></i>
                           </a>
                         </li>
                         <li class="social-icon-li">
-                          <a href="" title="Facebook" class="facebook" target="_blank">
-                            <i class="fab fa-facebook"></i>
+                          <a href="" title="Google" class="google" target="_blank">
+                            <i class="fab fa-google"></i>
                           </a>
                         </li>
                         <li class="social-icon-li">
-                          <a href="" title="Facebook" class="facebook" target="_blank">
-                            <i class="fab fa-facebook"></i>
+                          <a href="" title="Linkedin" class="linkedin" target="_blank">
+                            <i class="fab fa-linkedin"></i>
                           </a>
                         </li>
                       </ul>

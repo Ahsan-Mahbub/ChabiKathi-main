@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\Brand;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 use Toastr;
 use File;
@@ -32,15 +35,22 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $sub_cat = SubCategory::all();
-        return view('backend.product.create', compact('sub_cat'));
+        $category = Category::where('status',1)->get();
+        $brand = Brand::where('status',1)->get();
+        return view('backend.product.create', compact('category','brand'));
     }
 
-    // public function category($cat_id)
-    // {
-    //     $sub_cat = SubCategory::where('category_name', $cat_id)->get();
-    //     return ProductCollection::collection($sub_cat);
-    // }
+    public function subcategory($id)
+    {
+        $subcategories = SubCategory::where('category_id', $id)->get();
+        return response()->json($subcategories, 200);
+    }
+
+    public function shop($id)
+    {
+        $shop = Shop::where('brand_id', $id)->get();
+        return response()->json($shop, 200);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -116,13 +126,9 @@ class ProductController extends Controller
     public function approval($id)
     {
         $product_approval = Product::findOrFail($id);
-        if ($product_approval->approval == 1) {
-            $product_approval->approval = 0;
-        } else {
-            $product_approval->approval = 1;
-        }
+        $product_approval->approval = 1;
         $product_approval->save();
-        Toastr::success('Approval Change Successfully', 'Success');
+        Toastr::success('Product Approved', 'Success');
         return redirect()->back();
     }
 
@@ -135,7 +141,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        return view('backend.product.edit', compact('product'));
+        $category = Category::where('status',1)->get();
+        $brand = Brand::where('status',1)->get();
+        return view('backend.product.edit', compact('product','category','brand'));
     }
 
     /**

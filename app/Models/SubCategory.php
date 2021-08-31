@@ -12,9 +12,10 @@ class SubCategory extends Model
     protected $table = 'sub_categories';
     protected $fillable = [
         'sub_category_name',
-        'cat_id',
+        'category_id',
+        'slug',
     ];
     public function parent(){
-        return $this->belongsTo(Category::class,'cat_id');
+        return $this->belongsTo(Category::class,'category_id');
     }
 }

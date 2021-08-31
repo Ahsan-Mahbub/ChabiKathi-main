@@ -14,13 +14,13 @@ class Product extends Model
         'product_name',
         'product_slug',
         'product_desc',
-        'cat_id',
-        'sub_cat_id',
+        'category_id',
+        'subcategory_id',
         'price',
         'discount',
         'quantity',
         'brand_id',
-        'shop',
+        'shop_id',
         'size_id',
         'weight_id',
         'color_id',
@@ -28,7 +28,33 @@ class Product extends Model
         'product_img_2',
         'product_img_3'
     ];
-    public function parent(){
-        return $this->belongsTo(Category::class,'cat_id');
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+    public function subcategory()
+    {
+        return $this->belongsTo(SubCategory::class, 'subcategory_id');
+    }
+    public function size()
+    {
+        return $this->belongsTo(Size::class, 'size_id');
+    }
+    public function color()
+    {
+        return $this->belongsTo(Color::class, 'color_id');
+    }
+    public function weight()
+    {
+        return $this->belongsTo(Weight::class, 'weight_id');
+    }
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id');
+    }
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class, 'shop_id');
     }
 }

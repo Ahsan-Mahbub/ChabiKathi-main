@@ -127,6 +127,17 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-cart-plus"></i><span class="sidebar-mini-hide">Stock</span></a>
+                    <ul>
+                        <li>
+                            <a href="/">Stocks List</a>
+                        </li>
+                        <li>
+                            <a href="{{route('stock.create')}}">Add Stock</a>
+                        </li>
+                    </ul>
+                </li>
 
 
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">P.V</span><span
@@ -176,6 +187,17 @@
                         </li>
                         <li>
                             <a href="{{route('brand.create')}}">Add Brand</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-basket"></i><span class="sidebar-mini-hide">Shop</span></a>
+                    <ul>
+                        <li>
+                            <a href="{{route('shop.list')}}">Shop List</a>
+                        </li>
+                        <li>
+                            <a href="{{route('shop.create')}}">Add Shop</a>
                         </li>
                     </ul>
                 </li>
