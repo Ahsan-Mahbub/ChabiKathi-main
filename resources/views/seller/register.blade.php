@@ -3,7 +3,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<style>
+{{-- <style>
     .gfg {
         font-size: 40px;
         color: green;
@@ -16,7 +16,7 @@
         text-align: center;
         margin-bottom: 20px;
     }
-</style>
+</style> --}}
 
 
 {{-- <script>
@@ -56,7 +56,7 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container">
-    <form class="form-horizontal" onclick=" return checkPassword()" action="{{route('seller.store')}}" method="post">
+    <form class="form-horizontal" action="{{route('seller.store')}}" method="post">
         @csrf
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -84,13 +84,14 @@
         <div class="form-group">
             <label for="lastName" class="col-sm-3 control-label">shop Name</label>
             <div class="col-sm-9">
-                <input type="text" id="lastName" placeholder="Last Name" name="shop_name" class="form-control" required>
+                <input type="text" id="shop_Name" placeholder="Last Name" name="shop_name" class="form-control"
+                    required>
             </div>
         </div>
         <div class="form-group">
             <label for="lastName" class="col-sm-3 control-label">shop address</label>
             <div class="col-sm-9">
-                <input type="text" id="lastName" placeholder="Last Name" name="shop_address" class="form-control"
+                <input type="text" id="shop_address" placeholder="Last Name" name="shop_address" class="form-control"
                     required>
             </div>
         </div>
@@ -104,7 +105,7 @@
             <label for="password" class="col-sm-3 control-label">Password*</label>
             <div class="col-sm-9">
                 <input type="password" id="password" name="password" placeholder="Password" value=""
-                    class="form-control" required> <span id="message"></span>
+                    class="form-control" min="6" required> <span id="message"></span>
             </div>
         </div>
         <div class="form-group">
@@ -127,5 +128,10 @@
 
 
         <button type="submit" value="Submit" class="btn btn-primary btn-block">Register</button>
+        <div class=" mt-3 create">
+            <h2 class="fcreate">Already a Member? <a class="ant-typography" href="{{route('seller.loginView')}}">Sing
+                    In</a>
+            </h2>
+        </div>
     </form> <!-- /form -->
 </div> <!-- ./container -->

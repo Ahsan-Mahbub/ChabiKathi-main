@@ -19,6 +19,8 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" type="text/javascript">
+
+    </script>
     </script>
 </head>
 
@@ -37,7 +39,8 @@
                 </div>
             </div>
             <div class="col-md-5 right-side">
-                <form class="bg-white p-5">
+                <form class="bg-white p-5" action="{{route('seller.login')}}" method="post">
+                    @csrf
                     <div class="bg-white p-6 text-center font-sans-ui-serif marginforp">
                         <h2><b class="become ">BECOME A</b></h2>
                         <h2 class="seller">ChabiKathi MERCHANT</h2>
@@ -51,7 +54,7 @@
                                 d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z">
                             </path>
                         </svg>
-                        <input placeholder="Mobile Number" name="mobileNumber" maxlength="11" class="ustyle">
+                        <input type="email" placeholder="email" name="email" maxlength="" class="ustyle">
                     </div>
                     <div class="luser error flex mt-0">
                         <small class="text-red-light mb-2 block text-center w-96"></small>
@@ -76,10 +79,11 @@
                         </h2>
                     </div>
                     <div class="bt">
-                        <button type="submit" class="button" acttio="{{route('seller.login')}}">Get Started</button>
+                        <button type="submit" class="button" acttion="">Get Started</button>
                     </div>
                     <div class=" mt-3 create">
-                        <h2 class="fcreate">Create your <a class="ant-typography" href="/signup">Merchant account</a>
+                        <h2 class="fcreate">Create your <a class="ant-typography"
+                                href="{{route('seller.registers')}}">Merchant account</a>
                         </h2>
                     </div>
                 </form>

@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Seller;
+use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::orderBy('id', 'desc')->paginate();
-        return view('backend.product.index', compact('products'));
+        return view('seller.product.index', compact('products'));
     }
 
     /**
@@ -33,7 +33,7 @@ class ProductController extends Controller
     public function create()
     {
         $sub_cat = SubCategory::all();
-        return view('backend.product.create', compact('sub_cat'));
+        return view('seller.product.create', compact('sub_cat'));
     }
 
     // public function category($cat_id)
@@ -54,12 +54,14 @@ class ProductController extends Controller
         $product->status = 1;
         $product->approval = 0;
         $product->sku .= 'sku-' . $product->product_name.time();
+        $product->shop=auth('seller')->id();
+        
 
         if ($request->hasFile('product_img')) {
             Helper::delete($product->product_img);
             $extension = $request->file('product_img')->getClientOriginalExtension();
             $name = 'image' . Str::random(5) . '.' . $extension;
-            $path = "asset/backend/assets/images/product/";
+            $path = "asset/seller/assets/images/product/";
             $request->file('product_img')->move($path, $name);
             $requested_data['product_img'] = $path . $name;
         }
@@ -68,7 +70,7 @@ class ProductController extends Controller
             Helper::delete($product->product_img_2);
             $extension = $request->file('product_img_2')->getClientOriginalExtension();
             $name = 'image' . Str::random(5) . '.' . $extension;
-            $path = "asset/backend/assets/images/product/";
+            $path = "asset/seller/assets/images/product/";
             $request->file('product_img_2')->move($path, $name);
             $requested_data['product_img_2'] = $path . $name;
         }
@@ -77,10 +79,11 @@ class ProductController extends Controller
             Helper::delete($product->product_img_3);
             $extension = $request->file('product_img_3')->getClientOriginalExtension();
             $name = 'image' . Str::random(5) . '.' . $extension;
-            $path = "asset/backend/assets/images/product/";
+            $path = "asset/seller/assets/images/product/";
             $request->file('product_img_3')->move($path, $name);
             $requested_data['product_img_3'] = $path . $name;
         }
+
         //dd($requested_data);
         $product->fill($requested_data)->save();
         Toastr::success('Save Successfully');
@@ -97,7 +100,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
-        return view('backend.product.show', compact('product'));
+        return view('seller.product.show', compact('product'));
     }
 
     public function status($id)
@@ -135,7 +138,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        return view('backend.product.edit', compact('product'));
+        return view('seller.product.edit', compact('product'));
     }
 
     /**
@@ -153,7 +156,7 @@ class ProductController extends Controller
             Helper::delete($update->product_img);
             $extension = $request->file('product_img')->getClientOriginalExtension();
             $name = 'image' . Str::random(5) . '.' . $extension;
-            $path = "asset/backend/assets/images/product/";
+            $path = "asset/seller/assets/images/product/";
             $request->file('product_img')->move($path, $name);
             $formData['product_img'] = $path . $name;
         }
@@ -162,7 +165,7 @@ class ProductController extends Controller
             Helper::delete($update->product_img_2);
             $extension = $request->file('product_img_2')->getClientOriginalExtension();
             $name = 'image' . Str::random(5) . '.' . $extension;
-            $path = "asset/backend/assets/images/product/";
+            $path = "asset/seller/assets/images/product/";
             $request->file('product_img_2')->move($path, $name);
             $formData['product_img_2'] = $path . $name;
         }
@@ -171,7 +174,7 @@ class ProductController extends Controller
             Helper::delete($update->product_img_3);
             $extension = $request->file('product_img_3')->getClientOriginalExtension();
             $name = 'image' . Str::random(5) . '.' . $extension;
-            $path = "asset/backend/assets/images/product/";
+            $path = "asset/seller/assets/images/product/";
             $request->file('product_img_3')->move($path, $name);
             $formData['product_img_3'] = $path . $name;
         }

@@ -17,7 +17,8 @@
             <div class="content-header-section text-center align-parent sidebar-mini-hidden">
                 <!-- Close Sidebar, Visible only on mobile screens -->
                 <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                <button type="button" class="btn btn-circle btn-dual-secondary d-lg-none align-v-r" data-toggle="layout" data-action="sidebar_close">
+                <button type="button" class="btn btn-circle btn-dual-secondary d-lg-none align-v-r" data-toggle="layout"
+                    data-action="sidebar_close">
                     <i class="fa fa-times text-danger"></i>
                 </button>
                 <!-- END Close Sidebar -->
@@ -26,7 +27,8 @@
                 <div class="content-header-item">
                     <a class="link-effect font-w700" href="index.html">
                         <i class="si si-fire text-primary"></i>
-                        <span class="font-size-xl text-dual-primary-dark">Chabi</span><span class="font-size-xl text-primary">Kathi</span>
+                        <span class="font-size-xl text-dual-primary-dark">Chabi</span><span
+                            class="font-size-xl text-primary">Kathi</span>
                     </a>
                 </div>
                 <!-- END Logo -->
@@ -39,22 +41,27 @@
         <div class="content-side content-side-full content-side-user px-10 align-parent">
             <!-- Visible only in mini mode -->
             <div class="sidebar-mini-visible-b align-v animated fadeIn">
-                <img class="img-avatar img-avatar32" src="{{ asset('asset/backend/assets/media/avatars/avatar15.jpg')}}" alt="">
+                <img class="img-avatar img-avatar32" src="{{ asset('asset/backend/assets/media/avatars/avatar15.jpg')}}"
+                    alt="">
             </div>
             <!-- END Visible only in mini mode -->
 
             <!-- Visible only in normal mode -->
             <div class="sidebar-mini-hidden-b text-center">
                 <a class="img-link" href="{{route('profile')}}">
-                    <img class="img-avatar" src="{{Auth::user()->image==''? asset('asset/backend/assets/media/avatars/avatar15.jpg'): '/'.Auth::user()->image}}" alt="">
+                    <img class="img-avatar"
+                        src="{{Auth::user()->image==''? asset('asset/backend/assets/media/avatars/avatar15.jpg'): '/'.Auth::user()->image}}"
+                        alt="">
                 </a>
                 <ul class="list-inline mt-10">
                     <li class="list-inline-item">
-                        <a class="link-effect text-dual-primary-dark font-size-sm font-w600 text-uppercase" href="be_pages_generic_profile.html">{{Auth::user()->name}}</a>
+                        <a class="link-effect text-dual-primary-dark font-size-sm font-w600 text-uppercase"
+                            href="be_pages_generic_profile.html">{{Auth::user()->name}}</a>
                     </li>
                     <li class="list-inline-item">
                         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                        <a class="link-effect text-dual-primary-dark" data-toggle="layout" data-action="sidebar_style_inverse_toggle" href="javascript:void(0)">
+                        <a class="link-effect text-dual-primary-dark" data-toggle="layout"
+                            data-action="sidebar_style_inverse_toggle" href="javascript:void(0)">
                             <i class="fa fa-cog"></i>
                         </a>
                     </li>
@@ -79,11 +86,14 @@
         <div class="content-side content-side-full">
             <ul class="nav-main">
                 <li>
-                    <a class="active" href="{{route('admin')}}"><i class="si si-cup"></i><span class="sidebar-mini-hide">Dashboard</span></a>
+                    <a class="active" href="{{route('admin')}}"><i class="si si-cup"></i><span
+                            class="sidebar-mini-hide">Dashboard</span></a>
                 </li>
-                <li class="nav-main-heading"><span class="sidebar-mini-visible">P.S</span><span class="sidebar-mini-hidden">Product Section</span></li>
+                <li class="nav-main-heading"><span class="sidebar-mini-visible">P.S</span><span
+                        class="sidebar-mini-hidden">Product Section</span></li>
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-th-large"></i><span class="sidebar-mini-hide">Category</span></a>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-th-large"></i><span
+                            class="sidebar-mini-hide">Category</span></a>
                     <ul>
                         <li>
                             <a href="{{route('category.list')}}">Categories List</a>
@@ -94,7 +104,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-th-list"></i><span class="sidebar-mini-hide">Sub Category</span></a>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-th-list"></i><span
+                            class="sidebar-mini-hide">Sub Category</span></a>
                     <ul>
                         <li>
                             <a href="{{route('sub-category.list')}}">Sub Categories List</a>
@@ -105,7 +116,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-shopping-bag"></i><span class="sidebar-mini-hide">Product</span></a>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-shopping-bag"></i><span
+                            class="sidebar-mini-hide">Product</span></a>
                     <ul>
                         <li>
                             <a href="{{route('product.list')}}">Products List</a>
@@ -117,9 +129,11 @@
                 </li>
 
 
-                <li class="nav-main-heading"><span class="sidebar-mini-visible">P.V</span><span class="sidebar-mini-hidden">Product Veriation</span></li>
+                <li class="nav-main-heading"><span class="sidebar-mini-visible">P.V</span><span
+                        class="sidebar-mini-hidden">Product Veriation</span></li>
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-size-actual"></i><span class="sidebar-mini-hide">Size</span></a>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-size-actual"></i><span
+                            class="sidebar-mini-hide">Size</span></a>
                     <ul>
                         <li>
                             <a href="{{route('size.list')}}">Size List</a>
@@ -130,7 +144,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-anchor"></i><span class="sidebar-mini-hide">Weight</span></a>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-anchor"></i><span
+                            class="sidebar-mini-hide">Weight</span></a>
                     <ul>
                         <li>
                             <a href="{{route('weight.list')}}">Weight List</a>
@@ -141,7 +156,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-equalizer"></i><span class="sidebar-mini-hide">Color Code</span></a>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-equalizer"></i><span
+                            class="sidebar-mini-hide">Color Code</span></a>
                     <ul>
                         <li>
                             <a href="{{route('color-code.list')}}">Color Code List</a>
@@ -152,7 +168,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-badge"></i><span class="sidebar-mini-hide">Brand</span></a>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-badge"></i><span
+                            class="sidebar-mini-hide">Brand</span></a>
                     <ul>
                         <li>
                             <a href="{{route('brand.list')}}">Brand List</a>
@@ -164,9 +181,11 @@
                 </li>
 
 
-                <li class="nav-main-heading"><span class="sidebar-mini-visible">E.C</span><span class="sidebar-mini-hidden"> Extra Change</span></li>
+                <li class="nav-main-heading"><span class="sidebar-mini-visible">E.C</span><span
+                        class="sidebar-mini-hidden"> Extra Change</span></li>
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-sliders"></i><span class="sidebar-mini-hide">Slider</span></a>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-sliders"></i><span
+                            class="sidebar-mini-hide">Slider</span></a>
                     <ul>
                         <li>
                             <a href="{{route('slider.list')}}">Sliders List</a>
@@ -177,9 +196,11 @@
                     </ul>
                 </li>
 
-                <li class="nav-main-heading"><span class="sidebar-mini-visible">S.S</span><span class="sidebar-mini-hidden">Settings Section</span></li>
+                <li class="nav-main-heading"><span class="sidebar-mini-visible">S.S</span><span
+                        class="sidebar-mini-hidden">Settings Section</span></li>
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-cog"></i><span class="sidebar-mini-hide">Backend Settings</span></a>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-cog"></i><span
+                            class="sidebar-mini-hide">Backend Settings</span></a>
                     <ul>
                         <li>
                             <a href="be_pages_auth_all.html">All</a>
@@ -196,7 +217,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-settings"></i><span class="sidebar-mini-hide">Fontend Settings</span></a>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-settings"></i><span
+                            class="sidebar-mini-hide">Fontend Settings</span></a>
                     <ul>
                         <li>
                             <a href="op_error_400.html">400</a>
@@ -215,4 +237,4 @@
     </div>
     <!-- Sidebar Content -->
 </nav>
- <!-- END Sidebar -->
+<!-- END Sidebar -->
