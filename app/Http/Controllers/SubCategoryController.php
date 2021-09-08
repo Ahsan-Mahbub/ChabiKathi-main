@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
+use Validator;
 
 class SubCategoryController extends Controller
 {
@@ -37,9 +38,14 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $validator  = $request->validate([
+            'sub_category_name'  => 'required|unique:sub_categories',
+            'category_id' => 'required',
+            'slug'      => 'required',
+        ]);
+
         $sub_category = new SubCategory();
         $requested_data = $request->all();
-        // $sub_category->sub_cat_id = $request->sub_cat_id;
         $sub_category->status = 1;
         // dd($sub_category);
         $sub_category->fill($requested_data)->save();
@@ -88,6 +94,16 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // $category = new SubCategory();
+        $validation=Validator::make($request->all(),[
+            'sub_category_name'  => 'required|unique:sub_categories,sub_category_name,'.$id,
+            'category_id'      => 'required',
+            'slug'     => 'required'
+        ]);
+        if ($validation->fails()) {
+            return back()->withInput()->withErrors($validation);
+        }
+
         $s_cat_update = SubCategory::findOrFail($id);
         $formData = $request->all();
 

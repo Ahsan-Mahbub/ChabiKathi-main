@@ -54,7 +54,6 @@ Route::group(['prefix' => 'admin'], function () {
     //Profile Route
     Route::get('/profile', [AuthController::class, 'index'])->name('profile');
     Route::post('/profile-store', [AuthController::class, 'store'])->name('profile.store');
-    Route::post('/password-store', [AuthController::class, 'passwordStore'])->name('password.store');
     // Category Route
     Route::group(['prefix' => 'category'], function () {
         Route::get('/list', [CategoryController::class, 'index'])->name('category.list');
@@ -143,15 +142,12 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'stock'], function () {
         Route::get('/list', [StockController::class, 'index'])->name('stock.list');
         Route::get('create', [StockController::class, 'create'])->name('stock.create');
-        // Route::post('store', [StockController::class, 'store'])->name('stock.store');
-        // Route::get('show/{id}', [StockController::class, 'show'])->name('stock.show');
-        // Route::get('status/{id}', [StockController::class, 'status'])->name('stock.status');
-        // Route::get('approval/{id}', [StockController::class, 'approval'])->name('stock.approval');
-        // Route::get('edit/{id}', [StockController::class, 'edit'])->name('stock.edit');
-        // Route::post('update/{id}', [StockController::class, 'update'])->name('stock.update');
-        // Route::delete('delete/{id}', [StockController::class, 'destroy'])->name('stock.delete');
-        // Route::get('subcategory/{id}', [StockController::class, 'subcategory'])->name('stock.subcategory');
-        // Route::get('shop/{id}', [StockController::class, 'shop'])->name('stock.shop');
+        Route::post('store', [StockController::class, 'store'])->name('stock.store');
+        Route::get('status/{id}', [StockController::class, 'status'])->name('stock.status');
+        Route::get('edit/{id}', [StockController::class, 'edit'])->name('stock.edit');
+        Route::post('update/{id}', [StockController::class, 'update'])->name('stock.update');
+        Route::delete('delete/{id}', [StockController::class, 'destroy'])->name('stock.delete');
+        Route::get('productlist/{id}', [StockController::class, 'productlist'])->name('product.productlist');
     });
     // Slider Route
     Route::group(['prefix' => 'slider'], function () {

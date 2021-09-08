@@ -145,7 +145,7 @@
                     </div>
                   </li>
                 </ul>
-                <h4 class="mb-10 small-title">Return and Warranty</h4>
+<!--                 <h4 class="mb-10 small-title">Return and Warranty</h4>
                 <ul class="delivery-options warrenty">
                   <li>
                     <div class="details">
@@ -163,7 +163,7 @@
                       <p class="title">Warranty is not available</p>
                     </div>
                   </li>
-                </ul>
+                </ul> -->
                 <div class="product-view-single-product-area-r-sharing mt-30">
                 </div>
               </div>
@@ -186,7 +186,7 @@
                   <li><button class="tablinks tab" onclick="openCity(event, 'Description')">Description</button></li>
                   <li><button class="tablinks tab" onclick="openCity(event, 'Reviews')">Reviews</button></li>
                   <li><button class="tablinks tab" onclick="openCity(event, 'Comments')">Comments</button></li>
-                  <li><button class="tablinks tab-active tab" onclick="openCity(event, 'Warranty')">Return and Warranty Policy</button></li>
+                  <!-- <li><button class="tablinks tab-active tab" onclick="openCity(event, 'Warranty')">Return and Warranty Policy</button></li> -->
                 </ul>
               </div>
               <div class="desc-section">
@@ -227,10 +227,10 @@
                   </div>
                 </div>
 
-                <div id="Warranty" class="tabcontent">
+                <!-- <div id="Warranty" class="tabcontent">
                   <h3>Tokyo</h3>
                   <p>Tokyo is the capital of Japan.</p>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>

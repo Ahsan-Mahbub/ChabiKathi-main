@@ -119,7 +119,7 @@
                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-cart-plus"></i><span class="sidebar-mini-hide">Stock</span></a>
                     <ul>
                         <li>
-                            <a href="/">Stocks List</a>
+                            <a href="{{route('stock.list')}}">Stocks List</a>
                         </li>
                         <li>
                             <a href="{{route('stock.create')}}">Add Stock</a>

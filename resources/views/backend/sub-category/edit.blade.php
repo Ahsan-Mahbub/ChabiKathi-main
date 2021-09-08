@@ -1,6 +1,15 @@
 @extends('backend.layouts.app')
 @section('content')
 <div class="container">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <div class="block">
         <div class="block-header block-header-default">
             <h3 class="block-title text-center"> Update Sub Category</h3>
@@ -36,7 +45,7 @@
                             <div class="form-material">
                                 <select class="js-select2 form-control js-select2-enabled select2-hidden-accessible" id="val-select22" name="category_id" style="width: 100%;" data-placeholder="Choose one.." data-select2-id="val-select22" tabindex="-1" aria-hidden="true">
                                     @foreach($category as $value)
-                                    <option value="{{$value->id}}" {{ $subcategory->cat_id == $value->id ? 'selected' : ''}}>{{$value->category_name}} </option>
+                                    <option value="{{$value->id}}" {{ $subcategory->category_id == $value->id ? 'selected' : ''}}>{{$value->category_name}} </option>
                                     @endforeach
                                 </select>
                                 <label for="val-select2">Category Name</label>

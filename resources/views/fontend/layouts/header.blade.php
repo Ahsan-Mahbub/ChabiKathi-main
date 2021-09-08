@@ -47,11 +47,11 @@
                   </div>
                   <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
                     <img src="{{ asset('asset/fontend/asset/img/rocket.svg')}}">
-                    <span><a href="/">Dhamaka Rocket</a></span>
+                    <span><a href="/">Rocket</a></span>
                   </div>
                   <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
                     <img src="{{ asset('asset/fontend/asset/img/offers.jpeg')}}">
-                    <span><a href="/">Dhamaka Offers</a></span>
+                    <span><a href="/">Offers</a></span>
                   </div>
                 </div>
                 <!-- End Category Box Section -->
@@ -102,11 +102,11 @@
                   </div>
                   <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
                     <img src="{{ asset('asset/fontend/asset/img/rocket.svg')}}">
-                    <span><a href="/">Dhamaka Rocket</a></span>
+                    <span><a href="/">Rocket</a></span>
                   </div>
                   <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
                     <img src="{{ asset('asset/fontend/asset/img/offers.jpeg')}}">
-                    <span><a href="/">Dhamaka Offers</a></span>
+                    <span><a href="/">Offers</a></span>
                   </div>
                 </div>
                 <!-- End Category Box Section -->
@@ -177,11 +177,11 @@
               </div>
               <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
                 <img src="{{ asset('asset/fontend/asset/img/rocket.svg')}}">
-                <span><a href="/">Dhamaka Rocket</a></span>
+                <span><a href="/">Rocket</a></span>
               </div>
               <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
                 <img src="{{ asset('asset/fontend/asset/img/offers.jpeg')}}">
-                <span><a href="/">Dhamaka Offers</a></span>
+                <span><a href="/">Offers</a></span>
               </div>
             </div>
             <!-- End Category Box Section -->

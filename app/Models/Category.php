@@ -17,7 +17,7 @@ class Category extends Model
     ];
 
     public function parent(){
-        return $this->hasMany(SubCategory::class,'category_id');
+        return $this->hasMany(SubCategory::class,'category_id')->where('status',1);
     }
 
     // public function products(){

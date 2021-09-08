@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Color;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
+use Validator;
 
 class ColorController extends Controller
 {
@@ -37,6 +38,11 @@ class ColorController extends Controller
      */
     public function store(Request $request)
     {
+        $validator  = $request->validate([
+            'color_code'  => 'required|unique:colors',
+            'color_name'      => 'required',
+        ]);
+
         $color = new Color();
         $requested_data = $request->all();
         $color->status = 1;
@@ -87,6 +93,14 @@ class ColorController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validation=Validator::make($request->all(),[
+            'color_code'  => 'required|unique:colors,color_code,'.$id,
+            'color_name'     => 'required'
+        ]);
+        if ($validation->fails()) {
+            return back()->withInput()->withErrors($validation);
+        }
+
         $update = Color::findOrFail($id);
         $formData = $request->all();
 
