@@ -1,6 +1,15 @@
 @extends('backend.layouts.app')
 @section('content')
 <div class="container">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <div class="block">
         <div class="block-header block-header-default">
             <h3 class="block-title text-center"> Update Weight</h3>
@@ -21,7 +30,7 @@
                     @csrf
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="text" class="form-control" value="{{$weight->weight_name}}" id="cat_name" name="category_name" placeholder="Enter Weight (kg).." required="">
+                                <input type="text" class="form-control" value="{{$weight->weight_name}}" id="cat_name" name="weight_name" placeholder="Enter Weight (kg).." required="">
                                 <label for="cat_name">Weight <span class="text-danger">*</span></label>
                             </div>
                         </div>

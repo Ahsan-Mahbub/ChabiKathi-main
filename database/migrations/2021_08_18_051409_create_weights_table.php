@@ -15,7 +15,7 @@ class CreateWeightsTable extends Migration
     {
         Schema::create('weights', function (Blueprint $table) {
             $table->id();
-            $table->string('weight_name')->nullable();
+            $table->string('weight_name')->unique();
             $table->integer('status')->default(1);
             $table->timestamps();
         });

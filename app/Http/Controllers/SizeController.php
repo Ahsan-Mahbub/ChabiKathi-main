@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Size;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
+use Validator;
 
 class SizeController extends Controller
 {
@@ -37,6 +38,10 @@ class SizeController extends Controller
      */
     public function store(Request $request)
     {
+        $validator  = $request->validate([
+            'size_name'  => 'required|unique:sizes',
+        ]);
+
         $size = new Size();
         $requested_data = $request->all();
         $size->status = 1;
@@ -86,6 +91,13 @@ class SizeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validation=Validator::make($request->all(),[
+            'size_name'  => 'required|unique:sizes,size_name,'.$id,
+        ]);
+        if ($validation->fails()) {
+            return back()->withInput()->withErrors($validation);
+        }
+
         $update = Size::findOrFail($id);
         $formData = $request->all();
 

@@ -16,13 +16,14 @@ class Filter extends Component
 
     public function render()
     {
-        $query = '%'.$this->searchTerm.'%';
+        $searchTerm = '%'.$this->searchTerm.'%';
 
         return view('livewire.filter', [
-            'products'=>Product::where(function($sub_query){
-                        $sub_query->where('product_name', 'like', '%'.$this->searchTerm.'%')
-                                  ->orWhere('sku', 'like', '%'.$this->searchTerm.'%');
-                    })->paginate(9)
+            'products'=>Product::where(function($searchTerm){
+                        $searchTerm->where('product_name', 'like', '%'.$this->searchTerm.'%')
+                        ->orWhere('product_slug', 'like', '%'.$this->searchTerm.'%')
+                        ->orWhere('sku', 'like', '%'.$this->searchTerm.'%');
+            })->paginate(5)
         ]);
     }
     public function setPage($url)

@@ -8,6 +8,7 @@ use Toastr;
 use File;
 use App\Helpers\Helper;
 use Str;
+use Validator;
 
 class SliderController extends Controller
 {
@@ -40,6 +41,11 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
+        $validator  = $request->validate([
+            'slider_name'  => 'required',
+            'slider_link'  => 'required',
+        ]);
+
         $slider = new Slider();
         $formData = $request->all();
         $slider->status = 1;
@@ -54,7 +60,7 @@ class SliderController extends Controller
         $slider->fill($formData)->save();
         Toastr::success('Update Successfully');
         return redirect()->route('slider.list')
-            ->with('success', 'Slider created successfully.');;
+            ->with('success', 'Slider created successfully.');
     }
 
     /**
@@ -97,6 +103,14 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validation=Validator::make($request->all(),[
+            'slider_name'  => 'required',
+            'slider_link' => 'required',
+        ]);
+        if ($validation->fails()) {
+            return back()->withInput()->withErrors($validation);
+        }
+
         $update = Slider::findOrFail($id);
         $formData = $request->all();
         if ($request->hasFile('slider_img')) {

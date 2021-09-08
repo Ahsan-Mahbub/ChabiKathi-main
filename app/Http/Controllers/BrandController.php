@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
+use Validator;
 
 class BrandController extends Controller
 {
@@ -37,6 +38,11 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
+        $validator  = $request->validate([
+            'brand_name'  => 'required|unique:brands',
+            'slug'      => 'required',
+        ]);
+
         $brand = new Brand();
         $requested_data = $request->all();
         $brand->status = 1;
@@ -86,6 +92,14 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validation=Validator::make($request->all(),[
+            'brand_name'  => 'required|unique:brands,brand_name,'.$id,
+            'slug'     => 'required'
+        ]);
+        if ($validation->fails()) {
+            return back()->withInput()->withErrors($validation);
+        }
+
         $update = Brand::findOrFail($id);
         $formData = $request->all();
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Weight;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
+use Validator;
 
 class WeightController extends Controller
 {
@@ -37,6 +38,10 @@ class WeightController extends Controller
      */
     public function store(Request $request)
     {
+        $validator  = $request->validate([
+            'weight_name'  => 'required|unique:weights',
+        ]);
+
         $weight = new Weight();
         $requested_data = $request->all();
         $weight->status = 1;
@@ -86,12 +91,19 @@ class WeightController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validation=Validator::make($request->all(),[
+            'weight_name'  => 'required|unique:weights,weight_name,'.$id,
+        ]);
+        if ($validation->fails()) {
+            return back()->withInput()->withErrors($validation);
+        }
+
         $update = Weight::findOrFail($id);
         $formData = $request->all();
 
         $update->fill($formData)->save();
         Toastr::success('Update Successfully');
-        return redirect()->route('size.list');
+        return redirect()->route('weight.list');
     }
 
     /**

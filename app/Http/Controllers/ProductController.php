@@ -13,6 +13,7 @@ use File;
 use App\Helpers\Helper;
 use App\Http\Resources\ProductCollection;
 use Str;
+use Validator;
 
 class ProductController extends Controller
 {
@@ -58,6 +59,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $validator  = $request->validate([
+            'product_name'  => 'required|unique:products',
+            'product_slug'  => 'required',
+            'product_desc'  => 'required',
+            'category_id'  => 'required',
+            'price'  => 'required',
+        ]);
         $product = new Product();
         $requested_data = $request->all();
         $product->status = 1;
@@ -154,6 +162,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validation=Validator::make($request->all(),[
+            'product_name'  => 'required|unique:products,product_name,'.$id,
+            'product_slug'  => 'required',
+            'product_desc'  => 'required',
+            'category_id'  => 'required',
+            'price'  => 'required',
+        ]);
+        if ($validation->fails()) {
+            return back()->withInput()->withErrors($validation);
+        }
+
         $update = Product::findOrFail($id);
         $formData = $request->all();
         if ($request->hasFile('product_img')) {

@@ -20,12 +20,13 @@ class CreateProductsTable extends Migration
             $table->longText('product_desc')->nullable();
             $table->integer('category_id');
             $table->integer('subcategory_id')->nullable();
-            $table->integer('size_id')->nullable();
-            $table->integer('weight_id')->nullable();
-            $table->integer('color_id')->nullable();
+            // $table->integer('size_id')->nullable();
+            // $table->integer('weight_id')->nullable();
+            // $table->integer('color_id')->nullable();
+            // $table->integer('quantity')->default(1);
             $table->integer('price');
+            $table->integer('percentage')->nullable();
             $table->integer('discount')->nullable();
-            $table->integer('quantity')->default(1);
             $table->string('sku')->nullable();
             $table->integer('brand_id')->nullable();
             $table->integer('shop_id')->nullable();

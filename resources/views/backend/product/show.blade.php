@@ -68,30 +68,8 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group">
-                	<div class="col-md-6 col-12" style="display:inline-block;">
-                        <div class="form-material">
-                            <input disabled="" class="form-control" value="{{$product->quantity}}">
-                            <label for="login2-username">Product Quantity</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12" style="float: right;">
-                        <div class="form-material">
-                            <input disabled="" class="form-control" value="{{$product->size? $product->size->size_name : 'null'}}">
-                            <label for="login2-username">Size</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-6 col-12" style="display:inline-block;">
-                        <div class="form-material">
-                            <input disabled="" class="form-control" value="{{$product->weight? $product->weight->weight_name : 'null'}}">
-                            <label for="login2-username">Weight</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12" style="float: right;">
+                    <div class="col-md-12 col-12" style="float: right;">
                         <div class="form-material">
                             <input disabled="" class="form-control" value="{{$product->sku}}">
                             <label for="login2-username">SKU</label>
@@ -110,17 +88,6 @@
                         <div class="form-material">
                             <input disabled="" class="form-control" value="{{$product->shop? $product->shop->shop_name : 'null'}}">
                             <label for="login2-username">Shop Name</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                	<div class="col-12">
-                        <div class="form-material">
-                            {{$product->color? $product->color->color_name : 'null'}}
-                            <div class="form-control" style="height: 40px; width: 40px;border-radius: 50%; margin-right: 10px; border: 1px solid #ddd;background-color: {{$product->color->color_code}}">
-                            </div>
-                            <label for="login2-username">Color Name</label>
                         </div>
                     </div>
                 </div>
