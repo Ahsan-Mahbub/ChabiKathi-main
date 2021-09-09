@@ -48,17 +48,39 @@
                         </div>
                         <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
                             <img src="{{ asset('asset/fontend/asset/img/rocket.svg')}}">
-                            <span><a href="/">Dhamaka Rocket</a></span>
+                            <span><a href="/">Rocket</a></span>
                         </div>
                         <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
                             <img src="{{ asset('asset/fontend/asset/img/offers.jpeg')}}">
-                            <span><a href="/">Dhamaka Offers</a></span>
+                            <span><a href="/">Offers</a></span>
                         </div>
                     </div>
-                    <!-- End Category Box Section -->
+                    <!-- End Main-Category Section -->
+                    <!-- Main Slider Section -->
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 home-banner">
+                        <!-- Category Box Section -->
+                        <div class="category-box">
+                            <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
+                                <img src="{{ asset('asset/fontend/asset/img/voucher.svg')}}">
+                                <span><a href="/">Voucher Shop</a></span>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
+                                <img src="{{ asset('asset/fontend/asset/img/prime.svg')}}">
+                                <span><a href="/">Prime Shops</a></span>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
+                                <img src="{{ asset('asset/fontend/asset/img/rocket.svg')}}">
+                                <span><a href="/">Dhamaka Rocket</a></span>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
+                                <img src="{{ asset('asset/fontend/asset/img/offers.jpeg')}}">
+                                <span><a href="/">Dhamaka Offers</a></span>
+                            </div>
+                        </div>
+                        <!-- End Category Box Section -->
+                    </div>
                 </div>
             </div>
-        </div>
     </section>
     <!-- Home StickyBar Section -->
     <section class="header-nav sc-fixed-nav">
@@ -104,17 +126,38 @@
                         </div>
                         <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
                             <img src="{{ asset('asset/fontend/asset/img/rocket.svg')}}">
-                            <span><a href="/">Dhamaka Rocket</a></span>
+                            <span><a href="/">Rocket</a></span>
                         </div>
                         <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
                             <img src="{{ asset('asset/fontend/asset/img/offers.jpeg')}}">
-                            <span><a href="/">Dhamaka Offers</a></span>
+                            <span><a href="/">Offers</a></span>
                         </div>
                     </div>
-                    <!-- End Category Box Section -->
+                    <!-- Main Slider Section -->
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 home-banner">
+                        <!-- Category Box Section -->
+                        <div class="category-box">
+                            <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
+                                <img src="{{ asset('asset/fontend/asset/img/voucher.svg')}}">
+                                <span><a href="/">Voucher Shop</a></span>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
+                                <img src="{{ asset('asset/fontend/asset/img/prime.svg')}}">
+                                <span><a href="/">Prime Shops</a></span>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
+                                <img src="{{ asset('asset/fontend/asset/img/rocket.svg')}}">
+                                <span><a href="/">Dhamaka Rocket</a></span>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
+                                <img src="{{ asset('asset/fontend/asset/img/offers.jpeg')}}">
+                                <span><a href="/">Dhamaka Offers</a></span>
+                            </div>
+                        </div>
+                        <!-- End Category Box Section -->
+                    </div>
                 </div>
             </div>
-        </div>
     </section>
     <!-- Home StickyBar Section End -->
 </header>
@@ -145,51 +188,28 @@
                     </ul>
                 </div>
             </div>
-            <!-- End Main-Category Section -->
-            <!-- Main Slider Section -->
-            <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 home-banner">
-                <div class="slider">
-                    <div class="slideshow-container">
-                        @php($sliders = \App\Models\Slider::where('status',1)->orderBy('id','desc')->get())
-                        @foreach($sliders as $slider)
-                        <div class="mySlides fade">
-                            <a href="">
-                                <img src="/{{$slider->slider_img}}" style="width:100%">
-                            </a>
-                            <div class="text">
-                                <h5>{{$slider->slider_name}}</h5>
-                                <p>{{$slider->slider_title}}</p>
-                            </div>
-                            <span class="dot"></span>
-                        </div>
-                        @endforeach
-                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                    </div>
-                </div>
-                <!-- End Main Slider Section -->
-                <!-- Category Box Section -->
-                <div class="category-box">
-                    <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                        <img src="{{ asset('asset/fontend/asset/img/voucher.svg')}}">
-                        <span><a href="/">Voucher Shop</a></span>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                        <img src="{{ asset('asset/fontend/asset/img/prime.svg')}}">
-                        <span><a href="/">Prime Shops</a></span>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                        <img src="{{ asset('asset/fontend/asset/img/rocket.svg')}}">
-                        <span><a href="/">Dhamaka Rocket</a></span>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                        <img src="{{ asset('asset/fontend/asset/img/offers.jpeg')}}">
-                        <span><a href="/">Dhamaka Offers</a></span>
-                    </div>
-                </div>
-                <!-- End Category Box Section -->
+        </div>
+        <!-- End Main Slider Section -->
+        <!-- Category Box Section -->
+        <div class="category-box">
+            <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
+                <img src="{{ asset('asset/fontend/asset/img/voucher.svg')}}">
+                <span><a href="/">Voucher Shop</a></span>
+            </div>
+            <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
+                <img src="{{ asset('asset/fontend/asset/img/prime.svg')}}">
+                <span><a href="/">Prime Shops</a></span>
+            </div>
+            <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
+                <img src="{{ asset('asset/fontend/asset/img/rocket.svg')}}">
+                <span><a href="/">Rocket</a></span>
+            </div>
+            <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
+                <img src="{{ asset('asset/fontend/asset/img/offers.jpeg')}}">
+                <span><a href="/">Offers</a></span>
             </div>
         </div>
+    </div>
     </div>
     </div>
 </section>

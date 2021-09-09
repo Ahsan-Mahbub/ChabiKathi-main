@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryRequest;
 use Brian2694\Toastr\Facades\Toastr;
+use Validator;
 
 class CategoryController extends Controller
 {
@@ -38,6 +39,13 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
+
+        $validator  = $request->validate([
+            'category_name'  => 'required|unique:categories',
+            'slug'      => 'required',
+            'category_priority'     => 'required'
+        ]);
+
         $category = new Category();
         $requested_data = $request->all();
         $category->status = 1;
@@ -87,6 +95,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $category = new Category();
+        $validation=Validator::make($request->all(),[
+            'category_name'  => 'required|unique:categories,category_name,'.$id,
+            'slug'      => 'required',
+            'category_priority'     => 'required'
+        ]);
+        if ($validation->fails()) {
+            return back()->withInput()->withErrors($validation);
+        }
+
         $cat_update = Category::findOrFail($id);
         $formData = $request->all();
 

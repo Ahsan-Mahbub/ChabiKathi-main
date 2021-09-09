@@ -57,7 +57,12 @@
 										}
 									?>
 								</span>
-								<span class="present-price">৳ {{$data->price}}</span>
+								<?php
+									$main_price= $data->price;
+									$discount_price= $data->discount;
+									$total_price= $main_price-$discount_price;
+								?>
+								<span class="present-price">৳ {{$total_price}}</span>
 								<div class="buttons text-center">
 									<button class="btn btn-danger">Add to Cart</button>
 								</div>

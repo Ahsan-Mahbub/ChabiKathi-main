@@ -18,6 +18,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\AdminSellerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +55,6 @@ Route::group(['prefix' => 'admin'], function () {
     //Profile Route
     Route::get('/profile', [AuthController::class, 'index'])->name('profile');
     Route::post('/profile-store', [AuthController::class, 'store'])->name('profile.store');
-    Route::post('/password-store', [AuthController::class, 'passwordStore'])->name('password.store');
     // Category Route
     Route::group(['prefix' => 'category'], function () {
         Route::get('/list', [CategoryController::class, 'index'])->name('category.list');
@@ -139,19 +139,30 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('subcategory/{id}', [ProductController::class, 'subcategory'])->name('product.subcategory');
         Route::get('shop/{id}', [ProductController::class, 'shop'])->name('product.shop');
     });
+    // Seller Route
+    Route::group(['prefix' => 'seller'], function () {
+        Route::get('/list', [AdminSellerController::class, 'index'])->name('seller.list');
+        Route::get('create', [AdminSellerController::class, 'create'])->name('seller.create');
+        Route::post('store', [AdminSellerController::class, 'store'])->name('seller.store');
+        Route::get('show/{id}', [AdminSellerController::class, 'show'])->name('seller.show');
+        Route::get('status/{id}', [AdminSellerController::class, 'status'])->name('seller.status');
+        Route::get('approval/{id}', [AdminSellerController::class, 'approval'])->name('seller.approval');
+        Route::get('edit/{id}', [AdminSellerController::class, 'edit'])->name('seller.edit');
+        Route::post('update/{id}', [AdminSellerController::class, 'update'])->name('seller.update');
+        Route::delete('delete/{id}', [AdminSellerController::class, 'destroy'])->name('seller.delete');
+    });
+
+
     // Stock Route
     Route::group(['prefix' => 'stock'], function () {
         Route::get('/list', [StockController::class, 'index'])->name('stock.list');
         Route::get('create', [StockController::class, 'create'])->name('stock.create');
-        // Route::post('store', [StockController::class, 'store'])->name('stock.store');
-        // Route::get('show/{id}', [StockController::class, 'show'])->name('stock.show');
-        // Route::get('status/{id}', [StockController::class, 'status'])->name('stock.status');
-        // Route::get('approval/{id}', [StockController::class, 'approval'])->name('stock.approval');
-        // Route::get('edit/{id}', [StockController::class, 'edit'])->name('stock.edit');
-        // Route::post('update/{id}', [StockController::class, 'update'])->name('stock.update');
-        // Route::delete('delete/{id}', [StockController::class, 'destroy'])->name('stock.delete');
-        // Route::get('subcategory/{id}', [StockController::class, 'subcategory'])->name('stock.subcategory');
-        // Route::get('shop/{id}', [StockController::class, 'shop'])->name('stock.shop');
+        Route::post('store', [StockController::class, 'store'])->name('stock.store');
+        Route::get('status/{id}', [StockController::class, 'status'])->name('stock.status');
+        Route::get('edit/{id}', [StockController::class, 'edit'])->name('stock.edit');
+        Route::post('update/{id}', [StockController::class, 'update'])->name('stock.update');
+        Route::delete('delete/{id}', [StockController::class, 'destroy'])->name('stock.delete');
+        Route::get('productlist/{id}', [StockController::class, 'productlist'])->name('product.productlist');
     });
     // Slider Route
     Route::group(['prefix' => 'slider'], function () {

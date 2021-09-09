@@ -6,6 +6,9 @@ use App\Models\Stock;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\Product;
+use Toastr;
+use Validator;
 
 class StockController extends Controller
 {
@@ -16,7 +19,8 @@ class StockController extends Controller
      */
     public function index()
     {
-        //
+        $stocks = Stock::orderBy('id', 'desc')->paginate();
+        return view('backend.stock.index', compact('stocks'));
     }
 
     /**
@@ -27,7 +31,14 @@ class StockController extends Controller
     public function create()
     {
         $category = Category::where('status','1')->get();
-        return view('backend.stock.create',compact('category'));
+        $products = Product::paginate(5);
+        return view('backend.stock.create',compact('category','products'));
+    }
+
+    public function productlist($id)
+    {
+        $products = Product::where('subcategory_id', $id)->get();
+        return response()->json($products, 200);
     }
 
     /**
@@ -38,7 +49,17 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator  = $request->validate([
+            'product_id'  => 'required',
+            'quantity'  => 'required',
+        ]);
+
+        $stock = new Stock();
+        $formData = $request->all();
+        $stock->status = 1;
+        $stock->fill($formData)->save();
+        Toastr::success('Stock Create Successfully');
+        return redirect()->route('stock.list');
     }
 
     /**
@@ -47,9 +68,17 @@ class StockController extends Controller
      * @param  \App\Models\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function show(Stock $stock)
+    public function status($id)
     {
-        //
+        $stock = Stock::findOrFail($id);
+        if ($stock->status == 0) {
+            $stock->status = 1;
+        } else {
+            $stock->status = 0;
+        }
+        $stock->save();
+        Toastr::success('Status Change Successfully', 'Success');
+        return redirect()->back();
     }
 
     /**
@@ -58,9 +87,10 @@ class StockController extends Controller
      * @param  \App\Models\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function edit(Stock $stock)
+    public function edit($id)
     {
-        //
+        $stock = Stock::findOrFail($id);
+        return view('backend.stock.edit', compact('stock'));
     }
 
     /**
@@ -70,9 +100,22 @@ class StockController extends Controller
      * @param  \App\Models\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Stock $stock)
+    public function update(Request $request, $id)
     {
-        //
+        $validation=Validator::make($request->all(),[
+            'product_id'  => 'required',
+            'quantity'  => 'required',
+        ]);
+        if ($validation->fails()) {
+            return back()->withInput()->withErrors($validation);
+        }
+
+        $update = Stock::findOrFail($id);
+        $formData = $request->all();
+
+        $update->fill($formData)->save();
+        Toastr::success('Update Successfully');
+        return redirect()->route('stock.list');
     }
 
     /**
@@ -81,8 +124,12 @@ class StockController extends Controller
      * @param  \App\Models\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Stock $stock)
+    public function destroy($id)
     {
-        //
+        $delete_stock = Stock::findOrFail($id);
+
+        $delete_stock->delete();
+
+        return response()->json();
     }
 }

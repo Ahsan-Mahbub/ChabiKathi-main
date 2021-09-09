@@ -1,6 +1,15 @@
 @extends('backend.layouts.app')
 @section('content')
 <div class="container">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <div class="block">
         <div class="block-header block-header-default">
             <h3 class="block-title text-center"> Add Product</h3>
@@ -58,58 +67,36 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="example-select" name="size_id">
-                                    <option value="0">Select Size</option>
-                                    @php($category = \App\Models\Size::where('status',1)->orderBy('id','desc')->get())
-                                    @foreach($category as $value)
-                                        <option value="{{$value->id}}">{{$value->size_name}} </option>
-                                    @endforeach
-                                </select>
-                                <label for="example-select">Select Size</label>
+                                <input type="number" class="form-control" id="totalprice" name="price" placeholder="Enter Product Price.." required="">
+                                <label for="totalprice">Product Price <span class="text-danger">*</span> </label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="example-select" name="weight_id">
-                                    <option value="0">Select Weight</option>
-                                    @php($category = \App\Models\Weight::where('status',1)->orderBy('id','desc')->get())
-                                    @foreach($category as $value)
-                                        <option value="{{$value->id}}">{{$value->weight_name}} </option>
-                                    @endforeach
-                                </select>
-                                <label for="example-select">Select Weight</label>
+                                <input type="checkbox" id="percentage-box">
+                                <label for="Discount">Use Prcentage?</label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="form-material">
-                                <div class="custom-control custom-radio custom-control-inline mb-5">
-                                    @php($color = \App\Models\Color::where('status',1)->orderBy('id','desc')->get())
-                                    @foreach($color as $value)
-                                        <div class="col-md-12">
-                                            <input class="custom-control-input" type="radio" name="color_id" id="{{$value->color_code}}" value="{{$value->id}}">
-                                            <label class="custom-control-label" for="{{$value->color_code}}">{{$value->color_code}}</label><div style="height: 20px; width: 20px;border-radius: 50%; margin-right: 10px; border: 1px solid #ddd;background-color: {{$value->color_code}}"></div>
-                                        </div>
-                                    @endforeach
+                        <div id="percentage_price">
+                            <div class="form-group">
+                                <div class="form-material">
+                                    <input type="number" class="form-control" id="percentage" name="percentage" placeholder="Enter Percentage Price..">
+                                    <label for="Discount"> Percentage (%)</label>
                                 </div>
-                                <label>Select Color</label>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-material">
+                                    <input type="number" id="afterdis" class="form-control" disabled="">
+                                    <label for="Discount">After Percentage Total Price</label>
+                                </div>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="number" class="form-control" id="cat_priority" name="price" placeholder="Enter Product Price.." required="">
-                                <label for="cat_priority">Product Price <span class="text-danger">*</span> </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-material">
-                                <input type="number" class="form-control" id="Discount" name="discount" placeholder="Enter Discount Price..">
-                                <label for="Discount">Discount Price</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-material">
-                                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Enter Quantity..">
-                                <label for="quantity">Quantity</label>
+                                <input type="number" class="form-control" id="disval" name="discount" placeholder="Enter Discount Price..">
+                                <label for="afterdis">Discount Price</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -154,6 +141,39 @@
 </div>
 @endsection
 @section('script')
+<script type="text/javascript">
+    $('#percentage_price').hide();
+    $('#percentage-box').click(function() {
+     $('#percentage_price')[this.checked ? "show" : "hide"]();
+    });
+
+    $(function(){
+
+    $('#totalprice').on('input', function() {
+      calculate();
+    });
+    $('#percentage').on('input', function() {
+     calculate();
+    });
+    function calculate(){
+        var pPos = parseInt($('#totalprice').val()); 
+        var pEarned = parseInt($('#percentage').val());
+        var perc="";
+        if(isNaN(pPos) || isNaN(pEarned)){
+            perc=" ";
+           }else{
+           perc = ((pEarned/100) * pPos).toFixed(0);
+           var total = (pPos-perc);
+           console.log(total)
+           }
+
+        $('#disval').val(perc);
+        $('#afterdis').val(total);
+
+    }
+
+});
+</script>
 <script type="text/javascript">
     function getSubCategory(){
         let id = $("#category_id").val();

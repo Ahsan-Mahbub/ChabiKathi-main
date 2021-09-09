@@ -6,7 +6,7 @@
         <div class="content content-full text-center">
             <!-- Avatar -->
             <div class="mb-15">
-                <a class="img-link" href="be_pages_generic_profile.html">
+                <a class="img-link" href="/{{Auth::user()->image}}">
                     <img class="img-avatar img-avatar96 img-avatar-thumb"
                         src="{{Auth::user()->image==''? asset('asset/backend/assets/media/avatars/avatar15.jpg'): '/'.Auth::user()->image}}"
                         alt="">

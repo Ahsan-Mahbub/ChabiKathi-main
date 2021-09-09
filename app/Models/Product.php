@@ -17,13 +17,10 @@ class Product extends Model
         'category_id',
         'subcategory_id',
         'price',
+        'percentage',
         'discount',
-        'quantity',
         'brand_id',
         'shop_id',
-        'size_id',
-        'weight_id',
-        'color_id',
         'product_img',
         'product_img_2',
         'product_img_3'
@@ -36,18 +33,6 @@ class Product extends Model
     public function subcategory()
     {
         return $this->belongsTo(SubCategory::class, 'subcategory_id');
-    }
-    public function size()
-    {
-        return $this->belongsTo(Size::class, 'size_id');
-    }
-    public function color()
-    {
-        return $this->belongsTo(Color::class, 'color_id');
-    }
-    public function weight()
-    {
-        return $this->belongsTo(Weight::class, 'weight_id');
     }
     public function brand()
     {
