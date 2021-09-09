@@ -70,31 +70,96 @@
                 <li>
                     <a class="active" href="{{route('admin')}}"><i class="si si-cup"></i><span class="sidebar-mini-hide">Dashboard</span></a>
                 </li>
-                <li class="nav-main-heading"><span class="sidebar-mini-visible">P.S</span><span class="sidebar-mini-hidden">Product Section</span></li>
-                <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-th-large"></i><span class="sidebar-mini-hide">Category</span></a>
+
+                <li class="">
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-list"></i><span class="sidebar-mini-hide">Category Section</span></a>
                     <ul>
-                        <li>
-                            <a href="{{route('category.list')}}">Categories List</a>
+                        <li class="">
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span class="sidebar-mini-hide">Category</span></a>
+                            <ul>
+                                <li>
+                                    <a href="{{route('category.list')}}"><span class="sidebar-mini-hide">Categories List</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{route('category.create')}}"><span class="sidebar-mini-hide">Add Category</span></a>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="{{route('category.create')}}">Add Category</a>
+                        <li class="">
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span class="sidebar-mini-hide">Sub Category</span></a>
+                            <ul>
+                                <li>
+                                    <a href="{{route('sub-category.list')}}"><span class="sidebar-mini-hide">Sub Categories List</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{route('sub-category.create')}}"><span class="sidebar-mini-hide">Add Sub Category</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-layers"></i><span class="sidebar-mini-hide">Product Variation</span></a>
+                    <ul>
+                        <li class="">
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span class="sidebar-mini-hide">Size</span></a>
+                            <ul>
+                                <li>
+                                    <a href="{{route('size.list')}}"><span class="sidebar-mini-hide">Size List</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{route('size.create')}}"><span class="sidebar-mini-hide">Add Size</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span class="sidebar-mini-hide">Weight</span></a>
+                            <ul>
+                                <li>
+                                    <a href="{{route('weight.list')}}"><span class="sidebar-mini-hide">Weight List</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{route('weight.create')}}"><span class="sidebar-mini-hide">Add Weight</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span class="sidebar-mini-hide">Color Code</span></a>
+                            <ul>
+                                <li>
+                                    <a href="{{route('color-code.list')}}"><span class="sidebar-mini-hide">Color Code List</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{route('color-code.create')}}"><span class="sidebar-mini-hide">Add Color Code</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span class="sidebar-mini-hide">Brand</span></a>
+                            <ul>
+                                <li>
+                                    <a href="{{route('brand.list')}}"><span class="sidebar-mini-hide">Brand List</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{route('brand.create')}}"><span class="sidebar-mini-hide">Add Brand</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span class="sidebar-mini-hide">Shop</span></a>
+                            <ul>
+                                <li>
+                                    <a href="{{route('shop.list')}}"><span class="sidebar-mini-hide">Shop List</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{route('shop.create')}}"><span class="sidebar-mini-hide">Add Shop</span></a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-th-list"></i><span class="sidebar-mini-hide">Sub Category</span></a>
-                    <ul>
-                        <li>
-                            <a href="{{route('sub-category.list')}}">Sub Categories List</a>
-                        </li>
-                        <li>
-                            <a href="{{route('sub-category.create')}}">Add Sub Category</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-shopping-bag"></i><span class="sidebar-mini-hide">Product</span></a>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-bag"></i><span class="sidebar-mini-hide">Product</span></a>
                     <ul>
                         <li>
                             <a href="{{route('product.list')}}">Products List</a>
@@ -104,8 +169,9 @@
                         </li>
                     </ul>
                 </li>
+
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-cart-plus"></i><span class="sidebar-mini-hide">Stock</span></a>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-basket-loaded"></i><span class="sidebar-mini-hide">Stock</span></a>
                     <ul>
                         <li>
                             <a href="{{route('stock.list')}}">Stocks List</a>
@@ -116,66 +182,32 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-users"></i><span class="sidebar-mini-hide">Seller</span></a>
+                    <ul>
+                        <li>
+                            <a href="{{route('seller.list')}}">Seller List</a>
+                        </li>
+                        <li>
+                            <a href="{{route('seller.create')}}">Add Seller</a>
+                        </li>
+                    </ul>
+                </li>
 
-                <li class="nav-main-heading"><span class="sidebar-mini-visible">P.V</span><span class="sidebar-mini-hidden">Product Veriation</span></li>
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-size-actual"></i><span class="sidebar-mini-hide">Size</span></a>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-user"></i><span class="sidebar-mini-hide">Admin</span></a>
                     <ul>
                         <li>
-                            <a href="{{route('size.list')}}">Size List</a>
+                            <a href="{{route('seller.list')}}">Admin List</a>
                         </li>
                         <li>
-                            <a href="{{route('size.create')}}">Add Size</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-anchor"></i><span class="sidebar-mini-hide">Weight</span></a>
-                    <ul>
-                        <li>
-                            <a href="{{route('weight.list')}}">Weight List</a>
-                        </li>
-                        <li>
-                            <a href="{{route('weight.create')}}">Add Weight</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-equalizer"></i><span class="sidebar-mini-hide">Color Code</span></a>
-                    <ul>
-                        <li>
-                            <a href="{{route('color-code.list')}}">Color Code List</a>
-                        </li>
-                        <li>
-                            <a href="{{route('color-code.create')}}">Add Color Code</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-badge"></i><span class="sidebar-mini-hide">Brand</span></a>
-                    <ul>
-                        <li>
-                            <a href="{{route('brand.list')}}">Brand List</a>
-                        </li>
-                        <li>
-                            <a href="{{route('brand.create')}}">Add Brand</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-basket"></i><span class="sidebar-mini-hide">Shop</span></a>
-                    <ul>
-                        <li>
-                            <a href="{{route('shop.list')}}">Shop List</a>
-                        </li>
-                        <li>
-                            <a href="{{route('shop.create')}}">Add Shop</a>
+                            <a href="{{route('seller.create')}}">Add Admin</a>
                         </li>
                     </ul>
                 </li>
 
 
-                <li class="nav-main-heading"><span class="sidebar-mini-visible">E.C</span><span class="sidebar-mini-hidden"> Extra Change</span></li>
+                <li class="nav-main-heading"><span class="sidebar-mini-visible">S.S</span><span class="sidebar-mini-hidden">Settings Section</span></li>
                 <li>
                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-sliders"></i><span class="sidebar-mini-hide">Slider</span></a>
                     <ul>
@@ -187,8 +219,6 @@
                         </li>
                     </ul>
                 </li>
-
-                <li class="nav-main-heading"><span class="sidebar-mini-visible">S.S</span><span class="sidebar-mini-hidden">Settings Section</span></li>
                 <li>
                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-cog"></i><span class="sidebar-mini-hide">Backend Settings</span></a>
                     <ul>

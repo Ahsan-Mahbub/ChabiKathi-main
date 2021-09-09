@@ -77,8 +77,6 @@
 					        </div>
 					    </section>
 					</div>
-	                <!-- @livewire('filter') -->
-
 	            </div>
 	        </div>
 	    </form>
