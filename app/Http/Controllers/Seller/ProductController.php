@@ -7,6 +7,7 @@ use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Toastr;
 use File;
+use Illuminate\Auth\SessionGuard;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Helper;
 use App\Http\Resources\ProductCollection;
@@ -21,7 +22,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('id', 'desc')->paginate();
+        
+        // $products = Product::orderBy('id', 'desc')->paginate();
         return view('seller.product.index', compact('products'));
     }
 
@@ -54,7 +56,7 @@ class ProductController extends Controller
         $product->status = 1;
         $product->approval = 0;
         $product->sku .= 'sku-' . $product->product_name.time();
-        $product->shop=auth('seller')->id();
+        $product->shop_id=auth('seller')->id();
         
 
         if ($request->hasFile('product_img')) {
@@ -84,7 +86,7 @@ class ProductController extends Controller
             $requested_data['product_img_3'] = $path . $name;
         }
 
-        //dd($requested_data);
+        // dd($requested_data);
         $product->fill($requested_data)->save();
         Toastr::success('Save Successfully');
         return redirect()->route('product.list')

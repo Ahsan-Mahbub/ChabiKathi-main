@@ -54,10 +54,10 @@
                     alt="">
                 </a> --}}
                 <ul class="list-inline mt-10">
-                    {{-- <li class="list-inline-item">
+                    <li class="list-inline-item">
                         <a class="link-effect text-dual-primary-dark font-size-sm font-w600 text-uppercase"
-                            href="be_pages_generic_profile.html">{{Auth::user()->name}}</a>
-                    </li> --}}
+                            href="be_pages_generic_profile.html">{{auth('seller')->user()->first_name}}</a>
+                    </li>
                     <li class="list-inline-item">
                         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                         <a class="link-effect text-dual-primary-dark" data-toggle="layout"

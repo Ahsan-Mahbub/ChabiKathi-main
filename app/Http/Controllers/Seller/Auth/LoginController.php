@@ -9,6 +9,9 @@ use Illuminate\Validation\Rules\Password;
 use Hash;
 use Illuminate\Support\Facades\Auth;
 use File;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use App\Mail\Reset_password;
 use Brian2694\Toastr\Facades\Toastr;
 
 class LoginController extends Controller
@@ -27,25 +30,26 @@ class LoginController extends Controller
             'password' => ''
         ]);
         
-        $seller=Seller::where(['email' => $request['email']])->first(['status']);
-        if(isset($seller)&& $seller['status']==1 && auth('seller')->attempt(['email' => $request->email, 'password'=>$request->password]))
+        $seller=Seller::where(['email' => $request['email']])->first(['status','email_verified']);
+       
+        if(isset($seller)&& $seller['status']==1 && $seller['email_verified']==1 && auth('seller')->attempt(['email' => $request->email, 'password'=>$request->password]))
         
         {
             Toastr::success('Login Successfully', 'Success');
             return view('seller.content');
         }
-        elseif(isset($seller)&& $seller['status']==1 && auth('seller')->attempt(['email' => $request->email, 'password'=>$request->password]))
-        
-        {
-            return 'please wait until admin approve your request so that';
-        }
+     
 
-        elseif(isset($seller)&& $seller['status']==0)
+        elseif(isset($seller)&& $seller['status']==0 && $seller['email_verified']==1 && auth('seller')->attempt(['email' => $request->email, 'password'=>$request->password]))
         {
             Toastr::success('please wait until admin approve your request', 'Error');
             return redirect()->back();
         }
-        
+        elseif(isset($seller)&& $seller['status']==0 && $seller['email_verified']==0 && auth('seller')->attempt(['email' => $request->email, 'password'=>$request->password]))
+        {
+            Toastr::success('please verify your email address ', 'Error');
+            return redirect()->back();
+        }
         else{
             return 'you didnot register yet! please register first';
         }

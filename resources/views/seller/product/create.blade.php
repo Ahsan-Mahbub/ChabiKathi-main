@@ -29,13 +29,13 @@
                                 <label for="product_name">Product Name <span class="text-danger">*</span></label>
                             </div>
                         </div>
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <div class="form-material">
                                 <input type="text" class="form-control" id="product_slug" name="product_slug"
                                     placeholder="Enter Product Slug.." required="">
                                 <label for="product_slug">Product Slug <span class="text-danger">*</span></label>
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="form-group">
                             <div class="form-material">
                                 <textarea name="product_desc" id="editor" cols="30" rows="20"
@@ -45,7 +45,7 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="example-select" name="cat_id">
+                                <select class="form-control" id="example-select" name="category_id">
                                     <option disabled="">Select Category</option>
                                     @php($category =
                                     \App\Models\Category::where('status',1)->orderBy('id','desc')->get())

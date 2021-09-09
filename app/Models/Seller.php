@@ -19,6 +19,7 @@ class Seller extends Authenticatable
         'shop_name',
         'shop_address',
         'contact',
+        'token'
         
      
       

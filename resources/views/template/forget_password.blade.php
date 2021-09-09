@@ -40,7 +40,7 @@
                     <div class="hero-static col-md-6 col-xl-8 d-none d-md-flex align-items-md-end">
                         <div class="p-30 pb-150 invisible" data-toggle="appear">
                             <p class="font-size-h3 font-w600 text-white">
-                                Get started selling
+                                Forget password!
                             </p>
                         </div>
                     </div>
@@ -59,39 +59,33 @@
                                     class="font-size-xl text-primary-dark">&nbsp;Merchent</span>
 
                             </div>
-                            <form class="js-validation-signin px-30" action="{{route('seller.login')}}" method="post">
+                            <form class="js-validation-signin px-30" action="{{route('seller.forget')}}" method="post">
                                 @csrf
-                                <h2 class="h5 font-w800 text-primary mb-0">Please sign in</h2>
+                                <h2 class="h5 font-w800 text-primary mb-0">Please Reset your Password</h2>
                                 <div class="form-group row">
                                     <div class="col-12">
-                                        <div class="form-material floating">
-                                            <input type="email" class="form-control" id="login-username" name="email">
-                                            <label for="login-username">Email</label>
+                                        <div class="form-group py-2">
+                                            <label> Email </label>
+                                            <input type="email" name="email"
+                                                class="form-control {{$errors->first('email') ? 'is-invalid' : ''}}"
+                                                value="{{ old('email') }}" placeholder="Your Email">
+                                            {!! $errors->first('email', '<div class="invalid-feedback">:message</div>')
+                                            !!}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-12">
-                                        <div class="form-material floating">
-                                            <input type="password" class="form-control" id="login-password"
-                                                name="password">
-                                            <label for="login-password">Password</label>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-sm btn-hero btn-alt-primary">
-                                        <i class="si si-login mr-10"></i> Sign In
+                                        <i class="si si-login mr-10"></i> Send a link
                                     </button>
                                     <div class="mt-30">
-                                        <a class="link-effect text-muted mr-10 mb-5 d-inline-block"
-                                            href="{{route('seller.registers')}}">
-                                            <i class="fa fa-plus mr-5"></i> Create Account
-                                        </a>
-                                        <a class="link-effect text-muted mr-10 mb-5 d-inline-block"
-                                            href="{{route('seller.forget')}}">
-                                            <i class="fa fa-warning mr-5"></i> Forgot Password
-                                        </a>
+
+                                        {{-- <a class="link-effect text-muted mr-10 mb-5 d-inline-block"
+                                            href="{{route('seller.login')}}">
+                                        <i class="fa fa-warning mr-5"></i> Forgot Password
+                                        </a> --}}
+
                                     </div>
                                 </div>
                             </form>

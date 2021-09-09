@@ -115,6 +115,7 @@
             <div class="btn-group" role="group">
                 <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{auth('seller')->user()->first_name}}
                     <i class="fa fa-user d-sm-none"></i>
                     {{-- <span class="d-none d-sm-inline-block">{{Auth::seller()->first_name}}</span> --}}
                     <i class="fa fa-angle-down ml-5"></i>
@@ -122,7 +123,7 @@
                 <div class="dropdown-menu dropdown-menu-right min-width-200"
                     aria-labelledby="page-header-user-dropdown">
                     <h5 class="h6 text-center py-10 mb-5 border-b text-uppercase">User Setting</h5>
-                    <a style="padding-left: 1.7rem!important;" class="dropdown-item" href="{{route('profile')}}">
+                    <a style="padding-left: 1.7rem!important;" class="dropdown-item" href="{{route('seller.profile')}}">
                         <i class="si si-user mr-5"></i> Profile
                     </a>
                     <div class="dropdown-divider"></div>
