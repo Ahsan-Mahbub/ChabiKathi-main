@@ -221,7 +221,12 @@
 									}
 								?>
 							</span>
-							<span class="present-price">৳ {{$proInfo['price']}}</span>
+							<?php
+								$main_price= $proInfo['price'];
+								$discount_price= $proInfo['discount'];
+								$total_price= $main_price-$discount_price;
+							?>
+							<span class="present-price">৳ {{$total_price}}</span>
 							<div class="buttons text-center">
 								<button class="btn btn-danger">Add to Cart</button>
 							</div>

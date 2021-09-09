@@ -105,7 +105,12 @@
                                 }
                               ?>
                             </span>
-                            <span class="new-price">৳ {{$product->price}}</span>
+                            <?php
+                              $main_price= $product->price;
+                              $discount_price= $product->discount;
+                              $total_price= $main_price-$discount_price;
+                            ?>
+                            <span class="new-price">৳ {{$total_price}}</span>
                           </div>
                             <div class="quantity dev-flex-l mb-20">
                               <label>Quantity</label>
@@ -263,7 +268,12 @@
                     }
                   ?>
                 </span>
-                <span class="present-price">৳ {{$related->price}}</span>
+                <?php
+                  $main_price= $related->price;
+                  $discount_price= $related->discount;
+                  $total_price= $main_price-$discount_price;
+                ?>
+                <span class="present-price">৳ {{$total_price}}</span>
                 <div class="buttons text-center">
                   <button class="btn btn-danger">Add to Cart</button>
                 </div>

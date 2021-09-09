@@ -24,7 +24,7 @@
 
                 <!-- Logo -->
                 <div class="content-header-item">
-                    <a class="link-effect font-w700" href="index.html">
+                    <a class="link-effect font-w700" href="{{route('admin')}}">
                         <i class="si si-fire text-primary"></i>
                         <span class="font-size-xl text-dual-primary-dark">Chabi</span><span class="font-size-xl text-primary">Kathi</span>
                     </a>
@@ -58,17 +58,6 @@
                             <i class="fa fa-cog"></i>
                         </a>
                     </li>
-                    <!-- <li class="list-inline-item">
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-jet-dropdown-link href="{{ route('logout') }}"
-                                     onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                                <i class="si si-logout"></i>&nbsp;&nbsp; Sing Out
-                            </x-jet-dropdown-link>
-                        </form>
-                    </li> -->
                 </ul>
             </div>
             <!-- END Visible only in normal mode -->
