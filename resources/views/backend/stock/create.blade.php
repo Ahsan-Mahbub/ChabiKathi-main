@@ -233,7 +233,6 @@
                 console.log(response)
                 response.forEach(value => {
                 	console.log(value);
-                    // html+='<option value='+element.id+'>'+element.product_name+'</option>'
                     $('#product_filed').append(
 		               `
 		               <div class="col-md-2 col-sm-6 col-xs-12 col-lg-2 mr-4 mb-3 stock_product" data-id="+value+" style="cursor: pointer;border: 3px solid #ddd;border-radius: 5px;">
