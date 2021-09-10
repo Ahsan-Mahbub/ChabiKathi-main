@@ -10,6 +10,7 @@ use App\Models\Shop;
 use Illuminate\Http\Request;
 use Toastr;
 use File;
+use Illuminate\Support\Facades\Auth;
 use App\Helpers\Helper;
 use App\Http\Resources\ProductCollection;
 use Str;

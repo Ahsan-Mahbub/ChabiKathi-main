@@ -15,7 +15,8 @@
             <div class="col-md-6 col-lg-6 col-xl-6 col-sm-12 col-12 right-side-top">
                 <div class="sell-details-top">
                     <i class="far fa-store"></i>
-                    <span>Sell on Chabikathi</span>
+                    <a href="{{route('seller.loginView')}}">Sell on Chabikathi</a>
+                    {{-- <span>Sell on Chabikathi</span> --}}
                 </div>
                 <div class="app-details-top">
                     <!-- <img class="img-fluid" src="asset/img/Logo-2.png"> -->
@@ -100,7 +101,7 @@
                         <i class="fas fa-shopping-bag">
                             <div class="dropdown-content">
                                 <a href="#">My Account</a>
-                                <a href="#">Login</a>
+                                <a href="">Login</a>
                             </div>
                         </i>
                     </div>
@@ -111,7 +112,7 @@
                         <i class="fas fa-user-circle">
                             <div class="dropdown-content">
                                 <a href="#">My Account</a>
-                                <a href="#">Login</a>
+                                <a href="{{route('seller.login')}}">Login</a>
                             </div>
                         </i>
                     </div>
