@@ -19,6 +19,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\AdminSellerController;
+use App\Http\Controllers\AdminCreateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -150,6 +151,17 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('edit/{id}', [AdminSellerController::class, 'edit'])->name('seller.edit');
         Route::post('update/{id}', [AdminSellerController::class, 'update'])->name('seller.update');
         Route::delete('delete/{id}', [AdminSellerController::class, 'destroy'])->name('seller.delete');
+    });
+    // Admin Route
+    Route::group(['prefix' => 'control'], function () {
+        Route::get('/list', [AdminCreateController::class, 'index'])->name('admin.list');
+        Route::get('create', [AdminCreateController::class, 'create'])->name('admin.create');
+        Route::post('store', [AdminCreateController::class, 'store'])->name('admin.store');
+        Route::get('show/{id}', [AdminCreateController::class, 'show'])->name('admin.show');
+        Route::get('status/{id}', [AdminCreateController::class, 'status'])->name('admin.status');
+        Route::get('edit/{id}', [AdminCreateController::class, 'edit'])->name('admin.edit');
+        Route::post('update/{id}', [AdminCreateController::class, 'update'])->name('admin.update');
+        Route::delete('delete/{id}', [AdminCreateController::class, 'destroy'])->name('admin.delete');
     });
 
 
