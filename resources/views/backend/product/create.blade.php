@@ -101,21 +101,21 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="brand_id" name="brand_id">
-                                    <option value="0" selected="">Select Brand</option>
-                                    @foreach($brand as $value)
-                                        <option value="{{$value->id}}">{{$value->brand_name}} </option>
+                                <select class="form-control" id="shop_id" name="shop_id" onclick="getBrand()">
+                                    <option value="0" selected="">Select Shop</option>
+                                    @foreach($shop as $value)
+                                        <option value="{{$value->id}}">{{$value->shop_name}} </option>
                                     @endforeach
                                 </select>
-                                <label for="brand_id">Select Brand</label>
+                                <label for="shop_id">Select Shop</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="shop_id" name="shop_id"  onclick="getShop()">
-                                    <option value="0" selected="">Select Shop</option>
+                                <select class="form-control" id="brand_id" name="brand_id">
+                                    <option value="0" selected="">Select Brand</option>
                                 </select>
-                                <label for="shop_id">Select Shop</label>
+                                <label for="brand_id">Select Brand</label>
                             </div>
                         </div>
 
@@ -194,10 +194,10 @@
         });
     }
 
-    function getShop(){
-        let id = $("#brand_id").val();
+    function getBrand(){
+        let id = $("#shop_id").val();
         // alert(id);
-        let url = '/admin/product/shop/'+id;
+        let url = '/admin/product/brand/'+id;
         $.ajax({
             type: "get",
             url: url,
@@ -206,9 +206,9 @@
                 let html = '';
                 console.log(response)
                 response.forEach(element => {
-                    html+='<option value='+element.id+'>'+element.shop_name+'</option>'
+                    html+='<option value='+element.id+'>'+element.brand_name+'</option>'
                 });
-                $("#shop_id").html(html);
+                $("#brand_id").html(html);
             }
         });
     }

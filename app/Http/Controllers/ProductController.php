@@ -37,8 +37,8 @@ class ProductController extends Controller
     public function create()
     {
         $category = Category::where('status',1)->get();
-        $brand = Brand::where('status',1)->get();
-        return view('backend.product.create', compact('category','brand'));
+        $shop = Shop::where('status',1)->where('approval',1)->get();
+        return view('backend.product.create', compact('category','shop'));
     }
 
     public function subcategory($id)
@@ -47,10 +47,10 @@ class ProductController extends Controller
         return response()->json($subcategories, 200);
     }
 
-    public function shop($id)
+    public function brand($id)
     {
-        $shop = Shop::where('brand_id', $id)->get();
-        return response()->json($shop, 200);
+        $brand = Brand::where('shop_id', $id)->where('status',1)->where('approval',1)->get();
+        return response()->json($brand, 200);
     }
     /**
      * Store a newly created resource in storage.

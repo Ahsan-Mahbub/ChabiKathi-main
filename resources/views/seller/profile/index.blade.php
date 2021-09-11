@@ -6,19 +6,16 @@
         <div class="content content-full text-center">
             <!-- Avatar -->
             <div class="mb-15">
-                {{-- <a class="img-link" href="be_pages_generic_profile.html">
+                <a class="img-link" href="/{{auth('seller')->user()->image}}">
                     <img class="img-avatar img-avatar96 img-avatar-thumb"
-                        src="{{Auth::seller()->image==''? asset('asset/backend/assets/media/avatars/avatar15.jpg'): '/'.Auth::seller()->image}}"
+                        src="{{auth('seller')->user()->image==''? asset('asset/backend/assets/media/avatars/avatar15.jpg'): '/'.auth('seller')->user()->image}}"
                 alt="">
-                </a> --}}
+                </a>
             </div>
             <!-- END Avatar -->
 
             <!-- Personal -->
             <h1 class="h3 text-white font-w700 mb-10">{{auth('seller')->user()->first_name}}</h1>
-            {{-- <h2 class="h5 text-white-op">
-                {{Auth::seller()->role}}
-            </h2> --}}
             <!-- END Personal -->
 
             <!-- Actions -->

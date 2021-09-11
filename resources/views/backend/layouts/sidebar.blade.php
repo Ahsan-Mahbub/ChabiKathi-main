@@ -159,34 +159,6 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="">
-                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span
-                                    class="sidebar-mini-hide">Brand</span></a>
-                            <ul>
-                                <li>
-                                    <a href="{{route('brand.list')}}"><span class="sidebar-mini-hide">Brand
-                                            List</span></a>
-                                </li>
-                                <li>
-                                    <a href="{{route('brand.create')}}"><span class="sidebar-mini-hide">Add
-                                            Brand</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="">
-                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span
-                                    class="sidebar-mini-hide">Shop</span></a>
-                            <ul>
-                                <li>
-                                    <a href="{{route('shop.list')}}"><span class="sidebar-mini-hide">Shop
-                                            List</span></a>
-                                </li>
-                                <li>
-                                    <a href="{{route('shop.create')}}"><span class="sidebar-mini-hide">Add
-                                            Shop</span></a>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                 </li>
                 <li>
@@ -216,16 +188,15 @@
                 </li>
 
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-users"></i><span
-                            class="sidebar-mini-hide">Seller</span></a>
-                    <ul>
-                        <li>
-                            <a href="{{route('seller.list')}}">Seller List</a>
-                        </li>
-                        <li>
-                            <a href="{{route('seller.create')}}">Add Seller</a>
-                        </li>
-                    </ul>
+                    <a href="{{route('seller.list')}}"><i class="si si-users"></i>Seller List</a>
+                </li>
+
+                <li>
+                    <a href="{{route('shop.list')}}"><i class="si si-drawer"></i>Shop List</a>
+                </li>
+
+                <li>
+                    <a href="{{route('brand.list')}}"><i class="si si-badge"></i>Brand List</a>
                 </li>
 
                 <li>
@@ -233,10 +204,10 @@
                             class="sidebar-mini-hide">Admin</span></a>
                     <ul>
                         <li>
-                            <a href="{{route('seller.list')}}">Admin List</a>
+                            <a href="{{route('admin.list')}}">Admin List</a>
                         </li>
                         <li>
-                            <a href="{{route('seller.create')}}">Add Admin</a>
+                            <a href="{{route('admin.create')}}">Add Admin</a>
                         </li>
                     </ul>
                 </li>

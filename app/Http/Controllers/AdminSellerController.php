@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Seller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class AdminSellerController extends Controller
 {
@@ -13,7 +15,8 @@ class AdminSellerController extends Controller
      */
     public function index()
     {
-        //
+        $sellers = Seller::orderBy('id', 'desc')->paginate();
+        return view('backend.seller.index', compact('sellers'));
     }
 
     /**
@@ -23,7 +26,7 @@ class AdminSellerController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.seller.create');
     }
 
     /**
@@ -34,7 +37,35 @@ class AdminSellerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $validator  = $request->validate([
+        //     'first_name'  => 'required',
+        //     'last_name'  => 'required',
+        //     'email'  => 'required|unique:users',
+        //     'contact'  => 'required|min:11|numeric',
+        //     'shop_name'  => 'required',
+        //     'shop_address'  => 'required',
+        //     'password'  => 'required',
+        // ]);
+        // $seller = new Product();
+        // $requested_data = $request->all();
+        // $seller->status = 1;
+        // $seller->approve = 1;
+        // $seller->token = '';
+        // $seller->password = Hash::make($request->password);
+
+        // if ($request->hasFile('shop_logo')) {
+        //     Helper::delete($seller->shop_logo);
+        //     $extension = $request->file('shop_logo')->getClientOriginalExtension();
+        //     $name = 'image' . Str::random(5) . '.' . $extension;
+        //     $path = "asset/backend/assets/images/shop/";
+        //     $request->file('shop_logo')->move($path, $name);
+        //     $requested_data['shop_logo'] = $path . $name;
+        // }
+        // //dd($requested_data);
+        // $product->fill($requested_data)->save();
+        // Toastr::success('Save Successfully');
+        // return redirect()->route('seller.list')
+        //     ->with('success', 'Seller created successfully.');
     }
 
     /**
@@ -43,9 +74,27 @@ class AdminSellerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function status($id)
     {
-        //
+        $status = Seller::findOrFail($id);
+        if ($status->status == 0) {
+            $status->status = 1;
+        } else {
+            $status->status = 0;
+        }
+        $status->save();
+        Toastr::success('Seller Status Change Successfully', 'Success');
+        return redirect()->back();
+    }
+
+
+    public function approval($id)
+    {
+        $approval = Seller::findOrFail($id);
+        $approval->approve = 1;
+        $approval->save();
+        Toastr::success('Seller Approved', 'Success');
+        return redirect()->back();
     }
 
     /**
@@ -79,6 +128,10 @@ class AdminSellerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Seller::findOrFail($id);
+
+        $delete->delete();
+
+        return response()->json();
     }
 }

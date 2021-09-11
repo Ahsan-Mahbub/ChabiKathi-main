@@ -27,7 +27,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('backend.brand.create');
+        //
     }
 
     /**
@@ -38,18 +38,7 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        $validator  = $request->validate([
-            'brand_name'  => 'required|unique:brands',
-            'slug'      => 'required',
-        ]);
-
-        $brand = new Brand();
-        $requested_data = $request->all();
-        $brand->status = 1;
-        $brand->fill($requested_data)->save();
-        Toastr::success('Save Successfully');
-        return redirect()->route('brand.list')
-            ->with('success', 'Brand created successfully.');
+        //
     }
 
     /**
@@ -71,6 +60,15 @@ class BrandController extends Controller
         return redirect()->back();
     }
 
+    public function approval($id)
+    {
+        $approval = Brand::findOrFail($id);
+        $approval->approval = 1;
+        $approval->save();
+        Toastr::success('Brand Approved', 'Success');
+        return redirect()->back();
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -79,8 +77,7 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        $brand = Brand::findOrFail($id);
-        return view('backend.brand.edit', compact('brand'));
+        //
     }
 
     /**
@@ -92,20 +89,7 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validation=Validator::make($request->all(),[
-            'brand_name'  => 'required|unique:brands,brand_name,'.$id,
-            'slug'     => 'required'
-        ]);
-        if ($validation->fails()) {
-            return back()->withInput()->withErrors($validation);
-        }
-
-        $update = Brand::findOrFail($id);
-        $formData = $request->all();
-
-        $update->fill($formData)->save();
-        Toastr::success('Update Successfully');
-        return redirect()->route('brand.list');
+        //
     }
 
     /**

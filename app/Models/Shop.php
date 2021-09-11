@@ -12,10 +12,11 @@ class Shop extends Model
     protected $table = 'shops';
     protected $fillable = [
         'shop_name',
-        'brand_id',
+        'seller_id',
         'slug',
+        'image'
     ];
     public function parent(){
-        return $this->belongsTo(Brand::class,'brand_id');
+        return $this->belongsTo(Seller::class,'seller_id');
     }
 }

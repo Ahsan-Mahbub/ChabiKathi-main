@@ -48,11 +48,11 @@
 
             <!-- Visible only in normal mode -->
             <div class="sidebar-mini-hidden-b text-center">
-                {{-- <a class="img-link" href="{{route('profile')}}">
+                <a class="img-link" href="{{route('profile')}}">
                 <img class="img-avatar"
-                    src="{{Auth::seller()->image==''? asset('asset/backend/assets/media/avatars/avatar15.jpg'): '/'.Auth::user()->image}}"
+                    src="{{auth('seller')->user()->image==''? asset('asset/backend/assets/media/avatars/avatar15.jpg'): '/'.auth('seller')->user()->image}}"
                     alt="">
-                </a> --}}
+                </a>
                 <ul class="list-inline mt-10">
                     <li class="list-inline-item">
                         <a class="link-effect text-dual-primary-dark font-size-sm font-w600 text-uppercase"

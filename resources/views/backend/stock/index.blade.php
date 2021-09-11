@@ -45,6 +45,15 @@
                         ?>
                     </td>
                     <td class="text-center">
+                        <?php
+                            if ($stock->approval == 0) {
+                                ?>
+                                <a class="btn btn-sm btn-secondary m-5" href="{{route('stock.approval',$stock->id)}}">
+                                    <i class="fa fa-check text-danger mr-5"></i> Approval
+                                </a>
+                                <?php
+                             } 
+                        ?>
                         <a class="btn btn-sm btn-secondary m-5" href="{{route('stock.edit',$stock->id)}}">
                             <i class="fa fa-pencil text-primary mr-5"></i> Edit
                         </a>
