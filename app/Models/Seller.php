@@ -16,9 +16,8 @@ class Seller extends Authenticatable
         'first_name',
         'email',
         'last_name',
-        'shop_name',
-        'shop_address',
         'contact',
+        'banner',
         'token'
     ];
 }

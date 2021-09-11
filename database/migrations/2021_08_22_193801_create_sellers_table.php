@@ -20,9 +20,6 @@ class CreateSellersTable extends Migration
             $table->string('email')->unique();
             $table->string('contact');
             $table->string('password');
-            $table->string('shop_name');
-            $table->string('shop_address');
-            $table->string('shop_logo')->nullable();
             $table->string('banner')->nullable();
             $table->integer('status')->default(0);
             $table->integer('approve')->default(0);

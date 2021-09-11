@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Seller\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Seller;
+use App\Models\Shop;
 use Illuminate\Validation\Rules\Password;
 use Hash;
 use Illuminate\Support\Facades\Auth;
@@ -40,15 +41,21 @@ public function store(Request $request)
     $seller = new Seller();
     $seller->first_name = $request->first_name;
     $seller->last_name = $request->last_name;
-    $seller->shop_name = $request->shop_name;
-    $seller->shop_address = $request->shop_address;
     $seller->contact = $request->contact;
     $seller->email = $request->email;
     $seller->password = bcrypt($request->password);
-    $seller->status = 0;
+    $seller->status = 1;
     $seller->approve = 0;
     $seller->token=$token = Str::random(60);
     $seller->save();
+
+    $shop = new Shop;
+    $shop->shop_name=$request->shop_name;
+    $shop->seller_id=$seller->id;
+    $shop->status=1;
+    $shop->approval=1;
+    $shop->save();
+    
     Mail::to($seller->email)->send(new VerificationEmail($seller));
 
     session()->flash('message', 'Please check your email to activate your account');
