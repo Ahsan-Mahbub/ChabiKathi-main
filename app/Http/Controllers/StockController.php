@@ -81,6 +81,15 @@ class StockController extends Controller
         return redirect()->back();
     }
 
+    public function approval($id)
+    {
+        $approval = Stock::findOrFail($id);
+        $approval->approval = 1;
+        $approval->save();
+        Toastr::success('Stock Approved', 'Success');
+        return redirect()->back();
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

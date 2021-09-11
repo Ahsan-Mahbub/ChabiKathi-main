@@ -16,8 +16,8 @@ class AuthController extends Controller
     }
     public function store(Request $request){
         if($request->hasFile('image')) {
-            if($request->old_img!=''){
-                unlink($request->old_img);
+            if($request->image!=''){
+                unlink($request->image);
             }
             $image_type = $request->file('image')->getClientOriginalExtension();
             $path = "asset/backend/assets/images/BackendUser/";

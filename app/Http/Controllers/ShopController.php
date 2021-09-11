@@ -26,7 +26,7 @@ class ShopController extends Controller
      */
     public function create()
     {
-        return view('backend.shop.create');
+        //
     }
 
     /**
@@ -37,13 +37,7 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        $shop = new Shop();
-        $requested_data = $request->all();
-        $shop->status = 1;
-        $shop->fill($requested_data)->save();
-        Toastr::success('Save Successfully');
-        return redirect()->route('shop.list')
-            ->with('success', 'Shop created successfully.');
+        //
     }
 
     /**
@@ -65,6 +59,15 @@ class ShopController extends Controller
         return redirect()->back();
     }
 
+    public function approval($id)
+    {
+        $approval = Shop::findOrFail($id);
+        $approval->approval = 1;
+        $approval->save();
+        Toastr::success('Shop Approved', 'Success');
+        return redirect()->back();
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -73,8 +76,7 @@ class ShopController extends Controller
      */
     public function edit($id)
     {
-        $shop = Shop::findOrFail($id);
-        return view('backend.shop.edit', compact('shop'));
+        //
     }
 
     /**
@@ -86,12 +88,7 @@ class ShopController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update = Shop::findOrFail($id);
-        $formData = $request->all();
-
-        $update->fill($formData)->save();
-        Toastr::success('Update Successfully');
-        return redirect()->route('shop.list');
+        //
     }
 
     /**

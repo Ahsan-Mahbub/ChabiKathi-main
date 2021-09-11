@@ -22,6 +22,7 @@ class CreateStocksTable extends Migration
             $table->integer('size_id')->nullable();
             $table->integer('weight_id')->nullable();
             $table->string('status')->default(1);
+            $table->integer('approval')->default(0);
             $table->timestamps();
         });
     }

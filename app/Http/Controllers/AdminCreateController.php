@@ -3,6 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Brian2694\Toastr\Facades\Toastr;
+use File;
+use Illuminate\Support\Facades\Auth;
+use App\Helpers\Helper;
+use App\Http\Resources\ProductCollection;
+use Str;
+use Hash;
+use Validator;
 
 class AdminCreateController extends Controller
 {
@@ -13,7 +22,8 @@ class AdminCreateController extends Controller
      */
     public function index()
     {
-        //
+        $admins = User::orderBy('id', 'desc')->paginate();
+        return view('backend.admin.index', compact('admins'));
     }
 
     /**
@@ -23,7 +33,7 @@ class AdminCreateController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.admin.create');
     }
 
     /**
@@ -34,7 +44,33 @@ class AdminCreateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator  = $request->validate([
+            'name'  => 'required',
+            'email'  => 'required|unique:users',
+            'phone'  => 'required|min:11|numeric',
+            'password'  => 'required',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $name = 'image' . Str::random(5) . '.' . $extension;
+            $path = "asset/backend/assets/images/BackendUser/";
+            $image = $request->file('image')->move($path, $name);
+        }
+
+        $data = [
+            'name'   => $request->name,
+            'email'   => $request->email,
+            'phone'=> $request->phone,
+            'role'   => $request->role,
+            'image'  => $image,
+            'password'=> Hash::make($request->password),
+        ];
+        // dd($data);
+        User::insert($data); 
+        Toastr::success('Save Successfully');
+        return redirect()->route('admin.list')
+            ->with('success', 'Admin created successfully.');
     }
 
     /**
@@ -43,10 +79,18 @@ class AdminCreateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    // public function status($id)
+    // {
+    //     $status = User::findOrFail($id);
+    //     if ($status->status == 0) {
+    //         $status->status = 1;
+    //     } else {
+    //         $status->status = 0;
+    //     }
+    //     $status->save();
+    //     Toastr::success('Status Change Successfully', 'Success');
+    //     return redirect()->back();
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -56,7 +100,8 @@ class AdminCreateController extends Controller
      */
     public function edit($id)
     {
-        //
+        $admin = User::findOrFail($id);
+        return view('backend.admin.edit', compact('admin'));
     }
 
     /**
@@ -68,7 +113,27 @@ class AdminCreateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator  = $request->validate([
+            'name'  => 'required',
+            'phone'  => 'required|min:11|numeric',
+        ]);
+
+        // $update = User::findOrFail($id);
+        // $formData = $request->all();
+        // if ($request->hasFile('image')) {
+        //     Helper::delete($update->image);
+        //     $extension = $request->file('image')->getClientOriginalExtension();
+        //     $name = 'image' . Str::random(5) . '.' . $extension;
+        //     $path = "asset/backend/assets/images/product/";
+        //     $request->file('image')->move($path, $name);
+        //     $formData['image'] = $path . $name;
+        // }
+        // $update->fill($formData)->save();
+
+        // Toastr::success('Update Successfully');
+        // return redirect()->route('admin.list')
+        //     ->with('success', 'Admin Update successfully.');
+
     }
 
     /**
@@ -79,6 +144,10 @@ class AdminCreateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = User::findOrFail($id);
+
+        $delete->delete();
+
+        return response()->json();
     }
 }

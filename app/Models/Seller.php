@@ -20,8 +20,5 @@ class Seller extends Authenticatable
         'shop_address',
         'contact',
         'token'
-        
-     
-      
     ];
 }

@@ -3,15 +3,13 @@
 <div class="block">
     <div class="block-header block-header-default">
         <h3 class="block-title text-center"><b>Brand Table</b></h3>
-        <a href="{{route('brand.create')}}" class="btn btn-success mr-5 mb-5">
-            <i class="fa fa-plus mr-5"></i>Add Brand
-        </a>
     </div>
     <div class="block-content block-content-full">
         <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
             <thead>
                 <tr>
                     <th class="text-center">S/L</th>
+                    <th class="text-center"> Shop Name</th>
                     <th class="text-center"> Brand Name</th>
                     <th class="text-center"> Brand Slug</th>
                     <th class="d-none d-sm-table-cell text-center" style="width: 15%;">Status</th>
@@ -23,6 +21,9 @@
                 @foreach($brands as $brand)
                 <tr>
                     <td class="text-center">{{$sl++}}</td>
+                    <td class="text-center">
+                        {{$brand->parent? $brand->parent->shop_name : 'null'}}
+                    </td>
                     <td class="font-w600 text-center">{{$brand->brand_name}}</td>
                     <td class="font-w600 text-center">{{$brand->slug}}</td>
                     <td class="d-none d-sm-table-cell text-center">
@@ -39,9 +40,15 @@
                         ?>
                     </td>
                     <td class="text-center">
-                        <a class="btn btn-sm btn-secondary m-5" href="{{route('brand.edit',$brand->id)}}">
-                            <i class="fa fa-pencil text-primary mr-5"></i> Edit
-                        </a>
+                        <?php
+                            if ($brand->approval == 0) {
+                                ?>
+                                <a class="btn btn-sm btn-secondary m-5" href="{{route('brand.approval',$brand->id)}}">
+                                    <i class="fa fa-check text-danger mr-5"></i> Approval
+                                </a>
+                                <?php
+                             } 
+                        ?>
                         <a class="btn btn-sm btn-secondary m-5" href="{{route('brand.status',$brand->id)}}">
                             <i class="fa fa-refresh mr-5 {{$brand->status == 1 ? 'text-success' :' text-warning'}}"></i> Status
                         </a>
