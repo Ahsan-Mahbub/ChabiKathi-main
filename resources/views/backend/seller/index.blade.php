@@ -13,7 +13,6 @@
                     <th class="text-center"> Seller Last Name</th>
                     <th class="text-center"> Email</th>
                     <th class="text-center"> Phone</th>
-                    <th class="d-none d-sm-table-cell text-center">Shop Name</th>
                     <th class="d-none d-sm-table-cell text-center" style="width: 15%;">Status</th>
                     <th class="text-center">Action</th>
                 </tr>
@@ -27,7 +26,6 @@
                     <td class="font-w600 text-center">{{$seller->last_name}}</td>
                     <td class="font-w600 text-center">{{$seller->email}}</td>
                     <td class="font-w600 text-center">{{$seller->contact}}</td>
-                    <td class="font-w600 text-center">{{$seller->shop_name}}</td>
                     <td class="d-none d-sm-table-cell text-center">
                         <?php
                         if ($seller->status == 1) {

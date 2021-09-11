@@ -101,13 +101,13 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="shop_id" name="shop_id" onclick="getBrand()">
+                                <select class="form-control" id="shop_id" name="shop_id" required="" onclick="getBrand()">
                                     <option value="0" selected="">Select Shop</option>
                                     @foreach($shop as $value)
                                         <option value="{{$value->id}}">{{$value->shop_name}} </option>
                                     @endforeach
                                 </select>
-                                <label for="shop_id">Select Shop</label>
+                                <label for="shop_id">Select Shop<span class="text-danger">*</span></label>
                             </div>
                         </div>
                         <div class="form-group">

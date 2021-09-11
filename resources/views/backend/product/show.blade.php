@@ -78,16 +78,16 @@
                 </div>
 
                 <div class="form-group">
-                	<div class="col-md-6 col-12" style="display:inline-block;">
-                        <div class="form-material">
-                            <input disabled="" class="form-control" value="{{$product->brand? $product->brand->brand_name : 'null'}}">
-                            <label for="login2-username">Brand Name</label>
-                        </div>
-                    </div>
                     <div class="col-md-6 col-12" style="float: right;">
                         <div class="form-material">
                             <input disabled="" class="form-control" value="{{$product->shop? $product->shop->shop_name : 'null'}}">
                             <label for="login2-username">Shop Name</label>
+                        </div>
+                    </div>
+                	<div class="col-md-6 col-12" style="display:inline-block;">
+                        <div class="form-material">
+                            <input disabled="" class="form-control" value="{{$product->brand? $product->brand->brand_name : 'null'}}">
+                            <label for="login2-username">Brand Name</label>
                         </div>
                     </div>
                 </div>
