@@ -6,6 +6,7 @@ use App\Http\Controllers\Seller\Auth\AuthController;
 use App\Http\Controllers\Seller\Auth\LoginController;
 use App\Http\Controllers\Seller\ProductController;
 use App\Http\Controllers\Seller\ProfileController;
+use App\Http\Controllers\Seller\ShopController;
 
 
 Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
@@ -13,6 +14,7 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
     Route::get('registers', [AuthController::class, 'register'])->name('registers');
     Route::post('store', [AuthController::class, 'store'])->name('store');
     Route::get('loginView', [LoginController::class, 'loginView'])->name('loginView');
+ 
     Route::post('login', [LoginController::class, 'login'])->name('login');
     Route::get('forget', [AuthController::class, 'forget'])->name('forget');
     Route::get('forget_password/{token}', [AuthController::class, 'forgotPasswordValidate']);
@@ -21,7 +23,10 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
     Route::get('verify/{token}', [AuthController::class, 'VerifyEmail'])->name('verify');
 
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
-    Route::post('profile-store', [ProfileController::class, 'update'])->name('update');
+    Route::post('profile_update', [ProfileController::class, 'profile_update'])->name('profile_update');
+
+    Route::get('shop_view', [ShopController::class, 'shop_view'])->name('shop_view');
+    Route::post('update', [ShopController::class, 'update'])->name('update');
 
     Route::group(['prefix' => 'product'], function () {
         Route::get('/list', [ProductController::class, 'index'])->name('product.list');
@@ -34,6 +39,10 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
         Route::post('update/{id}', [ProductController::class, 'update'])->name('product.update');
         Route::delete('delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
         Route::get('category/{cat_id}', [ProductController::class, 'category'])->name('product.category');
+    });
+
+    Route::get('/dashboard', function () {
+        return view('seller/content');
     });
 });
 

@@ -175,13 +175,7 @@
                                                     name="shop_name" placeholder="eg: chabikathi shop" required>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <div class="col-12">
-                                                <label for="Shop-Address">Shop Address</label>
-                                                <input type="text" class="form-control" id="" name="shop_address"
-                                                    placeholder="eg: chabikathi shop" required>
-                                            </div>
-                                        </div>
+
 
                                         <div class="form-group row">
                                             <div class="col-12">

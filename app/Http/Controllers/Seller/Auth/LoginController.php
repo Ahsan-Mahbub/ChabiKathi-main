@@ -36,7 +36,8 @@ class LoginController extends Controller
         
         {
             Toastr::success('Login Successfully', 'Success');
-            return view('seller.content');
+            return redirect('/seller/dashboard');
+            
         }
      
 

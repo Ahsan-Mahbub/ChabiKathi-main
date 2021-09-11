@@ -21,30 +21,46 @@ class ProfileController extends Controller
     //     $seller=Auth::where('id')->first();
     // }
 
-    public function update(Request $request){
-        if($request->hasFile('banner')) {
-            if($request->old_img!=''){
-                unlink($request->old_img);
-            }
-            $image_type = $request->file('banner')->getClientOriginalExtension();
-            $path = "asset/backend/assets/images/seller/";
-            $name = 'seller_'.time().".".$image_type;
-            $image = $request->file('banner')->move($path,$name);
+    public function profile_update(Request $request)
+    
+    {
+        
+        // if($request->hasFile('banner')) {
+        //     if($request->banner!=''){
+        //         unlink($request->banner);
+        //     }
+        //     $image_type = $request->file('banner')->getClientOriginalExtension();
+        //     $path = "asset/backend/assets/images/seller/";
+        //     $name = 'seller_'.time().".".$image_type;
+        //     $image = $request->file('banner')->move($path,$name);
+
+            if($request->hasFile('banner')) {
+                if($request->old_img!=''){
+                    unlink($request->old_img);
+                }
+                $image_type = $request->file('banner')->getClientOriginalExtension();
+                $path = "asset/backend/assets/images/seller/";
+                $name = 'seller_'.time().".".$image_type;
+                $image = $request->file('banner')->move($path,$name);
             
             $data = [
                 'first_name'   => $request->first_name,
+                'last_name'   => $request->last_name,
                 'contact'=> $request->contact,
-                'banner'  =>$request->banner,
+                'banner'  =>$image,
             ];
         }elseif ($request->password) {
     		$data = [
                 'first_name'   => $request->first_name,
+                'last_name'   => $request->last_name,
                 'contact'=> $request->contact,
+                'banner'  =>$image,
                 'password'=> bcrypt($request->password),
             ];
     	} else {
         	$data = [
                 'first_name'   => $request->first_name,
+                'last_name'   => $request->last_name,
                 'contact'=> $request->contact,
                 'password' => auth('seller')->user()->password,
             ];
