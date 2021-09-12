@@ -171,6 +171,9 @@
                         <li>
                             <a href="{{route('product.create')}}">Add Product</a>
                         </li>
+                        <li>
+                            <a href="/">Previous Product</a>
+                        </li>
                     </ul>
                 </li>
 

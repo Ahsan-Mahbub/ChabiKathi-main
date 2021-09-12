@@ -88,8 +88,9 @@
                 <li>
                     <a class="active" href="{{url('/seller/dashboard')}}"><i class="si si-cup"></i><span
                             class="sidebar-mini-hide">Dashboard</span></a>
-                    <a class="active" href=""><i class="si si-cup"></i><span
-                            class="sidebar-mini-hide">Dashboard</span></a>
+                </li>
+                <li>
+                    <a href="{{route('seller.shop_view')}}"><i class="si si-drawer"></i>Shop Update</a>
                 </li>
                 <li>
                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-badge"></i><span
@@ -104,8 +105,6 @@
                     </ul>
                 </li>
 
-                <a href="{{route('seller.shop_view')}}">Shop</a>
-
                 <li>
 
                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-shopping-bag"></i><span
@@ -117,13 +116,11 @@
                         <li>
                             <a href="{{route('seller.product.create')}}">Add Product</a>
                         </li>
+                        <li>
+                            <a href="/">Previous Product</a>
+                        </li>
                     </ul>
                 </li>
-
-
-                <li class="nav-main-heading"><span class="sidebar-mini-visible">P.V</span><span
-                        class="sidebar-mini-hidden">Product Veriation</span></li>
-
             </ul>
         </div>
         <!-- END Side Navigation -->

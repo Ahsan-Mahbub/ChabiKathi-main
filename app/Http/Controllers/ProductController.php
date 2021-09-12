@@ -205,7 +205,7 @@ class ProductController extends Controller
         }
         $update->fill($formData)->save();
         Toastr::success('Update Successfully');
-        return redirect()->route('product.list');
+        return redirect()->route('seller.product.list');
     }
 
     /**
