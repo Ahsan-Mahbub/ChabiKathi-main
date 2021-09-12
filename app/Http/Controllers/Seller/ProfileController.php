@@ -24,15 +24,7 @@ class ProfileController extends Controller
     public function profile_update(Request $request)
     
     {
-        
-        // if($request->hasFile('banner')) {
-        //     if($request->banner!=''){
-        //         unlink($request->banner);
-        //     }
-        //     $image_type = $request->file('banner')->getClientOriginalExtension();
-        //     $path = "asset/backend/assets/images/seller/";
-        //     $name = 'seller_'.time().".".$image_type;
-        //     $image = $request->file('banner')->move($path,$name);
+       
 
             if($request->hasFile('banner')) {
                 if($request->old_img!=''){

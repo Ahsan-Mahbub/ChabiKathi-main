@@ -86,12 +86,14 @@
         <div class="content-side content-side-full">
             <ul class="nav-main">
                 <li>
+                    <a class="active" href="{{url('/seller/dashboard')}}"><i class="si si-cup"></i><span
+                            class="sidebar-mini-hide">Dashboard</span></a>
                     <a class="active" href=""><i class="si si-cup"></i><span
-                        class="sidebar-mini-hide">Dashboard</span></a>
+                            class="sidebar-mini-hide">Dashboard</span></a>
                 </li>
                 <li>
                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-badge"></i><span
-                        class="sidebar-mini-hide">Brand</span></a>
+                            class="sidebar-mini-hide">Brand</span></a>
                     <ul>
                         <li>
                             <a href="{{route('seller.brand.list')}}">Brand List</a>
@@ -102,7 +104,10 @@
                     </ul>
                 </li>
 
+                <a href="{{route('seller.shop_view')}}">Shop</a>
+
                 <li>
+
                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-shopping-bag"></i><span
                             class="sidebar-mini-hide">Product</span></a>
                     <ul>
