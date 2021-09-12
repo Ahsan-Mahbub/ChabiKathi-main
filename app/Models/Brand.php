@@ -13,7 +13,8 @@ class Brand extends Model
     protected $fillable = [
         'brand_name',
         'slug',
-        'shop_id'
+        'shop_id',
+        'seller_id',
     ];
     public function parent(){
         return $this->belongsTo(Shop::class,'shop_id');
