@@ -26,7 +26,7 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
     Route::post('profile_update', [ProfileController::class, 'profile_update'])->name('profile_update');
 
     Route::get('shop_view', [ShopController::class, 'shop_view'])->name('shop_view');
-    Route::post('update', [ShopController::class, 'update'])->name('update');
+    Route::post('update/{id}', [ShopController::class, 'update'])->name('update');
 
     Route::group(['prefix' => 'product'], function () {
         Route::get('/list', [ProductController::class, 'index'])->name('product.list');

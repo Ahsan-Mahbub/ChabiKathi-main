@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Models\Shop;
+use App\Models\Seller;
 use Str;
 use App\Helpers\Helper;
 use Illuminate\Http\Request;
@@ -12,28 +13,35 @@ class ShopController extends Controller
 {
     public function shop_view()
     {
-        return view('seller.shop.index');
+        $shop=Shop::where('seller_id',auth('seller')->user()->id)->where('status',1)->first();
+        return view('seller.shop.index',compact('shop'));
     }
 
-    public function update(Request $request){
+    public function update(Request $request, $id)
+    {
+        if($request->hasFile('image')) {
+            if($request->old_img!=''){
+                unlink($request->old_img);
+            }
+            $image_type = $request->file('image')->getClientOriginalExtension();
+            $path = "asset/backend/assets/images/seller/";
+            $name = 'shop'.time().".".$image_type;
+            $image = $request->file('image')->move($path,$name);
 
-        $shop=new Shop;
-        $shop->shop_name=$request->shop_name;
-        $shop->seller_id=auth('seller')->user()->id;
-        $shop->status=1;
-        $shop->approval=1;
+            $shop=Shop::find($id);
+            $shop->shop_name=$request->shop_name;
+            $shop->seller_id=auth('seller')->user()->id;
+            $shop->slug=$request->slug;
+            $shop->image=$image;
 
-        if ($request->hasFile('image')) {
-            Helper::delete($shop->image);
-            $extension = $request->file('image')->getClientOriginalExtension();
-            $name = 'image' . Str::random(5) . '.' . $extension;
-            $path = "asset/seller/assets/images/shop/";
-            $request->file('image')->move($path, $name);
-            $requested_data['image'] = $path . $name;
-        }
-       
-        $shop->save();
+            $shop->save();
+            return redirect()->back();
+
+    }
+
+ 
 
 
     }
+
 }

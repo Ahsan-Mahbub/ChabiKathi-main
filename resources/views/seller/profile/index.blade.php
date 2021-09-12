@@ -157,7 +157,7 @@
                             <label for="profile-settings-lastname">Last Name</label>
                             <input type="text" class="form-control form-control-lg" id="profile-settings-username"
                                 name="last_name" placeholder="Enter your Name.."
-                                value="{{auth('seller')->user()->lastt_name}}">
+                                value="{{auth('seller')->user()->last_name}}">
                         </div>
                         <div class="col-12">
                             <label for="profile-settings-email">Email</label>
