@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('seller.layouts.app')
 @section('content')
 <div class="col-md-12">
     <!-- Material Login -->

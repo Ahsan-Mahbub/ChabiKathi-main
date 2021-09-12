@@ -51,6 +51,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $validator  = $request->validate([
+            'product_name'  => 'required|unique:products',
+            'product_slug'  => 'required',
+            'product_desc'  => 'required',
+            'category_id'  => 'required',
+            'price'  => 'required',
+            'shop_id' => 'required',
+        ]);
         
         $product = new Product();
         $requested_data = $request->all();
@@ -91,7 +99,7 @@ class ProductController extends Controller
         // dd($requested_data);
         $product->fill($requested_data)->save();
         Toastr::success('Save Successfully');
-        return redirect()->back()
+        return redirect()->route('seller.product.list')
             ->with('success', 'Product created successfully.');
     }
 
@@ -120,19 +128,6 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function approval($id)
-    {
-        $product_approval = Product::findOrFail($id);
-        if ($product_approval->approval == 1) {
-            $product_approval->approval = 0;
-        } else {
-            $product_approval->approval = 1;
-        }
-        $product_approval->save();
-        Toastr::success('Approval Change Successfully', 'Success');
-        return redirect()->back();
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -141,6 +136,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $product = Product::findOrFail($id);
+        $category = Category::where('status',1)->get();
+        $shop = Shop::where('seller_id',auth('seller')->user()->id)->where('status',1)->where('approval',1)->first();
+        return view('seller.product.edit', compact('product','category','shop'));
+
+
         $product = Product::findOrFail($id);
         return view('seller.product.edit', compact('product'));
     }
@@ -154,13 +155,24 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validation=Validator::make($request->all(),[
+            'product_name'  => 'required|unique:products,product_name,'.$id,
+            'product_slug'  => 'required',
+            'product_desc'  => 'required',
+            'category_id'  => 'required',
+            'price'  => 'required',
+        ]);
+        if ($validation->fails()) {
+            return back()->withInput()->withErrors($validation);
+        }
+
         $update = Product::findOrFail($id);
         $formData = $request->all();
         if ($request->hasFile('product_img')) {
             Helper::delete($update->product_img);
             $extension = $request->file('product_img')->getClientOriginalExtension();
             $name = 'image' . Str::random(5) . '.' . $extension;
-            $path = "asset/seller/assets/images/product/";
+            $path = "asset/backend/assets/images/product/";
             $request->file('product_img')->move($path, $name);
             $formData['product_img'] = $path . $name;
         }
@@ -169,7 +181,7 @@ class ProductController extends Controller
             Helper::delete($update->product_img_2);
             $extension = $request->file('product_img_2')->getClientOriginalExtension();
             $name = 'image' . Str::random(5) . '.' . $extension;
-            $path = "asset/seller/assets/images/product/";
+            $path = "asset/backend/assets/images/product/";
             $request->file('product_img_2')->move($path, $name);
             $formData['product_img_2'] = $path . $name;
         }
@@ -178,13 +190,13 @@ class ProductController extends Controller
             Helper::delete($update->product_img_3);
             $extension = $request->file('product_img_3')->getClientOriginalExtension();
             $name = 'image' . Str::random(5) . '.' . $extension;
-            $path = "asset/seller/assets/images/product/";
+            $path = "asset/backend/assets/images/product/";
             $request->file('product_img_3')->move($path, $name);
             $formData['product_img_3'] = $path . $name;
         }
         $update->fill($formData)->save();
         Toastr::success('Update Successfully');
-        return redirect()->route('product.list');
+        return redirect()->route('seller.product.list');
     }
 
     /**
