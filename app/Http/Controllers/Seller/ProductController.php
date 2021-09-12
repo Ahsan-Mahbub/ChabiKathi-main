@@ -3,15 +3,19 @@
 namespace App\Http\Controllers\Seller;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Auth\SessionGuard;
+use App\Models\Category;
+use App\Models\SubCategory;
+use App\Models\Brand;
+use App\Models\Shop;
 use Toastr;
 use File;
-use Illuminate\Auth\SessionGuard;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Helper;
 use App\Http\Resources\ProductCollection;
 use Str;
+use Validator;
 
 class ProductController extends Controller
 {
@@ -23,7 +27,7 @@ class ProductController extends Controller
     public function index()
     {
         
-        // $products = Product::orderBy('id', 'desc')->paginate();
+        $products = Product::orderBy('id', 'desc')->where('seller_id',auth('seller')->user()->id)->paginate();
         return view('seller.product.index', compact('products'));
     }
 
@@ -34,15 +38,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $sub_cat = SubCategory::all();
-        return view('seller.product.create', compact('sub_cat'));
+        $category = Category::where('status',1)->get();
+        $shop = Shop::where('seller_id',auth('seller')->user()->id)->where('status',1)->where('approval',1)->first();
+        return view('seller.product.create', compact('category','shop'));
     }
 
-    // public function category($cat_id)
-    // {
-    //     $sub_cat = SubCategory::where('category_name', $cat_id)->get();
-    //     return ProductCollection::collection($sub_cat);
-    // }
     /**
      * Store a newly created resource in storage.
      *

@@ -1,34 +1,35 @@
-@extends('backend.layouts.app')
+@extends('seller.layouts.app')
 @section('content')
 <div class="block">
     <div class="block-header block-header-default">
-        <h3 class="block-title text-center"><b>Sellers Table</b></h3>
+        <h3 class="block-title text-center"><b>Brand Table</b></h3>
+        <a href="{{route('seller.brand.create')}}" class="btn btn-success mr-5 mb-5">
+            <i class="fa fa-plus mr-5"></i>Add Brand
+        </a>
     </div>
     <div class="block-content block-content-full">
         <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
             <thead>
                 <tr>
                     <th class="text-center">S/L</th>
-                    <th class="text-center"> Seller First Name</th>
-                    <th class="text-center"> Seller Last Name</th>
-                    <th class="text-center"> Email</th>
-                    <th class="text-center"> Phone</th>
+                    <th class="text-center"> Shop Name</th>
+                    <th class="text-center"> Brand Name</th>
+                    <th class="text-center"> Brand Slug</th>
                     <th class="d-none d-sm-table-cell text-center" style="width: 15%;">Status</th>
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @php $sl = 1; @endphp
-                @foreach($sellers as $seller)
+                @foreach($brands as $brand)
                 <tr>
                     <td class="text-center">{{$sl++}}</td>
-                    <td class="font-w600 text-center">{{$seller->first_name}}</td>
-                    <td class="font-w600 text-center">{{$seller->last_name}}</td>
-                    <td class="font-w600 text-center">{{$seller->email}}</td>
-                    <td class="font-w600 text-center">{{$seller->contact}}</td>
+                    <td class="font-w600 text-center">{{$brand->parent? $brand->parent->shop_name : 'null'}}</td>
+                    <td class="font-w600 text-center">{{$brand->brand_name}}</td>
+                    <td class="font-w600 text-center">{{$brand->slug}}</td>
                     <td class="d-none d-sm-table-cell text-center">
                         <?php
-                        if ($seller->status == 1) {
+                        if ($brand->status == 1) {
                           ?>
                           <span class="badge badge-success">Active</span>
                           <?php
@@ -40,19 +41,13 @@
                         ?>
                     </td>
                     <td class="text-center">
-                        <?php
-                            if ($seller->approve == 0) {
-                                ?>
-                                <a class="btn btn-sm btn-secondary m-5" href="{{route('seller.approval',$seller->id)}}">
-                                    <i class="fa fa-check text-danger mr-5"></i> Approval
-                                </a>
-                                <?php
-                             } 
-                        ?>
-                        <a class="btn btn-sm btn-secondary m-5" href="{{route('seller.status',$seller->id)}}">
-                            <i class="fa fa-refresh mr-5 {{$seller->status == 1 ? 'text-success' :' text-warning'}}"></i> Status
+                        <a class="btn btn-sm btn-secondary m-5" href="{{route('seller.brand.edit',$brand->id)}}">
+                            <i class="fa fa-pencil text-primary mr-5"></i> Edit
                         </a>
-                        <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('seller.delete',$seller->id)}}" data="{{$seller->id}}" id="delete" type="button">
+                        <a class="btn btn-sm btn-secondary m-5" href="{{route('seller.brand.status',$brand->id)}}">
+                            <i class="fa fa-refresh mr-5 {{$brand->status == 1 ? 'text-success' :' text-warning'}}"></i> Status
+                        </a>
+                        <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('seller.brand.delete',$brand->id)}}" data="{{$brand->id}}" id="delete" type="button">
                             <i class="fa fa-times text-danger mr-5"></i> Delete
                         </a>
                     </td>
@@ -92,7 +87,7 @@
                         success: function (response) {
                            
                             toastr.warning(" Deleted successfully", "!!!");
-                            window.location.href = "/admin/seller/list" ;
+                            window.location.href = "/seller/brand/list" ;
                         },
                     });
                 }

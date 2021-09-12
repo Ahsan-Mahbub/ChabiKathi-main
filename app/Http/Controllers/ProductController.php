@@ -66,6 +66,7 @@ class ProductController extends Controller
             'product_desc'  => 'required',
             'category_id'  => 'required',
             'price'  => 'required',
+            'shop_id' => 'required',
         ]);
         $product = new Product();
         $requested_data = $request->all();
@@ -150,8 +151,8 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $category = Category::where('status',1)->get();
-        $brand = Brand::where('status',1)->get();
-        return view('backend.product.edit', compact('product','category','brand'));
+        $shop = Shop::where('status',1)->get();
+        return view('backend.product.edit', compact('product','category','shop'));
     }
 
     /**

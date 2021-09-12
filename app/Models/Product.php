@@ -21,6 +21,7 @@ class Product extends Model
         'discount',
         'brand_id',
         'shop_id',
+        'seller_id',
         'product_img',
         'product_img_2',
         'product_img_3'
