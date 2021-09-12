@@ -50,26 +50,25 @@
                         ?>
                     </td>
                     <td class="text-center">
-                        <?php
+                        {{-- <?php
                             if ($product->approval == 0) {
                                 ?>
                         <a class="btn btn-sm btn-secondary m-5" href="{{route('product.approval',$product->id)}}">
-                            <i class="fa fa-check text-danger mr-5"></i> Approval
+                        <i class="fa fa-check text-danger mr-5"></i> Approval
                         </a>
                         <?php
                              } 
-                        ?>
-                        <a class="btn btn-sm btn-secondary m-5" href="{{route('product.show',$product->id)}}">
+                        ?> --}}
+                        <a class="btn btn-sm btn-secondary m-5" href="{{route('seller.product.show',$product->id)}}">
                             <i class="si si-eye text-info mr-5"></i> View More
                         </a>
-                        <a class="btn btn-sm btn-secondary m-5" href="{{route('product.edit',$product->id)}}">
+                        <a class="btn btn-sm btn-secondary m-5" href="{{route('seller.product.edit',$product->id)}}">
                             <i class="fa fa-pencil text-primary mr-5"></i> Edit
                         </a>
-                        <a class="btn btn-sm btn-secondary m-5" href="{{route('product.status',$product->id)}}">
-                            <i
-                                class="fa fa-refresh mr-5 {{$product->status == 1 ? 'text-success' :' text-warning'}}"></i>
-                            Status
-                        </a>
+                        {{-- <a class="btn btn-sm btn-secondary m-5" href="{{route('product.status',$product->id)}}">
+                        <i class="fa fa-refresh mr-5 {{$product->status == 1 ? 'text-success' :' text-warning'}}"></i>
+                        Status
+                        </a> --}}
                         <a class="btn btn-sm btn-secondary m-5 delete-confirm"
                             href="{{route('product.delete',$product->id)}}" data="{{$product->id}}" id="delete"
                             type="button">

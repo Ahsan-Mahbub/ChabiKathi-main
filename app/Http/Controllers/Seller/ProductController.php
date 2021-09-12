@@ -51,11 +51,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        
         $product = new Product();
         $requested_data = $request->all();
         $product->status = 1;
         $product->approval = 0;
         $product->sku .= 'sku-' . $product->product_name.time();
+        // $product->category_id=$category->category_id;
         $product->shop_id=auth('seller')->id();
         
 
@@ -89,7 +91,7 @@ class ProductController extends Controller
         // dd($requested_data);
         $product->fill($requested_data)->save();
         Toastr::success('Save Successfully');
-        return redirect()->route('product.list')
+        return redirect()->back()
             ->with('success', 'Product created successfully.');
     }
 
