@@ -87,7 +87,19 @@
             <ul class="nav-main">
                 <li>
                     <a class="active" href=""><i class="si si-cup"></i><span
-                            class="sidebar-mini-hide">Dashboard</span></a>
+                        class="sidebar-mini-hide">Dashboard</span></a>
+                </li>
+                <li>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-badge"></i><span
+                        class="sidebar-mini-hide">Brand</span></a>
+                    <ul>
+                        <li>
+                            <a href="{{route('seller.brand.list')}}">Brand List</a>
+                        </li>
+                        <li>
+                            <a href="{{route('seller.brand.create')}}">Add Brand</a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li>

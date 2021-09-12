@@ -16,8 +16,8 @@ class AuthController extends Controller
     }
     public function store(Request $request){
         if($request->hasFile('image')) {
-            if($request->image!=''){
-                unlink($request->image);
+            if($request->old_img!=''){
+                unlink($request->old_img);
             }
             $image_type = $request->file('image')->getClientOriginalExtension();
             $path = "asset/backend/assets/images/BackendUser/";
@@ -30,13 +30,13 @@ class AuthController extends Controller
                 'image'  => $image,
             ];
         }elseif ($request->password) {
-    		$data = [
+            $data = [
                 'name'   => $request->name,
                 'phone'=> $request->phone,
                 'password'=> Hash::make($request->password),
             ];
-    	} else {
-        	$data = [
+        } else {
+            $data = [
                 'name'   => $request->name,
                 'phone'=> $request->phone,
                 'password' => Auth::user()->password,
