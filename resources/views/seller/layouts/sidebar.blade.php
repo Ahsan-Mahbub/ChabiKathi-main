@@ -117,7 +117,7 @@
                             <a href="{{route('seller.product.create')}}">Add Product</a>
                         </li>
                         <li>
-                            <a href="/">Previous Product</a>
+                            <a href="{{route('seller.product.previous')}}">Previous Product</a>
                         </li>
                     </ul>
                 </li>
