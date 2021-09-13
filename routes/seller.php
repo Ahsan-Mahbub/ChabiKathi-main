@@ -8,6 +8,7 @@ use App\Http\Controllers\Seller\ProductController;
 use App\Http\Controllers\Seller\ProfileController;
 use App\Http\Controllers\Seller\ShopController;
 use App\Http\Controllers\Seller\BrandController;
+use App\Http\Controllers\Seller\PreviousProductController;
 
 
 Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
@@ -43,8 +44,12 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
         Route::get('edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
         Route::post('update/{id}', [ProductController::class, 'update'])->name('product.update');
         Route::delete('delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
-        Route::get('category/{cat_id}', [ProductController::class, 'category'])->name('product.category');
+
+        // Previous Product Controller
+        Route::get('previous-product', [PreviousProductController::class, 'index'])->name('product.previous');
+        Route::post('previous-productprevious-store', [PreviousProductController::class, 'store'])->name('productprevious.store');
     });
+
 
     // Brand Route
     Route::group(['prefix' => 'brand'], function () {

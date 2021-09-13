@@ -20,6 +20,7 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\AdminSellerController;
 use App\Http\Controllers\AdminCreateController;
+use App\Http\Controllers\PreviousProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -133,6 +134,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
         Route::get('subcategory/{id}', [ProductController::class, 'subcategory'])->name('product.subcategory');
         Route::get('brand/{id}', [ProductController::class, 'brand'])->name('product.brand');
+        // Previous Product Controller
+        Route::get('previous-product', [PreviousProductController::class, 'index'])->name('product.previous');
+        Route::post('previous-productprevious-store', [PreviousProductController::class, 'store'])->name('productprevious.store');
     });
     // Seller Route
     Route::group(['prefix' => 'seller'], function () {
