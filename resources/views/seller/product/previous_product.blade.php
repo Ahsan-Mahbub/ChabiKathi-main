@@ -14,30 +14,32 @@
 	                <h3 class="block-title text-center">Previous Product - For Your Shop</h3>
 	            </div>
 	            <div class="block-content block-content-full">
-        <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-            <thead>
-                <tr>
-                    <th class="text-center">S/L</th>
-                    <th class="text-center"> Product Name</th>
-                    <th class="text-center"> Category</th>
-                    <th class="text-center"> Shop</th>
-                    <th class="text-center"> Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                @php $sl = 1; @endphp
-                @foreach($products as $product)
-                <tr class="stock_product" data-id="{{$product}}">
-                    <td class="text-center">{{$sl++}}</td>
-                    <td class="font-w600 text-center">{{$product->product_name}}</td>
-                    <td class="d-none d-sm-table-cell text-center">{{$product->category? $product->category->category_name : 'null'}}</td>
-                    <td class="d-none d-sm-table-cell text-center">{{$product->shop? $product->shop->shop_name : 'null'}}</td>
-                    <td class="d-none d-sm-table-cell text-center">{{$product->price}}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+			        <div class="table-responsive">
+			        	<table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+				            <thead>
+				                <tr>
+				                    <th class="text-center">S/L</th>
+				                    <th class="text-center"> Product Name</th>
+				                    <th class="text-center"> Category</th>
+				                    <th class="text-center"> Shop</th>
+				                    <th class="text-center"> Price</th>
+				                </tr>
+				            </thead>
+				            <tbody>
+				                @php $sl = 1; @endphp
+				                @foreach($products as $product)
+				                <tr class="stock_product" data-id="{{$product}}">
+				                    <td class="text-center">{{$sl++}}</td>
+				                    <td class="font-w600 text-center">{{$product->product_name}}</td>
+				                    <td class="text-center">{{$product->category? $product->category->category_name : 'null'}}</td>
+				                    <td class="text-center">{{$product->shop? $product->shop->shop_name : 'null'}}</td>
+				                    <td class="text-center">{{$product->price}}</td>
+				                </tr>
+				                @endforeach
+				            </tbody>
+				        </table>
+			        </div>
+			    </div>
 	        </div>
 	        <!-- END Static Labels -->
 	    </div>

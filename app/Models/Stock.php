@@ -15,7 +15,8 @@ class Stock extends Model
         'quantity',
         'color_id',
         'size_id',
-        'weight_id'
+        'weight_id',
+        'seller_id'
     ];
 
     public function product()

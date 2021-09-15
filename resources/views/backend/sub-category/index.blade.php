@@ -8,55 +8,57 @@
         </a>
     </div>
     <div class="block-content block-content-full">
-        <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-            <thead>
-                <tr>
-                    <th class="text-center">S/L</th>
-                    <th class="text-center">Sub Categories Name</th>
-                    <th class="text-center">Slug</th>
-                    <th class="d-none d-sm-table-cell text-center">Categories Name</th>
-                    <th class="d-none d-sm-table-cell text-center" style="width: 15%;">Status</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @php $sl = 1; @endphp
-                @foreach($subcategories as $subcategory)
-                <tr>
-                    <td class="text-center">{{$sl++}}</td>
-                    <td class="font-w600 text-center">{{$subcategory->sub_category_name}}</td>
-                    <td class="font-w600 text-center">{{$subcategory->slug}}</td>
-                    <td class="d-none d-sm-table-cell text-center">
-                        {{$subcategory->parent? $subcategory->parent->category_name : 'null'}}
-                    </td>
-                    <td class="d-none d-sm-table-cell text-center">
-                        <?php
-                        if ($subcategory->status == 1) {
-                          ?>
-                          <span class="badge badge-success">Active</span>
-                          <?php
-                        }else{
-                            ?>
-                            <span class="badge badge-danger">Deactive</span>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                <thead>
+                    <tr>
+                        <th class="text-center">S/L</th>
+                        <th class="text-center">Sub Categories Name</th>
+                        <th class="text-center">Slug</th>
+                        <th class="text-center">Categories Name</th>
+                        <th class="text-center" style="width: 15%;">Status</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php $sl = 1; @endphp
+                    @foreach($subcategories as $subcategory)
+                    <tr>
+                        <td class="text-center">{{$sl++}}</td>
+                        <td class="font-w600 text-center">{{$subcategory->sub_category_name}}</td>
+                        <td class="font-w600 text-center">{{$subcategory->slug}}</td>
+                        <td class="text-center">
+                            {{$subcategory->parent? $subcategory->parent->category_name : 'null'}}
+                        </td>
+                        <td class="text-center">
                             <?php
-                        }
-                        ?>
-                    </td>
-                    <td class="text-center">
-                       <a class="btn btn-sm btn-secondary m-5" href="{{route('sub-category.edit',$subcategory->id)}}">
-                            <i class="fa fa-pencil text-primary mr-5"></i> Edit
-                        </a>
-                        <a class="btn btn-sm btn-secondary m-5" href="{{route('sub-category.status',$subcategory->id)}}">
-                            <i class="fa fa-refresh mr-5 {{$subcategory->status == 1 ? 'text-success' :' text-warning'}}"></i> Status
-                        </a>
-                        <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('sub-category.delete',$subcategory->id)}}" data="{{$subcategory->id}}" id="delete" type="button">
-                            <i class="fa fa-times text-danger mr-5"></i> Delete
-                        </a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                            if ($subcategory->status == 1) {
+                              ?>
+                              <span class="badge badge-success">Active</span>
+                              <?php
+                            }else{
+                                ?>
+                                <span class="badge badge-danger">Deactive</span>
+                                <?php
+                            }
+                            ?>
+                        </td>
+                        <td class="text-center">
+                           <a class="btn btn-sm btn-secondary m-5" href="{{route('sub-category.edit',$subcategory->id)}}">
+                                <i class="fa fa-pencil text-primary mr-5"></i> Edit
+                            </a>
+                            <a class="btn btn-sm btn-secondary m-5" href="{{route('sub-category.status',$subcategory->id)}}">
+                                <i class="fa fa-refresh mr-5 {{$subcategory->status == 1 ? 'text-success' :' text-warning'}}"></i> Status
+                            </a>
+                            <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('sub-category.delete',$subcategory->id)}}" data="{{$subcategory->id}}" id="delete" type="button">
+                                <i class="fa fa-times text-danger mr-5"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 @endsection

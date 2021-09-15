@@ -8,73 +8,75 @@
         </a>
     </div>
     <div class="block-content block-content-full">
-        <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-            <thead>
-                <tr>
-                    <th class="text-center">S/L</th>
-                    <th class="text-center"> Product Name</th>
-                    <th class="text-center"> Product Main Image</th>
-                    <th class="text-center"> Categories Name</th>
-                    <th class="text-center"> SKU</th>
-                    <th class="text-center"> Price</th>
-                    <th class="text-center"> Discount</th>
-                    <th class="d-none d-sm-table-cell text-center">Status</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @php $sl = 1; @endphp
-                @foreach($products as $product)
-                <tr>
-                    <td class="text-center">{{$sl++}}</td>
-                    <td class="font-w600 text-center">{{$product->product_name}}</td>
-                    <td class="font-w600 text-center">
-                    	<img style="width: 250px; height: 150px;" src="/{{$product->product_img}}">
-                    </td>
-                    <td class="d-none d-sm-table-cell text-center">{{$product->category? $product->category->category_name : 'null'}}</td>
-                    <td class="d-none d-sm-table-cell text-center">{{$product->sku}}</td>
-                    <td class="d-none d-sm-table-cell text-center">{{$product->price}}</td>
-                    <td class="d-none d-sm-table-cell text-center">{{$product->discount}}</td>
-                    <td class="d-none d-sm-table-cell text-center">
-                        <?php
-                        if ($product->status == 1) {
-                          ?>
-                          <span class="badge badge-success">Active</span>
-                          <?php
-                        }else{
-                            ?>
-                            <span class="badge badge-danger">Deactive</span>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                <thead>
+                    <tr>
+                        <th class="text-center">S/L</th>
+                        <th class="text-center"> Product Name</th>
+                        <th class="text-center"> Product Main Image</th>
+                        <th class="text-center"> Categories Name</th>
+                        <th class="text-center"> SKU</th>
+                        <th class="text-center"> Price</th>
+                        <th class="text-center"> Discount</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php $sl = 1; @endphp
+                    @foreach($products as $product)
+                    <tr>
+                        <td class="text-center">{{$sl++}}</td>
+                        <td class="font-w600 text-center">{{$product->product_name}}</td>
+                        <td class="font-w600 text-center">
+                            <img style="width: 250px; height: 150px;" src="/{{$product->product_img}}">
+                        </td>
+                        <td class="text-center">{{$product->category? $product->category->category_name : 'null'}}</td>
+                        <td class="text-center">{{$product->sku}}</td>
+                        <td class="text-center">{{$product->price}}</td>
+                        <td class="text-center">{{$product->discount}}</td>
+                        <td class="text-center">
                             <?php
-                        }
-                        ?>
-                    </td>
-                    <td class="text-center">
-                        <?php
-                            if ($product->approval == 0) {
+                            if ($product->status == 1) {
+                              ?>
+                              <span class="badge badge-success">Active</span>
+                              <?php
+                            }else{
                                 ?>
-                                <a class="btn btn-sm btn-secondary m-5" href="{{route('product.approval',$product->id)}}">
-                                    <i class="fa fa-check text-danger mr-5"></i> Approval
-                                </a>
+                                <span class="badge badge-danger">Deactive</span>
                                 <?php
-                             } 
-                        ?>
-                        <a class="btn btn-sm btn-secondary m-5" href="{{route('product.show',$product->id)}}">
-                            <i class="si si-eye text-info mr-5"></i> View More
-                        </a>
-                       <a class="btn btn-sm btn-secondary m-5" href="{{route('product.edit',$product->id)}}">
-                            <i class="fa fa-pencil text-primary mr-5"></i> Edit
-                        </a>
-                        <a class="btn btn-sm btn-secondary m-5" href="{{route('product.status',$product->id)}}">
-                            <i class="fa fa-refresh mr-5 {{$product->status == 1 ? 'text-success' :' text-warning'}}"></i> Status
-                        </a>
-                        <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('product.delete',$product->id)}}" data="{{$product->id}}" id="delete" type="button">
-                            <i class="fa fa-times text-danger mr-5"></i> Delete
-                        </a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                            }
+                            ?>
+                        </td>
+                        <td class="text-center">
+                            <?php
+                                if ($product->approval == 0) {
+                                    ?>
+                                    <a class="btn btn-sm btn-secondary m-5" href="{{route('product.approval',$product->id)}}">
+                                        <i class="fa fa-check text-danger mr-5"></i> Approval
+                                    </a>
+                                    <?php
+                                 } 
+                            ?>
+                            <a class="btn btn-sm btn-secondary m-5" href="{{route('product.show',$product->id)}}">
+                                <i class="si si-eye text-info mr-5"></i> View More
+                            </a>
+                           <a class="btn btn-sm btn-secondary m-5" href="{{route('product.edit',$product->id)}}">
+                                <i class="fa fa-pencil text-primary mr-5"></i> Edit
+                            </a>
+                            <a class="btn btn-sm btn-secondary m-5" href="{{route('product.status',$product->id)}}">
+                                <i class="fa fa-refresh mr-5 {{$product->status == 1 ? 'text-success' :' text-warning'}}"></i> Status
+                            </a>
+                            <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('product.delete',$product->id)}}" data="{{$product->id}}" id="delete" type="button">
+                                <i class="fa fa-times text-danger mr-5"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 @endsection
