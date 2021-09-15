@@ -110,7 +110,23 @@
         <!-- END Left Section -->
 
         <!-- Right Section -->
-        <div class="content-header-section">
+        <div class="content-header-section text-white">
+            @php($value = \App\Models\Shop::where('seller_id',auth('seller')->user()->id)->first())
+            <a class="btn btn-sm btn-dark m-5" href="{{route('seller.holiday',$value->id)}}">
+                <?php
+                    if($value->holiday == 1){
+                        ?>
+                        <i class="fa fa-check mr-5 text-success"></i><span class="text-success font-w800">Shop On! Your Shop is Active</span>
+                        <?php
+                    }else{
+                        ?>
+                        <i class="fa fa-times mr-5 text-danger"></i><span class="text-danger font-w800">Holiday Mood On! Your Shop is Deactive</span>
+                        <?php
+                    }
+                ?>
+            </a>
+
+
             <!-- User Dropdown -->
             <div class="btn-group" role="group">
                 <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown"
@@ -267,4 +283,5 @@
     </div>
     <!-- END Header Loader -->
 </header>
+<br>
 <!-- END Header -->

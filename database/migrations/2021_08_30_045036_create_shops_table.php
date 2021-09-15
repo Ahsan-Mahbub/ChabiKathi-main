@@ -21,6 +21,7 @@ class CreateShopsTable extends Migration
             $table->string('image')->nullable();
             $table->integer('status')->default(1);
             $table->integer('approval')->default(0);
+            $table->integer('holiday')->default(1);
             $table->timestamps();
         });
     }
