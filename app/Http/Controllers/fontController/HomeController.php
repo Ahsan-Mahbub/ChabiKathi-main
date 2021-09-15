@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Shop;
 
 class HomeController extends Controller
 {
     public function home(){
+        $shops = Shop::where('status',1)->where('approval',1)->where('holiday',1)->paginate(6);
+        // dd($shops);
         $products = Category::has('product')
             ->with(['product' => function($q) {
                 $q->where('status',1)->where('approval',1)->orderBy('id', 'desc');
@@ -23,17 +26,9 @@ class HomeController extends Controller
             return $category;
         });
         //dd($products);
-        return view('fontend.pages.home', compact('products'));
+        return view('fontend.pages.home', compact('products','shops'));
     }
 
-
-    public function zoom(){
-        return view('fontend.pages.zoomlense');
-    }
-
-    public function vendor(){
-        return view('fontend.pages.vendor');
-    }
     public function campaign(){
         return view('fontend.pages.campaign');
     }

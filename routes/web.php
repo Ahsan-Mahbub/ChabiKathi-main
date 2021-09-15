@@ -7,6 +7,7 @@ use App\Http\Controllers\fontController\HomeController;
 use App\Http\Controllers\fontController\CategoryProductController;
 use App\Http\Controllers\fontController\SubCategoryProductController;
 use App\Http\Controllers\fontController\SingleProductController;
+use App\Http\Controllers\fontController\ShopProductController;
 // Backend-Controller
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
@@ -38,11 +39,12 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/category/{slug}', [CategoryProductController::class, 'categoryProduct']);
 Route::get('/sub-category/{id}', [SubCategoryProductController::class, 'subCategoryProduct']);
 Route::get('/product/{slug}', [SingleProductController::class, 'singleProduct']);
+Route::get('/all-shop', [ShopProductController::class, 'index']);
+Route::get('/shop/{slug}', [ShopProductController::class, 'shopProduct']);
 
-Route::get('/product', [HomeController::class, 'product'])->name('product');
-Route::get('/vendor', [HomeController::class, 'vendor'])->name('vendor');
+
+// Extra Pages
 Route::get('/campaign', [HomeController::class, 'campaign'])->name('campaign');
-Route::get('/category-all-product', [HomeController::class, 'allproduct'])->name('category-all-product');
 Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
 Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
 Route::get('/marchent-login', [HomeController::class, 'marchentlogin'])->name('marchent-login');
@@ -159,12 +161,8 @@ Route::group(['prefix' => 'admin'], function () {
     // Stock Route
     Route::group(['prefix' => 'stock'], function () {
         Route::get('/list', [StockController::class, 'index'])->name('stock.list');
-        Route::get('create', [StockController::class, 'create'])->name('stock.create');
-        Route::post('store', [StockController::class, 'store'])->name('stock.store');
         Route::get('status/{id}', [StockController::class, 'status'])->name('stock.status');
         Route::get('approval/{id}', [StockController::class, 'approval'])->name('stock.approval');
-        Route::get('edit/{id}', [StockController::class, 'edit'])->name('stock.edit');
-        Route::post('update/{id}', [StockController::class, 'update'])->name('stock.update');
         Route::delete('delete/{id}', [StockController::class, 'destroy'])->name('stock.delete');
         Route::get('productlist/{id}', [StockController::class, 'productlist'])->name('product.productlist');
     });

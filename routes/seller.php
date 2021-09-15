@@ -9,6 +9,7 @@ use App\Http\Controllers\Seller\ProfileController;
 use App\Http\Controllers\Seller\ShopController;
 use App\Http\Controllers\Seller\BrandController;
 use App\Http\Controllers\Seller\PreviousProductController;
+use App\Http\Controllers\Seller\StockController;
 
 
 Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
@@ -24,6 +25,11 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
     Route::post('forget', [AuthController::class, 'resetPassword'])->name('forget');
     Route::post('reset-password', [AuthController::class, 'updatePassword'])->name('reset-password');
     Route::get('verify/{token}', [AuthController::class, 'VerifyEmail'])->name('verify');
+
+    //Dashboard
+    Route::get('/dashboard', function () {
+        return view('seller/content');
+    });
 
     //Profile Route
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
@@ -51,7 +57,6 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
         Route::post('previous-productprevious-store', [PreviousProductController::class, 'store'])->name('productprevious.store');
     });
 
-
     // Brand Route
     Route::group(['prefix' => 'brand'], function () {
         Route::get('/list', [BrandController::class, 'index'])->name('brand.list');
@@ -63,9 +68,15 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
         Route::delete('delete/{id}', [BrandController::class, 'destroy'])->name('brand.delete');
     });
 
-    //Dashboard
-    Route::get('/dashboard', function () {
-        return view('seller/content');
+    // Stock Route
+    Route::group(['prefix' => 'stock'], function () {
+        Route::get('/list', [StockController::class, 'index'])->name('stock.list');
+        Route::get('create', [StockController::class, 'create'])->name('stock.create');
+        Route::post('store', [StockController::class, 'store'])->name('stock.store');
+        Route::get('status/{id}', [StockController::class, 'status'])->name('stock.status');
+        Route::get('edit/{id}', [StockController::class, 'edit'])->name('stock.edit');
+        Route::post('update/{id}', [StockController::class, 'update'])->name('stock.update');
+        Route::delete('delete/{id}', [StockController::class, 'destroy'])->name('stock.delete');
     });
 });
 
