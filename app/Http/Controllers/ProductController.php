@@ -75,7 +75,6 @@ class ProductController extends Controller
         $product->sku .= 'sku-' . $product->product_name.time();
 
         if ($request->hasFile('product_img')) {
-            Helper::delete($product->product_img);
             $extension = $request->file('product_img')->getClientOriginalExtension();
             $name = 'image' . Str::random(5) . '.' . $extension;
             $path = "asset/backend/assets/images/product/";
@@ -84,7 +83,6 @@ class ProductController extends Controller
         }
 
         if ($request->hasFile('product_img_2')) {
-            Helper::delete($product->product_img_2);
             $extension = $request->file('product_img_2')->getClientOriginalExtension();
             $name = 'image' . Str::random(5) . '.' . $extension;
             $path = "asset/backend/assets/images/product/";
@@ -93,7 +91,6 @@ class ProductController extends Controller
         }
 
         if ($request->hasFile('product_img_3')) {
-            Helper::delete($product->product_img_3);
             $extension = $request->file('product_img_3')->getClientOriginalExtension();
             $name = 'image' . Str::random(5) . '.' . $extension;
             $path = "asset/backend/assets/images/product/";

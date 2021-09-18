@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Seller;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Stock;
+use App\Models\Product;
 use Toastr;
 use Validator;
 
@@ -17,7 +18,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stocks = Stock::orderBy('id', 'desc')->where('seller_id',auth('seller')->user()->id)->paginate();
+        $stocks = Stock::orderBy('id', 'desc')->where('seller_id',auth('seller')->user()->id)->get();
         return view('seller.stock.index', compact('stocks'));
     }
 
@@ -28,7 +29,8 @@ class StockController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::where('seller_id',auth('seller')->user()->id)->get();
+        return view('seller.stock.create',compact('products'));
     }
 
     /**
@@ -39,7 +41,17 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator  = $request->validate([
+            'product_id'  => 'required',
+            'quantity'  => 'required',
+        ]);
+
+        $stock = new Stock();
+        $formData = $request->all();
+        $stock->status = 1;
+        $stock->fill($formData)->save();
+        Toastr::success('Stock Create Successfully');
+        return redirect()->route('seller.stock.list');
     }
 
     /**
@@ -61,7 +73,8 @@ class StockController extends Controller
      */
     public function edit($id)
     {
-        //
+        $stock = Stock::findOrFail($id);
+        return view('seller.stock.edit', compact('stock'));
     }
 
     /**
@@ -73,7 +86,19 @@ class StockController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validation=Validator::make($request->all(),[
+            'quantity'  => 'required',
+        ]);
+        if ($validation->fails()) {
+            return back()->withInput()->withErrors($validation);
+        }
+
+        $update = Stock::findOrFail($id);
+        $formData = $request->all();
+
+        $update->fill($formData)->save();
+        Toastr::success('Update Successfully');
+        return redirect()->route('seller.stock.list');
     }
 
     /**

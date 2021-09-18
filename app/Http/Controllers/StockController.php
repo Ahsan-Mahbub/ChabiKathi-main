@@ -30,15 +30,7 @@ class StockController extends Controller
      */
     public function create()
     {
-        $category = Category::where('status','1')->get();
-        $products = Product::paginate(5);
-        return view('backend.stock.create',compact('category','products'));
-    }
-
-    public function productlist($id)
-    {
-        $products = Product::where('subcategory_id', $id)->get();
-        return response()->json($products, 200);
+        //
     }
 
     /**
@@ -49,17 +41,7 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        $validator  = $request->validate([
-            'product_id'  => 'required',
-            'quantity'  => 'required',
-        ]);
-
-        $stock = new Stock();
-        $formData = $request->all();
-        $stock->status = 1;
-        $stock->fill($formData)->save();
-        Toastr::success('Stock Create Successfully');
-        return redirect()->route('stock.list');
+        //
     }
 
     /**
@@ -68,18 +50,6 @@ class StockController extends Controller
      * @param  \App\Models\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function status($id)
-    {
-        $stock = Stock::findOrFail($id);
-        if ($stock->status == 0) {
-            $stock->status = 1;
-        } else {
-            $stock->status = 0;
-        }
-        $stock->save();
-        Toastr::success('Status Change Successfully', 'Success');
-        return redirect()->back();
-    }
 
     public function approval($id)
     {

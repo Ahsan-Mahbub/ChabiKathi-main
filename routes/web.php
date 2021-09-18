@@ -161,7 +161,6 @@ Route::group(['prefix' => 'admin'], function () {
     // Stock Route
     Route::group(['prefix' => 'stock'], function () {
         Route::get('/list', [StockController::class, 'index'])->name('stock.list');
-        Route::get('status/{id}', [StockController::class, 'status'])->name('stock.status');
         Route::get('approval/{id}', [StockController::class, 'approval'])->name('stock.approval');
         Route::delete('delete/{id}', [StockController::class, 'destroy'])->name('stock.delete');
         Route::get('productlist/{id}', [StockController::class, 'productlist'])->name('product.productlist');

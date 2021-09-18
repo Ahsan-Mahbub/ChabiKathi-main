@@ -166,10 +166,11 @@ input[type="radio"], input[type="checkbox"] {
 .product-title a{
 	color: #565c61;
 }
-.product-short-description{
-	padding-left: 15px;
+.product-qun{
 	color: #565c61;
-	font-size: 13px;
+	font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 .price{
 	font-size: 13px;
@@ -191,7 +192,7 @@ input[type="radio"], input[type="checkbox"] {
     position: absolute;
     right: 0px;
     top: 3px;
-    background: #565656;
+    background: #7d2227;
     color: #f8f8f8;
     padding: 3px 12px 3px 8px;
     font-size: 16px;
@@ -238,6 +239,14 @@ input[type="radio"], input[type="checkbox"] {
 }
 .add-shop-content-field p a{
 	color: #7d2227;
+}
+.product-title {
+    height: 0px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+    padding: 0px;
+    border-radius: 4px;
 }
 
 @media only screen and (max-width: 999px){
