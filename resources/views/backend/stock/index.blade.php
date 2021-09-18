@@ -15,7 +15,7 @@
                         <th class="text-center">Color Name</th>
                         <th class="text-center">Size Name</th>
                         <th class="text-center">Weight</th>
-                        <th class="text-center" style="width: 15%;">Status</th>
+                        <th class="text-center">Approval</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -31,13 +31,13 @@
                         <td class="font-w600 text-center">{{$stock->weight? $stock->weight->weight_name : 'Null'}}</td>
                         <td class="text-center">
                             <?php
-                            if ($stock->status == 1) {
+                            if ($stock->approval == 1) {
                               ?>
-                              <span class="badge badge-success">Active</span>
+                              <span class="badge badge-success">Approved</span>
                               <?php
                             }else{
                                 ?>
-                                <span class="badge badge-danger">Deactive</span>
+                                <span class="badge badge-danger">Not Approved</span>
                                 <?php
                             }
                             ?>
@@ -52,12 +52,6 @@
                                     <?php
                                  } 
                             ?>
-                            <a class="btn btn-sm btn-secondary m-5" href="{{route('stock.edit',$stock->id)}}">
-                                <i class="fa fa-pencil text-primary mr-5"></i> Edit
-                            </a>
-                            <a class="btn btn-sm btn-secondary m-5" href="{{route('stock.status',$stock->id)}}">
-                                <i class="fa fa-refresh mr-5 {{$stock->status == 1 ? 'text-success' :' text-warning'}}"></i> Status
-                            </a>
                             <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('stock.delete',$stock->id)}}" data="{{$stock->id}}" id="delete" type="button">
                                 <i class="fa fa-times text-danger mr-5"></i> Delete
                             </a>

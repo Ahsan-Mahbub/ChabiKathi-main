@@ -113,6 +113,18 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-puzzle"></i><span
+                            class="sidebar-mini-hide">Commission</span></a>
+                    <ul>
+                        <li>
+                            <a href="{{route('admin.list')}}">Commission List</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.create')}}">Add Commission</a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="">
                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-layers"></i><span
                             class="sidebar-mini-hide">Product Variation</span></a>

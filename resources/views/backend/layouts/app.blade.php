@@ -58,7 +58,7 @@
         <script src="{{ asset('asset/backend/assets/js/plugins/slick/slick.min.js')}}"></script>
         <!-- Page JS Code -->
         <script src="{{ asset('asset/backend/assets/js/pages/be_pages_dashboard.min.js')}}"></script>
-
+        <script>jQuery(function(){ Codebase.helpers('select2'); });</script>
         <!-- Page JS Plugins -->
         <script src="{{ asset('asset/backend/assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
         <script src="{{ asset('asset/backend/assets/js/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
