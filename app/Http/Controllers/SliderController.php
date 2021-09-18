@@ -50,7 +50,6 @@ class SliderController extends Controller
         $formData = $request->all();
         $slider->status = 1;
         if ($request->hasFile('slider_img')) {
-            Helper::delete($slider->slider_img);
             $extension = $request->file('slider_img')->getClientOriginalExtension();
             $name = 'image' . Str::random(5) . '.' . $extension;
             $path = "asset/backend/assets/images/slider/";
@@ -58,9 +57,8 @@ class SliderController extends Controller
             $formData['slider_img'] = $path . $name;
         }
         $slider->fill($formData)->save();
-        Toastr::success('Update Successfully');
-        return redirect()->route('slider.list')
-            ->with('success', 'Slider created successfully.');
+        Toastr::success('Slider Create Successfully', 'Success');
+        return redirect()->route('slider.list');
     }
 
     /**

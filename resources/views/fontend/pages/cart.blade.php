@@ -29,7 +29,7 @@
 	<!-- Content Section -->
 	<div class="container">
 		<div class="row rows">
-			<section class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 checkout-left-content">
+			<section class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 checkout-left-content">
 				<div class="white-box-with-box-shadow mb-30">
 
 						<div class="d-none"></div>
@@ -47,24 +47,19 @@
 												<img height="100px" width="auto" src="https://i.postimg.cc/zB47cpVk/5.jpg" alt="image">
 											</figure>
 										</td>
-										<td>
-											<div class="product-title text-left pb-10">
-												<a title="iPhone 12 Pro 256GB (MBFJUN21)" href="">iPhone 12 Pro 256GB (MBFJUN21)</a>
+										<td style="padding: 15px;">
+											<div class="product-title">
+												<a title="" href="">iPhone 12</a>
 											</div>
-											<div class="product-short-description text-left">iPhone 12 Pro 256GB (MBFJUN21)</div>
-											<div class="product-short-description text-left">Quantity: 1</div>
-										</td>
-										<td class="price-div">
+											<div class="product-qun">Quantity: 1</div>
 											<div class="price">
-												<span class="current-price">$
+												<span class="current-price">৳ 
 													<span class="currency"></span>113399
 												</span>
-												<span class="old-price">$
+												<span class="old-price">৳ 
 													<del><span class="currency"></span>161999</del>
 												</span>
 											</div>
-										</td>
-										<td class="price-div">
 											<div class="quantity d-flex">
 												<div class="decrease dev-flex">-</div>
 												<input type="text" class="input-text" min="1" max="5" readonly="" value="1">
@@ -81,7 +76,7 @@
 
 				</div>
 			</section>
-			<section class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 checkout-right-content">
+			<section class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 checkout-right-content">
 				<div class="cart-total-price-calculation white-box-with-box-shadow mb-30">
 					<div class="cart-heading">
 						<h5 class="text-uppercase">Cart Total</h5>
@@ -91,17 +86,14 @@
 						<li>
 							<label class="label">Subtotal</label>
 							<span class="value">
-								<span class="currency">$</span><span>475</span>
+								<span class="currency">৳ </span><span>475</span>
 							</li>
 							<li>
 								<label class="label">Shipping fee</label>
 								<span class="value">
-									<span class="currency">$</span>0</span>
+									<span class="currency">৳ </span>0</span>
 								</li>
 								<li>
-									<span class="value"><b>Note: </b> Shipping charges will be calculated based on the number of items, item type, weight and volume. 
-										<a class="highlighted-txt" href="/" target="_blank">More info ...</a>
-									</span>
 									<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 form-fild email mb-30 text-upper">
 										<input type="text" placeholder="Cupon Code" name="" value="">
 									</div>
@@ -112,7 +104,7 @@
 								<li class="cart-total-price">
 									<label class="label">Total fee</label>
 									<span class="value">
-										<span class="currency">$</span>475</span>
+										<span class="currency">৳ </span>475</span>
 									</li>
 								</ul>
 							</div>
