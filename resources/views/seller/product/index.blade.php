@@ -54,7 +54,8 @@
                             <i class="si si-eye text-info mr-5"></i> View More
                         </a>
                         <a class="btn btn-sm btn-secondary m-5" href="{{route('seller.product.status',$product->id)}}">
-                        <i class="fa fa-refresh mr-5 {{$product->status == 1 ? 'text-success' :' text-warning'}}"></i>Status
+                            <i
+                                class="fa fa-refresh mr-5 {{$product->status == 1 ? 'text-success' :' text-warning'}}"></i>Status
                         </a>
                         <a class="btn btn-sm btn-secondary m-5" href="{{route('seller.product.edit',$product->id)}}">
                             <i class="fa fa-pencil text-primary mr-5"></i> Edit
@@ -69,6 +70,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{$products->links()}}
     </div>
 </div>
 @endsection
@@ -110,5 +112,11 @@
                 }
             });
         });
+</script>
+
+<script>
+
+
+
 </script>
 @endsection

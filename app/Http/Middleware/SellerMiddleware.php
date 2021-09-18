@@ -16,6 +16,9 @@ class SellerMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        if (!auth()->guard('seller')->check()) {
+            return redirect('/seller/loginView');
+        }
         return $next($request);
     }
 }

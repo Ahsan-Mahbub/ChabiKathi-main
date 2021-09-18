@@ -25,12 +25,15 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
     Route::get('verify/{token}', [AuthController::class, 'VerifyEmail'])->name('verify');
 
     //Profile Route
-    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile')->middleware('seller');
     Route::post('profile_update', [ProfileController::class, 'profile_update'])->name('profile_update');
 
     //Shop Route
     Route::get('shop_view', [ShopController::class, 'shop_view'])->name('shop_view');
     Route::post('update/{id}', [ShopController::class, 'update'])->name('update');
+
+    //previous product
+  
 
     // Product Route
     Route::group(['prefix' => 'product'], function () {
@@ -60,7 +63,7 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
     //Dashboard
     Route::get('/dashboard', function () {
         return view('seller/content');
-    });
+    })->middleware('seller');
 });
 
 

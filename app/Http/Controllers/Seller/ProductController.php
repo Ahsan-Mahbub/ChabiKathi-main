@@ -27,9 +27,10 @@ class ProductController extends Controller
     public function index()
     {
         
-        $products = Product::orderBy('id', 'desc')->where('seller_id',auth('seller')->user()->id)->paginate();
+        $products = Product::orderBy('id', 'desc')->where('seller_id',auth('seller')->user()->id)->paginate(5);
         return view('seller.product.index', compact('products'));
     }
+    
 
     /**
      * Show the form for creating a new resource.

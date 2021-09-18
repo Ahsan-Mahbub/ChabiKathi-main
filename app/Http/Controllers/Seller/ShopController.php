@@ -37,11 +37,13 @@ class ShopController extends Controller
             $shop->save();
             return redirect()->back();
 
-    }
-
- 
-
+          
+        }
 
     }
+
+   
+
+    
 
 }
