@@ -106,8 +106,7 @@
                 </li>
 
                 <li>
-
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-shopping-bag"></i><span
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-bag"></i><span
                             class="sidebar-mini-hide">Product</span></a>
                     <ul>
                         <li>
@@ -116,9 +115,25 @@
                         <li>
                             <a href="{{route('seller.product.create')}}">Add Product</a>
                         </li>
-
+                        <li>
+                            <a href="{{route('seller.product.previous')}}">Previous Product</a>
+                        </li>
                     </ul>
                 </li>
+
+                <li>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-basket-loaded"></i><span
+                            class="sidebar-mini-hide">Stock</span></a>
+                    <ul>
+                        <li>
+                            <a href="{{route('seller.stock.list')}}">Stock List</a>
+                        </li>
+                        <li>
+                            <a href="{{route('seller.stock.create')}}">Add Stock</a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
         </div>
         <!-- END Side Navigation -->

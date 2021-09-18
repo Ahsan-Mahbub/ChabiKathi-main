@@ -75,6 +75,24 @@
     <script src="{{ asset('js/toastr.min.js')}}"></script>
     {{-- <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script> --}}
     {!! Toastr::message() !!}
+    <!-- <script type="text/javascript">
+        $(document).on("click", "#status", function () {
+            let data = $(this).attr("data");
+
+            $.ajax({
+                url: "/seller/holiday/"+data,
+                type: "get",
+                dataType: "json",
+                success: function (response) {
+                    if (response.status === 0) {
+                        toastr.danger("Shop is now Holiday Mood", "Success!");
+                    } else {
+                        toastr.success("Shop is now Regular Mood", "Success!");
+                    }
+                }
+            })
+        })
+    </script> -->
     @yield('script')
 </body>
 

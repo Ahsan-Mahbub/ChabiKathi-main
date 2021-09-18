@@ -172,22 +172,13 @@
                             <a href="{{route('product.create')}}">Add Product</a>
                         </li>
                         <li>
-                            <a href="/">Previous Product</a>
+                            <a href="{{route('product.previous')}}">Previous Product</a>
                         </li>
                     </ul>
                 </li>
 
                 <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-basket-loaded"></i><span
-                            class="sidebar-mini-hide">Stock</span></a>
-                    <ul>
-                        <li>
-                            <a href="{{route('stock.list')}}">Stocks List</a>
-                        </li>
-                        <li>
-                            <a href="{{route('stock.create')}}">Add Stock</a>
-                        </li>
-                    </ul>
+                    <a href="{{route('stock.list')}}"><i class="si si-basket-loaded"></i>Stock List</a>
                 </li>
 
                 <li>

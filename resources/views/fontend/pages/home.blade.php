@@ -127,9 +127,9 @@
 	<section class="product-part">
 		<div class="container">
 				<div class="product-title dev-flex-sb">
-					<a href="/"><h2>Shop By Stores</h2></a>
+					<a href="/all-shop"><h2>Shop By Stores</h2></a>
 					<div class="search-and-more">
-						<a class="highlighted-txt dev-flex" href="/">
+						<a class="highlighted-txt dev-flex" href="/all-shop">
 							<b class="highlighted-txt">View All</b>
 							<img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px">
 						</a>
@@ -137,54 +137,16 @@
 				</div>
 			<div class="row">
 				<div class="col-md-12">
+					@foreach($shops as $shop)
 					<div class="col-md-2 product-box shop-box">
-						<a href="">
+						<a href="/shop/{{$shop->slug}}">
 							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/shop.png')}}">
+								<img src="/{{$shop->image}}">
 							</div>
-							<span class="product-name">Shop name here</span>
+							<span class="product-name">{{$shop->shop_name}}</span>
 						</a>
 					</div>
-					<div class="col-md-2 product-box shop-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/shop.png')}}">
-							</div>
-							<span class="product-name">Shop name here</span>
-						</a>
-					</div>
-					<div class="col-md-2 product-box shop-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/shop.png')}}">
-							</div>
-							<span class="product-name">Shop name here</span>
-						</a>
-					</div>
-					<div class="col-md-2 product-box shop-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/shop.png')}}">
-							</div>
-							<span class="product-name">Shop name here</span>
-						</a>
-					</div>
-					<div class="col-md-2 product-box shop-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/shop.png')}}">
-							</div>
-							<span class="product-name">Shop name here</span>
-						</a>
-					</div>
-					<div class="col-md-2 product-box shop-box">
-						<a href="">
-							<div class="product-img">
-								<img src="{{ asset('asset/fontend/asset/img/shop.png')}}">
-							</div>
-							<span class="product-name">Shop name here</span>
-						</a>
-					</div>
+					@endforeach
 				</div>
 			</div>
 		</div>

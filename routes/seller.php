@@ -8,6 +8,8 @@ use App\Http\Controllers\Seller\ProductController;
 use App\Http\Controllers\Seller\ProfileController;
 use App\Http\Controllers\Seller\ShopController;
 use App\Http\Controllers\Seller\BrandController;
+use App\Http\Controllers\Seller\PreviousProductController;
+use App\Http\Controllers\Seller\StockController;
 
 
 Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
@@ -24,6 +26,11 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
     Route::post('reset-password', [AuthController::class, 'updatePassword'])->name('reset-password');
     Route::get('verify/{token}', [AuthController::class, 'VerifyEmail'])->name('verify');
 
+    //Dashboard
+    Route::get('/dashboard', function () {
+        return view('seller/content');
+    });
+
     //Profile Route
     Route::get('profile', [ProfileController::class, 'index'])->name('profile')->middleware('seller');
     Route::post('profile_update', [ProfileController::class, 'profile_update'])->name('profile_update');
@@ -31,6 +38,7 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
     //Shop Route
     Route::get('shop_view', [ShopController::class, 'shop_view'])->name('shop_view');
     Route::post('update/{id}', [ShopController::class, 'update'])->name('update');
+    Route::get('holiday/{id}', [ShopController::class, 'holiday'])->name('holiday');
 
     //previous product
   
@@ -46,7 +54,10 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
         Route::get('edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
         Route::post('update/{id}', [ProductController::class, 'update'])->name('product.update');
         Route::delete('delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
-        Route::get('category/{cat_id}', [ProductController::class, 'category'])->name('product.category');
+
+        // Previous Product Controller
+        Route::get('previous-product', [PreviousProductController::class, 'index'])->name('product.previous');
+        Route::post('previous-productprevious-store', [PreviousProductController::class, 'store'])->name('productprevious.store');
     });
 
     // Brand Route
@@ -60,10 +71,16 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
         Route::delete('delete/{id}', [BrandController::class, 'destroy'])->name('brand.delete');
     });
 
-    //Dashboard
-    Route::get('/dashboard', function () {
-        return view('seller/content');
-    })->middleware('seller');
+    // Stock Route
+    Route::group(['prefix' => 'stock'], function () {
+        Route::get('/list', [StockController::class, 'index'])->name('stock.list');
+        Route::get('create', [StockController::class, 'create'])->name('stock.create');
+        Route::post('store', [StockController::class, 'store'])->name('stock.store');
+        Route::get('status/{id}', [StockController::class, 'status'])->name('stock.status');
+        Route::get('edit/{id}', [StockController::class, 'edit'])->name('stock.edit');
+        Route::post('update/{id}', [StockController::class, 'update'])->name('stock.update');
+        Route::delete('delete/{id}', [StockController::class, 'destroy'])->name('stock.delete');
+    });
 });
 
 

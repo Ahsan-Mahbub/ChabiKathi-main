@@ -8,6 +8,7 @@ use App\Models\Seller;
 use Str;
 use App\Helpers\Helper;
 use Illuminate\Http\Request;
+use Toastr;
 
 class ShopController extends Controller
 {
@@ -37,13 +38,32 @@ class ShopController extends Controller
             $shop->save();
             return redirect()->back();
 
-          
         }
-
     }
+    // public function holiday($id)
+    // {
+    //     $seller_holiday = Shop::findOrFail($id);
+    //     if ($seller_holiday->holiday == 1) :
+    //         $seller_holiday->update(["holiday" => 0]);
+    //     $status = 201; else :
+    //         $seller_holiday->update(["holiday" => 1]);
+    //     $status = 200;
+    //     endif;
+    //     return response()->json($seller_holiday, $status);
+    // }
 
-   
-
-    
+    public function holiday($id){
+        $seller_holiday = Shop::findOrFail($id);
+        if ($seller_holiday->holiday == 0) {
+            $seller_holiday->holiday = 1;
+            $seller_holiday->save();
+            Toastr::success('Regular Mood is On', 'Success');
+        } else {
+            $seller_holiday->holiday = 0;
+            $seller_holiday->save();
+            Toastr::warning('Holiday Mood is On', 'Success');
+        }
+        return redirect()->back();        
+    }
 
 }

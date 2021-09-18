@@ -8,38 +8,40 @@
         </a>
     </div>
     <div class="block-content block-content-full">
-        <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-            <thead>
-                <tr>
-                    <th class="text-center">S/L</th>
-                    <th class="text-center"> Admin Name</th>
-                    <th class="text-center"> Email</th>
-                    <th class="text-center"> Phone</th>
-                    <th class="text-center"> Role</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @php $sl = 1; @endphp
-                @foreach($admins as $admin)
-                <tr>
-                    <td class="text-center">{{$sl++}}</td>
-                    <td class="font-w600 text-center">{{$admin->name}}</td>
-                    <td class="font-w600 text-center">{{$admin->email}}</td>
-                    <td class="font-w600 text-center">{{$admin->phone}}</td>
-                    <td class="font-w600 text-center">{{$admin->role}}</td>
-                    <td class="text-center">
-                        <a class="btn btn-sm btn-secondary m-5" href="{{route('admin.edit',$admin->id)}}">
-                            <i class="fa fa-pencil text-primary mr-5"></i> Edit
-                        </a>
-                        <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('admin.delete',$admin->id)}}" data="{{$admin->id}}" id="delete" type="button">
-                            <i class="fa fa-times text-danger mr-5"></i> Delete
-                        </a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                <thead>
+                    <tr>
+                        <th class="text-center">S/L</th>
+                        <th class="text-center"> Admin Name</th>
+                        <th class="text-center"> Email</th>
+                        <th class="text-center"> Phone</th>
+                        <th class="text-center"> Role</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php $sl = 1; @endphp
+                    @foreach($admins as $admin)
+                    <tr>
+                        <td class="text-center">{{$sl++}}</td>
+                        <td class="font-w600 text-center">{{$admin->name}}</td>
+                        <td class="font-w600 text-center">{{$admin->email}}</td>
+                        <td class="font-w600 text-center">{{$admin->phone}}</td>
+                        <td class="font-w600 text-center">{{$admin->role}}</td>
+                        <td class="text-center">
+                            <a class="btn btn-sm btn-secondary m-5" href="{{route('admin.edit',$admin->id)}}">
+                                <i class="fa fa-pencil text-primary mr-5"></i> Edit
+                            </a>
+                            <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('admin.delete',$admin->id)}}" data="{{$admin->id}}" id="delete" type="button">
+                                <i class="fa fa-times text-danger mr-5"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
