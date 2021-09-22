@@ -25,21 +25,6 @@
           <div class="product-infos-area">
             <div class="row">
               <div class="product-image-display col-sm-12 col-md-5">
-
-                <!-- <div class="xzoom-container">
-                  <div class="zoomimg" style="width: 350px; height:350px">
-                    <img width="100%" height="350" class="xzoom4" id="xzoom-fancy" src="/{{$product->product_img}}" xoriginal="/{{$product->product_img}}" />
-                  </div>
-
-                  <div class="xzoom-thumbs">
-                    <a href="/{{$product->product_img}}"><img class="xzoom-gallery4" width="80" height="80" src="/{{$product->product_img}}"  xpreview="/{{$product->product_image}}" title="Product Image"></a>
-
-                    <a href="/{{$product->product_img_2}}"><img class="xzoom-gallery4" width="80" height="80" src="/{{$product->product_img_2}}" title="Product Image"></a>
-
-                    <a href="/{{$product->product_img_3}}"><img class="xzoom-gallery4" width="80" height="80" src="/{{$product->product_img_3}}" title="Product Image"></a>
-
-                  </div>
-                </div> -->
                 <div class="xzoom-container">
                   <img class="xzoom4" id="xzoom-fancy" src="/{{$product->product_img}}" xoriginal="/{{$product->product_img}}" />
                   <div class="xzoom-thumbs">
@@ -97,20 +82,24 @@
                       <div class="attr-wrapper">
                         <div class="options">
                           <div class="product-view-single-product-area-r-price mb-20">
-                            <span class="old-price">
-                              <?php
-                                if($product->discount)
-                                {
-                                  echo "৳ {$product->discount}";
-                                }
-                              ?>
-                            </span>
                             <?php
-                              $main_price= $product->price;
-                              $discount_price= $product->discount;
-                              $total_price= $main_price-$discount_price;
+                              if($product->discount)
+                              {
+                                $main_price= $product->price;
+                                $discount_price= $product->discount;
+                                $total_price= $main_price-$discount_price;
+                                ?>
+                                <span class="new-price">৳ {{$total_price}}</span>
+                                <span class="old-price">৳ {{$product->price}}</span>
+                                <?php
+                              }else{
+                                ?>
+                                <span class="new-price">৳ {{$product->price}}</span>
+                                <?php
+                              }
                             ?>
-                            <span class="new-price">৳ {{$total_price}}</span>
+
+
                           </div>
                             <div class="quantity dev-flex-l mb-20">
                               <label>Quantity</label>
@@ -249,34 +238,46 @@
   <section class="product-part">
       <div class="container">
           <div class="product-title dev-flex-sb">
-            <a href="/"><h2>Related Product Section</h2></a>
+            <h2>Related Product Section</h2>
           </div>
         <div class="row">
           <div class="col-md-12">
             @foreach($related_product as $related)
-            <div class="col-md-2 product-box">
+            <div class="col-md-2 product-box cat-box">
               <a href="/product/{{$related->product_slug}}">
                 <div class="product-img">
                   <img src="/{{$related->product_img}}">
                 </div>
                 <span class="product-name">{{$related->product_name}}</span>
-                <span class="previous-price">
-                  <?php
-                    if($related->discount)
-                    {
-                      echo "৳ {$related->discount}";
-                    }
-                  ?>
-                </span>
+
                 <?php
-                  $main_price= $related->price;
-                  $discount_price= $related->discount;
-                  $total_price= $main_price-$discount_price;
+                  if($related->discount)
+                  {
+                    $main_price= $related->price;
+                    $discount_price= $related->discount;
+                    $total_price= $main_price-$discount_price;
+                    ?>
+                    <div class="text-center con-price">
+                      <span class="present-price">৳ {{$total_price}}</span>
+                      <span class="previous-price">৳ {{$related->price}}</span>
+                    </div>
+                    <?php
+                  }else{
+                    ?>
+                    <span class="present-price">৳ {{$related->price}}</span>
+                    <?php
+                  }
                 ?>
-                <span class="present-price">৳ {{$total_price}}</span>
-                <div class="buttons text-center">
-                  <button type="button" class="btn btn-danger">Add to Cart</button>
-                </div>
+
+
+                <?php
+                if ($related->percentage) {
+                  ?>
+                  <span class="discount-tag-in-percent">- {{$related->percentage}}% OFF</span>
+                  <?php
+                }
+              ?>
+              <small class="in-stock">Stock Available</small>
               </a>
             </div>
             @endforeach
