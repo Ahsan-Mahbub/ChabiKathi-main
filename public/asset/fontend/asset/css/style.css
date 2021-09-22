@@ -624,6 +624,9 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
     color: #fff;
     margin: 0px 20px;
 }
+.product-name{
+    font-size: 14px;
+}
 .in-stock {
     display: block;
     color: #9c9b9b;
@@ -635,10 +638,10 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
     font-size: 18px;
 }
 .cat-box{
-    height: 285px;
+    height: 288px;
 }
 .con-price{
-    margin: 5px;
+    margin: 2px;
 }
 .con-price span{
     display: inline;
@@ -925,7 +928,7 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
         width: 100%;
     }
     .cat-box{
-        height: 330px;
+        height: 335px;
     }
 }
 .shop-box{

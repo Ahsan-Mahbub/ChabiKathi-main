@@ -44,64 +44,88 @@
 				</div>
 			<div class="row">
 				<div class="col-md-12">
-					<div class="col-md-2 product-box">
+					<div class="col-md-2 product-box cat-box">
 						<a href="">
 							<div class="product-img">
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">৳ 200</span>
-							<span class="present-price">৳ 100</span>
+							<span class="product-name">HBQ I7S Double Dual Mini ...</span>
+							<div class="text-center con-price">
+		                      <span class="present-price">৳ 1200</span>
+		                      <span class="previous-price">৳ 1300</span>
+		                    </div>
+			                <span class="discount-tag-in-percent">- 15% OFF</span>
+			              	<small class="in-stock">Stock Available</small>
 						</a>
 					</div>
-					<div class="col-md-2 product-box">
+					<div class="col-md-2 product-box cat-box">
 						<a href="">
 							<div class="product-img">
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">৳ 200</span>
-							<span class="present-price">৳ 100</span>
+							<span class="product-name">HBQ I7S Double Dual Mini ...</span>
+							<div class="text-center con-price">
+		                      <span class="present-price">৳ 1200</span>
+		                      <span class="previous-price">৳ 1300</span>
+		                    </div>
+			                <span class="discount-tag-in-percent">- 15% OFF</span>
+			              	<small class="in-stock">Stock Available</small>
 						</a>
 					</div>
-					<div class="col-md-2 product-box">
+					<div class="col-md-2 product-box cat-box">
 						<a href="">
 							<div class="product-img">
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">৳ 200</span>
-							<span class="present-price">৳ 100</span>
+							<span class="product-name">HBQ I7S Double Dual Mini ...</span>
+							<div class="text-center con-price">
+		                      <span class="present-price">৳ 1200</span>
+		                      <span class="previous-price">৳ 1300</span>
+		                    </div>
+			                <span class="discount-tag-in-percent">- 15% OFF</span>
+			              	<small class="in-stock">Stock Available</small>
 						</a>
 					</div>
-					<div class="col-md-2 product-box">
+					<div class="col-md-2 product-box cat-box">
 						<a href="">
 							<div class="product-img">
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">৳ 200</span>
-							<span class="present-price">৳ 100</span>
+							<span class="product-name">HBQ I7S Double Dual Mini ...</span>
+							<div class="text-center con-price">
+		                      <span class="present-price">৳ 1200</span>
+		                      <span class="previous-price">৳ 1300</span>
+		                    </div>
+			                <span class="discount-tag-in-percent">- 15% OFF</span>
+			              	<small class="in-stock">Stock Available</small>
 						</a>
 					</div>
-					<div class="col-md-2 product-box">
+					<div class="col-md-2 product-box cat-box">
 						<a href="">
 							<div class="product-img">
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">৳ 200</span>
-							<span class="present-price">৳ 100</span>
+							<span class="product-name">HBQ I7S Double Dual Mini ...</span>
+							<div class="text-center con-price">
+		                      <span class="present-price">৳ 1200</span>
+		                      <span class="previous-price">৳ 1300</span>
+		                    </div>
+			                <span class="discount-tag-in-percent">- 15% OFF</span>
+			              	<small class="in-stock">Stock Available</small>
 						</a>
 					</div>
-					<div class="col-md-2 product-box">
+					<div class="col-md-2 product-box cat-box">
 						<a href="">
 							<div class="product-img">
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">৳ 200</span>
-							<span class="present-price">৳ 100</span>
+							<span class="product-name">HBQ I7S Double Dual Mini ...</span>
+							<div class="text-center con-price">
+		                      <span class="present-price">৳ 1200</span>
+		                      <span class="previous-price">৳ 1300</span>
+		                    </div>
+			                <span class="discount-tag-in-percent">- 15% OFF</span>
+			              	<small class="in-stock">Stock Available</small>
 						</a>
 					</div>
 				</div>
