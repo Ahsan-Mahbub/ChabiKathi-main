@@ -1,7 +1,16 @@
 <style type="text/css">
+    .holiday-cus{
+        display: none;
+    }
     @media screen and (max-width: 999px) {
       .holiday {
         display: none;
+      }
+      .side_overlay_toggle{
+        display: none;
+      }
+      .holiday-cus{
+        display: contents;
       }
     }    
 </style>
@@ -124,11 +133,11 @@
                     <?php
                         if($value->holiday == 1){
                             ?>
-                            <i class="fa fa-check mr-5 text-success"></i><span class="holiday text-success font-w800">Shop On! Your Shop is Active</span>
+                            <i class="fa fa-check mr-5 text-success"></i><span class="holiday-cus">On</span><span class="holiday text-success font-w800">Shop On! Your Shop is Active</span>
                             <?php
                         }else{
                             ?>
-                            <i class="fa fa-times mr-5 text-danger"></i><span class="holiday text-danger font-w800">Holiday Mood On! Your Shop is Deactive</span>
+                            <i class="fa fa-times mr-5 text-danger"></i><span class="holiday-cus">Off</span><span class="holiday text-danger font-w800">Holiday Mood On! Your Shop is Deactive</span>
                             <?php
                         }
                     ?>
@@ -244,7 +253,7 @@
 
             <!-- Toggle Side Overlay -->
             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout"
+            <button type="button" class="btn btn-circle btn-dual-secondary side_overlay_toggle" data-toggle="layout"
                 data-action="side_overlay_toggle">
                 <i class="fa fa-tasks"></i>
             </button>

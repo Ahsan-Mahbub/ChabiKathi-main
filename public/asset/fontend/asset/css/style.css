@@ -71,6 +71,12 @@ li{
 .right-side-top span:hover{
 	color: #9b1717;
 }
+.right-side-top a{
+    color: #000;
+}
+.right-side-top a:hover{
+    color: #9b1717;
+}
 .left-side-top .phone-details-top{
 	display: inline;
     text-align: center;

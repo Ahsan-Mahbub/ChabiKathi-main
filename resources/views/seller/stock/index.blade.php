@@ -3,6 +3,9 @@
 <div class="block">
     <div class="block-header block-header-default">
         <h3 class="block-title text-center"><b>Stock Table</b></h3>
+        <a href="{{route('seller.stock.create')}}" class="btn btn-success mr-5 mb-5">
+            <i class="fa fa-plus mr-5"></i>Add Stock
+        </a>
     </div>
     <div class="block-content block-content-full">
         <div class="table-responsive">

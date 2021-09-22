@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
     <title>Chabikathi – Seller</title>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <meta name="description"
         content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
     <meta name="author" content="pixelcave">

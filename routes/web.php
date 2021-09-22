@@ -11,6 +11,7 @@ use App\Http\Controllers\fontController\ShopProductController;
 // Backend-Controller
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\WeightController;
@@ -78,6 +79,15 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('edit/{id}', [SubCategoryController::class, 'edit'])->name('sub-category.edit');
         Route::post('update/{id}', [SubCategoryController::class, 'update'])->name('sub-category.update');
         Route::delete('delete/{id}', [SubCategoryController::class, 'destroy'])->name('sub-category.delete');
+    });
+    //Commission Route
+    Route::group(['prefix' => 'commission'], function () {
+        Route::get('/list', [CommissionController::class, 'index'])->name('commission.list');
+        Route::get('create', [CommissionController::class, 'create'])->name('commission.create');
+        Route::post('store', [CommissionController::class, 'store'])->name('commission.store');
+        Route::get('edit/{id}', [CommissionController::class, 'edit'])->name('commission.edit');
+        Route::post('update/{id}', [CommissionController::class, 'update'])->name('commission.update');
+        Route::delete('delete/{id}', [CommissionController::class, 'destroy'])->name('commission.delete');
     });
     // Size Route
     Route::group(['prefix' => 'size'], function () {

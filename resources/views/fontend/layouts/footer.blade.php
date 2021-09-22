@@ -17,7 +17,7 @@
                     </a>
                   </div>
                 </div>
-                <p class="mb-40">Buy &amp; sell online with Dhamaka. Trust, quality &amp; best customer experience at one place.</p>
+                <p class="mb-40">Buy &amp; sell online with chabikathi</p>
                 <p class="m-0 mobile">
                   <span>Got Question? Call us 24/7</span>
                   <a href="tel:09638113366">09638113366</a>

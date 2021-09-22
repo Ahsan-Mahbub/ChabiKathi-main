@@ -10,6 +10,7 @@ use App\Http\Controllers\Seller\ShopController;
 use App\Http\Controllers\Seller\BrandController;
 use App\Http\Controllers\Seller\PreviousProductController;
 use App\Http\Controllers\Seller\StockController;
+use App\Http\Controllers\Seller\CommissionController;
 
 
 Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
@@ -30,16 +31,13 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
     Route::get('/dashboard', function () {
         return view('seller/content');
     });
-
     //Profile Route
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('profile_update', [ProfileController::class, 'profile_update'])->name('profile_update');
-
     //Shop Route
     Route::get('shop_view', [ShopController::class, 'shop_view'])->name('shop_view');
     Route::post('update/{id}', [ShopController::class, 'update'])->name('update');
     Route::get('holiday/{id}', [ShopController::class, 'holiday'])->name('holiday');
-
     // Product Route
     Route::group(['prefix' => 'product'], function () {
         Route::get('/list', [ProductController::class, 'index'])->name('product.list');
@@ -51,12 +49,10 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
         Route::get('edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
         Route::post('update/{id}', [ProductController::class, 'update'])->name('product.update');
         Route::delete('delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
-
         // Previous Product Controller
         Route::get('previous-product', [PreviousProductController::class, 'index'])->name('product.previous');
         Route::post('previous-productprevious-store', [PreviousProductController::class, 'store'])->name('productprevious.store');
     });
-
     // Brand Route
     Route::group(['prefix' => 'brand'], function () {
         Route::get('/list', [BrandController::class, 'index'])->name('brand.list');
@@ -67,7 +63,6 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
         Route::post('update/{id}', [BrandController::class, 'update'])->name('brand.update');
         Route::delete('delete/{id}', [BrandController::class, 'destroy'])->name('brand.delete');
     });
-
     // Stock Route
     Route::group(['prefix' => 'stock'], function () {
         Route::get('/list', [StockController::class, 'index'])->name('stock.list');
@@ -78,6 +73,11 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
         Route::post('update/{id}', [StockController::class, 'update'])->name('stock.update');
         Route::delete('delete/{id}', [StockController::class, 'destroy'])->name('stock.delete');
     });
+    // Commission Route
+    Route::group(['prefix' => 'commission'], function () {
+        Route::get('/list', [CommissionController::class, 'index'])->name('commission.list');
+    });
+
 });
 
 

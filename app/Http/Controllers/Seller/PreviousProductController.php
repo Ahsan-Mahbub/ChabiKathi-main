@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Seller;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Shop;
 use Toastr;
 use Validator;
-
+use Str;
 class PreviousProductController extends Controller
 {
     /**
@@ -17,8 +18,9 @@ class PreviousProductController extends Controller
      */
     public function index()
     {
+        $shop = Shop::where('seller_id',auth('seller')->user()->id)->where('status',1)->where('approval',1)->first();
         $products = Product::orderBy('id', 'desc')->where('seller_id','!=',auth('seller')->user()->id)->where('status',1)->where('approval',1)->paginate();
-        return view('seller.product.previous_product',compact('products'));
+        return view('seller.product.previous_product',compact('products','shop'));
     }
 
     /**
@@ -51,6 +53,7 @@ class PreviousProductController extends Controller
         $requested_data = $request->all();
         $product->status = 1;
         $product->approval = 0;
+        $product->product_slug = $request->product_slug . '-' . 'prv' . Str::random(5) ;
         $product->sku .= 'sku-' . $product->product_name.time();
         $product->fill($requested_data)->save();
         Toastr::success('Save Successfully');

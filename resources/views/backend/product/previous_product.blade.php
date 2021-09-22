@@ -113,8 +113,25 @@
 		                            </div>
 		                        </div>
 
-		                            <input class="form-control" id="shop_id" name="shop_id" hidden="">
-		                            <input class="form-control" id="brand_id" name="brand_id" hidden="">
+		                        <div class="form-group">
+		                            <div class="form-material">
+		                                <select class="form-control" id="shop_id" name="shop_id" onclick="getBrand()">
+		                                    <option value="0" selected="">Select Shop</option>
+		                                    @foreach($shops as $value)
+		                                        <option value="{{$value->id}}">{{$value->shop_name}} </option>
+		                                    @endforeach
+		                                </select>
+		                                <label for="shop_id">Select Shop<span class="text-danger">*</span></label>
+		                            </div>
+		                        </div>
+		                        <div class="form-group">
+		                            <div class="form-material">
+		                                <select class="form-control" id="brand_id" name="brand_id">
+		                                    <option value="0" selected="">Select Brand</option>
+		                                </select>
+		                                <label for="brand_id">Select Brand</label>
+		                            </div>
+		                        </div>
 
 
 		                            <input class="form-control" id="product_img" name="product_img" hidden="">
@@ -148,8 +165,6 @@
 		let discount = product_info.discount;
 		let category_id = product_info.category_id;
 		let subcategory_id = product_info.subcategory_id;
-		let shop_id = product_info.shop_id;
-		let brand_id = product_info.brand_id;
 		let product_img = product_info.product_img;
 		let product_img_2 = product_info.product_img_2;
 		let product_img_3 = product_info.product_img_3;
@@ -170,5 +185,24 @@
 		document.getElementById('product_img_2').value = product_img_2;
 		document.getElementById('product_img_3').value = product_img_3;
 	})
+
+	function getBrand(){
+        let id = $("#shop_id").val();
+        // alert(id);
+        let url = '/admin/product/brand/'+id;
+        $.ajax({
+            type: "get",
+            url: url,
+            dataType: "json",
+            success: function (response) {
+                let html = '';
+                console.log(response)
+                response.forEach(element => {
+                    html+='<option value='+element.id+'>'+element.brand_name+'</option>'
+                });
+                $("#brand_id").html(html);
+            }
+        });
+    }
 </script>
 @endsection
