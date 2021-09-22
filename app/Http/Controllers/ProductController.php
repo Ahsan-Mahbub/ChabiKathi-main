@@ -71,8 +71,9 @@ class ProductController extends Controller
         $product = new Product();
         $requested_data = $request->all();
         $product->status = 1;
+        $product->product_slug = $request->product_slug;
         $product->approval = 0;
-        $product->sku .= 'sku-' . $product->product_name.time();
+        $product->sku .= 'sku-' . $request->product_name . '-'.time();
 
         if ($request->hasFile('product_img')) {
             $extension = $request->file('product_img')->getClientOriginalExtension();
@@ -162,7 +163,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $validation=Validator::make($request->all(),[
-            'product_name'  => 'required|unique:products,product_name,'.$id,
+            'product_name'  => 'required',
             'product_slug'  => 'required',
             'product_desc'  => 'required',
             'category_id'  => 'required',
@@ -173,6 +174,7 @@ class ProductController extends Controller
         }
 
         $update = Product::findOrFail($id);
+        $update->product_slug = $request->product_slug;
         $formData = $request->all();
         if ($request->hasFile('product_img')) {
             Helper::delete($update->product_img);
@@ -202,7 +204,7 @@ class ProductController extends Controller
         }
         $update->fill($formData)->save();
         Toastr::success('Update Successfully');
-        return redirect()->route('seller.product.list');
+        return redirect()->route('product.list');
     }
 
     /**

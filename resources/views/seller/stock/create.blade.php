@@ -1,5 +1,10 @@
 @extends('seller.layouts.app')
 @section('content')
+<style type="text/css">
+	.box{
+		display: contents;
+	}
+</style>
 <div class="container">
 	<div class="block">
 	    <div class="block-header block-header-default">
@@ -37,6 +42,7 @@
 	  </button>
 	</div>
 
+
 	@if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -47,7 +53,6 @@
     </div>
     @endif
 
-    
 	<div id="dynamic_field">
 		
 	</div>
@@ -83,48 +88,70 @@
 	                        </div>
 	                    </div>
 	                </div>
-	                <div class="col-xl-6">
-	                    <div class="form-group row">
-	                        <label class="col-12" for="color_id">Color</label>
-	                        <div class="col-lg-12">
-	                            <select class="js-select2 form-control js-select2-enabled select2-hidden-accessible" id="color_id" name="color_id" style="width: 100%;" data-placeholder="Choose one.." data-select2-id="color_id" tabindex="-1" aria-hidden="true">
-	                            	<option disabled="" selected="">Select Color</option>
-	                            	@php($color = \App\Models\Color::where('status',1)->orderBy('id','desc')->get())
-	                            	@foreach($color as $value)
-	                                <option value="{{$value->id}}">{{$value->color_name}}</option>
-	                                @endforeach
-	                            </select>
-	                        </div>
-	                    </div>
+
+	                <div class="col-xl-12">
+	                	<div class="form-group row">
+                            <div class="col-12">
+                                <div class="custom-control custom-radio custom-control-inline mb-5">
+                                    <input class="custom-control-input" type="radio" name="colorRadio" id="example-inline-radio1" value="red">
+                                    <label class="custom-control-label" for="example-inline-radio1">Product (Color / Size)</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline mb-5">
+                                    <input class="custom-control-input" type="radio" name="colorRadio" id="example-inline-radio2" value="green">
+                                    <label class="custom-control-label" for="example-inline-radio2">Product (Weight)</label>
+                                </div>
+                            </div>
+                        </div>
 	                </div>
-	                <div class="col-xl-6">
-	                    <div class="form-group row">
-	                        <label class="col-12" for="size_id">Size</label>
-	                        <div class="col-lg-12">
-	                            <select class="js-select2 form-control js-select2-enabled select2-hidden-accessible" id="size_id" name="size_id" style="width: 100%;" data-placeholder="Choose one.." data-select2-id="size_id" tabindex="-1" aria-hidden="true">
-	                                <option disabled="" selected=""> Select Size</option>
-	                                @php($size = \App\Models\Size::where('status',1)->orderBy('id','desc')->get())
-	                            	@foreach($size as $value)
-	                                <option value="{{$value->id}}">{{$value->size_name}}</option>
-	                                @endforeach
-	                            </select>
-	                        </div>
-	                    </div>
-	                </div>
-	                <div class="col-xl-6">
-	                    <div class="form-group row">
-	                        <label class="col-12" for="weight_id">Weight</label>
-	                        <div class="col-lg-12">
-	                            <select class="js-select2 form-control js-select2-enabled select2-hidden-accessible" id="weight_id" name="weight_id" style="width: 100%;" data-placeholder="Choose one.." data-select2-id="weight_id" tabindex="-1" aria-hidden="true">
-	                                <option disabled="" selected=""> Select Weight</option>
-	                                @php($weight = \App\Models\Weight::where('status',1)->orderBy('id','desc')->get())
-	                            	@foreach($weight as $value)
-	                                <option value="{{$value->id}}">{{$value->weight_name}}</option>
-	                                @endforeach
-	                            </select>
-	                        </div>
-	                    </div>
-	                </div>
+	                <div class="red box">
+
+	                	<div class="col-xl-6">
+		                    <div class="form-group row">
+		                        <label class="col-12" for="color_id">Color</label>
+		                        <div class="col-lg-12">
+		                            <select class="js-select2 form-control js-select2-enabled select2-hidden-accessible" id="color_id" name="color_id" style="width: 100%;" data-placeholder="Choose one.." data-select2-id="color_id" tabindex="-1" aria-hidden="true">
+		                            	<option disabled="" selected="">Select Color</option>
+		                            	@php($color = \App\Models\Color::where('status',1)->orderBy('id','desc')->get())
+		                            	@foreach($color as $value)
+		                                <option value="{{$value->id}}">{{$value->color_name}}</option>
+		                                @endforeach
+		                            </select>
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="col-xl-6">
+		                    <div class="form-group row">
+		                        <label class="col-12" for="size_id">Size</label>
+		                        <div class="col-lg-12">
+		                            <select class="js-select2 form-control js-select2-enabled select2-hidden-accessible" id="size_id" name="size_id" style="width: 100%;" data-placeholder="Choose one.." data-select2-id="size_id" tabindex="-1" aria-hidden="true">
+		                                <option disabled="" selected=""> Select Size</option>
+		                                @php($size = \App\Models\Size::where('status',1)->orderBy('id','desc')->get())
+		                            	@foreach($size as $value)
+		                                <option value="{{$value->id}}">{{$value->size_name}}</option>
+		                                @endforeach
+		                            </select>
+		                        </div>
+		                    </div>
+		                </div>
+
+		            </div>
+
+		            <div class="green box">
+		                <div class="col-xl-12">
+		                    <div class="form-group row">
+		                        <label class="col-12" for="weight_id">Weight</label>
+		                        <div class="col-lg-12">
+		                            <select class="js-select2 form-control js-select2-enabled select2-hidden-accessible" id="weight_id" name="weight_id" style="width: 100%;" data-placeholder="Choose one.." data-select2-id="weight_id" tabindex="-1" aria-hidden="true">
+		                                <option disabled="" selected=""> Select Weight</option>
+		                                @php($weight = \App\Models\Weight::where('status',1)->orderBy('id','desc')->get())
+		                            	@foreach($weight as $value)
+		                                <option value="{{$value->id}}">{{$value->weight_name}}</option>
+		                                @endforeach
+		                            </select>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
 	                <div class="col-xl-6">
 	                    <div class="form-group row mt-4">
 	                    	<button type="submit" id="submit" class="btn btn-alt-primary">Submit</button>
@@ -137,6 +164,17 @@
 </div>
 @endsection
 @section('script')
+<script>
+$(".box").hide();
+$(document).ready(function(){
+    $('input[type="radio"]').click(function(){
+        var inputValue = $(this).attr("value");
+        var targetBox = $("." + inputValue);
+        $(".box").not(targetBox).hide();
+        $(targetBox).show();
+    });
+});
+</script>
 <script type="text/javascript">
 	$('.stock_product').click(function(){
 		let product_info = $(this).data('id');

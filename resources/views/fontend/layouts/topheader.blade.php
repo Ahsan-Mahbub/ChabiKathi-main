@@ -97,15 +97,12 @@
                     <i class="far fa-heart"></i>
                 </div>
                 <div class="cart-icon">
-                    <div class="dropdown">
-                        <i class="fas fa-shopping-bag">
-                            <div class="dropdown-content">
-                                <a href="#">My Account</a>
-                                <a href="">Login</a>
-                            </div>
-                        </i>
-                    </div>
-                    <span class="cart-add">0</span>
+                    <a href="/cart">
+                        <div class="dropdown">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <span class="cart-add">0</span>
+                    </a>
                 </div>
                 <div class="profile-icon">
                     <div class="dropdown">

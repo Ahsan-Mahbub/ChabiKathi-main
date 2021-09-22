@@ -35,7 +35,7 @@
 	<section class="product-part">
 			<div class="container">
 					<div class="product-title dev-flex-sb">
-						<a href="/"><h2>{{$category->category_name ?? ''}} {{ $subcategory->sub_category_name ?? ''}} {{$shop->shop_name ?? ''}}</h2></a>
+						<a href=""><h2>{{$category->category_name ?? ''}} {{ $subcategory->sub_category_name ?? ''}} {{$shop->shop_name ?? ''}}</h2></a>
 						<div class="showing-more">
 							<!-- <span class="show-result">Showing 1-18of 1422 results</span> -->
 					</div>

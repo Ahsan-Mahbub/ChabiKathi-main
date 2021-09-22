@@ -118,10 +118,10 @@
                             class="sidebar-mini-hide">Commission</span></a>
                     <ul>
                         <li>
-                            <a href="{{route('admin.list')}}">Commission List</a>
+                            <a href="{{route('commission.list')}}">Commission List</a>
                         </li>
                         <li>
-                            <a href="{{route('admin.create')}}">Add Commission</a>
+                            <a href="{{route('commission.create')}}">Add Commission</a>
                         </li>
                     </ul>
                 </li>

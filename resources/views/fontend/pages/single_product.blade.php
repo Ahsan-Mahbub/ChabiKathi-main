@@ -275,7 +275,7 @@
                 ?>
                 <span class="present-price">৳ {{$total_price}}</span>
                 <div class="buttons text-center">
-                  <button class="btn btn-danger">Add to Cart</button>
+                  <button type="button" class="btn btn-danger">Add to Cart</button>
                 </div>
               </a>
             </div>
