@@ -45,10 +45,8 @@ class StockController extends Controller
             'product_id'  => 'required',
             'quantity'  => 'required',
         ]);
-
         $preInsert = Stock::where('product_id',$request->product_id)->first();
         //dd($preInsert);
-
         if($preInsert==''){
             $stock = new Stock();
             $formData = $request->all();
