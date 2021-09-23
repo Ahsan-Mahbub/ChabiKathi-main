@@ -221,7 +221,7 @@ p {
     font-weight: 400;
 }
 .new-price {
-    color: #C9151B;
+    color: #7d2227;
     font-size: 16px;
     font-weight: 500;
 }
@@ -346,4 +346,27 @@ label{
     display: inline-block;
     color: #565c61;
     font-family: serif;
+}
+.form-check-label{
+    display: inline-block;
+    font-family: serif;
+    font-size: 15px;
+    color: #7d2227;
+}
+.discount-tag-in-percent {
+    position: static;
+    margin-left: 10px;
+    position: relative;
+    cursor: default;
+    z-index: 0;
+    background-color: #7d2227;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    padding: 2px 8px 4px 8px;
+    color: #fff;
+}
+.wishlist-icon {
+    border-radius: 50%;
+    border: 2px solid #ebebeb;
+    display: flex;
 }
