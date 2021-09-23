@@ -55,7 +55,7 @@
                                 href="{{route('seller.product.show',$product->id)}}">
                                 <i class="si si-eye text-info mr-5"></i> View More
                             </a>
-                            <a class="btn btn-sm btn-secondary m-5"
+                            <a class="btn btn-sm btn-secondary m-5" id="status"
                                 href="{{route('seller.product.status',$product->id)}}">
                                 <i
                                     class="fa fa-refresh mr-5 {{$product->status == 1 ? 'text-success' :' text-warning'}}"></i>Status
@@ -116,11 +116,5 @@
                 }
             });
         });
-</script>
-
-<script>
-
-
-
 </script>
 @endsection
