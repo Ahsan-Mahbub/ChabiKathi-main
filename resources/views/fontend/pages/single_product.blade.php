@@ -42,21 +42,24 @@
                       <i class="far fa-heart"></i>
                     </div>
                   </div>
+                  <div class="shop-name mb-10 text-success">
+                    <span class="pdp-label">Stock Available</span>
+                  </div>
                   @if($product->shop_id)
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Shop: </span>
-                    <a class="pdp-shop-link" href="/">{{$product->shop? $product->shop->shop_name : ''}}</a>
+                    <a class="pdp-shop-link" href="/">{{$product->shop? $product->shop->shop_name : 'No Shop'}}</a>
                   </div>
                   @endif
                   @if($product->brand_id)
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Brand: </span>
-                    <a class="pdp-shop-link" href="/">{{$product->brand? $product->brand->brand_name : ''}}</a>
+                    <a class="pdp-shop-link" href="/">{{$product->brand? $product->brand->brand_name : 'No Brand'}}</a>
                   </div>
                   @endif
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Categories: </span>
-                    <a class="pdp-shop-link" href="/product/{{$product->category->slug}}">{{$product->category? $product->category->category_name : ''}}</a>
+                    <a class="pdp-shop-link" href="/product/{{$product->category->slug}}">{{$product->category? $product->category->category_name : 'No Category'}}</a>
                   </div>
                   <div class="shop-name mb-10">
                     <span class="pdp-label">SKU: </span>
