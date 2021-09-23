@@ -38,50 +38,80 @@
                 <div class="product-view-single-product-area-r">
                   <div class="dev-flex-sb">
                     <h3 class="small-title mb-10">{{$product->product_name}}</h3>
+                    <div class="d-shadow d-radius p-2 wishlist-icon">
+                      <i class="far fa-heart"></i>
+                    </div>
+                  </div>
+                  <div class="shop-name mb-10 text-success">
+                    <span class="pdp-label">Stock Available</span>
                   </div>
                   @if($product->shop_id)
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Shop: </span>
-                    <a class="pdp-shop-link" href="/">{{$product->shop? $product->shop->shop_name : ''}}</a>
+                    <a class="pdp-shop-link" href="/">{{$product->shop? $product->shop->shop_name : 'No Shop'}}</a>
                   </div>
                   @endif
                   @if($product->brand_id)
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Brand: </span>
-                    <a class="pdp-shop-link" href="/">{{$product->brand? $product->brand->brand_name : ''}}</a>
+                    <a class="pdp-shop-link" href="/">{{$product->brand? $product->brand->brand_name : 'No Brand'}}</a>
                   </div>
                   @endif
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Categories: </span>
-                    <a class="pdp-shop-link" href="/product/{{$product->category->slug}}">{{$product->category? $product->category->category_name : ''}}</a>
+                    <a class="pdp-shop-link" href="/product/{{$product->category->slug}}">{{$product->category? $product->category->category_name : 'No Category'}}</a>
                   </div>
                   <div class="shop-name mb-10">
                     <span class="pdp-label">SKU: </span>
                     <a class="pdp-shop-link">{{$product->sku}}</a>
                   </div>
-                  @if($product->color_id)
                   <div class="shop-name mb-10">
-                    <span class="pdp-label">Color: </span>
-                    <a class="pdp-shop-link">{{$product->color? $product->color->color_code : ''}}</a>
+                    <span class="pdp-label">Color: &nbsp;</span>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                      <label class="form-check-label" for="inlineRadio1">Black</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">Red</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">Green</label>
+                    </div>
                   </div>
-                  @endif
-                  @if($product->size_id)
                   <div class="shop-name mb-10">
-                    <span class="pdp-label">Size: </span>
-                    <a class="pdp-shop-link">{{$product->size? $product->size->size_name : ''}}</a>
+                    <span class="pdp-label">Size: &nbsp;</span>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                      <label class="form-check-label" for="inlineRadio1">M</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">XL</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">XXL</label>
+                    </div>
                   </div>
-                  @endif
-                  @if($product->weight_id)
                   <div class="shop-name mb-10">
-                    <span class="pdp-label">Weight: </span>
-                    <a class="pdp-shop-link">{{$product->weight? $product->weight->weight_name : ''}}</a>
+                    <span class="pdp-label">Weight: &nbsp;</span>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">10 kg</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">12 kg</label>
+                    </div>
                   </div>
-                  @endif
                   <div class="product-view-single-product-area-r-quantity">
                     <form action="#">
                       <div class="attr-wrapper">
                         <div class="options">
-                          <div class="product-view-single-product-area-r-price mb-20">
+                          <div class="product-view-single-product-area-r-price mb-20 shop-name">
+                            <span class="pdp-label">Price: &nbsp;</span>
                             <?php
                               if($product->discount)
                               {
@@ -98,7 +128,13 @@
                                 <?php
                               }
                             ?>
-
+                            <?php
+                              if($product->percentage){
+                                ?>
+                                <span class="new-price discount-tag-in-percent">- {{$product->percentage}}% OFF</span>
+                                <?php
+                              }
+                            ?>
 
                           </div>
                             <div class="quantity dev-flex-l mb-20">
