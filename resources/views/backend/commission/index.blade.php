@@ -1,10 +1,10 @@
-@extends('seller.layouts.app')
+@extends('backend.layouts.app')
 @section('content')
 <div class="block">
     <div class="block-header block-header-default">
-        <h3 class="block-title text-center"><b>Stock Table</b></h3>
-        <a href="{{route('seller.stock.create')}}" class="btn btn-success mr-5 mb-5">
-            <i class="fa fa-plus mr-5"></i>Add Stock
+        <h3 class="block-title text-center"><b>Commission Table</b></h3>
+        <a href="{{route('commission.create')}}" class="btn btn-success mr-5 mb-5">
+            <i class="fa fa-plus mr-5"></i>Add Commission
         </a>
     </div>
     <div class="block-content block-content-full">
@@ -13,43 +13,25 @@
                 <thead>
                     <tr>
                         <th class="text-center">S/L</th>
-                        <th class="text-center"> Product Name</th>
-                        <th class="text-center">Quantity</th>
-                        <th class="text-center">Color Name</th>
-                        <th class="text-center">Size Name</th>
-                        <th class="text-center">Weight</th>
-                        <th class="text-center">Approval</th>
+                        <th class="text-center">Commission(%)</th>
+                        <th class="text-center">Categories Name</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php $sl = 1; @endphp
-                    @foreach($stocks as $stock)
+                    @foreach($commissions as $commission)
                     <tr>
                         <td class="text-center">{{$sl++}}</td>
-                        <td class="font-w600 text-center">{{$stock->product? $stock->product->product_name : 'Null'}}</td>
-                        <td class="font-w600 text-center">{{$stock->quantity}}</td>
-                        <td class="font-w600 text-center">{{$stock->color? $stock->color->color_name : 'Null'}}</td>
-                        <td class="font-w600 text-center">{{$stock->size? $stock->size->size_name : 'Null'}}</td>
-                        <td class="font-w600 text-center">{{$stock->weight? $stock->weight->weight_name : 'Null'}}</td>
+                        <td class="font-w600 text-center">{{$commission->commission}}</td>
                         <td class="text-center">
-                            <?php
-                            if ($stock->approval == 1) {
-                              ?>
-                              <span class="badge badge-success">Approved</span>
-                              <?php
-                            }else{
-                                ?>
-                                <span class="badge badge-danger">Not Approved</span>
-                                <?php
-                            }
-                            ?>
+                            {{$commission->category? $commission->category->category_name : 'null'}}
                         </td>
                         <td class="text-center">
-                            <a class="btn btn-sm btn-secondary m-5" href="{{route('seller.stock.edit',$stock->id)}}">
+                           <a class="btn btn-sm btn-secondary m-5" href="{{route('commission.edit',$commission->id)}}">
                                 <i class="fa fa-pencil text-primary mr-5"></i> Edit
                             </a>
-                            <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('seller.stock.delete',$stock->id)}}" data="{{$stock->id}}" id="delete" type="button">
+                            <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('commission.delete',$commission->id)}}" data="{{$commission->id}}" id="delete" type="button">
                                 <i class="fa fa-times text-danger mr-5"></i> Delete
                             </a>
                         </td>
@@ -60,9 +42,9 @@
         </div>
     </div>
 </div>
-
 @endsection
 @section('script')
+
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -90,7 +72,7 @@
                         success: function (response) {
                            
                             toastr.warning(" Deleted successfully", "!!!");
-                            window.location.href = "/seller/stock/list" ;
+                            window.location.href = "/admin/commission/list" ;
                         },
                     });
                 }

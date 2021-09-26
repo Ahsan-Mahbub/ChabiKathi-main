@@ -25,21 +25,6 @@
           <div class="product-infos-area">
             <div class="row">
               <div class="product-image-display col-sm-12 col-md-5">
-
-                <!-- <div class="xzoom-container">
-                  <div class="zoomimg" style="width: 350px; height:350px">
-                    <img width="100%" height="350" class="xzoom4" id="xzoom-fancy" src="/{{$product->product_img}}" xoriginal="/{{$product->product_img}}" />
-                  </div>
-
-                  <div class="xzoom-thumbs">
-                    <a href="/{{$product->product_img}}"><img class="xzoom-gallery4" width="80" height="80" src="/{{$product->product_img}}"  xpreview="/{{$product->product_image}}" title="Product Image"></a>
-
-                    <a href="/{{$product->product_img_2}}"><img class="xzoom-gallery4" width="80" height="80" src="/{{$product->product_img_2}}" title="Product Image"></a>
-
-                    <a href="/{{$product->product_img_3}}"><img class="xzoom-gallery4" width="80" height="80" src="/{{$product->product_img_3}}" title="Product Image"></a>
-
-                  </div>
-                </div> -->
                 <div class="xzoom-container">
                   <img class="xzoom4" id="xzoom-fancy" src="/{{$product->product_img}}" xoriginal="/{{$product->product_img}}" />
                   <div class="xzoom-thumbs">
@@ -53,64 +38,104 @@
                 <div class="product-view-single-product-area-r">
                   <div class="dev-flex-sb">
                     <h3 class="small-title mb-10">{{$product->product_name}}</h3>
+                    <div class="d-shadow d-radius p-2 wishlist-icon">
+                      <i class="far fa-heart"></i>
+                    </div>
+                  </div>
+                  <div class="shop-name mb-10 text-success">
+                    <span class="pdp-label">Stock Available</span>
                   </div>
                   @if($product->shop_id)
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Shop: </span>
-                    <a class="pdp-shop-link" href="/">{{$product->shop? $product->shop->shop_name : ''}}</a>
+                    <a class="pdp-shop-link" href="/">{{$product->shop? $product->shop->shop_name : 'No Shop'}}</a>
                   </div>
                   @endif
                   @if($product->brand_id)
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Brand: </span>
-                    <a class="pdp-shop-link" href="/">{{$product->brand? $product->brand->brand_name : ''}}</a>
+                    <a class="pdp-shop-link" href="/">{{$product->brand? $product->brand->brand_name : 'No Brand'}}</a>
                   </div>
                   @endif
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Categories: </span>
-                    <a class="pdp-shop-link" href="/product/{{$product->category->slug}}">{{$product->category? $product->category->category_name : ''}}</a>
+                    <a class="pdp-shop-link" href="/product/{{$product->category->slug}}">{{$product->category? $product->category->category_name : 'No Category'}}</a>
                   </div>
                   <div class="shop-name mb-10">
                     <span class="pdp-label">SKU: </span>
                     <a class="pdp-shop-link">{{$product->sku}}</a>
                   </div>
-                  @if($product->color_id)
                   <div class="shop-name mb-10">
-                    <span class="pdp-label">Color: </span>
-                    <a class="pdp-shop-link">{{$product->color? $product->color->color_code : ''}}</a>
+                    <span class="pdp-label">Color: &nbsp;</span>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                      <label class="form-check-label" for="inlineRadio1">Black</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">Red</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">Green</label>
+                    </div>
                   </div>
-                  @endif
-                  @if($product->size_id)
                   <div class="shop-name mb-10">
-                    <span class="pdp-label">Size: </span>
-                    <a class="pdp-shop-link">{{$product->size? $product->size->size_name : ''}}</a>
+                    <span class="pdp-label">Size: &nbsp;</span>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                      <label class="form-check-label" for="inlineRadio1">M</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">XL</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">XXL</label>
+                    </div>
                   </div>
-                  @endif
-                  @if($product->weight_id)
                   <div class="shop-name mb-10">
-                    <span class="pdp-label">Weight: </span>
-                    <a class="pdp-shop-link">{{$product->weight? $product->weight->weight_name : ''}}</a>
+                    <span class="pdp-label">Weight: &nbsp;</span>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">10 kg</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" for="inlineRadio2">12 kg</label>
+                    </div>
                   </div>
-                  @endif
                   <div class="product-view-single-product-area-r-quantity">
                     <form action="#">
                       <div class="attr-wrapper">
                         <div class="options">
-                          <div class="product-view-single-product-area-r-price mb-20">
-                            <span class="old-price">
-                              <?php
-                                if($product->discount)
-                                {
-                                  echo "৳ {$product->discount}";
-                                }
-                              ?>
-                            </span>
+                          <div class="product-view-single-product-area-r-price mb-20 shop-name">
+                            <span class="pdp-label">Price: &nbsp;</span>
                             <?php
-                              $main_price= $product->price;
-                              $discount_price= $product->discount;
-                              $total_price= $main_price-$discount_price;
+                              if($product->discount)
+                              {
+                                $main_price= $product->price;
+                                $discount_price= $product->discount;
+                                $total_price= $main_price-$discount_price;
+                                ?>
+                                <span class="new-price">৳ {{$total_price}}</span>
+                                <span class="old-price">৳ {{$product->price}}</span>
+                                <?php
+                              }else{
+                                ?>
+                                <span class="new-price">৳ {{$product->price}}</span>
+                                <?php
+                              }
                             ?>
-                            <span class="new-price">৳ {{$total_price}}</span>
+                            <?php
+                              if($product->percentage){
+                                ?>
+                                <span class="new-price discount-tag-in-percent">- {{$product->percentage}}% OFF</span>
+                                <?php
+                              }
+                            ?>
+
                           </div>
                             <div class="quantity dev-flex-l mb-20">
                               <label>Quantity</label>
@@ -249,34 +274,46 @@
   <section class="product-part">
       <div class="container">
           <div class="product-title dev-flex-sb">
-            <a href="/"><h2>Related Product Section</h2></a>
+            <h2>Related Product Section</h2>
           </div>
         <div class="row">
           <div class="col-md-12">
             @foreach($related_product as $related)
-            <div class="col-md-2 product-box">
+            <div class="col-md-2 product-box cat-box">
               <a href="/product/{{$related->product_slug}}">
                 <div class="product-img">
                   <img src="/{{$related->product_img}}">
                 </div>
                 <span class="product-name">{{$related->product_name}}</span>
-                <span class="previous-price">
-                  <?php
-                    if($related->discount)
-                    {
-                      echo "৳ {$related->discount}";
-                    }
-                  ?>
-                </span>
+
                 <?php
-                  $main_price= $related->price;
-                  $discount_price= $related->discount;
-                  $total_price= $main_price-$discount_price;
+                  if($related->discount)
+                  {
+                    $main_price= $related->price;
+                    $discount_price= $related->discount;
+                    $total_price= $main_price-$discount_price;
+                    ?>
+                    <div class="text-center con-price">
+                      <span class="present-price">৳ {{$total_price}}</span>
+                      <span class="previous-price">৳ {{$related->price}}</span>
+                    </div>
+                    <?php
+                  }else{
+                    ?>
+                    <span class="present-price">৳ {{$related->price}}</span>
+                    <?php
+                  }
                 ?>
-                <span class="present-price">৳ {{$total_price}}</span>
-                <div class="buttons text-center">
-                  <button class="btn btn-danger">Add to Cart</button>
-                </div>
+
+
+                <?php
+                if ($related->percentage) {
+                  ?>
+                  <span class="discount-tag-in-percent">- {{$related->percentage}}% OFF</span>
+                  <?php
+                }
+              ?>
+              <small class="in-stock">Stock Available</small>
               </a>
             </div>
             @endforeach

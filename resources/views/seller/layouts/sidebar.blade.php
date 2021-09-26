@@ -133,6 +133,9 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="{{route('seller.commission.list')}}"><i class="si si-puzzle"></i>Commission List</a>
+                </li>
 
             </ul>
         </div>

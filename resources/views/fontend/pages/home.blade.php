@@ -4,6 +4,10 @@
 @endsection
 @extends('fontend.layouts.app')
 @section('content')
+<?php
+// $stocks = DB::table('stocks')->select('*')->join('products','products.id', '=', 'stocks.product_id')->get();
+// $related_product = DB::table('products')->select('*')->join('categories','categories.id', '=', 'products.category_id')->where('categories.id', $product->category_id)->where('products.status',1)->where('products.approval',1)->orderBy('products.id','desc')->paginate(18);
+?>
 <main>
 	<!-- Flash Sale Section -->
 	<section class="product-part">
@@ -40,82 +44,88 @@
 				</div>
 			<div class="row">
 				<div class="col-md-12">
-					<div class="col-md-2 product-box">
+					<div class="col-md-2 product-box cat-box">
 						<a href="">
 							<div class="product-img">
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">৳ 200</span>
-							<span class="present-price">৳ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
+							<span class="product-name">HBQ I7S Double Dual Mini ...</span>
+							<div class="text-center con-price">
+		                      <span class="present-price">৳ 1200</span>
+		                      <span class="previous-price">৳ 1300</span>
+		                    </div>
+			                <span class="discount-tag-in-percent">- 15% OFF</span>
+			              	<small class="in-stock">Stock Available</small>
 						</a>
 					</div>
-					<div class="col-md-2 product-box">
+					<div class="col-md-2 product-box cat-box">
 						<a href="">
 							<div class="product-img">
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">৳ 200</span>
-							<span class="present-price">৳ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
+							<span class="product-name">HBQ I7S Double Dual Mini ...</span>
+							<div class="text-center con-price">
+		                      <span class="present-price">৳ 1200</span>
+		                      <span class="previous-price">৳ 1300</span>
+		                    </div>
+			                <span class="discount-tag-in-percent">- 15% OFF</span>
+			              	<small class="in-stock">Stock Available</small>
 						</a>
 					</div>
-					<div class="col-md-2 product-box">
+					<div class="col-md-2 product-box cat-box">
 						<a href="">
 							<div class="product-img">
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">৳ 200</span>
-							<span class="present-price">৳ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
+							<span class="product-name">HBQ I7S Double Dual Mini ...</span>
+							<div class="text-center con-price">
+		                      <span class="present-price">৳ 1200</span>
+		                      <span class="previous-price">৳ 1300</span>
+		                    </div>
+			                <span class="discount-tag-in-percent">- 15% OFF</span>
+			              	<small class="in-stock">Stock Available</small>
 						</a>
 					</div>
-					<div class="col-md-2 product-box">
+					<div class="col-md-2 product-box cat-box">
 						<a href="">
 							<div class="product-img">
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">৳ 200</span>
-							<span class="present-price">৳ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
+							<span class="product-name">HBQ I7S Double Dual Mini ...</span>
+							<div class="text-center con-price">
+		                      <span class="present-price">৳ 1200</span>
+		                      <span class="previous-price">৳ 1300</span>
+		                    </div>
+			                <span class="discount-tag-in-percent">- 15% OFF</span>
+			              	<small class="in-stock">Stock Available</small>
 						</a>
 					</div>
-					<div class="col-md-2 product-box">
+					<div class="col-md-2 product-box cat-box">
 						<a href="">
 							<div class="product-img">
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">৳ 200</span>
-							<span class="present-price">৳ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
+							<span class="product-name">HBQ I7S Double Dual Mini ...</span>
+							<div class="text-center con-price">
+		                      <span class="present-price">৳ 1200</span>
+		                      <span class="previous-price">৳ 1300</span>
+		                    </div>
+			                <span class="discount-tag-in-percent">- 15% OFF</span>
+			              	<small class="in-stock">Stock Available</small>
 						</a>
 					</div>
-					<div class="col-md-2 product-box">
+					<div class="col-md-2 product-box cat-box">
 						<a href="">
 							<div class="product-img">
 								<img src="{{ asset('asset/fontend/asset/img/product1.jpeg')}}">
 							</div>
-							<span class="product-name">product name here</span>
-							<span class="previous-price">৳ 200</span>
-							<span class="present-price">৳ 100</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
+							<span class="product-name">HBQ I7S Double Dual Mini ...</span>
+							<div class="text-center con-price">
+		                      <span class="present-price">৳ 1200</span>
+		                      <span class="previous-price">৳ 1300</span>
+		                    </div>
+			                <span class="discount-tag-in-percent">- 15% OFF</span>
+			              	<small class="in-stock">Stock Available</small>
 						</a>
 					</div>
 				</div>
@@ -169,29 +179,38 @@
 				<div class="col-md-12">
 					@if($product['product'])
                     @foreach($product['product'] as $proInfo)
-					<div class="col-md-2 product-box">
+					<div class="col-md-2 product-box cat-box">
 						<a href="/product/{{($proInfo['product_slug'])}}">
 							<div class="product-img">
 								<img src="{{$proInfo['product_img']}}">
 							</div>
 							<span class="product-name">{{$proInfo['product_name']}}</span>
-							<span class="previous-price">
-								<?php
-									if($proInfo['discount'])
-									{
-										echo "৳ {$proInfo['discount']}";
-									}
-								?>
-							</span>
 							<?php
-								$main_price= $proInfo['price'];
-								$discount_price= $proInfo['discount'];
-								$total_price= $main_price-$discount_price;
+								if($proInfo['discount'])
+								{
+									$main_price= $proInfo['price'];
+									$discount_price= $proInfo['discount'];
+									$total_price= $main_price-$discount_price;
+									?>
+									<div class="text-center con-price">
+				                      <span class="present-price">৳ {{$total_price}}</span>
+				                      <span class="previous-price">৳ {{$proInfo['price']}}</span>
+				                    </div>
+									<?php
+								}else{
+									?>
+									<span class="present-price">৳ {{$proInfo['price']}}</span>
+									<?php
+								}
 							?>
-							<span class="present-price">৳ {{$total_price}}</span>
-							<div class="buttons text-center">
-								<button class="btn btn-danger">Add to Cart</button>
-							</div>
+							<?php
+								if ($proInfo['percentage']) {
+									?>
+									<span class="discount-tag-in-percent">- {{$proInfo['percentage']}}% OFF</span>
+									<?php
+								}
+							?>
+							<small class="in-stock">Stock Available</small>
 						</a>
 					</div>
 					@endforeach

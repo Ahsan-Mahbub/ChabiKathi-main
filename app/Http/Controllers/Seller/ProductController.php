@@ -65,8 +65,8 @@ class ProductController extends Controller
         $requested_data = $request->all();
         $product->status = 1;
         $product->approval = 0;
-        $product->sku .= 'sku-' . $product->product_name.time();
-        // $product->category_id=$category->category_id;
+        $product->product_slug = $request->product_slug;
+        $product->sku .= 'sku-' . $request->product_name . '-'.time();
         $product->shop_id=auth('seller')->id();
         
 
@@ -157,7 +157,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $validation=Validator::make($request->all(),[
-            'product_name'  => 'required|unique:products,product_name,'.$id,
+            'product_name'  => 'required',
             'product_slug'  => 'required',
             'product_desc'  => 'required',
             'category_id'  => 'required',
@@ -168,6 +168,7 @@ class ProductController extends Controller
         }
 
         $update = Product::findOrFail($id);
+        $update->product_slug = $request->product_slug;
         $formData = $request->all();
         if ($request->hasFile('product_img')) {
             Helper::delete($update->product_img);

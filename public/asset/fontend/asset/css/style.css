@@ -71,6 +71,12 @@ li{
 .right-side-top span:hover{
 	color: #9b1717;
 }
+.right-side-top a{
+    color: #000;
+}
+.right-side-top a:hover{
+    color: #9b1717;
+}
 .left-side-top .phone-details-top{
 	display: inline;
     text-align: center;
@@ -531,7 +537,7 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
 	padding: .5rem;
 	font-size: 1.5rem;
 }
-.product-title h2:hover{
+.product-title a h2:hover{
     color: #7d2227;
 }
 .search-and-more {
@@ -603,7 +609,7 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
 	color: #7e7878;;
 }
 .product-name, .present-price{
-	color: #000;
+	color: #464646;
 	font-weight: 800;
 }
 .product-name:hover{
@@ -611,6 +617,34 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
 }
 .present-price:hover{
 	color: #9c2918;
+}
+
+.discount-tag-in-percent {
+    background: #7d2227;
+    color: #fff;
+    margin: 0px 20px;
+}
+.product-name{
+    font-size: 14px;
+}
+.in-stock {
+    display: block;
+    color: #9c9b9b;
+    line-height: 18px;
+    text-align: center;
+    margin: 7px;
+}
+.present-price{
+    font-size: 18px;
+}
+.cat-box{
+    height: 288px;
+}
+.con-price{
+    margin: 2px;
+}
+.con-price span{
+    display: inline;
 }
 /*Fotter Section*/
 .site-footer{
@@ -892,6 +926,9 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
 @media only screen and (max-width: 443px){
     .product-box{
         width: 100%;
+    }
+    .cat-box{
+        height: 335px;
     }
 }
 .shop-box{
