@@ -43,6 +43,19 @@
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="{{ asset('asset/backend/assets/js/plugins/datatables/dataTables.bootstrap4.css')}}">
     <link rel="stylesheet" href="{{ asset('js/toastr.min.css') }}">
+    <style type="text/css">
+            .toggle-group .btn-default{
+                background-color: #8a2a2a;
+                border: none;
+                color: #fff;
+                font-weight: 800;
+            }
+            .toggle-group .btn-primary{
+                background-color: #224022;
+                border: none;
+                font-weight: 800;
+            }
+        </style>
 </head>
 
 <body>
