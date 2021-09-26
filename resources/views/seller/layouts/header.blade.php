@@ -1,18 +1,21 @@
 <style type="text/css">
-    .holiday-cus{
+    .holiday-cus {
         display: none;
     }
+
     @media screen and (max-width: 999px) {
-      .holiday {
-        display: none;
-      }
-      .side_overlay_toggle{
-        display: none;
-      }
-      .holiday-cus{
-        display: contents;
-      }
-    }    
+        .holiday {
+            display: none;
+        }
+
+        .side_overlay_toggle {
+            display: none;
+        }
+
+        .holiday-cus {
+            display: contents;
+        }
+    }
 </style>
 <!-- Header -->
 <header id="page-header">
@@ -129,19 +132,24 @@
         <div class="content-header-section text-white">
             <div class="btn-group" role="group">
                 @php($value = \App\Models\Shop::where('seller_id',auth('seller')->user()->id)->first())
-                <a class="btn btn-sm btn-dark m-5" href="{{route('seller.holiday',$value->id)}}">
-                    <?php
+                <input type="checkbox" data-toggle="toggle" data-on="Shop ON" data-off="Shop Off" id="shop"
+                    data="{{$value->id}}" {{$value->holiday==1 ? 'checked' : ''}}>
+
+                {{-- <a class="btn btn-sm btn-dark m-5" href="{{route('seller.holiday',$value->id)}}">
+                <?php
                         if($value->holiday == 1){
                             ?>
-                            <i class="fa fa-check mr-5 text-success"></i><span class="holiday-cus">On</span><span class="holiday text-success font-w800">Shop On! Your Shop is Active</span>
-                            <?php
+                <i class="fa fa-check mr-5 text-success"></i><span class="holiday-cus">On</span><span
+                    class="holiday text-success font-w800">Shop On! Your Shop is Active</span>
+                <?php
                         }else{
                             ?>
-                            <i class="fa fa-times mr-5 text-danger"></i><span class="holiday-cus">Off</span><span class="holiday text-danger font-w800">Holiday Mood On! Your Shop is Deactive</span>
-                            <?php
+                <i class="fa fa-times mr-5 text-danger"></i><span class="holiday-cus">Off</span><span
+                    class="holiday text-danger font-w800">Holiday Mood On! Your Shop is Deactive</span>
+                <?php
                         }
                     ?>
-                </a>
+                </a> --}}
             </div>
 
 

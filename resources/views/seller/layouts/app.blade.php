@@ -44,18 +44,19 @@
     <link rel="stylesheet" href="{{ asset('asset/backend/assets/js/plugins/datatables/dataTables.bootstrap4.css')}}">
     <link rel="stylesheet" href="{{ asset('js/toastr.min.css') }}">
     <style type="text/css">
-            .toggle-group .btn-default{
-                background-color: #8a2a2a;
-                border: none;
-                color: #fff;
-                font-weight: 800;
-            }
-            .toggle-group .btn-primary{
-                background-color: #224022;
-                border: none;
-                font-weight: 800;
-            }
-        </style>
+        .toggle-group .btn-default {
+            background-color: #8a2a2a;
+            border: none;
+            color: #fff;
+            font-weight: 800;
+        }
+
+        .toggle-group .btn-primary {
+            background-color: #224022;
+            border: none;
+            font-weight: 800;
+        }
+    </style>
 </head>
 
 <body>
@@ -91,24 +92,31 @@
     <script src="{{ asset('js/toastr.min.js')}}"></script>
     {{-- <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script> --}}
     {!! Toastr::message() !!}
-    <!-- <script type="text/javascript">
-        $(document).on("click", "#status", function () {
-            let data = $(this).attr("data");
 
-            $.ajax({
-                url: "/seller/holiday/"+data,
-                type: "get",
-                dataType: "json",
-                success: function (response) {
-                    if (response.status === 0) {
-                        toastr.danger("Shop is now Holiday Mood", "Success!");
-                    } else {
-                        toastr.success("Shop is now Regular Mood", "Success!");
-                    }
+
+    <script type="text/javascript">
+        $(document).on("change","#shop",function(){
+        var id=$(this).attr('data');
+        if(this.checked){
+            var holiday=1;
+        }else{
+            var holiday=0;
+        }
+        
+        $.ajax({
+                url: '/seller/holiday/'+id+'/'+holiday,
+                type: 'get',
+                dataType: 'json',
+                success: function(response) {
+                    toastr.success("Status Change Successfully", "Success");
+                   console.log(response);
                 }
-            })
-        })
-    </script> -->
+     
+        });
+    
+    });
+    
+    </script>
     @yield('script')
 </body>
 
