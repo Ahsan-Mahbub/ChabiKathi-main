@@ -37,29 +37,28 @@
                         <td class="text-center">{{$product->sku}}</td>
                         <td class="text-center">{{$product->price}}</td>
                         <td class="text-center">{{$product->discount}}</td>
-                        <td class="text-center">
-                            <?php
-                            if ($product->status == 1) {
-                              ?>
-                            <span class="badge badge-success">Active</span>
-                            <?php
-                            }else{
-                                ?>
-                            <span class="badge badge-danger">Deactive</span>
-                            <?php
-                            }
-                            ?>
+                        <td>
+                            <input type="checkbox" data-toggle="toggle" data-on="active" data-off="inactive" id="status"
+                                data="{{$product->id}}" {{$product->status==1 ? 'checked':''}}>
                         </td>
                         <td class="text-center">
                             <a class="btn btn-sm btn-secondary m-5"
                                 href="{{route('seller.product.show',$product->id)}}">
                                 <i class="si si-eye text-info mr-5"></i> View More
                             </a>
-                            <a class="btn btn-sm btn-secondary m-5" id="status"
+                            {{-- <a class="btn btn-sm btn-secondary m-5">
                                 href="{{route('seller.product.status',$product->id)}}">
-                                <i
-                                    class="fa fa-refresh mr-5 {{$product->status == 1 ? 'text-success' :' text-warning'}}"></i>Status
-                            </a>
+                            <i
+                                class="fa fa-refresh mr-5 {{$product->status == 1 ? 'text-success' :' text-warning'}}"></i>Status
+                            </a> --}}
+
+                            {{-- @if($product->status == 1)
+                            <button class="btn btn-outline-success btn-sm status" id="status" data="{{$product->id}}"><i
+                                class="fas fa-sync"></i></button>
+                            @else
+                            <button class="btn btn-outline-info btn-sm status" id="status" data="{{$product->id}}"><i
+                                    class="fas fa-sync"></i></button>
+                            @endif --}}
                             <a class="btn btn-sm btn-secondary m-5"
                                 href="{{route('seller.product.edit',$product->id)}}">
                                 <i class="fa fa-pencil text-primary mr-5"></i> Edit
@@ -116,5 +115,28 @@
                 }
             });
         });
+</script>
+
+<script type="text/javascript">
+    $(document).on("change","#status",function(){
+    var id=$(this).attr('data');
+    if(this.checked){
+        var status=1;
+    }else{
+        var status=0;
+    }
+    $.ajax({
+            url: '/seller/product/status/'+id+'/'+status,
+            type: 'get',
+            dataType: 'json',
+            success: function(response) {
+            
+               console.log(response);
+            }
+ 
+    });
+
+});
+
 </script>
 @endsection
