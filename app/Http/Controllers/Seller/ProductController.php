@@ -27,9 +27,10 @@ class ProductController extends Controller
     public function index()
     {
         
-        $products = Product::orderBy('id', 'desc')->where('seller_id',auth('seller')->user()->id)->paginate();
+        $products = Product::orderBy('id', 'desc')->where('seller_id',auth('seller')->user()->id)->paginate(5);
         return view('seller.product.index', compact('products'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -112,18 +113,21 @@ class ProductController extends Controller
         return view('seller.product.show', compact('product'));
     }
 
-    public function status($id)
+    public function status($id,$status)
     {
         $product_status = Product::findOrFail($id);
-        if ($product_status->status == 0) {
-            $product_status->status = 1;
-        } else {
-            $product_status->status = 0;
-        }
+        // if ($product_status->status == 0) {
+        //     $product_status->status = 1;
+        // } else {
+        //     $product_status->status = 0;
+        
+        $product_status->status =$status;
         $product_status->save();
-        Toastr::success('Status Change Successfully', 'Success');
-        return redirect()->back();
+        // Toastr::success('Status Change Successfully', 'Success');
+        return response()->json(['message'=>'success']);
+        // return redirect()->back();
     }
+
 
     /**
      * Show the form for editing the specified resource.
