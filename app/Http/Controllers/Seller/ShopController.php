@@ -52,21 +52,6 @@ class ShopController extends Controller
     //     return response()->json($seller_holiday, $status);
     // }
 
-
-    <td class="text-center">
-    <?php
-    if ($product->status == 1) {
-      ?>
-    <span class="badge badge-success">Active</span>
-    <?php
-    }else{
-        ?>
-    <span class="badge badge-danger">Deactive</span>
-    <?php
-    }
-    ?>
-</td>
-
     public function holiday($id){
         $seller_holiday = Shop::findOrFail($id);
         if ($seller_holiday->holiday == 0) {
