@@ -37,9 +37,9 @@
                         <td class="text-center">{{$product->sku}}</td>
                         <td class="text-center">{{$product->price}}</td>
                         <td class="text-center">{{$product->discount}}</td>
-                        <td>
-                            <input type="checkbox" data-toggle="toggle" data-on="active" data-off="inactive" id="status"
-                                data="{{$product->id}}" {{$product->status==1 ? 'checked':''}}>
+                        <td class="text-center">
+                            <input type="checkbox" data-toggle="toggle" data-on="Active" data-off="Inactive" id="status"
+                                data="{{$product->id}}" {{$product->status==1 ? 'checked' : ''}}>
                         </td>
                         <td class="text-center">
                             <a class="btn btn-sm btn-secondary m-5"
@@ -59,6 +59,12 @@
                             <button class="btn btn-outline-info btn-sm status" id="status" data="{{$product->id}}"><i
                                     class="fas fa-sync"></i></button>
                             @endif --}}
+
+                            <!-- Default checked -->
+
+
+
+
                             <a class="btn btn-sm btn-secondary m-5"
                                 href="{{route('seller.product.edit',$product->id)}}">
                                 <i class="fa fa-pencil text-primary mr-5"></i> Edit
@@ -108,7 +114,7 @@
                         dataType: "json",
                         success: function (response) {
                            
-                            toastr.warning(" Deleted successfully", "!!!");
+                            toastr.warning(" Deleted Successfully", "!!!");
                             window.location.href = "/seller/product/list" ;
                         },
                     });
@@ -130,7 +136,7 @@
             type: 'get',
             dataType: 'json',
             success: function(response) {
-            
+                toastr.success("Status Change Successfully", "Success");
                console.log(response);
             }
  
