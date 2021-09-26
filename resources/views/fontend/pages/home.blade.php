@@ -210,7 +210,17 @@
 									<?php
 								}
 							?>
-							<small class="in-stock">Stock Available</small>
+							<?php
+								if ($proInfo['id']) {
+									?>
+									<small class="in-stock text-success">Stock Available</small>
+									<?php
+								}else{
+									?>
+									<small class="in-stock text-danger">Out of Stock</small>
+									<?php
+								}
+							?>
 						</a>
 					</div>
 					@endforeach
@@ -220,8 +230,6 @@
 		</div>
 	</section>
 	@endforeach
-
-
 </main>
 @endsection
 @section('script')

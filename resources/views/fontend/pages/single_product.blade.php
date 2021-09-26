@@ -147,7 +147,7 @@
                             </div>
 
                             <div class="button-section">
-                              <button type="button" class="btn btn-danger mr-10 mt-10">Add to Cart</button>
+                              <button type="button" class="btn btn-danger mr-10 mt-10 addToCart">Add to Cart</button>
                               <button type="button" class="btn btn-warning button-reverse button mt-10 mr-10">Buy Now</button>
                             </div>
                           </div>
@@ -331,4 +331,11 @@
 <script src="{{ asset('asset/fontend/asset/js/zoomimage.js')}}"></script>
 <script src="{{ asset('asset/fontend/asset/js/tabcontent.js')}}"></script>
 <script src="{{ asset('asset/fontend/asset/js/countdown.js')}}"></script>
+
+<script type="text/javascript">
+  $('.addToCart').click(function(){
+    let product_info = $(this).data('id');
+    console.log(product_info);
+  })
+</script>
 @endsection
