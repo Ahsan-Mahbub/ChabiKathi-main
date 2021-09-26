@@ -37,7 +37,7 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
     //Shop Route
     Route::get('shop_view', [ShopController::class, 'shop_view'])->name('shop_view');
     Route::post('update/{id}', [ShopController::class, 'update'])->name('update');
-    Route::get('holiday/{id}', [ShopController::class, 'holiday'])->name('holiday');
+    Route::get('holiday/{id}/{holiday}', [ShopController::class, 'holiday'])->name('holiday');
     // Product Route
     Route::group(['prefix' => 'product'], function () {
         Route::get('/list', [ProductController::class, 'index'])->name('product.list');
