@@ -132,7 +132,7 @@
         <div class="content-header-section text-white">
             <div class="btn-group" role="group">
                 @php($value = \App\Models\Shop::where('seller_id',auth('seller')->user()->id)->first())
-                <input type="checkbox" data-toggle="toggle" data-on="Shop ON" data-off="Shop Off!" id="shop"
+                <input type="checkbox" data-toggle="toggle" data-on="Shop ON" data-off="Shop Off!!" id="shop"
                     data="{{$value->id}}" {{$value->holiday==1 ? 'checked' : ''}}>
 
                 {{-- <a class="btn btn-sm btn-dark m-5" href="{{route('seller.holiday',$value->id)}}">
