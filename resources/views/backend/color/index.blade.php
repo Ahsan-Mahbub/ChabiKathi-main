@@ -26,10 +26,13 @@
                         <td class="text-center">{{$sl++}}</td>
                         <td class="font-w600 text-center">{{$color->color_name}}</td>
                         <td class="text-center">
-                            <div class="item item-circle mx-auto mb-15" style="border: 1px solid #ddd;background-color: {{$color->color_code}}"></div>
+                            <div class="item item-circle mx-auto mb-15"
+                                style="border: 1px solid #ddd;background-color: {{$color->color_code}}"></div>
                         </td>
                         <td class="text-center">
-                            <?php
+                            <input type="checkbox" data-toggle="toggle" data-on="active" data-off="inactive"
+                                data="{{$color->id}}" id="color" {{$color->status=1 ? 'checked' : ''}}>
+                            {{-- <?php
                             if ($color->status == 1) {
                               ?>
                               <span class="badge badge-success">Active</span>
@@ -39,16 +42,19 @@
                                 <span class="badge badge-danger">Deactive</span>
                                 <?php
                             }
-                            ?>
+                            ?> --}}
                         </td>
                         <td class="text-center">
                             <a class="btn btn-sm btn-secondary m-5" href="{{route('color-code.edit',$color->id)}}">
                                 <i class="fa fa-pencil text-primary mr-5"></i> Edit
                             </a>
-                            <a class="btn btn-sm btn-secondary m-5" href="{{route('color-code.status',$color->id)}}">
-                                <i class="fa fa-refresh mr-5 {{$color->status == 1 ? 'text-success' :' text-warning'}}"></i> Status
-                            </a>
-                            <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('color-code.delete',$color->id)}}" data="{{$color->id}}" id="delete" type="button">
+                            {{-- <a class="btn btn-sm btn-secondary m-5" href="{{route('color-code.status',$color->id)}}">
+                            <i class="fa fa-refresh mr-5 {{$color->status == 1 ? 'text-success' :' text-warning'}}"></i>
+                            Status
+                            </a> --}}
+                            <a class="btn btn-sm btn-secondary m-5 delete-confirm"
+                                href="{{route('color-code.delete',$color->id)}}" data="{{$color->id}}" id="delete"
+                                type="button">
                                 <i class="fa fa-times text-danger mr-5"></i> Delete
                             </a>
                         </td>
@@ -62,8 +68,8 @@
 
 @endsection
 @section('script')
-    <script type="text/javascript">
-        $.ajaxSetup({
+<script type="text/javascript">
+    $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
@@ -95,5 +101,28 @@
                 }
             });
         });
-    </script>
+</script>
+<script type="text/javascript">
+    $(document).on("change","#color",function(){
+var id=$(this).attr('data');
+if(this.checked)
+{
+    status=1
+}else{
+    status=0
+}
+$.ajax({
+    url:"/admin/color-code/status/"+id+'/'+status,
+    type:"get",
+    datatype:"json",
+    success:function(response)
+    {
+       toastr.success("Status Change Successfully", "Success");
+               console.log(response);
+    }
+
+});
+});
+
+</script>
 @endsection

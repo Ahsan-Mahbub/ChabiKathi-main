@@ -67,17 +67,12 @@ class SliderController extends Controller
      * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function status($id)
+    public function status($id,$status)
     {
-        $status = Slider::findOrFail($id);
-        if ($status->status == 0) {
-            $status->status = 1;
-        } else {
-            $status->status = 0;
-        }
-        $status->save();
-        Toastr::success('Status Change Successfully', 'Success');
-        return redirect()->back();
+        $slider_status = Slider::findOrFail($id);
+        $slider_status->status=$status;
+        $slider_status->save();
+        return response()->json(['message'=>'success']);
     }
 
     /**

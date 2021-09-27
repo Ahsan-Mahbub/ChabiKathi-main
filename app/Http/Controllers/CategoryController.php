@@ -61,17 +61,18 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function status($id)
+    public function status($id,$status)
     {
         $cat_status = Category::findOrFail($id);
-        if ($cat_status->status == 0) {
-            $cat_status->status = 1;
-        } else {
-            $cat_status->status = 0;
-        }
+        // if ($cat_status->status == 0) {
+        //     $cat_status->status = 1;
+        // } else {
+        //     $cat_status->status = 0;
+        // }
+        $cat_status->status=$status;
         $cat_status->save();
-        Toastr::success('Status Change Successfully', 'Success');
-        return redirect()->back();
+        // Toastr::success('Status Change Successfully', 'Success');
+        return response()->json(['message'=>'success']);
     }
 
     /**

@@ -59,17 +59,12 @@ class ColorController extends Controller
      * @param  \App\Models\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function status($id)
+    public function status($id,$status)
     {
-        $status = Color::findOrFail($id);
-        if ($status->status == 0) {
-            $status->status = 1;
-        } else {
-            $status->status = 0;
-        }
-        $status->save();
-        Toastr::success('Status Change Successfully', 'Success');
-        return redirect()->back();
+        $color_status = Color::findOrFail($id);
+        $color_status->status=$status;
+        $color_status->save();
+        return response()->json(['message'=>'success']);
     }
 
     /**

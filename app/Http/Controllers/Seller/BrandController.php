@@ -61,17 +61,18 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function status($id)
+    public function status($id,$status)
     {
-        $status = Brand::findOrFail($id);
-        if ($status->status == 0) {
-            $status->status = 1;
-        } else {
-            $status->status = 0;
-        }
-        $status->save();
-        Toastr::success('Status Change Successfully', 'Success');
-        return redirect()->back();
+        $brand_status = Brand::findOrFail($id);
+        // if ($status->status == 0) {
+        //     $status->status = 1;
+        // } else {
+        //     $status->status = 0;
+        // }
+        $brand_status->status=$status;
+        $brand_status->save();
+        // Toastr::success('Status Change Successfully', 'Success');
+        return response()->json(['message'=>'success']);
     }
 
     /**

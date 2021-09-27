@@ -37,26 +37,25 @@
                         <td class="font-w600 text-center">{{$category->slug}}</td>
                         <td class="text-center">{{$category->category_priority}}</td>
                         <td class="text-center">
-                            <?php
-                            if ($category->status == 1) {
-                              ?>
-                              <span class="badge badge-success">Active</span>
-                              <?php
-                            }else{
-                                ?>
-                                <span class="badge badge-danger">Deactive</span>
-                                <?php
-                            }
-                            ?>
+
+                            <input type="checkbox" data-toggle="toggle" data-on="Active" data-off="Inactive"
+                                id="cat_status" data="{{$category->id}}" {{$category->status==1 ? 'checked' : ''}}>
+
+
+
                         </td>
                         <td class="text-center">
                             <a class="btn btn-sm btn-secondary m-5" href="{{route('category.edit',$category->id)}}">
                                 <i class="fa fa-pencil text-primary mr-5"></i> Edit
                             </a>
-                            <a class="btn btn-sm btn-secondary m-5" href="{{route('category.status',$category->id)}}">
-                                <i class="fa fa-refresh mr-5 {{$category->status == 1 ? 'text-success' :' text-warning'}}"></i> Status
-                            </a>
-                            <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('category.delete',$category->id)}}" data="{{$category->id}}" id="delete" type="button">
+                            {{-- <a class="btn btn-sm btn-secondary m-5" href="{{route('category.status',$category->id)}}">
+                            <i
+                                class="fa fa-refresh mr-5 {{$category->status == 1 ? 'text-success' :' text-warning'}}"></i>
+                            Status
+                            </a> --}}
+                            <a class="btn btn-sm btn-secondary m-5 delete-confirm"
+                                href="{{route('category.delete',$category->id)}}" data="{{$category->id}}" id="delete"
+                                type="button">
                                 <i class="fa fa-times text-danger mr-5"></i> Delete
                             </a>
                         </td>
@@ -74,8 +73,8 @@
 <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 {!! Toastr::message() !!} -->
 
-    <script type="text/javascript">
-        $.ajaxSetup({
+<script type="text/javascript">
+    $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
@@ -107,5 +106,28 @@
                 }
             });
         });
-    </script>
+</script>
+
+<script type="text/javascript">
+    $(document).on("change","#cat_status",function(){
+    var id=$(this).attr('data');
+    if(this.checked){
+        var status=1;
+    }else{
+        var status=0;
+    }
+    $.ajax({
+            url: '/admin/category/status/'+id+'/'+status,
+            type: 'get',
+            dataType: 'json',
+            success: function(response) {
+                toastr.success("Status Change Successfully", "Success");
+               console.log(response);
+            }
+ 
+    });
+
+});
+
+</script>
 @endsection

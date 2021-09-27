@@ -28,32 +28,23 @@
                         <td class="font-w600 text-center">{{$brand->brand_name}}</td>
                         <td class="font-w600 text-center">{{$brand->slug}}</td>
                         <td class="text-center">
-                            <?php
-                            if ($brand->status == 1) {
-                              ?>
-                              <span class="badge badge-success">Active</span>
-                              <?php
-                            }else{
-                                ?>
-                                <span class="badge badge-danger">Deactive</span>
-                                <?php
-                            }
-                            ?>
+                            <input type="checkbox" data-toggle="toggle" data-on="Active" data-off="Inactive" id="brand"
+                                data="{{$brand->id}}" {{$brand->status==1 ? 'checked' : ''}}>
                         </td>
                         <td class="text-center">
                             <?php
                                 if ($brand->approval == 0) {
                                     ?>
-                                    <a class="btn btn-sm btn-secondary m-5" href="{{route('brand.approval',$brand->id)}}">
-                                        <i class="fa fa-check text-danger mr-5"></i> Approval
-                                    </a>
-                                    <?php
+                            <a class="btn btn-sm btn-secondary m-5" href="{{route('brand.approval',$brand->id)}}">
+                                <i class="fa fa-check text-danger mr-5"></i> Approval
+                            </a>
+                            <?php
                                  } 
                             ?>
-                            <a class="btn btn-sm btn-secondary m-5" href="{{route('brand.status',$brand->id)}}">
-                                <i class="fa fa-refresh mr-5 {{$brand->status == 1 ? 'text-success' :' text-warning'}}"></i> Status
-                            </a>
-                            <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('brand.delete',$brand->id)}}" data="{{$brand->id}}" id="delete" type="button">
+
+                            <a class="btn btn-sm btn-secondary m-5 delete-confirm"
+                                href="{{route('brand.delete',$brand->id)}}" data="{{$brand->id}}" id="delete"
+                                type="button">
                                 <i class="fa fa-times text-danger mr-5"></i> Delete
                             </a>
                         </td>
@@ -67,8 +58,8 @@
 
 @endsection
 @section('script')
-    <script type="text/javascript">
-        $.ajaxSetup({
+<script type="text/javascript">
+    $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
@@ -100,5 +91,29 @@
                 }
             });
         });
-    </script>
+</script>
+
+<script type="text/javascript">
+    $(document).on("change","#brand",function(){
+var id=$(this).attr('data');
+if(this.checked)
+{
+    status=1
+}else{
+    status=0
+}
+$.ajax({
+    url:"/admin/brand/status/"+id+'/'+status,
+    type:"get",
+    datatype:"json",
+    success:function(response)
+    {
+       toastr.success("Status Change Successfully", "Success");
+               console.log(response);
+    }
+
+});
+});
+
+</script>
 @endsection
