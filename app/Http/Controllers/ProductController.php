@@ -117,17 +117,12 @@ class ProductController extends Controller
         return view('backend.product.show', compact('product'));
     }
 
-    public function status($id)
+    public function status($id,$status)
     {
         $product_status = Product::findOrFail($id);
-        if ($product_status->status == 0) {
-            $product_status->status = 1;
-        } else {
-            $product_status->status = 0;
-        }
+        $product_status->status=$status;
         $product_status->save();
-        Toastr::success('Status Change Successfully', 'Success');
-        return redirect()->back();
+        return response()->json(['message'=>'success']);
     }
 
     public function approval($id)

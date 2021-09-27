@@ -57,17 +57,12 @@ class WeightController extends Controller
      * @param  \App\Models\Weight  $weight
      * @return \Illuminate\Http\Response
      */
-    public function status($id)
+    public function status($id,$status)
     {
-        $status = Weight::findOrFail($id);
-        if ($status->status == 0) {
-            $status->status = 1;
-        } else {
-            $status->status = 0;
-        }
-        $status->save();
-        Toastr::success('Status Change Successfully', 'Success');
-        return redirect()->back();
+        $weight_status = Weight::findOrFail($id);
+        $weight_status->status=$status;
+        $weight_status->save();
+        return response()->json(['message'=>'success']);
     }
 
     /**

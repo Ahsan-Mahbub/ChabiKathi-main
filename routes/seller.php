@@ -58,7 +58,7 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
         Route::get('/list', [BrandController::class, 'index'])->name('brand.list');
         Route::get('create', [BrandController::class, 'create'])->name('brand.create');
         Route::post('store', [BrandController::class, 'store'])->name('brand.store');
-        Route::get('status/{id}', [BrandController::class, 'status'])->name('brand.status');
+        Route::get('status/{id}/{status}', [BrandController::class, 'status'])->name('brand.status');
         Route::get('edit/{id}', [BrandController::class, 'edit'])->name('brand.edit');
         Route::post('update/{id}', [BrandController::class, 'update'])->name('brand.update');
         Route::delete('delete/{id}', [BrandController::class, 'destroy'])->name('brand.delete');

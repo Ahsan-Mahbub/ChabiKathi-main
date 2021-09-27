@@ -46,17 +46,12 @@ class ShopController extends Controller
      * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function status($id)
+    public function status($id,$status)
     {
-        $status = Shop::findOrFail($id);
-        if ($status->status == 0) {
-            $status->status = 1;
-        } else {
-            $status->status = 0;
-        }
-        $status->save();
-        Toastr::success('Status Change Successfully', 'Success');
-        return redirect()->back();
+        $Shop_status = Shop::findOrFail($id);
+        $Shop_status->status=$status;
+        $Shop_status->save();
+        return response()->json(['message'=>'success']);
     }
 
     public function approval($id)
