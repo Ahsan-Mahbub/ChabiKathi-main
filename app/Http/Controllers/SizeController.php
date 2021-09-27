@@ -57,17 +57,12 @@ class SizeController extends Controller
      * @param  \App\Models\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function status($id)
+    public function status($id,$status)
     {
-        $status = Size::findOrFail($id);
-        if ($status->status == 0) {
-            $status->status = 1;
-        } else {
-            $status->status = 0;
-        }
-        $status->save();
-        Toastr::success('Status Change Successfully', 'Success');
-        return redirect()->back();
+        $size_status = Size::findOrFail($id);
+        $size_status->status=$status;
+        $size_status->save();
+        return response()->json(['message'=>'success']);
     }
 
     /**

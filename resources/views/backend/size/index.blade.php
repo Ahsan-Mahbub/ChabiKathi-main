@@ -25,26 +25,17 @@
                         <td class="text-center">{{$sl++}}</td>
                         <td class="font-w600 text-center">{{$size->size_name}}</td>
                         <td class="text-center">
-                            <?php
-                            if ($size->status == 1) {
-                              ?>
-                              <span class="badge badge-success">Active</span>
-                              <?php
-                            }else{
-                                ?>
-                                <span class="badge badge-danger">Deactive</span>
-                                <?php
-                            }
-                            ?>
+                            <input type="checkbox" data-toggle="toggle" data-on="Active" data-off="Inactive" id="size"
+                                data="{{$size->id}}" {{$size->status==1 ? 'checked' : ''}}>
                         </td>
                         <td class="text-center">
                             <a class="btn btn-sm btn-secondary m-5" href="{{route('size.edit',$size->id)}}">
                                 <i class="fa fa-pencil text-primary mr-5"></i> Edit
                             </a>
-                            <a class="btn btn-sm btn-secondary m-5" href="{{route('size.status',$size->id)}}">
-                                <i class="fa fa-refresh mr-5 {{$size->status == 1 ? 'text-success' :' text-warning'}}"></i> Status
-                            </a>
-                            <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('size.delete',$size->id)}}" data="{{$size->id}}" id="delete" type="button">
+
+                            <a class="btn btn-sm btn-secondary m-5 delete-confirm"
+                                href="{{route('size.delete',$size->id)}}" data="{{$size->id}}" id="delete"
+                                type="button">
                                 <i class="fa fa-times text-danger mr-5"></i> Delete
                             </a>
                         </td>
@@ -58,8 +49,8 @@
 
 @endsection
 @section('script')
-    <script type="text/javascript">
-        $.ajaxSetup({
+<script type="text/javascript">
+    $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
@@ -91,5 +82,29 @@
                 }
             });
         });
-    </script>
+</script>
+
+<script type="text/javascript">
+    $(document).on("change","#size",function(){
+var id=$(this).attr('data');
+if(this.checked)
+{
+    status=1
+}else{
+    status=0
+}
+$.ajax({
+    url:"/admin/size/status/"+id+'/'+status,
+    type:"get",
+    datatype:"json",
+    success:function(response)
+    {
+       toastr.success("Status Change Successfully", "Success");
+               console.log(response);
+    }
+
+});
+});
+
+</script>
 @endsection

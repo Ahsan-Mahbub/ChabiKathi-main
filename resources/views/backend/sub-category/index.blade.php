@@ -31,7 +31,9 @@
                             {{$subcategory->parent? $subcategory->parent->category_name : 'null'}}
                         </td>
                         <td class="text-center">
-                            <?php
+                            <input type="checkbox" data-toggle="toggle" data-on="active" data-off="inactive"
+                                id="subcategory" data="{{$subcategory->id}}" {{$subcategory->status=1 ?'checked': ''}}>
+                            {{-- <?php
                             if ($subcategory->status == 1) {
                               ?>
                               <span class="badge badge-success">Active</span>
@@ -41,16 +43,22 @@
                                 <span class="badge badge-danger">Deactive</span>
                                 <?php
                             }
-                            ?>
+                            ?> --}}
                         </td>
                         <td class="text-center">
-                           <a class="btn btn-sm btn-secondary m-5" href="{{route('sub-category.edit',$subcategory->id)}}">
+                            <a class="btn btn-sm btn-secondary m-5"
+                                href="{{route('sub-category.edit',$subcategory->id)}}">
                                 <i class="fa fa-pencil text-primary mr-5"></i> Edit
                             </a>
-                            <a class="btn btn-sm btn-secondary m-5" href="{{route('sub-category.status',$subcategory->id)}}">
-                                <i class="fa fa-refresh mr-5 {{$subcategory->status == 1 ? 'text-success' :' text-warning'}}"></i> Status
-                            </a>
-                            <a class="btn btn-sm btn-secondary m-5 delete-confirm" href="{{route('sub-category.delete',$subcategory->id)}}" data="{{$subcategory->id}}" id="delete" type="button">
+                            {{-- <a class="btn btn-sm btn-secondary m-5"
+                                href="{{route('sub-category.status',$subcategory->id)}}">
+                            <i
+                                class="fa fa-refresh mr-5 {{$subcategory->status == 1 ? 'text-success' :' text-warning'}}"></i>
+                            Status
+                            </a> --}}
+                            <a class="btn btn-sm btn-secondary m-5 delete-confirm"
+                                href="{{route('sub-category.delete',$subcategory->id)}}" data="{{$subcategory->id}}"
+                                id="delete" type="button">
                                 <i class="fa fa-times text-danger mr-5"></i> Delete
                             </a>
                         </td>
@@ -64,8 +72,8 @@
 @endsection
 @section('script')
 
-    <script type="text/javascript">
-        $.ajaxSetup({
+<script type="text/javascript">
+    $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
@@ -97,5 +105,30 @@
                 }
             });
         });
-    </script>
+</script>
+
+<script type="text/javascript">
+    $(document).on('change','#subcategory', function(){
+    var id=$(this).attr('data');
+    if(this.checked)
+    {
+        var status=1
+    }
+    else{
+        var status=0
+    }
+$.ajax({
+    url:"/admin/sub-category/status/"+id+'/'+status,
+    type:"get",
+    datatype:"json",
+    success:function(response){
+        toastr.success("Status Change Successfully", "Success");
+               console.log(response);
+               
+    }
+});
+
+
+});
+</script>
 @endsection

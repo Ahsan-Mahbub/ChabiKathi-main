@@ -60,17 +60,25 @@ class SubCategoryController extends Controller
      * @param  \App\Models\SubCategory  $subCategory
      * @return \Illuminate\Http\Response
      */
-    public function status($id)
+    // public function status($id)
+    // {
+    //     $s_cat_status = SubCategory::findOrFail($id);
+    //     if ($s_cat_status->status == 0) {
+    //         $s_cat_status->status = 1;
+    //     } else {
+    //         $s_cat_status->status = 0;
+    //     }
+    //     $s_cat_status->save();
+    //     Toastr::success('Status Change Successfully', 'Success');
+    //     return redirect()->back();
+    // }
+
+    public function status($id,$status)
     {
-        $s_cat_status = SubCategory::findOrFail($id);
-        if ($s_cat_status->status == 0) {
-            $s_cat_status->status = 1;
-        } else {
-            $s_cat_status->status = 0;
-        }
-        $s_cat_status->save();
-        Toastr::success('Status Change Successfully', 'Success');
-        return redirect()->back();
+        $sub_status=SubCategory::findorFail($id);
+        $sub_status->status=$status;
+        $sub_status->save();
+        return response()->json(['message'=>'success']);
     }
 
     /**
