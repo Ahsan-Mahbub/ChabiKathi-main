@@ -11,6 +11,7 @@ use App\Http\Controllers\fontController\ShopProductController;
 // Backend-Controller
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\SubSubCategoryController;
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
@@ -79,6 +80,16 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('edit/{id}', [SubCategoryController::class, 'edit'])->name('sub-category.edit');
         Route::post('update/{id}', [SubCategoryController::class, 'update'])->name('sub-category.update');
         Route::delete('delete/{id}', [SubCategoryController::class, 'destroy'])->name('sub-category.delete');
+    });
+    // Sub Sub Category Route
+    Route::group(['prefix' => 'sub-sub-category'], function () {
+        Route::get('/list', [SubSubCategoryController::class, 'index'])->name('sub-sub-category.list');
+        Route::get('create', [SubSubCategoryController::class, 'create'])->name('sub-sub-category.create');
+        Route::post('store', [SubSubCategoryController::class, 'store'])->name('sub-sub-category.store');
+        Route::get('status/{id}/{status}', [SubSubCategoryController::class, 'status'])->name('sub-sub-category.status');
+        Route::get('edit/{id}', [SubSubCategoryController::class, 'edit'])->name('sub-sub-category.edit');
+        Route::post('update/{id}', [SubSubCategoryController::class, 'update'])->name('sub-sub-category.update');
+        Route::delete('delete/{id}', [SubSubCategoryController::class, 'destroy'])->name('sub-sub-category.delete');
     });
     //Commission Route
     Route::group(['prefix' => 'commission'], function () {

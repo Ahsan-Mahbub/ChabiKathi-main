@@ -21,6 +21,7 @@ class CreateSellersTable extends Migration
             $table->string('contact');
             $table->string('password');
             $table->string('banner')->nullable();
+            $table->string('address')->nullable();
             $table->integer('status')->default(0);
             $table->integer('approve')->default(0);
             $table->rememberToken();

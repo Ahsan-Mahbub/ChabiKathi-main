@@ -104,14 +104,14 @@
         }
         
         $.ajax({
-                url: '/seller/holiday/'+id+'/'+holiday,
-                type: 'get',
-                dataType: 'json',
-                success: function(response) {
-                    toastr.success("Status Change Successfully", "Success");
-                   console.log(response);
-                }
-     
+            url: '/seller/holiday/'+id+'/'+holiday,
+            type: 'get',
+            dataType: 'json',
+            success: function(response) {
+                toastr.success("Holiday Mood Change Successfully", "Success");
+               console.log(response);
+            }
+ 
         });
     
     });
