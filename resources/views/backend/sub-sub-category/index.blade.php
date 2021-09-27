@@ -95,17 +95,14 @@
             var status=0;
         }
         $.ajax({
-                url: '/admin/sub-sub-category/status/'+id+'/'+status,
-                type: 'get',
-                dataType: 'json',
-                success: function(response) {
-                    toastr.success("Status Change Successfully", "Success");
-                   console.log(response);
-                }
-     
+            url: '/admin/sub-sub-category/status/'+id+'/'+status,
+            type: 'get',
+            dataType: 'json',
+            success: function(response) {
+                toastr.success("Status Change Successfully", "Success");
+               console.log(response);
+            }
         });
-
     });
-
     </script>
 @endsection
