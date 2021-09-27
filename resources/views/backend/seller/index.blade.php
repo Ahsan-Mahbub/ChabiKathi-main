@@ -14,6 +14,7 @@
                         <th class="text-center"> Seller Last Name</th>
                         <th class="text-center"> Email</th>
                         <th class="text-center"> Phone</th>
+                        <th class="text-center"> Address</th>
                         <th class="text-center" style="width: 15%;">Status</th>
                         <th class="text-center">Action</th>
                     </tr>
@@ -27,6 +28,7 @@
                         <td class="font-w600 text-center">{{$seller->last_name}}</td>
                         <td class="font-w600 text-center">{{$seller->email}}</td>
                         <td class="font-w600 text-center">{{$seller->contact}}</td>
+                        <td class="font-w600 text-center">{{$seller->address}}</td>
                         <td class="text-center">
                             <input type="checkbox" data-toggle="toggle" data-on="Active" data-off="Inactive" id="seller"
                                 data="{{$seller->id}}" {{$seller->status==1 ? 'checked' : ''}}>

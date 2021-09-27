@@ -38,6 +38,7 @@ class ProfileController extends Controller
             $data = [
                 'first_name'   => $request->first_name,
                 'last_name'   => $request->last_name,
+                'address'   => $request->address,
                 'contact'=> $request->contact,
                 'banner'  =>$image,
             ];
@@ -45,6 +46,7 @@ class ProfileController extends Controller
     		$data = [
                 'first_name'   => $request->first_name,
                 'last_name'   => $request->last_name,
+                'address'   => $request->address,
                 'contact'=> $request->contact,
                 'banner'  =>$image,
                 'password'=> bcrypt($request->password),
@@ -53,6 +55,7 @@ class ProfileController extends Controller
         	$data = [
                 'first_name'   => $request->first_name,
                 'last_name'   => $request->last_name,
+                'address'   => $request->address,
                 'contact'=> $request->contact,
                 'password' => auth('seller')->user()->password,
             ];

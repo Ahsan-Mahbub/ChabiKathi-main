@@ -114,6 +114,7 @@
                             <div class="form-material">
                                 <select class="form-control" id="shop_id" name="shop_id" required=""
                                     onclick="getBrand()">
+                                    <option selected="">Select Shop</option>
                                     <option value="{{$shop->id}}">{{$shop->shop_name}} </option>
                                 </select>
                                 <label for="shop_id">Select Shop<span class="text-danger">*</span></label>

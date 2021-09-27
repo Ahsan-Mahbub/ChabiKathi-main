@@ -20,9 +20,6 @@ class Category extends Model
         return $this->hasMany(SubCategory::class,'category_id')->where('status',1);
     }
 
-    // public function products(){
-    //     return $this->hasMany(Product::class);
-    // }
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');

@@ -8,6 +8,7 @@ use App\Models\Slider;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Shop;
+use App\Models\Stock;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,12 @@ class HomeController extends Controller
                 $category->product = $category->product->take(6);
             return $category;
         });
-        //dd($products);
-        return view('fontend.pages.home', compact('products','shops'));
+
+        $stocks = Stock::groupBy('product_id')
+            ->selectRaw('sum(quantity) as sum, product_id')
+            ->get();
+        // dd($stocks);
+        return view('fontend.pages.home', compact('products','shops','stocks'));
     }
 
     public function campaign(){

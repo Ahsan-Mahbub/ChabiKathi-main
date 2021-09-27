@@ -111,6 +111,19 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="">
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span
+                                    class="sidebar-mini-hide">Sub Sub Category</span></a>
+                            <ul>
+                                <li>
+                                    <a href="{{route('sub-sub-category.list')}}"><span class="sidebar-mini-hide">Sub Sub
+                                            Categories List</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{route('sub-sub-category.create')}}"><span class="sidebar-mini-hide">Add Sub Sub Category</span></a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li>

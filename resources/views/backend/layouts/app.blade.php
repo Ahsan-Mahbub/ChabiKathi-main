@@ -33,35 +33,29 @@
     <link rel="stylesheet" href="{{ asset('asset/backend/assets/js/plugins/slick/slick.css')}}">
     <link rel="stylesheet" href="{{ asset('asset/backend/assets/js/plugins/slick/slick-theme.css')}}">
 
-    <!-- Fonts and Codebase framework -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700&display=swap">
-    <link rel="stylesheet" id="css-main" href="{{ asset('asset/backend/assets/css/codebase.min.css')}}">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <!-- Stylesheets -->
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{ asset('asset/backend/assets/js/plugins/datatables/dataTables.bootstrap4.css')}}">
-    <link rel="stylesheet" href="{{ asset('js/toastr.min.css') }}">
-    <style type="text/css">
-        .toggle-group .btn-default {
-            background-color: #8a2a2a;
-            border: none;
-            color: #fff;
-            font-weight: 800;
-        }
+        <!-- Stylesheets -->
+        <!-- Page JS Plugins CSS -->
+        <link rel="stylesheet" href="{{ asset('asset/backend/assets/js/plugins/datatables/dataTables.bootstrap4.css')}}">
+        <link rel="stylesheet" href="{{ asset('js/toastr.min.css') }}">
+        <style type="text/css">
+            .toggle-group .btn-default {
+                background-color: #8a2a2a;
+                border: none;
+                color: #fff;
+                font-weight: 800;
+            }
 
-        .toggle-group .btn-primary {
-            background-color: #224022;
-            border: none;
-            font-weight: 800;
-        }
-    </style>
-</head>
-
-<body>
-    @stack('css')
-    <!-- Page Container -->
-    <div id="page-container" class="sidebar-o enable-page-overlay side-scroll page-header-modern main-content-boxed">
+            .toggle-group .btn-primary {
+                background-color: #224022;
+                border: none;
+                font-weight: 800;
+            }
+        </style>
+    </head>
+    <body>
+    	@stack('css')
+        <!-- Page Container -->
+        <div id="page-container" class="sidebar-o enable-page-overlay side-scroll page-header-modern main-content-boxed">
         @include('backend.layouts.sidebar')
         @include('backend.layouts.header')
         @yield('content')
