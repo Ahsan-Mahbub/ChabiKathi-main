@@ -56,7 +56,7 @@
                 <ul class="list-inline mt-10">
                     <li class="list-inline-item">
                         <a class="link-effect text-dual-primary-dark font-size-sm font-w600 text-uppercase"
-                            href="be_pages_generic_profile.html">{{Auth::user()->name}}</a>
+                            href="{{route('profile')}}">{{Auth::user()->name}}</a>
                     </li>
                     <li class="list-inline-item">
                         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
@@ -206,6 +206,8 @@
                     <a href="{{route('stock.list')}}"><i class="si si-basket-loaded"></i>Stock List</a>
                 </li>
 
+                <li class="nav-main-heading"><span class="sidebar-mini-visible">S.S</span><span
+                        class="sidebar-mini-hidden">Seller Section</span></li>
                 <li>
                     <a href="{{route('seller.list')}}"><i class="si si-users"></i>Seller List</a>
                 </li>
@@ -218,6 +220,8 @@
                     <a href="{{route('brand.list')}}"><i class="si si-badge"></i>Brand List</a>
                 </li>
 
+                <li class="nav-main-heading"><span class="sidebar-mini-visible">A.S</span><span
+                        class="sidebar-mini-hidden">Admin Section</span></li>
                 <li>
                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-user"></i><span
                             class="sidebar-mini-hide">Admin</span></a>
@@ -227,6 +231,18 @@
                         </li>
                         <li>
                             <a href="{{route('admin.create')}}">Add Admin</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-shuffle"></i><span
+                            class="sidebar-mini-hide">RBAC</span></a>
+                    <ul>
+                        <li>
+                            <a href="#">RBAC 1</a>
+                        </li>
+                        <li>
+                            <a href="#">RBAC 2</a>
                         </li>
                     </ul>
                 </li>

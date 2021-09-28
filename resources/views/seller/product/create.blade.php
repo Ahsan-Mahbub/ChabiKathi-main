@@ -67,10 +67,18 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="subcategory_id" name="subcategory_id">
+                                <select class="form-control" id="subcategory_id" name="subcategory_id" onclick="getSubSubCategory()">
                                     <option value="0">Select</option>
                                 </select>
                                 <label for="subcategory_id">Select Sub Category</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-material">
+                                <select class="form-control" id="subsubcategory_id" name="subsubcategory_id">
+                                    <option value="0">Select</option>
+                                </select>
+                                <label for="subsubcategory_id">Select Sub Category</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -203,6 +211,25 @@
                     html+='<option value='+element.id+'>'+element.sub_category_name+'</option>'
                 });
                 $("#subcategory_id").html(html);
+            }
+        });
+    }
+
+    function getSubSubCategory(){
+        let id = $("#subcategory_id").val();
+        // alert(id);
+        let url = '/admin/product/subsubcategory/'+id;
+        $.ajax({
+            type: "get",
+            url: url,
+            dataType: "json",
+            success: function (response) {
+                let html = '';
+                console.log(response)
+                response.forEach(element => {
+                    html+='<option value='+element.id+'>'+element.sub_sub_category_name+'</option>'
+                });
+                $("#subsubcategory_id").html(html);
             }
         });
     }
