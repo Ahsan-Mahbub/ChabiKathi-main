@@ -36,7 +36,7 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="text" class="form-control" id="product_slug" name="product_slug" placeholder="Enter Product Slug.." required="">
+                                <input type="text" class="form-control" id="product_slug" name="slug" placeholder="Enter Product Slug.." required="">
                                 <label for="product_slug">Product Slug <span class="text-danger">*</span></label>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="subcategory_id" name="subcategory_id">
+                                <select class="form-control" id="subcategory_id" name="subcategory_id" onclick="getSubSubCategory()">
                                     <option value="0">Select</option>
                                 </select>
                                 <label for="subcategory_id">Select Sub Category</label>
@@ -67,8 +67,16 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
+                                <select class="form-control" id="subsubcategory_id" name="subsubcategory_id">
+                                    <option value="0">Select</option>
+                                </select>
+                                <label for="subsubcategory_id">Select Sub Sub Category</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-material">
                                 <input type="number" class="form-control" id="totalprice" name="price" placeholder="Enter Product Price.." required="">
-                                <label for="totalprice">Product Price <span class="text-danger">*</span> </label>
+                                <label for="totalprice">Product Sell Price <span class="text-danger">*</span> </label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -88,6 +96,7 @@
                             <div class="form-group">
                                 <div class="form-material">
                                     <input type="number" id="afterdis" class="form-control" disabled="">
+                                    <input type="hidden" id="afterdishidden" class="form-control" name="discounted_price">
                                     <label for="Discount">After Percentage Total Price</label>
                                 </div>
                             </div>
@@ -116,6 +125,20 @@
                                     <option value="0" selected="">Select Brand</option>
                                 </select>
                                 <label for="brand_id">Select Brand</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-12">Is Veriation ?</label>
+                            <div class="col-12">
+                                <div class="custom-control custom-radio custom-control-inline mb-5">
+                                    <input class="custom-control-input" type="radio" name="is_veriation" id="example-inline-radio1" value="1">
+                                    <label class="custom-control-label" for="example-inline-radio1">Has Veriation?</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline mb-5">
+                                    <input class="custom-control-input" type="radio" name="is_veriation" id="example-inline-radio2" value="0">
+                                    <label class="custom-control-label" for="example-inline-radio2">No Veriation</label>
+                                </div>
                             </div>
                         </div>
 
@@ -169,6 +192,7 @@
 
         $('#disval').val(perc);
         $('#afterdis').val(total);
+        $('#afterdishidden').val(total);
 
     }
 
@@ -190,6 +214,25 @@
                     html+='<option value='+element.id+'>'+element.sub_category_name+'</option>'
                 });
                 $("#subcategory_id").html(html);
+            }
+        });
+    }
+
+    function getSubSubCategory(){
+        let id = $("#subcategory_id").val();
+        // alert(id);
+        let url = '/admin/product/subsubcategory/'+id;
+        $.ajax({
+            type: "get",
+            url: url,
+            dataType: "json",
+            success: function (response) {
+                let html = '';
+                console.log(response)
+                response.forEach(element => {
+                    html+='<option value='+element.id+'>'+element.sub_sub_category_name+'</option>'
+                });
+                $("#subsubcategory_id").html(html);
             }
         });
     }

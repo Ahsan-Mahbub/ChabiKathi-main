@@ -17,17 +17,15 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->integer('seller_id')->nullable();
             $table->string('product_name')->nullable();
-            $table->string('product_slug')->nullable();
+            $table->string('slug')->nullable();
             $table->longText('product_desc')->nullable();
             $table->integer('category_id');
             $table->integer('subcategory_id')->nullable();
-            // $table->integer('size_id')->nullable();
-            // $table->integer('weight_id')->nullable();
-            // $table->integer('color_id')->nullable();
-            // $table->integer('quantity')->default(1);
+            $table->integer('subsubcategory_id')->nullable();
             $table->integer('price');
             $table->integer('percentage')->nullable();
             $table->integer('discount')->nullable();
+            $table->integer('discounted_price')->nullable();
             $table->string('sku')->nullable();
             $table->integer('brand_id')->nullable();
             $table->integer('shop_id')->nullable();
@@ -36,6 +34,7 @@ class CreateProductsTable extends Migration
             $table->string('product_img_3')->nullable();
             $table->integer('status')->default(1);
             $table->integer('approval')->default(0);
+            $table->integer('is_veriation')->default(0);
             $table->timestamps();
         });
     }

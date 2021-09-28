@@ -156,6 +156,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('update/{id}', [ProductController::class, 'update'])->name('product.update');
         Route::delete('delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
         Route::get('subcategory/{id}', [ProductController::class, 'subcategory'])->name('product.subcategory');
+        Route::get('subsubcategory/{id}', [ProductController::class, 'subsubcategory'])->name('product.subsubcategory');
+
         Route::get('brand/{id}', [ProductController::class, 'brand'])->name('product.brand');
         // Previous Product Controller
         Route::get('previous-product', [PreviousProductController::class, 'index'])->name('product.previous');

@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-md-6 col-12" style="float: right;">
                         <div class="form-material">
-                            <input value="{{$product->product_slug}}" class="form-control" disabled="">
+                            <input value="{{$product->slug}}" class="form-control" disabled="">
                             <label for="login2-username">Product Slug</label>
                         </div>
                     </div>
@@ -43,6 +43,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="col-12">
+                        <div class="form-material">
+                            <input value="{{$product->subsubcategory? $product->subsubcategory->sub_sub_category_name : 'null'}}" class="form-control" disabled="">
+                            <label for="login2-username">Sub Sub Category Name</label>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="form-group">
                 	<div class="col-12">
@@ -58,13 +66,27 @@
                 	<div class="col-md-6 col-12" style="display:inline-block;">
                         <div class="form-material">
                             <input disabled="" class="form-control" value="৳{{$product->price}}">
-                            <label for="login2-username">Product Price</label>
+                            <label for="login2-username">Product Sell Price</label>
                         </div>
                     </div>
                     <div class="col-md-6 col-12" style="float: right;">
                         <div class="form-material">
+                            <input disabled="" class="form-control" value="{{$product->percentage? $product->percentage : '0'}} %">
+                            <label for="login2-username">Percentage</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-12" style="display:inline-block;">
+                        <div class="form-material">
                             <input disabled="" class="form-control" value="৳{{$product->discount? $product->discount : '0'}}">
                             <label for="login2-username">Discount Price</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12" style="float: right;">
+                        <div class="form-material">
+                            <input disabled="" class="form-control" value="৳{{$product->discounted_price? $product->discounted_price : '0'}}">
+                            <label for="login2-username">After Discount Price</label>
                         </div>
                     </div>
                 </div>

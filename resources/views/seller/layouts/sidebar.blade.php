@@ -25,7 +25,7 @@
 
                 <!-- Logo -->
                 <div class="content-header-item">
-                    <a class="link-effect font-w700" href="index.html">
+                    <a class="link-effect font-w700" href="{{url('seller/dashboard')}}">
                         <i class="si si-fire text-primary"></i>
                         <span class="font-size-xl text-dual-primary-dark">Chabi</span><span
                             class="font-size-xl text-primary">Kathi</span>
@@ -48,7 +48,7 @@
 
             <!-- Visible only in normal mode -->
             <div class="sidebar-mini-hidden-b text-center">
-                <a class="img-link" href="{{route('profile')}}">
+                <a class="img-link" href="{{route('seller.profile')}}">
                     <img class="img-avatar"
                         src="{{auth('seller')->user()->banner==''? asset('asset/backend/assets/media/avatars/avatar15.jpg'): '/'.auth('seller')->user()->banner}}"
                         alt="">
@@ -56,7 +56,7 @@
                 <ul class="list-inline mt-10">
                     <li class="list-inline-item">
                         <a class="link-effect text-dual-primary-dark font-size-sm font-w600 text-uppercase"
-                            href="be_pages_generic_profile.html">{{auth('seller')->user()->first_name}}</a>
+                            href="{{route('seller.profile')}}">{{auth('seller')->user()->first_name}}</a>
                     </li>
                     <li class="list-inline-item">
                         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->

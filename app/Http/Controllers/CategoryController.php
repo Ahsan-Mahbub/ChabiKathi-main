@@ -40,19 +40,20 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
 
-        $validator  = $request->validate([
-            'category_name'  => 'required|unique:categories',
-            'slug'      => 'required',
-            'category_priority'     => 'required'
-        ]);
+        $validated = $request->validated();
+
+        // $validator  = $request->validate([
+        //     'category_name'  => 'required|unique:categories',
+        //     'slug'      => 'required',
+        //     'category_priority'     => 'required'
+        // ]);
 
         $category = new Category();
         $requested_data = $request->all();
         $category->status = 1;
         $category->fill($requested_data)->save();
-        Toastr::success('Save Successfully');
-        return redirect()->route('category.list')
-            ->with('success', 'Category created successfully.');
+        Toastr::success('Category Created Successfully',"Success");
+        return redirect()->route('category.list');
     }
 
     /**
@@ -94,23 +95,24 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
         $category = new Category();
-        $validation=Validator::make($request->all(),[
-            'category_name'  => 'required|unique:categories,category_name,'.$id,
-            'slug'      => 'required',
-            'category_priority'     => 'required'
-        ]);
-        if ($validation->fails()) {
-            return back()->withInput()->withErrors($validation);
-        }
+        $validated = $request->validated();
+        // $validation=Validator::make($request->all(),[
+        //     'category_name'  => 'required|unique:categories,category_name,'.$id,
+        //     'slug'      => 'required',
+        //     'category_priority'     => 'required'
+        // ]);
+        // if ($validation->fails()) {
+        //     return back()->withInput()->withErrors($validation);
+        // }
 
         $cat_update = Category::findOrFail($id);
         $formData = $request->all();
 
         $cat_update->fill($formData)->save();
-        Toastr::success('update Successfully');
+        Toastr::success('Category Updated Successfully','Success');
         return redirect()->route('category.list');
     }
 

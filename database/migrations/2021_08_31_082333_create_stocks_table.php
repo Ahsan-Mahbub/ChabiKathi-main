@@ -16,9 +16,11 @@ class CreateStocksTable extends Migration
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->integer('seller_id');
+            $table->integer('perches_price');
+            $table->integer('perches_code');
+            $table->integer('sell_price');
             $table->integer('product_id');
             $table->integer('quantity');
-            $table->integer('total_quantity')->nullable();
             $table->integer('color_id')->nullable();
             $table->integer('size_id')->nullable();
             $table->integer('weight_id')->nullable();
