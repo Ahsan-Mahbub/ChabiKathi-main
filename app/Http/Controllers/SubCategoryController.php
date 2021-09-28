@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use App\Http\Requests\SubCategoryRequest;
 use Brian2694\Toastr\Facades\Toastr;
 use Validator;
 
@@ -36,13 +37,9 @@ class SubCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubCategoryRequest $request)
     {
-        $validator  = $request->validate([
-            'sub_category_name'  => 'required|unique:sub_categories',
-            'category_id' => 'required',
-            'slug'      => 'required',
-        ]);
+       
 
         $sub_category = new SubCategory();
         $requested_data = $request->all();
@@ -100,17 +97,17 @@ class SubCategoryController extends Controller
      * @param  \App\Models\SubCategory  $subCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SubCategoryRequest $request, $id)
     {
         // $category = new SubCategory();
-        $validation=Validator::make($request->all(),[
-            'sub_category_name'  => 'required|unique:sub_categories,sub_category_name,'.$id,
-            'category_id'      => 'required',
-            'slug'     => 'required'
-        ]);
-        if ($validation->fails()) {
-            return back()->withInput()->withErrors($validation);
-        }
+        // $validation=Validator::make($request->all(),[
+        //     'sub_category_name'  => 'required|unique:sub_categories,sub_category_name,'.$id,
+        //     'category_id'      => 'required',
+        //     'slug'     => 'required'
+        // ]);
+        // if ($validation->fails()) {
+        //     return back()->withInput()->withErrors($validation);
+        // }
 
         $s_cat_update = SubCategory::findOrFail($id);
         $formData = $request->all();

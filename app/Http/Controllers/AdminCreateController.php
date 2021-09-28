@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdmincreateRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
@@ -42,14 +43,14 @@ class AdminCreateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdmincreateRequest $request)
     {
-        $validator  = $request->validate([
-            'name'  => 'required',
-            'email'  => 'required|unique:users',
-            'phone'  => 'required|min:11|numeric',
-            'password'  => 'required',
-        ]);
+        // $validator  = $request->validate([
+        //     'name'  => 'required',
+        //     'email'  => 'required|unique:users',
+        //     'phone'  => 'required|min:11|numeric',
+        //     'password'  => 'required',
+        // ]);
 
         if ($request->hasFile('image')) {
             $extension = $request->file('image')->getClientOriginalExtension();
@@ -111,12 +112,12 @@ class AdminCreateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdmincreateRequest $request, $id)
     {
-        $validator  = $request->validate([
-            'name'  => 'required',
-            'phone'  => 'required|min:11|numeric',
-        ]);
+        // $validator  = $request->validate([
+        //     'name'  => 'required',
+        //     'phone'  => 'required|min:11|numeric',
+        // ]);
 
         // $update = User::findOrFail($id);
         // $formData = $request->all();

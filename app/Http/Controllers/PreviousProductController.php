@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Http\Requests\PreviousProductRequest;
 use App\Models\Shop;
 use Toastr;
 use Validator;
@@ -41,15 +42,15 @@ class PreviousProductController extends Controller
      */
     public function store(Request $request)
     {
-        $validator  = $request->validate([
-            'product_name'  => 'required',
-            'product_slug'  => 'required',
-            'product_desc'  => 'required',
-            'category_id'  => 'required',
-            'price'  => 'required',
-            'shop_id' => 'required',
-            'seller_id' => 'required'
-        ]);
+        // $validator  = $request->validate([
+        //     'product_name'  => 'required',
+        //     'product_slug'  => 'required',
+        //     'product_desc'  => 'required',
+        //     'category_id'  => 'required',
+        //     'price'  => 'required',
+        //     'shop_id' => 'required',
+        //     'seller_id' => 'required'
+        // ]);
         $product = new Product();
         $requested_data = $request->all();
         $product->status = 1;
