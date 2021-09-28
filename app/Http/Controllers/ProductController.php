@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use App\Models\Brand;
 use App\Models\Shop;
 use Illuminate\Http\Request;
@@ -47,6 +48,12 @@ class ProductController extends Controller
         return response()->json($subcategories, 200);
     }
 
+    public function subsubcategory($id)
+    {
+        $subsubcategories = SubSubCategory::where('subcategory_id', $id)->get();
+        return response()->json($subsubcategories, 200);
+    }
+
     public function brand($id)
     {
         $brand = Brand::where('shop_id', $id)->where('status',1)->where('approval',1)->get();
@@ -60,18 +67,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+
         $validator  = $request->validate([
             'product_name'  => 'required|unique:products',
-            'product_slug'  => 'required',
+            'slug'  => 'required',
             'product_desc'  => 'required',
             'category_id'  => 'required',
             'price'  => 'required',
             'shop_id' => 'required',
         ]);
+        $shops = Shop::where('id', $request->shop_id)->first();
+        $seller = $shops->seller_id;
         $product = new Product();
         $requested_data = $request->all();
         $product->status = 1;
-        $product->product_slug = $request->product_slug;
+        $product->seller_id = $seller;
+        $product->slug = $request->slug;
         $product->approval = 0;
         $product->sku .= 'sku-' . $request->product_name . '-'.time();
 
@@ -100,9 +112,8 @@ class ProductController extends Controller
         }
         //dd($requested_data);
         $product->fill($requested_data)->save();
-        Toastr::success('Save Successfully');
-        return redirect()->route('product.list')
-            ->with('success', 'Product created successfully.');
+        Toastr::success('Product Created Successfully', 'Success');
+        return redirect()->route('product.list');
     }
 
     /**
@@ -159,7 +170,7 @@ class ProductController extends Controller
     {
         $validation=Validator::make($request->all(),[
             'product_name'  => 'required',
-            'product_slug'  => 'required',
+            'slug'  => 'required',
             'product_desc'  => 'required',
             'category_id'  => 'required',
             'price'  => 'required',
@@ -169,7 +180,7 @@ class ProductController extends Controller
         }
 
         $update = Product::findOrFail($id);
-        $update->product_slug = $request->product_slug;
+        $update->slug = $request->slug;
         $formData = $request->all();
         if ($request->hasFile('product_img')) {
             Helper::delete($update->product_img);
@@ -198,7 +209,7 @@ class ProductController extends Controller
             $formData['product_img_3'] = $path . $name;
         }
         $update->fill($formData)->save();
-        Toastr::success('Update Successfully');
+        Toastr::success('Product Update Successfully', 'Success');
         return redirect()->route('product.list');
     }
 

@@ -15,15 +15,18 @@ class Product extends Model
         'product_desc',
         'category_id',
         'subcategory_id',
+        'subsubcategory_id',
         'price',
         'percentage',
         'discount',
+        'discounted_price',
         'brand_id',
         'shop_id',
         'seller_id',
         'product_img',
         'product_img_2',
-        'product_img_3'
+        'product_img_3',
+        'is_veriation'
     ];
 
     public function category()
@@ -33,6 +36,10 @@ class Product extends Model
     public function subcategory()
     {
         return $this->belongsTo(SubCategory::class, 'subcategory_id');
+    }
+    public function subsubcategory()
+    {
+        return $this->belongsTo(SubSubCategory::class, 'subsubcategory_id');
     }
     public function brand()
     {
