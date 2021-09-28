@@ -42,26 +42,28 @@ class PreviousProductController extends Controller
      */
     public function store(Request $request)
     {
-        // $validator  = $request->validate([
-        //     'product_name'  => 'required',
-        //     'product_slug'  => 'required',
-        //     'product_desc'  => 'required',
-        //     'category_id'  => 'required',
-        //     'price'  => 'required',
-        //     'shop_id' => 'required',
-        //     'seller_id' => 'required'
-        // ]);
+        $validator  = $request->validate([
+            'product_name'  => 'required',
+            'slug'  => 'required',
+            'product_desc'  => 'required',
+            'category_id'  => 'required',
+            'price'  => 'required',
+            'shop_id' => 'required',
+            'seller_id' => 'required'
+        ]);
+        $shops = Shop::where('id', $request->shop_id)->first();
+        $seller = $shops->seller_id;
         $product = new Product();
         $requested_data = $request->all();
+        $product->seller_id = $seller;
         $product->status = 1;
         $product->approval = 0;
-        $product->product_slug = $request->product_slug . '-' . 'prv' . Str::random(5) ;
+        $product->slug = $request->slug . '-' . 'prv' . Str::random(5) ;
         $product->sku .= 'sku-' . $product->product_name.time();
         // dd($product);
         $product->fill($requested_data)->save();
-        Toastr::success('Save Successfully');
-        return redirect()->route('product.list')
-            ->with('success', 'Product created successfully.');
+        Toastr::success('Product Create Successfully','Success');
+        return redirect()->route('product.list');
     }
 
     /**

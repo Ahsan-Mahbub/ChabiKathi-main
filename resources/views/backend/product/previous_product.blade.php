@@ -73,7 +73,7 @@
 		                        </div>
 		                        <div class="form-group">
 		                            <div class="form-material">
-		                                <input type="text" class="form-control" id="product_slug" name="product_slug"
+		                                <input type="text" class="form-control" id="product_slug" name="slug"
 		                                    placeholder="Enter Product Slug.." required="">
 		                                <label for="product_slug">Product Slug <span class="text-danger">*</span></label>
 		                            </div>
@@ -88,6 +88,7 @@
 
 		                            <input class="form-control" id="category_id" name="category_id" required="" hidden="">
 		                            <input class="form-control" id="subcategory_id" name="subcategory_id" hidden="">
+		                            <input class="form-control" id="subsubcategory_id" name="subsubcategory_id" hidden="">
 		                        
 
 		                        <div class="form-group">
@@ -105,6 +106,13 @@
 		                                <label for="Discount"> Percentage (%)</label>
 		                            </div>
 		                        </div>
+		                        <div class="form-group">
+	                                <div class="form-material">
+	                                    <input type="number" id="afterdis" class="form-control" disabled="">
+	                                    <input type="hidden" id="afterdishidden" name="discounted_price">
+	                                    <label for="Discount">After Percentage Total Price</label>
+	                                </div>
+                            	</div>
 		                        <div class="form-group">
 		                            <div class="form-material">
 		                                <input type="number" class="form-control" id="discount" name="discount"
@@ -158,32 +166,39 @@
 		let product_info = $(this).data('id');
 		console.log(product_info);
 		let product_names = product_info.product_name;
-		let product_slug = product_info.product_slug;
+		let slug = product_info.slug;
 		let product_desc = product_info.product_desc;
 		let totalprice = product_info.price;
 		let percentage = product_info.percentage;
 		let discount = product_info.discount;
 		let category_id = product_info.category_id;
 		let subcategory_id = product_info.subcategory_id;
+		let subsubcategory_id = product_info.subsubcategory_id;
 		let product_img = product_info.product_img;
 		let product_img_2 = product_info.product_img_2;
 		let product_img_3 = product_info.product_img_3;
 		let seller_id = product_info.seller_id;
+		let afterdis = product_info.discounted_price;
+		let afterdishidden = product_info.discounted_price;
+
 
 		document.getElementById('seller_id').value = seller_id;
 		document.getElementById('product_name').value = product_names;
-		document.getElementById('product_slug').value = product_slug;
+		document.getElementById('product_slug').value = slug;
 		document.getElementById('product_desc').value = product_desc;
 		document.getElementById('totalprice').value = totalprice;
 		document.getElementById('percentage').value = percentage;
 		document.getElementById('discount').value = discount;
 		document.getElementById('category_id').value = category_id;
 		document.getElementById('subcategory_id').value = subcategory_id;
+		document.getElementById('subsubcategory_id').value = subsubcategory_id;
 		document.getElementById('shop_id').value = shop_id;
 		document.getElementById('brand_id').value = brand_id;
 		document.getElementById('product_img').value = product_img;
 		document.getElementById('product_img_2').value = product_img_2;
 		document.getElementById('product_img_3').value = product_img_3;
+		document.getElementById('afterdis').value = afterdis;
+		document.getElementById('afterdishidden').value = afterdishidden;
 	})
 
 	function getBrand(){
@@ -204,5 +219,42 @@
             }
         });
     }
+</script>
+<script type="text/javascript">
+    $("#product_name").keyup(function(){
+        var Text = $(this).val();
+        Text = Text.toLowerCase();
+        Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
+        $("#product_slug").val(Text);        
+    });
+</script>
+<script type="text/javascript">
+    $(function(){
+
+    $('#totalprice').on('input', function() {
+      calculate();
+    });
+    $('#percentage').on('input', function() {
+     calculate();
+    });
+    function calculate(){
+        var pPos = parseInt($('#totalprice').val()); 
+        var pEarned = parseInt($('#percentage').val());
+        var perc="";
+        if(isNaN(pPos) || isNaN(pEarned)){
+            perc=" ";
+           }else{
+           perc = ((pEarned/100) * pPos).toFixed(0);
+           var total = (pPos-perc);
+           console.log(total)
+           }
+
+        $('#discount').val(perc);
+        $('#afterdis').val(total);
+        $('#afterdishidden').val(total);
+
+    }
+
+});
 </script>
 @endsection
