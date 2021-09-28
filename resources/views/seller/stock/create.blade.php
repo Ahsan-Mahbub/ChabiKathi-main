@@ -1,12 +1,13 @@
 @extends('seller.layouts.app')
 @section('content')
 <style type="text/css">
-	.box{
-		display: contents;
+	.block{
+		margin-bottom: 0;
 	}
 </style>
 <div class="container">
 	<div class="block">
+
 	    <div class="block-header block-header-default">
 	        <h3 class="block-title text-center"> Your Shop Product</h3>
 	            <div class="block-options">
@@ -16,21 +17,34 @@
 	                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"><i class="si si-arrow-up"></i></button>
 	            </div>
 	    </div>
+	    <div class="container mt-4 mb-4">
+	    	<div class="row">
+	            @foreach($products as $value)
+	            <div class="col-md-4 col-xl-3 stock_product mb-2" data-id="{{$value}}" style="cursor: pointer;">
+	                <a class="block block-link-shadow">
+	                    <div class="block-content block-content-full text-center">
+	                        <div class="p-20 mb-10">
+	                            <img width="130" height="120" src=/{{$value->product_img}}>
+	                        </div>
+	                        <p class="font-size-lg font-w600 mb-0">
+	                            Product Name: {{ $value->product_name  }}
+	                        </p>
+	                        <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
+	                            Sell Price: {{ $value->price  }}
+	                        </p>
+	                        <p class="font-size-sm text-uppercase font-w600 text-muted mb-0">
+	                            Product Slug: {{ $value->slug  }}
+	                        </p>
+	                    </div>
+	                </a>
+	            </div>
+	            @endforeach
+	        </div>
+	    </div>
 	</div>
 </div>
+
 <div class="container">
-    <div class="col-md-12 row" id="product_filed">
-        @foreach($products as $value)
-        <div class="col-md-2 col-sm-6 col-xs-12 col-lg-2 mr-4 mb-3 stock_product" data-id="{{$value}}" style="cursor: pointer;border: 3px solid #ddd;border-radius: 5px;">
-            <div class="card text-center custom-card">
-                <img width="130" height="120" style="padding: 8px;" src=/{{$value->product_img}}>
-                <div class="card-body">
-                    <h5>{{ $value->product_name  }}</h5>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
     <section class="pagination mb-15">
         <div class="container nav-content">
         </div>
@@ -72,7 +86,7 @@
 	            <div class="row items-push">
 	            	<input type="hidden" value="{{auth('seller')->user()->id}}" id="seller_id" name="seller_id" required="">
 	            	<input type="hidden" id="product_id" name="product_id" required="">
-	                <div class="col-xl-6">
+	                <div class="col-xl-4">
 	                    <div class="form-group row">
 	                        <label class="col-12" for="product_name">Product Name</label>
 	                        <div class="col-lg-12">
@@ -80,7 +94,39 @@
 	                        </div>
 	                    </div>
 	                </div>
-	                <div class="col-xl-6">
+	                <div class="col-xl-4">
+	                    <div class="form-group row">
+	                        <label class="col-12" for="slug">Product Slug</label>
+	                        <div class="col-lg-12">
+	                            <input type="text" class="form-control" id="slug" disabled="">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="col-xl-4">
+	                    <div class="form-group row">
+	                        <label class="col-12" for="price">Sell Price</label>
+	                        <div class="col-lg-12">
+	                            <input type="text" class="form-control" id="price" disabled="">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="col-xl-4">
+	                    <div class="form-group row">
+	                        <label class="col-12" for="quantity">Purches Price<span class="text-danger">*</span></label>
+	                        <div class="col-lg-12">
+	                            <input type="Number" name="quantity" class="form-control" id="quantity" placeholder="Enter Product Quantity" required="">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="col-xl-4">
+	                    <div class="form-group row">
+	                        <label class="col-12" for="quantity">Purches Code<span class="text-danger">*</span></label>
+	                        <div class="col-lg-12">
+	                            <input type="Number" name="quantity" class="form-control" id="quantity" placeholder="Enter Product Quantity" required="">
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="col-xl-4">
 	                    <div class="form-group row">
 	                        <label class="col-12" for="quantity">Product Quantity <span class="text-danger">*</span></label>
 	                        <div class="col-lg-12">
@@ -181,59 +227,15 @@ $(document).ready(function(){
 
 		let product_ids = product_info.id;
 		let product_names = product_info.product_name;
+		let slugs = product_info.slug;
+		let price = product_info.price;
 
 		document.getElementById('product_id').value = product_ids;
 		document.getElementById('product_name').value = product_names;
+		document.getElementById('slug').value = slugs;
+		document.getElementById('price').value = price;
 		toastr.success(" Product Selected", "Success");
 	})
-	function getSubCategory(){
-        let id = $("#category_id").val();
-        // alert(id);
-        let url = '/admin/product/subcategory/'+id;
-        $.ajax({
-            type: "get",
-            url: url,
-            dataType: "json",
-            success: function (response) {
-                let html = '';
-                console.log(response)
-                response.forEach(element => {
-                    html+='<option value='+element.id+'>'+element.sub_category_name+'</option>'
-                });
-                $("#subcategory_id").html(html);
-            }
-        });
-    }
-
-    function getProductList(){
-        let id = $("#subcategory_id").val();
-        // alert(id);
-        let url = '/admin/stock/productlist/'+id;
-        $.ajax({
-            type: "get",
-            url: url,
-            dataType: "json",
-            success: function (response) {
-                let html = '';
-                console.log(response)
-                response.forEach(value => {
-                	console.log(value);
-                    $('#product_filed').append(
-		               `
-		               <div class="col-md-2 col-sm-6 col-xs-12 col-lg-2 mr-4 mb-3 stock_product" data-id="+value+" style="cursor: pointer;border: 3px solid #ddd;border-radius: 5px;">
-					            <div class="card text-center custom-card">
-					                <img width="130" height="120" style="padding: 8px;" src=/${value.product_img}>
-					                <div class="card-body">
-					                    <h5>${value.product_name}</h5>
-					                </div>
-					            </div>
-					        </div>
-		               `);
-                });
-                // $("#product").html(html);
-            }
-        });
-    }
 </script>
 <script type="text/javascript">
 	function validateForm() {

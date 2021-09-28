@@ -220,45 +220,45 @@
         });
     }
 
-    // $(document).ready(function () {
-    //     function getSubSubCategory(){
-    //     let id = $("#subcategory_id").val();
-    //     let url = '/admin/product/subsubcategory/'+id;
-    //     $.ajax({
-    //         type: "get",
-    //         url: url,
-    //         dataType: "json",
-    //         success: function (response) {
-    //             console.log(response)
-    //            let html = $();
-    //             $.each(response, function (i, item) {
-    //                 html = html.add("<option value=" + item.id +" >" + item.sub_category_name + "</option>")
-    //             });
-    //             $("#subcategory_id").html(html);
-    //         }
-    //     });
-    // }
-    // getSubSubCategory();
-    // });
+    $(document).ready(function () {
+        function getSubSubCategory(){
+        let id = $("#subcategory_id").val();
+        let url = '/admin/product/subsubcategory/'+id;
+        $.ajax({
+            type: "get",
+            url: url,
+            dataType: "json",
+            success: function (response) {
+                console.log(response)
+               let html = $();
+                $.each(response, function (i, item) {
+                    html = html.add("<option value=" + item.id +" >" + item.sub_sub_category_name + "</option>")
+                });
+                $("#subsubcategory_id").html(html);
+            }
+        });
+    }
+    getSubSubCategory();
+    });
 
-    // function getSubSubCategory(){
-    //     let id = $("#subcategory_id").val();
-    //     // alert(id);
-    //     let url = '/admin/product/subsubcategory/'+id;
-    //     $.ajax({
-    //         type: "get",
-    //         url: url,
-    //         dataType: "json",
-    //         success: function (response) {
-    //             let html = '';
-    //             console.log(response)
-    //             response.forEach(element => {
-    //                 html+='<option value='+element.id+'>'+element.sub_sub_category_name+'</option>'
-    //             });
-    //             $("#subsubcategory_id").html(html);
-    //         }
-    //     });
-    // }
+    function getSubSubCategory(){
+        let id = $("#subcategory_id").val();
+        // alert(id);
+        let url = '/admin/product/subsubcategory/'+id;
+        $.ajax({
+            type: "get",
+            url: url,
+            dataType: "json",
+            success: function (response) {
+                let html = '';
+                console.log(response)
+                response.forEach(element => {
+                    html+='<option value='+element.id+'>'+element.sub_sub_category_name+'</option>'
+                });
+                $("#subsubcategory_id").html(html);
+            }
+        });
+    }
 
 
     function getBrand(){
