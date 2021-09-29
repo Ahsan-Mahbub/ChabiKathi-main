@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use Toastr;
+use App\Http\Requests\SliderRequest;
+
 use File;
 use App\Helpers\Helper;
 use Str;
@@ -39,12 +41,12 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SliderRequest $request)
     {
-        $validator  = $request->validate([
-            'slider_name'  => 'required',
-            'slider_link'  => 'required',
-        ]);
+        // $validator  = $request->validate([
+        //     'slider_name'  => 'required',
+        //     'slider_link'  => 'required',
+        // ]);
 
         $slider = new Slider();
         $formData = $request->all();
@@ -94,16 +96,8 @@ class SliderController extends Controller
      * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SliderRequest $request, $id)
     {
-        $validation=Validator::make($request->all(),[
-            'slider_name'  => 'required',
-            'slider_link' => 'required',
-        ]);
-        if ($validation->fails()) {
-            return back()->withInput()->withErrors($validation);
-        }
-
         $update = Slider::findOrFail($id);
         $formData = $request->all();
         if ($request->hasFile('slider_img')) {
