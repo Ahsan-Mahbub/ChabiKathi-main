@@ -72,7 +72,7 @@ class ProductController extends Controller
         $product = new Product();
         $requested_data = $request->all();
         $product->status = 1;
-        $product->product_slug = $request->product_slug;
+        $product->slug = $request->slug;
         $product->approval = 0;
         $product->sku .= 'sku-' . $request->product_name . '-'.time();
 
@@ -170,7 +170,7 @@ class ProductController extends Controller
         // }
 
         $update = Product::findOrFail($id);
-        $update->product_slug = $request->product_slug;
+        $update->slug = $request->slug;
         $formData = $request->all();
         if ($request->hasFile('product_img')) {
             Helper::delete($update->product_img);
