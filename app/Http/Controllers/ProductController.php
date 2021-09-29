@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
-use App\Models\SubSubCategory;
 use App\Models\Brand;
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
 use Toastr;
 use File;
 use Illuminate\Support\Facades\Auth;
@@ -48,12 +48,6 @@ class ProductController extends Controller
         return response()->json($subcategories, 200);
     }
 
-    public function subsubcategory($id)
-    {
-        $subsubcategories = SubSubCategory::where('subcategory_id', $id)->get();
-        return response()->json($subsubcategories, 200);
-    }
-
     public function brand($id)
     {
         $brand = Brand::where('shop_id', $id)->where('status',1)->where('approval',1)->get();
@@ -65,7 +59,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         dd($request->all());
 
@@ -79,10 +73,10 @@ class ProductController extends Controller
         ]);
         $shops = Shop::where('id', $request->shop_id)->first();
         $seller = $shops->seller_id;
+
         $product = new Product();
         $requested_data = $request->all();
         $product->status = 1;
-        $product->seller_id = $seller;
         $product->slug = $request->slug;
         $product->approval = 0;
         $product->sku .= 'sku-' . $request->product_name . '-'.time();
@@ -112,8 +106,9 @@ class ProductController extends Controller
         }
         //dd($requested_data);
         $product->fill($requested_data)->save();
-        Toastr::success('Product Created Successfully', 'Success');
-        return redirect()->route('product.list');
+        Toastr::success('Save Successfully');
+        return redirect()->route('product.list')
+            ->with('success', 'Product created successfully.');
     }
 
     /**
@@ -166,18 +161,18 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        $validation=Validator::make($request->all(),[
-            'product_name'  => 'required',
-            'slug'  => 'required',
-            'product_desc'  => 'required',
-            'category_id'  => 'required',
-            'price'  => 'required',
-        ]);
-        if ($validation->fails()) {
-            return back()->withInput()->withErrors($validation);
-        }
+        // $validation=Validator::make($request->all(),[
+        //     'product_name'  => 'required',
+        //     'product_slug'  => 'required',
+        //     'product_desc'  => 'required',
+        //     'category_id'  => 'required',
+        //     'price'  => 'required',
+        // ]);
+        // if ($validation->fails()) {
+        //     return back()->withInput()->withErrors($validation);
+        // }
 
         $update = Product::findOrFail($id);
         $update->slug = $request->slug;
@@ -209,7 +204,7 @@ class ProductController extends Controller
             $formData['product_img_3'] = $path . $name;
         }
         $update->fill($formData)->save();
-        Toastr::success('Product Update Successfully', 'Success');
+        Toastr::success('Update Successfully');
         return redirect()->route('product.list');
     }
 

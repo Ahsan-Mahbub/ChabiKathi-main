@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommisionRequest;
 use App\Models\Commission;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -38,12 +39,12 @@ class CommissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CommisionRequest $request)
     {
-        $validator  = $request->validate([
-            'commission'  => 'required',
-            'category_id' => 'required|unique:commissions',
-        ]);
+        // $validator  = $request->validate([
+        //     'commission'  => 'required',
+        //     'category_id' => 'required|unique:commissions',
+        // ]);
 
         $store = new Commission();
         $requested_data = $request->all();
@@ -84,15 +85,15 @@ class CommissionController extends Controller
      * @param  \App\Models\Commission  $commission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CommisionRequest $request, $id)
     {
-        $validation=Validator::make($request->all(),[
-            'category_id' => 'required|unique:commissions,category_id,'.$id,
-            'commission'  => 'required',
-        ]);
-        if ($validation->fails()) {
-            return back()->withInput()->withErrors($validation);
-        }
+        // $validation=Validator::make($request->all(),[
+        //     'category_id' => 'required|unique:commissions,category_id,'.$id,
+        //     'commission'  => 'required',
+        // ]);
+        // if ($validation->fails()) {
+        //     return back()->withInput()->withErrors($validation);
+        // }
 
         $update = Commission::findOrFail($id);
         $formData = $request->all();

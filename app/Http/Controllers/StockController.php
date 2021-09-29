@@ -79,15 +79,15 @@ class StockController extends Controller
      * @param  \App\Models\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StockRequest $request, $id)
     {
-        $validation=Validator::make($request->all(),[
-            'product_id'  => 'required',
-            'quantity'  => 'required',
-        ]);
-        if ($validation->fails()) {
-            return back()->withInput()->withErrors($validation);
-        }
+        // $validation=Validator::make($request->all(),[
+        //     'product_id'  => 'required',
+        //     'quantity'  => 'required',
+        // ]);
+        // if ($validation->fails()) {
+        //     return back()->withInput()->withErrors($validation);
+        // }
 
         $update = Stock::findOrFail($id);
         $formData = $request->all();
