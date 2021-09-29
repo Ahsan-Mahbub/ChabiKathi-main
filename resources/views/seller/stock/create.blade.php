@@ -14,7 +14,6 @@
 	                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
 	                    <i class="si si-refresh"></i>
 	                </button>
-	                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"><i class="si si-arrow-up"></i></button>
 	            </div>
 	    </div>
 	    <div class="container mt-4 mb-4">
@@ -23,7 +22,7 @@
 	            <div class="col-md-4 col-xl-3 stock_product mb-2" data-id="{{$value}}" style="cursor: pointer;">
 	                <a class="block block-link-shadow">
 	                    <div class="block-content block-content-full text-center">
-	                        <div class="p-20 mb-10">
+	                        <div class="p-5 mb-5">
 	                            <img width="130" height="120" src=/{{$value->product_img}}>
 	                        </div>
 	                        <p class="font-size-lg font-w600 mb-0">
@@ -77,7 +76,6 @@
 	                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
 	                    <i class="si si-refresh"></i>
 	                </button>
-	                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"><i class="si si-arrow-up"></i></button>
 	            </div>
 	    </div>
     	<form role="form" action="{{route('seller.stock.store')}}" method="post" enctype="multipart/form-data" name="myForm" onsubmit="return validateForm()">
@@ -114,7 +112,7 @@
 	                    <div class="form-group row">
 	                        <label class="col-12" for="quantity">Purches Price<span class="text-danger">*</span></label>
 	                        <div class="col-lg-12">
-	                            <input type="Number" name="quantity" class="form-control" id="quantity" placeholder="Enter Product Quantity" required="">
+	                            <input type="number" name="quantity" class="form-control" id="quantity" placeholder="Enter Product Quantity" required="">
 	                        </div>
 	                    </div>
 	                </div>
@@ -122,7 +120,7 @@
 	                    <div class="form-group row">
 	                        <label class="col-12" for="quantity">Purches Code<span class="text-danger">*</span></label>
 	                        <div class="col-lg-12">
-	                            <input type="Number" name="quantity" class="form-control" id="quantity" placeholder="Enter Product Quantity" required="">
+	                            <input type="text" name="quantity" class="form-control" id="quantity" placeholder="Enter Product Quantity" required="">
 	                        </div>
 	                    </div>
 	                </div>
@@ -130,7 +128,7 @@
 	                    <div class="form-group row">
 	                        <label class="col-12" for="quantity">Product Quantity <span class="text-danger">*</span></label>
 	                        <div class="col-lg-12">
-	                            <input type="Number" name="quantity" class="form-control" id="quantity" placeholder="Enter Product Quantity" required="">
+	                            <input type="number" name="quantity" class="form-control" id="quantity" placeholder="Enter Product Quantity" required="">
 	                        </div>
 	                    </div>
 	                </div>

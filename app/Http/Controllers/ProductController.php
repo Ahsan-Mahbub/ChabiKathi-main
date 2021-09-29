@@ -67,7 +67,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
 
         $validator  = $request->validate([
             'product_name'  => 'required|unique:products',

@@ -78,14 +78,14 @@
                                 <select class="form-control" id="subsubcategory_id" name="subsubcategory_id">
                                     <option value="0">Select</option>
                                 </select>
-                                <label for="subsubcategory_id">Select Sub Category</label>
+                                <label for="subsubcategory_id">Select Sub Sub Category</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-material">
                                 <input type="number" class="form-control" id="totalprice" name="price"
                                     placeholder="Enter Product Price.." required="">
-                                <label for="totalprice">Product Price <span class="text-danger">*</span> </label>
+                                <label for="totalprice">Product Main Price <span class="text-danger">*</span> </label>
                             </div>
                         </div>
                         <div class="form-group">
