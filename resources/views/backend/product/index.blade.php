@@ -103,8 +103,7 @@
                         type: "delete",
                         dataType: "json",
                         success: function (response) {
-                           
-                            toastr.warning(" Deleted successfully", "!!!");
+                            toastr.warning(" Product Deleted Successfully", "Success");
                             window.location.href = "/admin/product/list" ;
                         },
                     });
@@ -112,28 +111,24 @@
             });
         });
 </script>
-
 <script type="text/javascript">
     $(document).on("change","#product",function(){
-var id=$(this).attr('data');
-if(this.checked)
-{
-    status=1
-}else{
-    status=0
-}
-$.ajax({
-    url:"/admin/product/status/"+id+'/'+status,
-    type:"get",
-    datatype:"json",
-    success:function(response)
+    var id=$(this).attr('data');
+    if(this.checked)
     {
-       toastr.success("Status Change Successfully", "Success");
-               console.log(response);
+        status=1
+    }else{
+        status=0
     }
-
+    $.ajax({
+        url:"/admin/product/status/"+id+'/'+status,
+        type:"get",
+        datatype:"json",
+        success:function(response)
+        {
+           toastr.success("Status Change Successfully", "Success");
+        }
+    });
 });
-});
-
 </script>
 @endsection

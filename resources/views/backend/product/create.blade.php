@@ -1,16 +1,6 @@
 @extends('backend.layouts.app')
 @section('content')
 <div class="container">
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <strong>{{ $error }}</strong>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        @endforeach
-    @endif
     <div class="block">
         <div class="block-header block-header-default">
             <h3 class="block-title text-center"> Add Product</h3>
@@ -32,18 +22,27 @@
                         <div class="form-group">
                             <div class="form-material">
                                 <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Enter Product Name.." required="">
+                                @error('product_name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="product_name">Product Name <span class="text-danger">*</span></label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-material">
                                 <input type="text" class="form-control" id="product_slug" name="slug" placeholder="Enter Product Slug.." required="">
+                                @error('slug')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="product_slug">Product Slug <span class="text-danger">*</span></label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <textarea name="product_desc" id="editor" cols="30" rows="20" class="form-control"></textarea>
+                                <textarea name="product_desc" id="editor" cols="30" rows="20" class="form-control" required=""></textarea>
+                                @error('product_desc')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="editor">Product Details <span class="text-danger">*</span></label>
                             </div>
                         </div>
@@ -55,6 +54,9 @@
                                         <option value="{{$value->id}}">{{$value->category_name}} </option>
                                     @endforeach
                                 </select>
+                                @error('category_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="category_id">Select Category<span class="text-danger">*</span></label>
                             </div>
                         </div>
@@ -77,6 +79,9 @@
                         <div class="form-group">
                             <div class="form-material">
                                 <input type="number" class="form-control" id="totalprice" name="price" placeholder="Enter Product Price.." required="">
+                                @error('price')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="totalprice">Product Main Price <span class="text-danger">*</span> </label>
                             </div>
                         </div>
@@ -106,8 +111,8 @@
                         <div class="form-group">
                             <div class="form-material">
                                 <input type="number" id="afterdis" class="form-control" disabled="">
-                                <input type="hidden" id="afterdisval" class="form-control" name="discounted_price">
-                                <label for="Discount">After Percentage Total Price</label>
+                                <input type="hidden" id="afterdisval" class="form-control" name="discounted_price" readonly="">
+                                <label for="Discount">Discounted Price</label>
                             </div>
                         </div>
 
@@ -119,6 +124,9 @@
                                         <option value="{{$value->id}}">{{$value->shop_name}} </option>
                                     @endforeach
                                 </select>
+                                @error('shop_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="shop_id">Select Shop<span class="text-danger">*</span></label>
                             </div>
                         </div>
@@ -148,6 +156,9 @@
                         <label>Main Image <span class="text-danger">*</span></label>
                         <input type='file' name="product_img" required="" onchange="readURL(this);" />
                         <img id="blah" src="{{asset('asset/backend/assets/media/photos/image.png')}}" height="200" width="200" alt="your image" /><br>
+                        @error('product_img')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
 
                         <label>Secendary Image</label>
                         <input type='file' name="product_img_2" onchange="readURL2(this);" />
@@ -168,32 +179,52 @@
 @endsection
 @section('script')
 <script type="text/javascript">
+    document.getElementById("disval").disabled = true;
+    document.getElementById("percentage-box").disabled = true;
+
     $('#percentage_price').hide();
     $('#percentage-box').click(function() {
-     $('#percentage_price')[this.checked ? "show" : "hide"]();
+        $('#percentage_price')[this.checked ? "show" : "hide"]();
+
+
+    });
+
+    $('#percentage-box').click(function() {
+        $('#disval, #afterdis, #afterdisval').val('');
+        document.getElementById("percentage_price").checked = false;
+        var nullPrice = $('#percentage').val('');
     });
 
     $(function(){
-
-    $('#totalprice').on('input', function() {
-      calculate();
+        $('#totalprice').on('keyup', function() {
+            var totalPrice = parseInt($('#totalprice').val());
+            var v = $(this).val();
+            if(v.length > 0){
+                document.getElementById("disval").disabled = false;
+                document.getElementById("percentage-box").disabled = false;  
+            }else{
+               document.getElementById("disval").disabled = true;
+                document.getElementById("percentage-box").disabled = true;   
+            }
+          calculate();
+        });
+        $('#percentage').on('keyup', function() {
+            var totalPrice = parseInt($('#totalprice').val()); 
+            var v = $(this).val();
+            if(v.length == 0 && v == '') {
+                $('#disval').val('');
+                $('#afterdis, #afterdisval').val(totalPrice);
+            } 
+         calculate();
+        });
+        $('#disval').on('keyup', function() {
+         calculate();
     });
-    $('#percentage').on('input', function() {
-     calculate();
-    });
-    $('#disval').on('input', function() {
-     calculate();
-    });
-    if(document.getElementById("percentage-box").checked = false){
-        $('#percentage').val(0);
-    }
     
     function calculate(){
         var totalPrice = parseInt($('#totalprice').val()); 
         var percentagePrice = parseInt($('#percentage').val());
-        console.log(percentagePrice)
         var disEarned = parseInt($('#disval').val());
-        //console.log(disEarned);
         var perc="";
         if(isNaN(totalPrice)){
             $('#afterdis').val(0);
@@ -207,15 +238,17 @@
             $('#afterdis').val(disPrice);
             $('#afterdisval').val(disPrice);
         }if(percentagePrice){
-            perc = ((percentagePrice/100) * totalPrice).toFixed(0);
-            if(perc > 0){
+            if(percentagePrice>0){
+                perc = ((percentagePrice/100) * totalPrice).toFixed(0);
                 var disPrice = (totalPrice-perc);
-                // console.log(disPrice)
                 $('#disval').val(perc);
                 $('#afterdis').val(disPrice);
                 $('#afterdisval').val(disPrice);
-            }else{
-                $('#disval').val(0);
+            }if(percentagePrice==0 || isNaN(percentagePrice)){
+                alert('hi');
+                var emptyPrice = $('#disval').val('');
+                console.log(emptyPrice)
+                // return false;
             }
             
         }

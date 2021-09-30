@@ -68,7 +68,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        dd($request->all());
+        // dd($request->all());
 
         $validator  = $request->validate([
             'product_name'  => 'required|unique:products',
@@ -112,10 +112,15 @@ class ProductController extends Controller
             $requested_data['product_img_3'] = $path . $name;
         }
         //dd($requested_data);
-        $product->fill($requested_data)->save();
-        Toastr::success('Save Successfully');
-        return redirect()->route('product.list')
-            ->with('success', 'Product created successfully.');
+        $save = $product->fill($requested_data)->save();
+        if($save){
+            Toastr::success('Product Create Successfully', 'Success');
+            return redirect()->route('product.list');
+        }else{
+            Toastr::warning('Product Did Not Create Successfully', 'Damage');
+            return back();
+        }
+        
     }
 
     /**
@@ -170,16 +175,6 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        // $validation=Validator::make($request->all(),[
-        //     'product_name'  => 'required',
-        //     'product_slug'  => 'required',
-        //     'product_desc'  => 'required',
-        //     'category_id'  => 'required',
-        //     'price'  => 'required',
-        // ]);
-        // if ($validation->fails()) {
-        //     return back()->withInput()->withErrors($validation);
-        // }
 
         $update = Product::findOrFail($id);
         $update->slug = $request->slug;
@@ -210,9 +205,15 @@ class ProductController extends Controller
             $request->file('product_img_3')->move($path, $name);
             $formData['product_img_3'] = $path . $name;
         }
-        $update->fill($formData)->save();
-        Toastr::success('Update Successfully');
-        return redirect()->route('product.list');
+        $updated = $update->fill($formData)->save();
+        if($updated){
+            Toastr::success('Product Update Successfully', 'Success');
+            return redirect()->route('product.list');
+        }else{
+            Toastr::danger('Updated Not Successfully', 'Damage');
+            return back();
+        }
+        
     }
 
     /**
