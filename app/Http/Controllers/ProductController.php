@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use App\Models\Brand;
 use App\Models\Shop;
 use Illuminate\Http\Request;
@@ -46,6 +47,12 @@ class ProductController extends Controller
     {
         $subcategories = SubCategory::where('category_id', $id)->get();
         return response()->json($subcategories, 200);
+    }
+
+    public function subsubcategory($id)
+    {
+        $subsubcategories = SubSubCategory::where('subcategory_id', $id)->get();
+        return response()->json($subsubcategories, 200);
     }
 
     public function brand($id)

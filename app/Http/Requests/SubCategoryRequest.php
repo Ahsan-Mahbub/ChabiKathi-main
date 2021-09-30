@@ -26,7 +26,7 @@ class SubCategoryRequest extends FormRequest
         return [
             'sub_category_name'  => 'required|unique:sub_categories,sub_category_name,'.$this->id,
             'category_id' => 'required',
-            'slug'      => 'required',
+            'slug'      => 'required|unique:sub_categories,slug,'.$this->id,
         ];
     }
 }
