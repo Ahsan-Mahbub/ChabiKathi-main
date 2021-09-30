@@ -25,7 +25,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'product_name'  => 'required|unique:products,product_name,'.$this->id,
-            'slug'  => 'required',
+            'slug'  => 'required|unique:products,slug,'.$this->id,
             'product_desc'  => 'required',
             'category_id'  => 'required',
             'price'  => 'required',

@@ -30,13 +30,7 @@ class CategoryRequest extends FormRequest
 
         return [
             'category_name' => 'required|unique:categories,category_name,'.$this->id,
-            'category_priority' => 'required',
+            'slug' => 'required|unique:categories,slug,'.$this->id,
         ];
-
-        // $category = $this->route('category');
-        // return [
-        //     'category_name' => 'required',
-        //     'slug'          => 'required|unique:categories,code,' . $category . ',id',
-        // ];
     }
 }

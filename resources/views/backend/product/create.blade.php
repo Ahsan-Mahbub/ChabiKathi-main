@@ -2,13 +2,14 @@
 @section('content')
 <div class="container">
     @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+        @foreach ($errors->all() as $error)
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>{{ $error }}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        @endforeach
     @endif
     <div class="block">
         <div class="block-header block-header-default">
@@ -76,7 +77,7 @@
                         <div class="form-group">
                             <div class="form-material">
                                 <input type="number" class="form-control" id="totalprice" name="price" placeholder="Enter Product Price.." required="">
-                                <label for="totalprice">Product Sell Price <span class="text-danger">*</span> </label>
+                                <label for="totalprice">Product Main Price <span class="text-danger">*</span> </label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -88,26 +89,28 @@
                         <div id="percentage_price">
                             <div class="form-group">
                                 <div class="form-material">
-                                    <input type="number" class="form-control" id="percentage" name="percentage" placeholder="Enter Percentage Price..">
+                                    <input type="number" class="form-control" id="percentage" name="percentage"
+                                        placeholder="Enter Percentage Price..">
                                     <label for="Discount"> Percentage (%)</label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="form-material">
-                                    <input type="number" id="afterdis" class="form-control" disabled="">
-                                    <input type="hidden" id="afterdishidden" class="form-control" name="discounted_price">
-                                    <label for="Discount">After Percentage Total Price</label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="number" class="form-control" id="disval" name="discount" placeholder="Enter Discount Price..">
+                                <input type="number" class="form-control" id="disval" name="discount"
+                                    placeholder="Enter Discount Price..">
                                 <label for="afterdis">Discount Price</label>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="form-material">
+                                <input type="number" id="afterdis" class="form-control" disabled="">
+                                <input type="hidden" id="afterdisval" class="form-control" name="discounted_price">
+                                <label for="Discount">After Percentage Total Price</label>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="form-material">
                                 <select class="form-control" id="shop_id" name="shop_id" required="" onclick="getBrand()">
@@ -178,27 +181,50 @@
     $('#percentage').on('input', function() {
      calculate();
     });
+    $('#disval').on('input', function() {
+     calculate();
+    });
+    if(document.getElementById("percentage-box").checked = false){
+        $('#percentage').val(0);
+    }
+    
     function calculate(){
-        var pPos = parseInt($('#totalprice').val()); 
-        var pEarned = parseInt($('#percentage').val());
+        var totalPrice = parseInt($('#totalprice').val()); 
+        var percentagePrice = parseInt($('#percentage').val());
+        console.log(percentagePrice)
+        var disEarned = parseInt($('#disval').val());
+        //console.log(disEarned);
         var perc="";
-        if(isNaN(pPos) || isNaN(pEarned)){
-            perc=" ";
-           }else{
-           perc = ((pEarned/100) * pPos).toFixed(0);
-           var total = (pPos-perc);
-           console.log(total)
-           }
-
-        $('#disval').val(perc);
-        $('#afterdis').val(total);
-        $('#afterdishidden').val(total);
-
+        if(isNaN(totalPrice)){
+            $('#afterdis').val(0);
+            $('#afterdisval').val(0);
+        }if(isNaN(disEarned)){
+            $('#afterdis').val(totalPrice);
+            $('#afterdisval').val(totalPrice);
+        }if(disEarned){
+            var disPrice = (totalPrice - disEarned)
+            console.log(disPrice)
+            $('#afterdis').val(disPrice);
+            $('#afterdisval').val(disPrice);
+        }if(percentagePrice){
+            perc = ((percentagePrice/100) * totalPrice).toFixed(0);
+            if(perc > 0){
+                var disPrice = (totalPrice-perc);
+                // console.log(disPrice)
+                $('#disval').val(perc);
+                $('#afterdis').val(disPrice);
+                $('#afterdisval').val(disPrice);
+            }else{
+                $('#disval').val(0);
+            }
+            
+        }
     }
 
 });
 </script>
 <script type="text/javascript">
+
     function getSubCategory(){
         let id = $("#category_id").val();
         // alert(id);
@@ -217,7 +243,6 @@
             }
         });
     }
-
     function getSubSubCategory(){
         let id = $("#subcategory_id").val();
         // alert(id);

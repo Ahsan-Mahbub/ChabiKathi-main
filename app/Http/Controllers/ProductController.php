@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\SubSubCategory;
 use App\Models\Brand;
 use App\Models\Shop;
 use Illuminate\Http\Request;
@@ -48,6 +49,12 @@ class ProductController extends Controller
         return response()->json($subcategories, 200);
     }
 
+    public function subsubcategory($id)
+    {
+        $subsubcategories = SubSubCategory::where('subcategory_id', $id)->get();
+        return response()->json($subsubcategories, 200);
+    }
+
     public function brand($id)
     {
         $brand = Brand::where('shop_id', $id)->where('status',1)->where('approval',1)->get();
@@ -61,14 +68,19 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        // $validator  = $request->validate([
-        //     'product_name'  => 'required|unique:products',
-        //     'product_slug'  => 'required',
-        //     'product_desc'  => 'required',
-        //     'category_id'  => 'required',
-        //     'price'  => 'required',
-        //     'shop_id' => 'required',
-        // ]);
+        dd($request->all());
+
+        $validator  = $request->validate([
+            'product_name'  => 'required|unique:products',
+            'slug'  => 'required',
+            'product_desc'  => 'required',
+            'category_id'  => 'required',
+            'price'  => 'required',
+            'shop_id' => 'required',
+        ]);
+        $shops = Shop::where('id', $request->shop_id)->first();
+        $seller = $shops->seller_id;
+
         $product = new Product();
         $requested_data = $request->all();
         $product->status = 1;

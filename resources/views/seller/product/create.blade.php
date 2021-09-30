@@ -2,13 +2,14 @@
 @section('content')
 <div class="container">
     @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+        @foreach ($errors->all() as $error)
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>{{ $error }}</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        @endforeach
     @endif
     <div class="block">
         <div class="block-header block-header-default">
@@ -78,14 +79,14 @@
                                 <select class="form-control" id="subsubcategory_id" name="subsubcategory_id">
                                     <option value="0">Select</option>
                                 </select>
-                                <label for="subsubcategory_id">Select Sub Category</label>
+                                <label for="subsubcategory_id">Select Sub Sub Category</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-material">
                                 <input type="number" class="form-control" id="totalprice" name="price"
                                     placeholder="Enter Product Price.." required="">
-                                <label for="totalprice">Product Price <span class="text-danger">*</span> </label>
+                                <label for="totalprice">Product Main Price <span class="text-danger">*</span> </label>
                             </div>
                         </div>
                         <div class="form-group">

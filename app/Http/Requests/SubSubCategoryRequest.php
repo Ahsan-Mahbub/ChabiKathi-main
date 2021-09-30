@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PreviousProductRequest extends FormRequest
+class SubSubCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,14 @@ class PreviousProductRequest extends FormRequest
      */
     public function rules()
     {
+        // return [
+        //     'category_name',
+        //     'category_priority',
+        // ];
+
         return [
-                'product_name'  => 'required',
-                'product_slug'  => 'required',
-                'product_desc'  => 'required',
-                'category_id'  => 'required',
-                'price'  => 'required',
-                'shop_id' => 'required',
-                'seller_id' => 'required',
+            'sub_sub_category_name' => 'required|unique:sub_sub_categories,sub_sub_category_name,'.$this->id,
+            'slug' => 'required|unique:sub_sub_categories,slug'.$this->id,
         ];
     }
 }
