@@ -37,13 +37,20 @@
                             <div class="form-material">
                                 <input type="text" class="form-control" id="product_name" name="product_name"
                                     placeholder="Enter Product Name.." required="">
+
+                                @error('product_name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="product_name">Product Name <span class="text-danger">*</span></label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="text" class="form-control" id="product_slug" name="product_slug"
+                                <input type="text" class="form-control" id="product_slug" name="slug"
                                     placeholder="Enter Product Slug.." required="">
+                                @error('slug')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="product_slug">Product Slug <span class="text-danger">*</span></label>
                             </div>
                         </div>
@@ -51,6 +58,9 @@
                             <div class="form-material">
                                 <textarea name="product_desc" id="editor" cols="30" rows="20"
                                     class="form-control"></textarea>
+                                @error('product_desc')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="editor">Product Details <span class="text-danger">*</span></label>
                             </div>
                         </div>
@@ -63,6 +73,9 @@
                                     <option value="{{$value->id}}">{{$value->category_name}} </option>
                                     @endforeach
                                 </select>
+                                @error('category_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="category_id">Select Category<span class="text-danger">*</span></label>
                             </div>
                         </div>
@@ -84,8 +97,10 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="number" class="form-control" id="totalprice" name="price"
-                                    placeholder="Enter Product Price.." required="">
+                                <input type="number" class="form-control" id="totalprice" name="price" placeholder="Enter Product Price.." required="">
+                                @error('price')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="totalprice">Product Main Price <span class="text-danger">*</span> </label>
                             </div>
                         </div>
@@ -100,14 +115,7 @@
                                 <div class="form-material">
                                     <input type="number" class="form-control" id="percentage" name="percentage"
                                         placeholder="Enter Percentage Price..">
-                                    <label for="Discount"> Percentage (%)</label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="form-material">
-                                    <input type="number" id="afterdis" class="form-control" disabled="">
-                                    <label for="Discount">After Percentage Total Price</label>
+                                    <label for="percentage-box"> Percentage (%)</label>
                                 </div>
                             </div>
                         </div>
@@ -121,11 +129,21 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
+                                <input type="number" id="afterdis" class="form-control" disabled="">
+                                <input type="hidden" id="afterdisval" class="form-control" name="discounted_price" readonly="">
+                                <label for="Discount">Discounted Price</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-material">
                                 <select class="form-control" id="shop_id" name="shop_id" required=""
                                     onclick="getBrand()">
                                     <option selected="">Select Shop</option>
                                     <option value="{{$shop->id}}">{{$shop->shop_name}} </option>
                                 </select>
+                                @error('shop_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="shop_id">Select Shop<span class="text-danger">*</span></label>
                             </div>
                         </div>
@@ -137,11 +155,27 @@
                                 <label for="brand_id">Select Brand</label>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-12">Is Veriation ?</label>
+                            <div class="col-12">
+                                <div class="custom-control custom-radio custom-control-inline mb-5">
+                                    <input class="custom-control-input" type="radio" name="is_veriation" id="example-inline-radio1" value="1">
+                                    <label class="custom-control-label" for="example-inline-radio1">Has Veriation?</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline mb-5">
+                                    <input class="custom-control-input" type="radio" name="is_veriation" id="example-inline-radio2" value="0">
+                                    <label class="custom-control-label" for="example-inline-radio2">No Veriation</label>
+                                </div>
+                            </div>
+                        </div>
 
                         <label>Main Image <span class="text-danger">*</span></label>
                         <input type='file' name="product_img" required="" onchange="readURL(this);" />
                         <img id="blah" src="{{asset('asset/backend/assets/media/photos/image.png')}}" height="200"
                             width="200" alt="your image" /><br>
+                        @error('product_image')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
 
                         <label>Secendary Image</label>
                         <input type='file' name="product_img_2" onchange="readURL2(this);" />
@@ -163,135 +197,6 @@
 </div>
 @endsection
 @section('script')
-<script type="text/javascript">
-    $('#percentage_price').hide();
-    $('#percentage-box').click(function() {
-     $('#percentage_price')[this.checked ? "show" : "hide"]();
-    });
-
-    $(function(){
-
-    $('#totalprice').on('input', function() {
-      calculate();
-    });
-    $('#percentage').on('input', function() {
-     calculate();
-    });
-    function calculate(){
-        var pPos = parseInt($('#totalprice').val()); 
-        var pEarned = parseInt($('#percentage').val());
-        var perc="";
-        if(isNaN(pPos) || isNaN(pEarned)){
-            perc=" ";
-           }else{
-           perc = ((pEarned/100) * pPos).toFixed(0);
-           var total = (pPos-perc);
-           console.log(total)
-           }
-
-        $('#disval').val(perc);
-        $('#afterdis').val(total);
-
-    }
-
-});
-</script>
-<script type="text/javascript">
-    function getSubCategory(){
-        let id = $("#category_id").val();
-        // alert(id);
-        let url = '/admin/product/subcategory/'+id;
-        $.ajax({
-            type: "get",
-            url: url,
-            dataType: "json",
-            success: function (response) {
-                let html = '';
-                console.log(response)
-                response.forEach(element => {
-                    html+='<option value='+element.id+'>'+element.sub_category_name+'</option>'
-                });
-                $("#subcategory_id").html(html);
-            }
-        });
-    }
-
-    function getSubSubCategory(){
-        let id = $("#subcategory_id").val();
-        // alert(id);
-        let url = '/admin/product/subsubcategory/'+id;
-        $.ajax({
-            type: "get",
-            url: url,
-            dataType: "json",
-            success: function (response) {
-                let html = '';
-                console.log(response)
-                response.forEach(element => {
-                    html+='<option value='+element.id+'>'+element.sub_sub_category_name+'</option>'
-                });
-                $("#subsubcategory_id").html(html);
-            }
-        });
-    }
-
-    function getBrand(){
-        let id = $("#shop_id").val();
-        // alert(id);
-        let url = '/admin/product/brand/'+id;
-        $.ajax({
-            type: "get",
-            url: url,
-            dataType: "json",
-            success: function (response) {
-                let html = '';
-                console.log(response)
-                response.forEach(element => {
-                    html+='<option value='+element.id+'>'+element.brand_name+'</option>'
-                });
-                $("#brand_id").html(html);
-            }
-        });
-    }
-</script>
-<script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#blah')
-                    .attr('src', e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURL2(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#blah2')
-                    .attr('src', e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURL3(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#blah3')
-                    .attr('src', e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
-<script type="text/javascript">
-    $("#product_name").keyup(function(){
-        var Text = $(this).val();
-        Text = Text.toLowerCase();
-        Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
-        $("#product_slug").val(Text);        
-    });
-</script>
+<script src="{{ asset('asset/sitejs/product/price_calculate.js')}}"></script>
+<script src="{{ asset('asset/sitejs/product/product.js')}}"></script>
 @endsection

@@ -14,8 +14,8 @@
 	                <h3 class="block-title text-center">Previous Product - For Your Shop</h3>
 	            </div>
 	            <div class="block-content block-content-full">
-			        <div class="table-responsive">
-			        	<table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+			        <div class="">
+			        	<table class="table table-bordered table-striped table-vcenter js-dataTable-full table-responsive">
 				            <thead>
 				                <tr>
 				                    <th class="text-center">S/L</th>
@@ -68,19 +68,28 @@
 		                            <div class="form-material">
 		                                <input type="text" class="form-control" id="product_name" name="product_name"
 		                                    placeholder="Enter Product Name.." required="">
+		                                @error('product_name')
+		                                    <span class="text-danger">{{ $message }}</span>
+		                                @enderror
 		                                <label for="product_name">Product Name <span class="text-danger">*</span></label>
 		                            </div>
 		                        </div>
 		                        <div class="form-group">
 		                            <div class="form-material">
-		                                <input type="text" class="form-control" id="product_slug" name="product_slug"
+		                                <input type="text" class="form-control" id="product_slug" name="slug"
 		                                    placeholder="Enter Product Slug.." required="">
+		                                @error('slug')
+		                                    <span class="text-danger">{{ $message }}</span>
+		                                @enderror
 		                                <label for="product_slug">Product Slug <span class="text-danger">*</span></label>
 		                            </div>
 		                        </div>
 		                        <div class="form-group">
 		                            <div class="form-material">
 		                            	<textarea name="product_desc" id="product_desc" class="form-control"></textarea>
+		                            	@error('product_desc')
+		                                    <span class="text-danger">{{ $message }}</span>
+		                                @enderror
 		                                <label for="editor">Product Details <span class="text-danger">*</span></label>
 		                            </div>
 		                        </div>
@@ -88,12 +97,16 @@
 
 		                            <input class="form-control" id="category_id" name="category_id" required="" hidden="">
 		                            <input class="form-control" id="subcategory_id" name="subcategory_id" hidden="">
+		                            <input class="form-control" id="subsubcategory_id" name="subsubcategory_id" hidden="">
 		                        
 
 		                        <div class="form-group">
 		                            <div class="form-material">
 		                                <input type="number" class="form-control" id="totalprice" name="price"
 		                                    placeholder="Enter Product Price.." required="">
+		                                @error('price')
+		                                    <span class="text-danger">{{ $message }}</span>
+		                                @enderror
 		                                <label for="totalprice">Product Price <span class="text-danger">*</span> </label>
 		                            </div>
 		                        </div>
@@ -112,12 +125,23 @@
 		                                <label for="discount">Discount Price</label>
 		                            </div>
 		                        </div>
+		                        <div class="form-group">
+	                                <div class="form-material">
+	                                    <input type="number" id="afterdis" class="form-control" disabled="">
+	                                    <input type="hidden" id="afterdishidden" name="discounted_price">
+	                                    <label for="Discount">Discounted Price</label>
+	                                </div>
+                            	</div>
+
 								<div class="form-group">
 		                            <div class="form-material">
 		                                <select class="form-control" id="shop_id" name="shop_id" required=""
 		                                    onclick="getBrand()">
 		                                    <option value="{{$shop->id}}">{{$shop->shop_name}} </option>
 		                                </select>
+		                                @error('shop_id')
+		                                    <span class="text-danger">{{ $message }}</span>
+		                                @enderror
 		                                <label for="shop_id">Select Shop<span class="text-danger">*</span></label>
 		                            </div>
 		                        </div>
@@ -150,52 +174,5 @@
 </div>
 @endsection
 @section('script')
-<script type="text/javascript">
-	$('.stock_product').click(function(){
-		let product_info = $(this).data('id');
-		console.log(product_info);
-		let product_names = product_info.product_name;
-		let product_slug = product_info.product_slug;
-		let product_desc = product_info.product_desc;
-		let totalprice = product_info.price;
-		let percentage = product_info.percentage;
-		let discount = product_info.discount;
-		let category_id = product_info.category_id;
-		let subcategory_id = product_info.subcategory_id;
-		let product_img = product_info.product_img;
-		let product_img_2 = product_info.product_img_2;
-		let product_img_3 = product_info.product_img_3;
-
-		document.getElementById('product_name').value = product_names;
-		document.getElementById('product_slug').value = product_slug;
-		document.getElementById('product_desc').value = product_desc;
-		document.getElementById('totalprice').value = totalprice;
-		document.getElementById('percentage').value = percentage;
-		document.getElementById('discount').value = discount;
-		document.getElementById('category_id').value = category_id;
-		document.getElementById('subcategory_id').value = subcategory_id;
-		document.getElementById('product_img').value = product_img;
-		document.getElementById('product_img_2').value = product_img_2;
-		document.getElementById('product_img_3').value = product_img_3;
-	})
-
-	function getBrand(){
-        let id = $("#shop_id").val();
-        // alert(id);
-        let url = '/admin/product/brand/'+id;
-        $.ajax({
-            type: "get",
-            url: url,
-            dataType: "json",
-            success: function (response) {
-                let html = '';
-                console.log(response)
-                response.forEach(element => {
-                    html+='<option value='+element.id+'>'+element.brand_name+'</option>'
-                });
-                $("#brand_id").html(html);
-            }
-        });
-    }
-</script>
+<script src="{{ asset('asset/sitejs/product/previous_product.js')}}"></script>
 @endsection

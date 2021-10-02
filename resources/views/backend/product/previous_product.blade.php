@@ -14,8 +14,8 @@
 	                <h3 class="block-title text-center">Previous Product</h3>
 	            </div>
 	            <div class="block-content block-content-full">
-        			<div class="table-responsive">
-        				<table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+        			<div class="">
+        				<table class="table table-bordered table-striped table-vcenter js-dataTable-full table-responsive">
 				            <thead>
 				                <tr>
 				                    <th class="text-center">S/L</th>
@@ -68,6 +68,9 @@
 		                            <div class="form-material">
 		                                <input type="text" class="form-control" id="product_name" name="product_name"
 		                                    placeholder="Enter Product Name.." required="">
+		                                @error('product_name')
+		                                    <span class="text-danger">{{ $message }}</span>
+		                                @enderror
 		                                <label for="product_name">Product Name <span class="text-danger">*</span></label>
 		                            </div>
 		                        </div>
@@ -75,12 +78,18 @@
 		                            <div class="form-material">
 		                                <input type="text" class="form-control" id="product_slug" name="slug"
 		                                    placeholder="Enter Product Slug.." required="">
+		                                @error('slug')
+		                                    <span class="text-danger">{{ $message }}</span>
+		                                @enderror
 		                                <label for="product_slug">Product Slug <span class="text-danger">*</span></label>
 		                            </div>
 		                        </div>
 		                        <div class="form-group">
 		                            <div class="form-material">
 		                            	<textarea name="product_desc" id="product_desc" class="form-control"></textarea>
+		                            	@error('product_desc')
+		                                    <span class="text-danger">{{ $message }}</span>
+		                                @enderror
 		                                <label for="editor">Product Details <span class="text-danger">*</span></label>
 		                            </div>
 		                        </div>
@@ -95,6 +104,9 @@
 		                            <div class="form-material">
 		                                <input type="number" class="form-control" id="totalprice" name="price"
 		                                    placeholder="Enter Product Price.." required="">
+		                                @error('price')
+		                                    <span class="text-danger">{{ $message }}</span>
+		                                @enderror
 		                                <label for="totalprice">Product Price <span class="text-danger">*</span> </label>
 		                            </div>
 		                        </div>
@@ -107,28 +119,31 @@
 		                            </div>
 		                        </div>
 		                        <div class="form-group">
-	                                <div class="form-material">
-	                                    <input type="number" id="afterdis" class="form-control" disabled="">
-	                                    <input type="hidden" id="afterdishidden" name="discounted_price">
-	                                    <label for="Discount">After Percentage Total Price</label>
-	                                </div>
-                            	</div>
-		                        <div class="form-group">
 		                            <div class="form-material">
 		                                <input type="number" class="form-control" id="discount" name="discount"
 		                                    placeholder="Enter Discount Price..">
 		                                <label for="discount">Discount Price</label>
 		                            </div>
 		                        </div>
+		                        <div class="form-group">
+	                                <div class="form-material">
+	                                    <input type="number" id="afterdis" class="form-control" disabled="">
+	                                    <input type="hidden" id="afterdishidden" name="discounted_price">
+	                                    <label for="Discount">Discounted Price</label>
+	                                </div>
+                            	</div>
 
 		                        <div class="form-group">
 		                            <div class="form-material">
-		                                <select class="form-control" id="shop_id" name="shop_id" onclick="getBrand()">
+		                                <select class="form-control" id="shop_id" name="shop_id" required="" onclick="getBrand()">
 		                                    <option value="0" selected="">Select Shop</option>
 		                                    @foreach($shops as $value)
 		                                        <option value="{{$value->id}}">{{$value->shop_name}} </option>
 		                                    @endforeach
 		                                </select>
+		                                @error('shop_id')
+		                                    <span class="text-danger">{{ $message }}</span>
+		                                @enderror
 		                                <label for="shop_id">Select Shop<span class="text-danger">*</span></label>
 		                            </div>
 		                        </div>
@@ -141,11 +156,9 @@
 		                            </div>
 		                        </div>
 
-
 		                            <input class="form-control" id="product_img" name="product_img" hidden="">
 		                            <input class="form-control" id="product_img_2" name="product_img_2" hidden="">
 		                            <input class="form-control" id="product_img_3" name="product_img_3" hidden="">
-
 		                        
 		                        <div class="form-group">
 		                            <button type="submit" class="btn btn-alt-primary">Submit</button>
@@ -229,30 +242,62 @@
     });
 </script>
 <script type="text/javascript">
-    $(function(){
-
-    $('#totalprice').on('input', function() {
-      calculate();
+	$(function(){
+        $('#totalprice').on('keyup', function() {
+            var totalPrice = parseInt($('#totalprice').val());
+            var v = $(this).val();
+            if(v.length > 0){
+                document.getElementById("discount").disabled = false;
+                document.getElementById("percentage").disabled = false;  
+            }else{
+                document.getElementById("discount").disabled = true;
+                document.getElementById("percentage").disabled = true;  
+                $('#percentage').val(''); 
+            }
+          calculate();
+        });
+        $('#percentage').on('keyup', function() {
+            var totalPrice = parseInt($('#totalprice').val()); 
+            var v = $(this).val();
+            if(v.length == 0 && v == '') {
+                $('#discount').val('');
+                $('#afterdis, #afterdishidden').val(totalPrice);
+            } 
+         calculate();
+        });
+        $('#discount').on('keyup', function() {
+         calculate();
     });
-    $('#percentage').on('input', function() {
-     calculate();
-    });
+    
     function calculate(){
-        var pPos = parseInt($('#totalprice').val()); 
-        var pEarned = parseInt($('#percentage').val());
+        var totalPrice = parseInt($('#totalprice').val()); 
+        var percentagePrice = parseInt($('#percentage').val());
+        var disEarned = parseInt($('#discount').val());
         var perc="";
-        if(isNaN(pPos) || isNaN(pEarned)){
-            perc=" ";
-           }else{
-           perc = ((pEarned/100) * pPos).toFixed(0);
-           var total = (pPos-perc);
-           console.log(total)
-           }
-
-        $('#discount').val(perc);
-        $('#afterdis').val(total);
-        $('#afterdishidden').val(total);
-
+        if(isNaN(totalPrice)){
+            $('#afterdis').val('');
+            $('#afterdishidden').val('');
+        }if(isNaN(disEarned)){
+            $('#afterdis').val(totalPrice);
+            $('#afterdishidden').val(totalPrice);
+        }if(disEarned){
+            var disPrice = (totalPrice - disEarned)
+            console.log(disPrice)
+            $('#afterdis').val(disPrice);
+            $('#afterdishidden').val(disPrice);
+        }if(percentagePrice){
+            if(percentagePrice>0){
+                perc = ((percentagePrice/100) * totalPrice).toFixed('');
+                var disPrice = (totalPrice-perc);
+                $('#discount').val(perc);
+                $('#afterdis').val(disPrice);
+                $('#afterdishidden').val(disPrice);
+            }if(percentagePrice==0 || isNaN(percentagePrice)){
+                var emptyPrice = $('#discount').val('');
+                console.log(emptyPrice)
+            }
+            
+        }
     }
 
 });

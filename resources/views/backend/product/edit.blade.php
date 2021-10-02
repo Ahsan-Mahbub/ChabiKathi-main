@@ -1,16 +1,6 @@
 @extends('backend.layouts.app')
 @section('content')
 <div class="container">
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <strong>{{ $error }}</strong>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        @endforeach
-    @endif
     <div class="block">
         <div class="block-header block-header-default">
             <h3 class="block-title text-center"> Update Product</h3>
@@ -32,18 +22,27 @@
                         <div class="form-group">
                             <div class="form-material">
                                 <input type="text" class="form-control" id="product_name" value="{{$product->product_name}}" name="product_name" placeholder="Enter Product Name.." required="">
+                                @error('product_name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="product_name">Product Name <span class="text-danger">*</span></label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-material">
                                 <input type="text" class="form-control" id="product_slug" value="{{$product->slug}}" name="slug" placeholder="Enter Product Slug.." required="">
+                                @error('slug')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="product_slug">Product Slug <span class="text-danger">*</span></label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <textarea name="product_desc" id="editor" cols="30" rows="20" class="form-control">{{$product->product_desc}}</textarea>
+                                <textarea name="product_desc" id="editor" cols="30" rows="20" class="form-control" required="">{{$product->product_desc}}</textarea>
+                                @error('product_desc')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="editor">Product Details <span class="text-danger">*</span></label>
                             </div>
                         </div>
@@ -56,6 +55,9 @@
                                         <option value="{{$value->id}}" {{ $product->category_id == $value->id ? 'selected' : ''}}>{{$value->category_name}} </option>
                                     @endforeach
                                 </select>
+                                @error('category_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="category_id">Select Category<span class="text-danger">*</span></label>
                             </div>
                         </div>
@@ -78,34 +80,45 @@
 
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="number" class="form-control" id="totalprice" value="{{$product->price}}" name="price" placeholder="Enter Product Price.." required="">
-                                <label for="totalprice">Product Price <span class="text-danger">*</span> </label>
+                                <input type="number" class="form-control" id="totalprice" name="price" placeholder="Enter Product Price.." required="" value="{{$product->price}}">
+                                @error('price')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <label for="totalprice">Product Main Price <span class="text-danger">*</span> </label>
                             </div>
                         </div>
-
+                        <!-- <div class="form-group">
+                            <div class="form-material">
+                                <input type="checkbox" id="percentage-box" {{($product->percentage ? ' checked' : '')}}>
+                                <label for="percentage-box">Use Prcentage?</label>
+                            </div>
+                        </div> -->
                         <div id="percentage_price">
                             <div class="form-group">
                                 <div class="form-material">
-                                    <input type="number" class="form-control" id="percentage" value="{{$product->percentage}}" name="percentage" placeholder="Enter Percentage Price..">
+                                    <input type="number" class="form-control" id="percentage" name="percentage" value="{{$product->percentage}}" placeholder="Enter Percentage Price..">
                                     <label for="Discount"> Percentage (%)</label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="form-material">
-                                    <input type="number" id="afterdis" value="{{$product->discounted_price}}" class="form-control" disabled="">
-                                    <input type="hidden" id="afterdishidden" value="{{$product->discounted_price}}" name="discounted_price">
-                                    <label for="Discount">After Percentage Total Price</label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="form-material">
-                                <input type="number" class="form-control" id="disval" value="{{$product->discount}}" name="discount" placeholder="Enter Discount Price..">
+                                <input type="number" class="form-control" id="disval" name="discount"
+                                    placeholder="Enter Discount Price.." value="{{$product->discount}}">
                                 <label for="afterdis">Discount Price</label>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="form-material">
+                                <input type="number" id="afterdis" class="form-control" disabled="" value="{{$product->discounted_price}}">
+                                <input type="hidden" id="afterdisval" class="form-control" value="{{$product->discounted_price}}" name="discounted_price" readonly="">
+                                <label for="Discount">Discounted Price</label>
+                            </div>
+                        </div>
+
+
+
 
                         <div class="form-group">
                             <div class="form-material">
@@ -115,6 +128,9 @@
                                         <option value="{{$value->id}}" {{ $product->shop_id == $value->id ? 'selected' : ''}}>{{$value->shop_name}} </option>
                                     @endforeach
                                 </select>
+                                @error('shop_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="shop_id">Select Shop<span class="text-danger">*</span></label>
                             </div>
                         </div>
@@ -127,9 +143,26 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label class="col-12">Is Veriation ?</label>
+                            <div class="col-12">
+                                <div class="custom-control custom-radio custom-control-inline mb-5">
+                                    <input class="custom-control-input" type="radio" name="is_veriation" id="example-inline-radio1" value="1" {{($product->is_veriation == 1 ? ' checked' : '')}}>
+                                    <label class="custom-control-label" for="example-inline-radio1">Has Veriation?</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline mb-5">
+                                    <input class="custom-control-input" type="radio" name="is_veriation" id="example-inline-radio2" value="0" {{($product->is_veriation == 0 ? ' checked' : '')}}>
+                                    <label class="custom-control-label" for="example-inline-radio2">No Veriation</label>
+                                </div>
+                            </div>
+                        </div>
+
                         <label>Main Image <span class="text-danger">*</span></label>
                         <input type='file' name="product_img" value="{{$product->product_img}}" onchange="readURL(this);" />
                         <img id="blah" src="{{$product->product_img ? '/' . $product->product_img :  '/asset/backend/assets/media/photos/image.png'}}" height="200" width="200" alt="your image" /><br>
+                        @error('product_img')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
 
                         <label>Secendary Image</label>
                         <input type='file' name="product_img_2" value="{{$product->product_img_2}}" onchange="readURL2(this);" />
@@ -151,196 +184,5 @@
 </div>
 @endsection
 @section('script')
-<script type="text/javascript">
-    $(function(){
-
-    $('#totalprice').on('input', function() {
-      calculate();
-    });
-    $('#percentage').on('input', function() {
-     calculate();
-    });
-    function calculate(){
-        var pPos = parseInt($('#totalprice').val()); 
-        var pEarned = parseInt($('#percentage').val());
-        var perc="";
-        if(isNaN(pPos) || isNaN(pEarned)){
-            perc=" ";
-           }else{
-           perc = ((pEarned/100) * pPos).toFixed(0);
-           var total = (pPos-perc);
-           console.log(total)
-           }
-
-        $('#disval').val(perc);
-        $('#afterdis').val(total);
-        $('#afterdishidden').val(total);
-
-    }
-
-});
-</script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        function getSubCategory(){
-        let id = $("#category_id").val();
-        let url = '/admin/product/subcategory/'+id;
-        $.ajax({
-            type: "get",
-            url: url,
-            dataType: "json",
-            success: function (response) {
-                console.log(response)
-               let html = $();
-                $.each(response, function (i, item) {
-                    html = html.add("<option value=" + item.id +" >" + item.sub_category_name + "</option>")
-                });
-                $("#subcategory_id").html(html);
-            }
-        });
-    }
-    getSubCategory();
-    });
-
-    function getSubCategory(){
-        let id = $("#category_id").val();
-        // alert(id);
-        let url = '/admin/product/subcategory/'+id;
-        $.ajax({
-            type: "get",
-            url: url,
-            dataType: "json",
-            success: function (response) {
-                let html = '';
-                console.log(response)
-                response.forEach(element => {
-                    html+='<option value='+element.id+'>'+element.sub_category_name+'</option>'
-                });
-                $("#subcategory_id").html(html);
-            }
-        });
-    }
-
-    $(document).ready(function () {
-        function getSubSubCategory(){
-        let id = $("#subcategory_id").val();
-        let url = '/admin/product/subsubcategory/'+id;
-        $.ajax({
-            type: "get",
-            url: url,
-            dataType: "json",
-            success: function (response) {
-                console.log(response)
-               let html = $();
-                $.each(response, function (i, item) {
-                    html = html.add("<option value=" + item.id +" >" + item.sub_sub_category_name + "</option>")
-                });
-                $("#subsubcategory_id").html(html);
-            }
-        });
-    }
-    getSubSubCategory();
-    });
-
-    function getSubSubCategory(){
-        let id = $("#subcategory_id").val();
-        // alert(id);
-        let url = '/admin/product/subsubcategory/'+id;
-        $.ajax({
-            type: "get",
-            url: url,
-            dataType: "json",
-            success: function (response) {
-                let html = '';
-                console.log(response)
-                response.forEach(element => {
-                    html+='<option value='+element.id+'>'+element.sub_sub_category_name+'</option>'
-                });
-                $("#subsubcategory_id").html(html);
-            }
-        });
-    }
-
-
-    function getBrand(){
-        let id = $("#shop_id").val();
-        // alert(id);
-        let url = '/admin/product/brand/'+id;
-        $.ajax({
-            type: "get",
-            url: url,
-            dataType: "json",
-            success: function (response) {
-                let html = '';
-                console.log(response)
-                response.forEach(element => {
-                    html+='<option value='+element.id+'>'+element.brand_name+'</option>'
-                });
-                $("#brand_id").html(html);
-            }
-        });
-    }
-
-    $(document).ready(function () {
-        function getBrand(){
-        let id = $("#shop_id").val();
-        let url = '/admin/product/brand/'+id;
-        $.ajax({
-            type: "get",
-            url: url,
-            dataType: "json",
-            success: function (response) {
-                console.log(response)
-               let html = $();
-                $.each(response, function (i, item) {
-                    html = html.add("<option value=" + item.id +" >" + item.brand_name + "</option>")
-                });
-                $("#brand_id").html(html);
-            }
-        });
-    }
-    getBrand();
-    });
-
-</script>
-<script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#blah')
-                    .attr('src', e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURL2(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#blah2')
-                    .attr('src', e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function readURL3(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#blah3')
-                    .attr('src', e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
-<script type="text/javascript">
-    $("#product_name").keyup(function(){
-        var Text = $(this).val();
-        Text = Text.toLowerCase();
-        Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
-        $("#product_slug").val(Text);        
-    });
-</script>
+<script src="{{ asset('asset/sitejs/product/product_edit.js')}}"></script>
 @endsection

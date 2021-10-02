@@ -44,38 +44,51 @@ class StockController extends Controller
         $validator  = $request->validate([
             'product_id'  => 'required',
             'quantity'  => 'required',
+            'perches_code'  => 'required|unique:stocks',
+            'perches_price' => 'required',
+            'sell_price' => 'required'
         ]);
-        $preInsert = Stock::where('product_id',$request->product_id)->first();
-        //dd($preInsert);
-        if($preInsert==''){
-            $stock = new Stock();
-            $formData = $request->all();
-            $stock->status = 1;
-            $stock->fill($formData)->save();
-            Toastr::success('Stock Create Successfully');
-            return redirect()->route('seller.stock.list');
-        }else if (($preInsert->size_id == $request->size_id) && ($preInsert->color_id == $request->color_id)) {
-            $product= ($request->quantity)+($preInsert->quantity);
-            $user = Stock::find($preInsert->id);
-            $user->quantity = $product;
-            $user->save();
-            Toastr::success('Size Color Match! Quantity Updated');
-            return redirect()->route('seller.stock.list');
-        }else if (($preInsert->size_id == $request->size_id) || ($preInsert->color_id == $request->color_id)) {
-            $stock = new Stock();
-            $formData = $request->all();
-            $stock->status = 1;
-            $stock->fill($formData)->save();
-            Toastr::success('Stock Create Successfully');
-            return redirect()->route('seller.stock.list');
-        }else if($preInsert->weight_id == $request->weight_id){
-            $product= ($request->quantity)+($preInsert->quantity);
-            $user = Stock::find($preInsert->id);
-            $user->quantity = $product;
-            $user->save();
-            Toastr::success('Weight Match! Quantity Updated');
-            return redirect()->route('seller.stock.list');
-        }
+
+        $stock = new Stock();
+        $formData = $request->all();
+        $stock->status = 1;
+        $stock->approval = 0;
+        $stock->fill($formData)->save();
+        Toastr::success('Stock Create Successfully', 'Success');
+        return redirect()->route('seller.stock.list');
+
+
+        // $preInsert = Stock::where('product_id',$request->product_id)->first();
+        // //dd($preInsert);
+        // if($preInsert==''){
+        //     $stock = new Stock();
+        //     $formData = $request->all();
+        //     $stock->status = 1;
+        //     $stock->fill($formData)->save();
+        //     Toastr::success('Stock Create Successfully');
+        //     return redirect()->route('seller.stock.list');
+        // }else if (($preInsert->size_id == $request->size_id) && ($preInsert->color_id == $request->color_id)) {
+        //     $product= ($request->quantity)+($preInsert->quantity);
+        //     $user = Stock::find($preInsert->id);
+        //     $user->quantity = $product;
+        //     $user->save();
+        //     Toastr::success('Size Color Match! Quantity Updated');
+        //     return redirect()->route('seller.stock.list');
+        // }else if (($preInsert->size_id == $request->size_id) || ($preInsert->color_id == $request->color_id)) {
+        //     $stock = new Stock();
+        //     $formData = $request->all();
+        //     $stock->status = 1;
+        //     $stock->fill($formData)->save();
+        //     Toastr::success('Stock Create Successfully');
+        //     return redirect()->route('seller.stock.list');
+        // }else if($preInsert->weight_id == $request->weight_id){
+        //     $product= ($request->quantity)+($preInsert->quantity);
+        //     $user = Stock::find($preInsert->id);
+        //     $user->quantity = $product;
+        //     $user->save();
+        //     Toastr::success('Weight Match! Quantity Updated');
+        //     return redirect()->route('seller.stock.list');
+        // }
     }
 
     /**
@@ -121,7 +134,7 @@ class StockController extends Controller
         $formData = $request->all();
 
         $update->fill($formData)->save();
-        Toastr::success('Update Successfully');
+        Toastr::success('Stock Update Successfully', 'Success');
         return redirect()->route('seller.stock.list');
     }
 
