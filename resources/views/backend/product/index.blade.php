@@ -111,6 +111,7 @@
             });
         });
 </script>
+
 <script type="text/javascript">
     $(document).on("change","#product",function(){
     var id=$(this).attr('data');

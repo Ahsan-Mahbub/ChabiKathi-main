@@ -1,16 +1,6 @@
 @extends('seller.layouts.app')
 @section('content')
 <div class="container">
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <strong>{{ $error }}</strong>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        @endforeach
-    @endif
     <div class="block">
         <div class="block-header block-header-default">
             <h3 class="block-title text-center"> Update Stock</h3>
@@ -37,7 +27,22 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
+                                <input type="text" class="form-control" id="color-name" value="{{$stock->perches_price}}" disabled="">
+                                <label for="color-name">Perches Price</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-material">
+                                <input type="text" class="form-control" id="color-name" value="{{$stock->perches_code}}" disabled="">
+                                <label for="color-name">Product Code</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-material">
                                 <input type="number" class="form-control" id="color-name" value="{{$stock->quantity}}" name="quantity" placeholder="Enter Quantity">
+                                @error('quantity')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="color-name">Quantity<span class="text-danger">*</span></label>
                             </div>
                         </div>

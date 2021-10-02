@@ -16,7 +16,8 @@
 	                </button>
 	            </div>
 	    </div>
-	    <div class="container mt-4 mb-4">
+	    <div style="height: 610px; overflow-y: scroll;">
+	    	<div class="container mt-4 mb-4">
 	    	<div class="row">
 	            @foreach($products as $value)
 	            <div class="col-md-4 col-xl-3 stock_product mb-2" data-id="{{$value}}" style="cursor: pointer;">
@@ -39,6 +40,7 @@
 	            </div>
 	            @endforeach
 	        </div>
+	    	</div>
 	    </div>
 	</div>
 </div>
@@ -55,21 +57,6 @@
 	  </button>
 	</div>
 
-
-	@if ($errors->any())
-        @foreach ($errors->all() as $error)
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <strong>{{ $error }}</strong>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        @endforeach
-    @endif
-
-	<div id="dynamic_field">
-		
-	</div>
 	<div class="block">
 	    <div class="block-header block-header-default">
 	        <h3 class="block-title text-center"> Add Product Stock</h3>
@@ -91,6 +78,9 @@
 	                        <div class="col-lg-12">
 	                            <input type="text" class="form-control" id="product_name" disabled="">
 	                        </div>
+	                        @error('product_name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
 	                    </div>
 	                </div>
 	                <div class="col-xl-4">
@@ -99,30 +89,43 @@
 	                        <div class="col-lg-12">
 	                            <input type="text" class="form-control" id="slug" disabled="">
 	                        </div>
+	                        @error('slug')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
 	                    </div>
 	                </div>
 	                <div class="col-xl-4">
 	                    <div class="form-group row">
-	                        <label class="col-12" for="price">Sell Price</label>
+	                        <label class="col-12" for="sell_price">Sell Price</label>
 	                        <div class="col-lg-12">
-	                            <input type="text" class="form-control" id="price" disabled="">
+	                            <input type="text" class="form-control" id="sell_price" disabled="">
+	                            <input type="hidden" class="form-control" id="sell_price_dis" name="sell_price">
 	                        </div>
+	                        @error('sell_price')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
 	                    </div>
 	                </div>
 	                <div class="col-xl-4">
 	                    <div class="form-group row">
-	                        <label class="col-12" for="quantity">Purches Price<span class="text-danger">*</span></label>
+	                        <label class="col-12" for="perches_price">Purches Price<span class="text-danger">*</span></label>
 	                        <div class="col-lg-12">
-	                            <input type="number" name="quantity" class="form-control" id="quantity" placeholder="Enter Product Quantity" required="">
+	                            <input type="number" name="perches_price" class="form-control" id="perches_price" placeholder="Enter Product Quantity" required="">
 	                        </div>
+	                        @error('perches_price')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
 	                    </div>
 	                </div>
 	                <div class="col-xl-4">
 	                    <div class="form-group row">
-	                        <label class="col-12" for="quantity">Purches Code<span class="text-danger">*</span></label>
+	                        <label class="col-12" for="perches_code">Purches Code<span class="text-danger">*</span></label>
 	                        <div class="col-lg-12">
-	                            <input type="text" name="quantity" class="form-control" id="quantity" placeholder="Enter Product Quantity" required="">
+	                            <input type="text" name="perches_code" class="form-control" id="perches_code" placeholder="Enter Purches Code" required="">
 	                        </div>
+	                        @error('perches_code')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
 	                    </div>
 	                </div>
 	                <div class="col-xl-4">
@@ -131,6 +134,9 @@
 	                        <div class="col-lg-12">
 	                            <input type="number" name="quantity" class="form-control" id="quantity" placeholder="Enter Product Quantity" required="">
 	                        </div>
+	                        @error('quantity')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
 	                    </div>
 	                </div>
 
@@ -148,9 +154,8 @@
                             </div>
                         </div>
 	                </div>
-	                <div class="red box">
-
-	                	<div class="col-xl-6">
+	                <div class="red box col-xl-12">
+	                	<div class="col-xl-6" style="display: inline; float: left;">
 		                    <div class="form-group row">
 		                        <label class="col-12" for="color_id">Color</label>
 		                        <div class="col-lg-12">
@@ -164,7 +169,7 @@
 		                        </div>
 		                    </div>
 		                </div>
-		                <div class="col-xl-6">
+		                <div class="col-xl-6" style="display: inline; float: right;">
 		                    <div class="form-group row">
 		                        <label class="col-12" for="size_id">Size</label>
 		                        <div class="col-lg-12">
@@ -181,8 +186,8 @@
 
 		            </div>
 
-		            <div class="green box">
-		                <div class="col-xl-12">
+		            <div class="green box col-xl-12">
+		                <div class="col-xl-6" style="display: inline; float: left;">
 		                    <div class="form-group row">
 		                        <label class="col-12" for="weight_id">Weight</label>
 		                        <div class="col-lg-12">
@@ -197,11 +202,9 @@
 		                    </div>
 		                </div>
 		            </div>
-	                <div class="col-xl-6">
-	                    <div class="form-group row mt-4">
+	                    <div class="form-group pl-10">
 	                    	<button type="submit" id="submit" class="btn btn-alt-primary">Submit</button>
 	                    </div>
-	                </div>
 	            </div>
 	        </div>
 	    </form>
@@ -223,16 +226,17 @@ $(document).ready(function(){
 <script type="text/javascript">
 	$('.stock_product').click(function(){
 		let product_info = $(this).data('id');
-
 		let product_ids = product_info.id;
 		let product_names = product_info.product_name;
 		let slugs = product_info.slug;
-		let price = product_info.price;
+		let sell_price = product_info.price;
+		let sell_price_dis = product_info.price;
 
 		document.getElementById('product_id').value = product_ids;
 		document.getElementById('product_name').value = product_names;
 		document.getElementById('slug').value = slugs;
-		document.getElementById('price').value = price;
+		document.getElementById('sell_price').value = sell_price;
+		document.getElementById('sell_price_dis').value = sell_price_dis;
 		toastr.success(" Product Selected", "Success");
 	})
 </script>
@@ -240,17 +244,22 @@ $(document).ready(function(){
 	function validateForm() {
 		var x = document.forms["myForm"]["product_id"].value;
 		if (x == "") {
-		    $('#dynamic_field').append(
-               `
-               <div class="alert alert-danger alert-dismissible fade show" role="alert">
-				  <strong>Plese Select Product...</strong>
-				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				    <span aria-hidden="true">&times;</span>
-				  </button>
-				</div>
-               `);
+		    toastr.warning(" Please Select Product", "Damage");
 		    return false;
 		}
 	}
+</script>
+<script type="text/javascript">
+$("#perches_price").keyup(function(){
+    var Text = $(this).val();
+    let random = (Math.random() + 1).toString(36).substring(7);
+    Text = 'perches'+'-'+Text.toLowerCase()+random;
+    $("#perches_code").val(Text); 
+
+    var v = $(this).val();
+	    if(v.length == 0 && v == '') {
+	        $('#perches_code').val('');
+	    } 
+});
 </script>
 @endsection

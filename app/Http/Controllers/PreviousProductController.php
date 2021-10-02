@@ -49,7 +49,6 @@ class PreviousProductController extends Controller
             'category_id'  => 'required',
             'price'  => 'required',
             'shop_id' => 'required',
-            'seller_id' => 'required'
         ]);
         $shops = Shop::where('id', $request->shop_id)->first();
         $seller = $shops->seller_id;

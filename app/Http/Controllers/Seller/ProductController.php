@@ -16,6 +16,7 @@ use App\Helpers\Helper;
 use App\Http\Resources\ProductCollection;
 use Str;
 use Validator;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -50,22 +51,14 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $validator  = $request->validate([
-            'product_name'  => 'required|unique:products',
-            'product_slug'  => 'required',
-            'product_desc'  => 'required',
-            'category_id'  => 'required',
-            'price'  => 'required',
-            'shop_id' => 'required',
-        ]);
         
         $product = new Product();
         $requested_data = $request->all();
         $product->status = 1;
         $product->approval = 0;
-        $product->product_slug = $request->product_slug;
+        $product->slug = $request->slug;
         $product->sku .= 'sku-' . $request->product_name . '-'.time();
         $product->shop_id=auth('seller')->id();
         
@@ -95,10 +88,14 @@ class ProductController extends Controller
         }
 
         // dd($requested_data);
-        $product->fill($requested_data)->save();
-        Toastr::success('Save Successfully');
-        return redirect()->route('seller.product.list')
-            ->with('success', 'Product created successfully.');
+        $save = $product->fill($requested_data)->save();
+        if($save){
+            Toastr::success('Product Create Successfully', 'Success');
+            return redirect()->route('seller.product.list');
+        }else{
+            Toastr::warning('Product Did Not Create Successfully', 'Damage');
+            return back();
+        }
     }
 
     /**
@@ -116,16 +113,9 @@ class ProductController extends Controller
     public function status($id,$status)
     {
         $product_status = Product::findOrFail($id);
-        // if ($product_status->status == 0) {
-        //     $product_status->status = 1;
-        // } else {
-        //     $product_status->status = 0;
-        
         $product_status->status =$status;
         $product_status->save();
-        // Toastr::success('Status Change Successfully', 'Success');
         return response()->json(['message'=>'success']);
-        // return redirect()->back();
     }
 
 
@@ -154,21 +144,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        $validation=Validator::make($request->all(),[
-            'product_name'  => 'required',
-            'product_slug'  => 'required',
-            'product_desc'  => 'required',
-            'category_id'  => 'required',
-            'price'  => 'required',
-        ]);
-        if ($validation->fails()) {
-            return back()->withInput()->withErrors($validation);
-        }
 
         $update = Product::findOrFail($id);
-        $update->product_slug = $request->product_slug;
+        $update->slug = $request->slug;
         $formData = $request->all();
         if ($request->hasFile('product_img')) {
             Helper::delete($update->product_img);
@@ -196,9 +176,14 @@ class ProductController extends Controller
             $request->file('product_img_3')->move($path, $name);
             $formData['product_img_3'] = $path . $name;
         }
-        $update->fill($formData)->save();
-        Toastr::success('Update Successfully');
-        return redirect()->route('seller.product.list');
+        $updated = $update->fill($formData)->save();
+        if($updated){
+            Toastr::success('Product Update Successfully', 'Success');
+            return redirect()->route('seller.product.list');
+        }else{
+            Toastr::danger('Updated Not Successfully', 'Damage');
+            return back();
+        }
     }
 
     /**

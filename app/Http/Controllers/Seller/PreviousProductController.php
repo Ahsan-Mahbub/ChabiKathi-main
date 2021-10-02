@@ -9,6 +9,8 @@ use App\Models\Shop;
 use Toastr;
 use Validator;
 use Str;
+use App\Http\Requests\PreviousProductRequest;
+
 class PreviousProductController extends Controller
 {
     /**
@@ -41,9 +43,11 @@ class PreviousProductController extends Controller
      */
     public function store(Request $request)
     {
+
+        // dd($request->all());
         $validator  = $request->validate([
             'product_name'  => 'required',
-            'product_slug'  => 'required',
+            'slug'  => 'required',
             'product_desc'  => 'required',
             'category_id'  => 'required',
             'price'  => 'required',
@@ -51,14 +55,21 @@ class PreviousProductController extends Controller
         ]);
         $product = new Product();
         $requested_data = $request->all();
+        $shops = Shop::where('id', $request->shop_id)->first();
+        $seller = $shops->seller_id;
         $product->status = 1;
+        $product->seller_id = $seller;
         $product->approval = 0;
-        $product->product_slug = $request->product_slug . '-' . 'prv' . Str::random(5) ;
+        $product->slug = $request->slug . '-' . 'prv' . Str::random(5) ;
         $product->sku .= 'sku-' . $product->product_name.time();
-        $product->fill($requested_data)->save();
-        Toastr::success('Save Successfully');
-        return redirect()->route('seller.product.list')
-            ->with('success', 'Product created successfully.');
+        $save = $product->fill($requested_data)->save();
+        if($save){
+            Toastr::success('Another Shop Product Create Your Shop Successfully', 'Success');
+            return redirect()->route('seller.product.list');
+        }else{
+            Toastr::warning(' Product Create Did Not Successfully', 'Damage');
+            return back();
+        }
     }
 
     /**

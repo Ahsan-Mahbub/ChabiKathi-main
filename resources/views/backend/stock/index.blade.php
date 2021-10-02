@@ -11,9 +11,12 @@
                     <tr>
                         <th class="text-center">S/L</th>
                         <th class="text-center"> Product Name</th>
+                        <th class="text-center"> Perches Price</th>
+                        <th class="text-center"> Perches Code</th>
+                        <th class="text-center"> Sell Price</th>
                         <th class="text-center">Quantity</th>
-                        <th class="text-center">Color Name</th>
-                        <th class="text-center">Size Name</th>
+                        <th class="text-center">Color</th>
+                        <th class="text-center">Size</th>
                         <th class="text-center">Weight</th>
                         <th class="text-center">Approval</th>
                         <th class="text-center">Action</th>
@@ -25,6 +28,9 @@
                     <tr>
                         <td class="text-center">{{$sl++}}</td>
                         <td class="font-w600 text-center">{{$stock->product? $stock->product->product_name : 'Null'}}</td>
+                        <td class="font-w600 text-center">{{$stock->perches_price}}</td>
+                        <td class="font-w600 text-center">{{$stock->perches_code}}</td>
+                        <td class="font-w600 text-center">{{$stock->sell_price}}</td>
                         <td class="font-w600 text-center">{{$stock->quantity}}</td>
                         <td class="font-w600 text-center">{{$stock->color? $stock->color->color_name : 'Null'}}</td>
                         <td class="font-w600 text-center">{{$stock->size? $stock->size->size_name : 'Null'}}</td>
