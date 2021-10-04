@@ -12,7 +12,31 @@ use App\Models\Stock;
 
 class HomeController extends Controller
 {
+    // public function category(){
+    //     $categories = Category::with(['subcategory' => function($q) {
+    //             $q->with('subsubcategory')->where('status',1)->orderBy('id', 'desc');
+    //         }])->where('status',1)->orderBy('id', 'desc')->get();
+    //     // $categories = SubCategory::with(['subsubcategory'])->where('status',1)->orderBy('id', 'desc')->get();
+    //     // dd($categories);
+    //     return view('fontend.layouts.header',compact('categories'));
+    // }
     public function home(){
+
+
+        // $products = Category::has('product')
+        //     ->with(['product' => function($q) {
+        //         $q->with(['stock' => function($m){
+        //             $m->where('status',1)->where('approval',1);
+        //         }])->where('status',1)->where('approval',1)->orderBy('id', 'desc');
+        //     }])
+        //     ->where('status', 1)
+        //     ->orderBy('category_priority','asc')
+        //     ->paginate(5)
+        //     ->map(function( $category ){
+        //         $category->product = $category->product->take(6);
+        //     return $category;
+        // });
+
         $shops = Shop::where('status',1)->where('approval',1)->where('holiday',1)->paginate(6);
         // dd($shops);
         $products = Category::has('product')

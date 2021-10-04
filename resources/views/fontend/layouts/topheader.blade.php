@@ -45,7 +45,7 @@
                     <div>
                         <div class="search-box">
                             <div class="search-box-border">
-                                <div class="search-box-border-select">
+                                <!-- <div class="search-box-border-select">
                                     <div class="pr-5 s-container">
                                         <div class="selecton-wrapper">
                                             <div class="select " style="width: 150px;" data-toggle="dropdown"
@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+ -->
                                 <div class="searching-area-wrapper">
                                     <div class="ant-select-show-search ant-select-auto-complete ant-select">
                                         <div class="ant-select-selection">

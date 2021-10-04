@@ -129,8 +129,9 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $category = Category::where('status',1)->get();
+        $subcategory = SubCategory::where('status',1)->get();
         $shop = Shop::where('seller_id',auth('seller')->user()->id)->where('status',1)->where('approval',1)->first();
-        return view('seller.product.edit', compact('product','category','shop'));
+        return view('seller.product.edit', compact('product','category','shop','subcategory'));
 
 
         $product = Product::findOrFail($id);

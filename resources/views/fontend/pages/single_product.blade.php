@@ -26,7 +26,9 @@
             <div class="row">
               <div class="product-image-display col-sm-12 col-md-5">
                 <div class="xzoom-container">
-                  <img class="xzoom4" id="xzoom-fancy" src="/{{$product->product_img}}" xoriginal="/{{$product->product_img}}" />
+                  <div class="image-zoom-in">
+                    <img class="xzoom4" style="width: 100%!important" id="xzoom-fancy" src="/{{$product->product_img}}" xoriginal="/{{$product->product_img}}" />
+                  </div>
                   <div class="xzoom-thumbs">
                     <a href="/{{$product->product_img}}"><img class="xzoom-gallery4" width="80" src="/{{$product->product_img}}"  xpreview="/{{$product->product_img}}" title="The description goes here"></a>
                     <a href="/{{$product->product_img_2}}"><img class="xzoom-gallery4" width="80" src="/{{$product->product_img_2}}" title="The description goes here"></a>
@@ -72,34 +74,34 @@
                       <label class="form-check-label" for="inlineRadio1">Black</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                      <label class="form-check-label" for="inlineRadio2">Red</label>
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio8" value="option2">
+                      <label class="form-check-label" for="inlineRadio8">Red</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                      <label class="form-check-label" for="inlineRadio2">Green</label>
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio7" value="option2">
+                      <label class="form-check-label" for="inlineRadio7">Green</label>
                     </div>
                   </div>
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Size: &nbsp;</span>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                      <label class="form-check-label" for="inlineRadio1">M</label>
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" value="option1">
+                      <label class="form-check-label" for="inlineRadio6">M</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                      <label class="form-check-label" for="inlineRadio2">XL</label>
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option2">
+                      <label class="form-check-label" for="inlineRadio5">XL</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                      <label class="form-check-label" for="inlineRadio2">XXL</label>
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option2">
+                      <label class="form-check-label" for="inlineRadio4">XXL</label>
                     </div>
                   </div>
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Weight: &nbsp;</span>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                      <label class="form-check-label" for="inlineRadio2">10 kg</label>
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option2">
+                      <label class="form-check-label" for="inlineRadio3">10 kg</label>
                     </div>
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
@@ -113,13 +115,10 @@
                           <div class="product-view-single-product-area-r-price mb-20 shop-name">
                             <span class="pdp-label">Price: &nbsp;</span>
                             <?php
-                              if($product->discount)
+                              if($product->discounted_price)
                               {
-                                $main_price= $product->price;
-                                $discount_price= $product->discount;
-                                $total_price= $main_price-$discount_price;
                                 ?>
-                                <span class="new-price">৳ {{$total_price}}</span>
+                                <span class="new-price">৳ {{$product->discounted_price}}</span>
                                 <span class="old-price">৳ {{$product->price}}</span>
                                 <?php
                               }else{
@@ -148,6 +147,7 @@
 
                             <div class="button-section">
                               <button type="button" class="btn btn-danger mr-10 mt-10 addToCart">Add to Cart</button>
+                              <!-- <button type="button" class="btn btn-info mr-10 mt-10 addToCart">Add to Wish List</button> -->
                               <button type="button" class="btn btn-warning button-reverse button mt-10 mr-10">Buy Now</button>
                             </div>
                           </div>
@@ -280,30 +280,25 @@
           <div class="col-md-12">
             @foreach($related_product as $related)
             <div class="col-md-2 product-box cat-box">
-              <a href="/product/{{$related->product_slug}}">
+              <a href="/product/{{$related->slug}}">
                 <div class="product-img">
                   <img src="/{{$related->product_img}}">
                 </div>
                 <span class="product-name">{{$related->product_name}}</span>
-
-                <?php
-                  if($related->discount)
-                  {
-                    $main_price= $related->price;
-                    $discount_price= $related->discount;
-                    $total_price= $main_price-$discount_price;
-                    ?>
-                    <div class="text-center con-price">
-                      <span class="present-price">৳ {{$total_price}}</span>
-                      <span class="previous-price">৳ {{$related->price}}</span>
-                    </div>
-                    <?php
-                  }else{
-                    ?>
-                    <span class="present-price">৳ {{$related->price}}</span>
-                    <?php
-                  }
-                ?>
+                <div class="text-center con-price">
+                  <?php
+                    if ($related->discounted_price) {
+                      ?>
+                        <span class="present-price">৳ {{$related->discounted_price}}</span>
+                        <span class="previous-price">৳ {{$related->price}}</span>
+                      <?php
+                    }else{
+                      ?>
+                      <span class="present-price">৳ {{$related->price}}</span>
+                      <?php
+                    }
+                  ?>
+                </div>
 
 
                 <?php

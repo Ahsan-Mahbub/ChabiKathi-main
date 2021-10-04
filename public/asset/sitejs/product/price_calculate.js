@@ -1,44 +1,44 @@
 document.getElementById("disval").disabled = true;
-    document.getElementById("percentage-box").disabled = true;
+document.getElementById("percentage-box").disabled = true;
 
-    $('#percentage_price').hide();
-    $('#percentage-box').click(function() {
-        $('#percentage_price')[this.checked ? "show" : "hide"]();
+$('#percentage_price').hide();
+$('#percentage-box').click(function() {
+    $('#percentage_price')[this.checked ? "show" : "hide"]();
 
+});
+
+$('#percentage-box').click(function() {
+    $('#disval, #afterdis, #afterdisval').val('');
+    document.getElementById("percentage_price").checked = false;
+    var nullPrice = $('#percentage').val('');
+});
+
+$(function(){
+    $('#totalprice').on('keyup', function() {
+        var totalPrice = parseInt($('#totalprice').val());
+        var v = $(this).val();
+        if(v.length > 0){
+            document.getElementById("disval").disabled = false;
+            document.getElementById("percentage-box").disabled = false;  
+        }else{
+           document.getElementById("disval").disabled = true;
+            document.getElementById("percentage-box").disabled = true;   
+        }
+      calculate();
     });
-
-    $('#percentage-box').click(function() {
-        $('#disval, #afterdis, #afterdisval').val('');
-        document.getElementById("percentage_price").checked = false;
-        var nullPrice = $('#percentage').val('');
-    });
-
-    $(function(){
-        $('#totalprice').on('keyup', function() {
-            var totalPrice = parseInt($('#totalprice').val());
-            var v = $(this).val();
-            if(v.length > 0){
-                document.getElementById("disval").disabled = false;
-                document.getElementById("percentage-box").disabled = false;  
-            }else{
-               document.getElementById("disval").disabled = true;
-                document.getElementById("percentage-box").disabled = true;   
-            }
-          calculate();
-        });
-        $('#percentage').on('keyup', function() {
-            var totalPrice = parseInt($('#totalprice').val()); 
-            var v = $(this).val();
-            if(v.length == 0 && v == '') {
-                $('#disval').val('');
-                $('#afterdis, #afterdisval').val(totalPrice);
-            } 
-         calculate();
+    $('#percentage').on('keyup', function() {
+        var totalPrice = parseInt($('#totalprice').val()); 
+        var v = $(this).val();
+        if(v.length == 0 && v == '') {
+            $('#disval').val('');
+            $('#afterdis, #afterdisval').val(totalPrice);
+        } 
+            calculate();
         });
         $('#disval').on('keyup', function() {
-         calculate();
+            calculate();
     });
-    
+
     function calculate(){
         var totalPrice = parseInt($('#totalprice').val()); 
         var percentagePrice = parseInt($('#percentage').val());
@@ -71,5 +71,4 @@ document.getElementById("disval").disabled = true;
             
         }
     }
-
 });

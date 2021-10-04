@@ -50,8 +50,8 @@ class ProductController extends Controller
     }
 
     public function subsubcategory($id)
-    {
-        $subsubcategories = SubSubCategory::where('subcategory_id', $id)->get();
+    {   
+        $subsubcategories = SubSubCategory::where('sub_category_id', $id)->get();
         return response()->json($subsubcategories, 200);
     }
 
@@ -162,8 +162,9 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $category = Category::where('status',1)->get();
+        $subcategory = SubCategory::where('status',1)->get();
         $shop = Shop::where('status',1)->get();
-        return view('backend.product.edit', compact('product','category','shop'));
+        return view('backend.product.edit', compact('product','category','shop','subcategory'));
     }
 
     /**

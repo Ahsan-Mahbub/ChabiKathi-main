@@ -15,7 +15,8 @@ class SubSubCategory extends Model
         'subCategory_id',
         'slug',
     ];
-    public function parent(){
-        return $this->belongsTo(SubCategory::class,'subCategory_id');
+
+    public function subcategory(){
+        return $this->belongsTo(SubCategory::class);
     }
 }

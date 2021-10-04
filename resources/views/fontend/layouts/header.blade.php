@@ -2,7 +2,13 @@
     <!-- Top Header Section -->
     @include('fontend.layouts.topheader')
     <!-- End Header Section -->
-    @php($categories = \App\Models\Category::with(['parent'])->where('status',1)->get()->toArray())
+    <!-- @php($categories = \App\Models\Category::with(['subcategory'])->where('status',1)->get()->toArray()) -->
+    <?php
+    $categories = \App\Models\Category::with(['subcategory' => function($q) {
+                $q->with('subsubcategory')->where('status',1)->orderBy('id', 'desc');
+            }])->where('status',1)->orderBy('id', 'desc')->get();
+    //print_r($categories);
+    ?>
     <section class="site-banner">
       <div class="container site-banner-container">
         <div class="row">
@@ -24,9 +30,14 @@
                         </div>
                       </a>
                       <div class="dropdown-content">
-                        @if($category['parent'])
-                        @foreach($category['parent'] as $subcategory)
+                        @if($category['subcategory'])
+                        @foreach($category['subcategory'] as $subcategory)
                         <a href="/sub-category/{{($subcategory['slug'])}}">{{$subcategory['sub_category_name']}}</a>
+                        <div class="subsub-dropdown-content">
+                          @foreach($subcategory['subsubcategory'] as $subsubcategory)
+                            <a href="/sub-sub-category/{{($subsubcategory['slug'])}}">{{$subsubcategory['sub_sub_category_name']}} </a>
+                          @endforeach
+                        </div>
                         @endforeach
                         @endif
                       </div>
@@ -82,9 +93,14 @@
                         <div>{{$category['category_name']}}</div>
                       </a>
                       <div class="dropdown-content">
-                        @if($category['parent'])
-                        @foreach($category['parent'] as $subcategory)
+                        @if($category['subcategory'])
+                        @foreach($category['subcategory'] as $subcategory)
                         <a href="/sub-category/{{($subcategory['slug'])}}">{{$subcategory['sub_category_name']}}</a>
+                        <div class="subsub-dropdown-content">
+                          @foreach($subcategory['subsubcategory'] as $subsubcategory)
+                            <a href="/sub-sub-category/{{($subsubcategory['slug'])}}">{{$subsubcategory['sub_sub_category_name']}} </a>
+                          @endforeach
+                        </div>
                         @endforeach
                         @endif
                       </div>
@@ -140,9 +156,14 @@
                     </div>
                   </a>
                   <div class="dropdown-content">
-                    @if($category['parent'])
-                    @foreach($category['parent'] as $subcategory)
+                    @if($category['subcategory'])
+                    @foreach($category['subcategory'] as $subcategory)
                     <a href="/sub-category/{{($subcategory['slug'])}}">{{$subcategory['sub_category_name']}}</a>
+                        <div class="subsub-dropdown-content">
+                          @foreach($subcategory['subsubcategory'] as $subsubcategory)
+                            <a href="/sub-sub-category/{{($subsubcategory['slug'])}}">{{$subsubcategory['sub_sub_category_name']}} </a>
+                          @endforeach
+                        </div>
                     @endforeach
                     @endif
                   </div>
