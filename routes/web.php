@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\fontController\HomeController;
 use App\Http\Controllers\fontController\CategoryProductController;
 use App\Http\Controllers\fontController\SubCategoryProductController;
+use App\Http\Controllers\fontController\SubSubCategoryProductController;
 use App\Http\Controllers\fontController\SingleProductController;
 use App\Http\Controllers\fontController\ShopProductController;
 // Backend-Controller
@@ -38,8 +39,10 @@ use App\Http\Controllers\PreviousProductController;
 
 // Front View Route
 Route::get('/', [HomeController::class, 'home'])->name('home');
+// Route::get('/all-category', [HomeController::class, 'category']);
 Route::get('/category/{slug}', [CategoryProductController::class, 'categoryProduct']);
 Route::get('/sub-category/{id}', [SubCategoryProductController::class, 'subCategoryProduct']);
+Route::get('/sub-sub-category/{id}', [SubSubCategoryProductController::class, 'subsubCategoryProduct']);
 Route::get('/product/{slug}', [SingleProductController::class, 'singleProduct']);
 Route::get('/all-shop', [ShopProductController::class, 'index']);
 Route::get('/shop/{slug}', [ShopProductController::class, 'shopProduct']);

@@ -23,7 +23,7 @@
 						<li><a title="Home" href="/">Home</a>
 							<span class="breadcome-separator">&gt;</span>
 						</li>
-						<li>{{$category->category_name ?? ''}} {{ $subcategory->sub_category_name ?? ''}} {{ $shop->shop_name ?? ''}}</li>
+						<li>{{$category->category_name ?? ''}} {{ $subcategory->sub_category_name ?? ''}} {{ $subsubcategory->sub_sub_category_name ?? ''}} {{ $shop->shop_name ?? ''}}</li>
 					</ul>
 				</div>
 			</div>
@@ -35,7 +35,7 @@
 	<section class="product-part">
 			<div class="container">
 				<div class="product-title dev-flex-sb">
-					<h2>{{$category->category_name ?? ''}} {{ $subcategory->sub_category_name ?? ''}} {{$shop->shop_name ?? ''}}</h2>
+					<h2>{{$category->category_name ?? ''}} {{ $subcategory->sub_category_name ?? ''}} {{ $subsubcategory->sub_sub_category_name ?? ''}} {{$shop->shop_name ?? ''}}</h2>
 					<div class="showing-more">
 						<!-- <span class="show-result">Showing 1-18of 1422 results</span> -->
 					</div>
@@ -44,7 +44,7 @@
 					<div class="col-md-12">
 						@foreach($product as $data)
 						<div class="col-md-2 product-box cat-box">
-							<a href="/product/{{$data->product_slug}}">
+							<a href="/product/{{$data->slug}}">
 								<div class="product-img">
 									<img src="/{{$data->product_img}}">
 								</div>

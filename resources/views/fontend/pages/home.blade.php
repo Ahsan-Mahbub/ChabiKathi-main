@@ -17,7 +17,8 @@
 					<div class="search-and-more">
 						<a class="highlighted-txt dev-flex" href="/">
 							<b class="highlighted-txt">View All</b>
-							<img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px">
+							<i class="fas fa-angle-double-right"></i>
+							<!-- <img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px"> -->
 						</a>
 					</div>
 				</div>
@@ -141,7 +142,8 @@
 					<div class="search-and-more">
 						<a class="highlighted-txt dev-flex" href="/all-shop">
 							<b class="highlighted-txt">View All</b>
-							<img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px">
+							<i class="fas fa-angle-double-right"></i>
+							<!-- <img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px"> -->
 						</a>
 				</div>
 				</div>
@@ -171,7 +173,8 @@
 				<div class="search-and-more">
 					<a class="highlighted-txt dev-flex" href="/category/{{$product->slug}}">
 						<b class="highlighted-txt">View All</b>
-						<img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px">
+						<i class="fas fa-angle-double-right"></i>
+						<!-- <img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px"> -->
 					</a>
 				</div>
 			</div>
@@ -179,39 +182,37 @@
 				<div class="col-md-12">
 					@if($product['product'])
                     @foreach($product['product'] as $proInfo)
-					<div class="col-md-2 product-box cat-box">
-						<a href="/product/{{($proInfo['product_slug'])}}">
+                    <div class="col-md-2 product-box cat-box">
+						<a href="/product/{{($proInfo['slug'])}}">
 							<div class="product-img">
 								<img src="{{$proInfo['product_img']}}">
 							</div>
 							<span class="product-name">{{$proInfo['product_name']}}</span>
-							<?php
-								if($proInfo['discount'])
-								{
-									$main_price= $proInfo['price'];
-									$discount_price= $proInfo['discount'];
-									$total_price= $main_price-$discount_price;
-									?>
-									<div class="text-center con-price">
-				                      <span class="present-price">৳ {{$total_price}}</span>
-				                      <span class="previous-price">৳ {{$proInfo['price']}}</span>
-				                    </div>
-									<?php
-								}else{
-									?>
-									<span class="present-price">৳ {{$proInfo['price']}}</span>
-									<?php
-								}
-							?>
-							<?php
+							<div class="text-center con-price">
+		                      	<?php
+									if ($proInfo['discounted_price']) {
+										?>
+											<span class="present-price">৳ {{$proInfo['discounted_price']}}</span>
+					                    	<span class="previous-price">৳ {{$proInfo['price']}}</span>
+										<?php
+									}else{
+										?>
+										<span class="present-price">৳ {{$proInfo['price']}}</span>
+										<?php
+									}
+								?>
+		                    </div>
+			                <?php
 								if ($proInfo['percentage']) {
 									?>
 									<span class="discount-tag-in-percent">- {{$proInfo['percentage']}}% OFF</span>
 									<?php
 								}
 							?>
+							<small class="in-stock text-success">Stock Available</small>
+							<!-- @foreach($proInfo['stock'] as $stocks)
 							<?php
-								if ($proInfo['id']) {
+								if ($stocks['quantity']) {
 									?>
 									<small class="in-stock text-success">Stock Available</small>
 									<?php
@@ -221,6 +222,7 @@
 									<?php
 								}
 							?>
+							@endforeach -->
 						</a>
 					</div>
 					@endforeach

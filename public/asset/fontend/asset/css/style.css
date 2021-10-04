@@ -215,6 +215,7 @@ li{
     border: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
+    width: 100%;
 }
 .ant-select-selection {
     height: auto;
@@ -525,7 +526,7 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
 }
 .product-title{
     height: 70px;
-    background: #fcfcfc;
+    /*background: #fcfcfc;*/
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -541,7 +542,7 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
     color: #7d2227;
 }
 .search-and-more {
-    background: #7d2227;
+    /*background: #7d2227;*/
     border-radius: 4px;
     height: 30px;
 }
@@ -555,14 +556,23 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
     height: 30px;
     display: flex;
     align-items: center;
-    color: #fff;
-    width: 100px;
+    color: #3a494e;
 }
+.search-and-more i{
+    height: 30px;
+    display: flex;
+    align-items: center;
+    color: #3a494e;
+}
+.highlighted-txt:hover{
+    color: #7d2227;
+}
+/*
 .search-and-more img{
     position: relative;
     margin-right: -2px;
     transition: all .3s ease;
-}
+}*/
 .dev-flex-sb{
     display: flex;
     justify-content: space-between;
@@ -1034,12 +1044,44 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
 .dropdown:hover .dropdown-content {
     display: block;
     left: 100%;
-    top: -10%;
+    top: -5%;
 }
 .dropdown-content a:hover {
   color: #7d2227;
   background: #ddd;
 }
+
+
+
+.subsub-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    font-size: 13px;
+    text-transform: capitalize;
+    text-decoration: none;
+}
+.subsub-dropdown-content a {
+  color: #3a494e;
+  padding: 7px 15px;
+  text-decoration: none;
+  display: block;
+  border-bottom: 1px solid #cfcfcf;
+}
+.dropdown-content:hover .subsub-dropdown-content {
+    display: block;
+    left: 100%;
+    top: 0%;
+}
+.subsub-dropdown-content a:hover {
+  color: #7d2227;
+  background: #ddd;
+}
+
+
 .profile-icon .dropdown-content a {
   padding: 15px 15px;
 }

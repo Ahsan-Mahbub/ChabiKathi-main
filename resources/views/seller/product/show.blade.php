@@ -43,7 +43,14 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <div class="col-12">
+                        <div class="form-material">
+                            <input value="{{$product->subsubcategory? $product->subsubcategory->sub_sub_category_name : 'null'}}" class="form-control" disabled="">
+                            <label for="login2-username">Sub Sub Category Name</label>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                 	<div class="col-12">
                         <div class="form-material">

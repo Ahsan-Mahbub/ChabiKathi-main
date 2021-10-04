@@ -64,11 +64,23 @@
                         <div class="form-group">
                             <div class="form-material">
                                 <select class="form-control" id="subcategory_id" name="subcategory_id" onclick="getSubSubCategory()">
+                                    <option disabled="" selected="">Select Sub Category</option>
+                                    @foreach($subcategory as $value)
+                                        <option value="{{$value->id}}" {{ $product->subcategory_id == $value->id ? 'selected' : ''}}>{{$value->sub_category_name}} </option>
+                                    @endforeach
+                                </select>
+                                <label for="category_id">Select Sub Category<span class="text-danger">*</span></label>
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <div class="form-material">
+                                <select class="form-control" id="subcategory_id" name="subcategory_id" onclick="getSubSubCategory()">
                                     <option value="0">Select</option>
                                 </select>
                                 <label for="subcategory_id">Select Sub Category</label>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <div class="form-material">
                                 <select class="form-control" id="subsubcategory_id" name="subsubcategory_id">

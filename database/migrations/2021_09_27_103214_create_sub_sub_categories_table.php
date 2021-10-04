@@ -17,7 +17,7 @@ class CreateSubSubCategoriesTable extends Migration
             $table->id();
             $table->string('sub_sub_category_name')->unique();
             $table->string('slug')->nullable();
-            $table->integer('subCategory_id');
+            $table->integer('sub_category_id');
             $table->integer('status')->default(1);
             $table->timestamps();
         });

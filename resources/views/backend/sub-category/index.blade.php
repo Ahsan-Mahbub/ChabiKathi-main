@@ -97,7 +97,6 @@
                         type: "delete",
                         dataType: "json",
                         success: function (response) {
-                           
                             toastr.warning(" Deleted successfully", "!!!");
                             window.location.href = "/admin/sub-category/list" ;
                         },
@@ -123,12 +122,10 @@ $.ajax({
     datatype:"json",
     success:function(response){
         toastr.success("Status Change Successfully", "Success");
-               console.log(response);
+        console.log(response);
                
     }
 });
-
-
 });
 </script>
 @endsection

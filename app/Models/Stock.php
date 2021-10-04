@@ -22,20 +22,24 @@ class Stock extends Model
         'sell_price'
     ];
 
+    // public function product()
+    // {
+    //     return $this->belongsTo(Product::class, 'product_id');
+    // }
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_id');
-    }
-    public function size()
-    {
-        return $this->belongsTo(Size::class, 'size_id');
+        return $this->belongsTo(Product::class);
     }
     public function color()
     {
-        return $this->belongsTo(Color::class, 'color_id');
+        return $this->belongsTo(Color::class);
+    }
+    public function size()
+    {
+        return $this->belongsTo(Size::class);
     }
     public function weight()
     {
-        return $this->belongsTo(Weight::class, 'weight_id');
+        return $this->belongsTo(Weight::class);
     }
 }
