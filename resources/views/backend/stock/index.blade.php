@@ -32,9 +32,9 @@
                         <td class="font-w600 text-center">{{$stock->perches_code}}</td>
                         <td class="font-w600 text-center">{{$stock->sell_price}}</td>
                         <td class="font-w600 text-center">{{$stock->quantity}}</td>
-                        <td class="font-w600 text-center">{{$stock->color? $stock->color->color_name : 'Null'}}</td>
-                        <td class="font-w600 text-center">{{$stock->size? $stock->size->size_name : 'Null'}}</td>
-                        <td class="font-w600 text-center">{{$stock->weight? $stock->weight->weight_name : 'Null'}}</td>
+                        <td class="font-w600 text-center">{{$stock['stockVariation']->color ? $stock['stockVariation']->color->color_name : 'Null'}}</td>
+                        <td class="font-w600 text-center">{{$stock['stockVariation']->size? $stock['stockVariation']->size->size_name : 'Null'}}</td>
+                        <td class="font-w600 text-center">{{$stock['stockVariation']->weight? $stock['stockVariation']->weight->weight_name : 'Null'}}</td>
                         <td class="text-center">
                             <?php
                             if ($stock->approval == 1) {

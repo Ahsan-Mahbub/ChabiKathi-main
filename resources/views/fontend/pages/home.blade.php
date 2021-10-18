@@ -12,39 +12,40 @@
 	<!-- Flash Sale Section -->
 	<section class="product-part">
 		<div class="container">
-				<div class="product-title dev-flex-sb">
-					<a href="/"><h2>Flash Sale</h2></a>
-					<div class="search-and-more">
-						<a class="highlighted-txt dev-flex" href="/">
-							<b class="highlighted-txt">View All</b>
-							<i class="fas fa-angle-double-right"></i>
-							<!-- <img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px"> -->
-						</a>
-					</div>
-				</div>
-				<div class="bg-white" style="padding:10px">
-					<div id="clockdiv">
-						<span class="dead-line" style="color: #e3be38; padding: 15px;font-size: 13px;font-style: italic;letter-spacing: 1px; text-align: center;">On Sale Now</span>
-						<span class="dead-line" style="text-align: center;">Ending Time </span>
-					  <div>
-					    <span class="days"></span>
-					    <span class="clone">:</span>
-					  </div>
-					  <div>
-					    <span class="hours"></span>
-					    <span class="clone">:</span>
-					  </div>
-					  <div>
-					    <span class="minutes"></span>
-					    <span class="clone">:</span>
-					  </div>
-					  <div>
-					    <span class="seconds"></span>
-					  </div>
-					</div>
-				</div>
 			<div class="row">
 				<div class="col-md-12">
+					<div class="product-title dev-flex-sb">
+						<a href="/"><h2>Flash Sale</h2></a>
+						<div class="search-and-more">
+							<a class="highlighted-txt dev-flex" href="/">
+								<b class="highlighted-txt">View All</b>
+								<i class="fas fa-angle-double-right"></i>
+								<!-- <img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px"> -->
+							</a>
+						</div>
+					</div>
+					<div class="bg-white" style="padding:10px">
+						<div id="clockdiv">
+							<span class="dead-line" style="color: #e3be38; padding: 15px;font-size: 13px;font-style: italic;letter-spacing: 1px; text-align: center;">On Sale Now</span>
+							<span class="dead-line" style="text-align: center;">Ending Time </span>
+						  <div>
+						    <span class="days"></span>
+						    <span class="clone">:</span>
+						  </div>
+						  <div>
+						    <span class="hours"></span>
+						    <span class="clone">:</span>
+						  </div>
+						  <div>
+						    <span class="minutes"></span>
+						    <span class="clone">:</span>
+						  </div>
+						  <div>
+						    <span class="seconds"></span>
+						  </div>
+						</div>
+					</div>
+
 					<div class="col-md-2 product-box cat-box">
 						<a href="">
 							<div class="product-img">
@@ -137,18 +138,18 @@
 	<!-- Shop Section -->
 	<section class="product-part">
 		<div class="container">
-				<div class="product-title dev-flex-sb">
-					<a href="/all-shop"><h2>Shop By Stores</h2></a>
-					<div class="search-and-more">
-						<a class="highlighted-txt dev-flex" href="/all-shop">
-							<b class="highlighted-txt">View All</b>
-							<i class="fas fa-angle-double-right"></i>
-							<!-- <img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px"> -->
-						</a>
-				</div>
-				</div>
 			<div class="row">
 				<div class="col-md-12">
+					<div class="product-title dev-flex-sb">
+						<a href="/all-shop"><h2>Shop By Stores</h2></a>
+						<div class="search-and-more">
+							<a class="highlighted-txt dev-flex" href="/all-shop">
+								<b class="highlighted-txt">View All</b>
+								<i class="fas fa-angle-double-right"></i>
+							</a>
+						</div>
+					</div>
+
 					@foreach($shops as $shop)
 					<div class="col-md-2 product-box shop-box">
 						<a href="/shop/{{$shop->slug}}">
@@ -168,18 +169,19 @@
 	@foreach($products as $product)
 	<section class="product-part">
 		<div class="container">
-			<div class="product-title dev-flex-sb">
-				<a href="/category/{{$product->slug}}"><h2>{{$product->category_name}}</h2></a>
-				<div class="search-and-more">
-					<a class="highlighted-txt dev-flex" href="/category/{{$product->slug}}">
-						<b class="highlighted-txt">View All</b>
-						<i class="fas fa-angle-double-right"></i>
-						<!-- <img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px"> -->
-					</a>
-				</div>
-			</div>
 			<div class="row">
 				<div class="col-md-12">
+					<div class="product-title dev-flex-sb">
+						<a href="/category/{{$product->slug}}"><h2>{{$product->category_name}}</h2></a>
+						<div class="search-and-more">
+							<a class="highlighted-txt dev-flex" href="/category/{{$product->slug}}">
+								<b class="highlighted-txt">View All</b>
+								<i class="fas fa-angle-double-right"></i>
+								<!-- <img src="{{ asset('asset/fontend/asset/img/side.svg')}}" alt="" height="30px"> -->
+							</a>
+						</div>
+					</div>
+			
 					@if($product['product'])
                     @foreach($product['product'] as $proInfo)
                     <div class="col-md-2 product-box cat-box">
@@ -209,10 +211,9 @@
 									<?php
 								}
 							?>
-							<small class="in-stock text-success">Stock Available</small>
-							<!-- @foreach($proInfo['stock'] as $stocks)
+							@foreach($proInfo['stock'] as $stocks)
 							<?php
-								if ($stocks['quantity']) {
+								if ($stocks['sum'] > 0) {
 									?>
 									<small class="in-stock text-success">Stock Available</small>
 									<?php
@@ -222,7 +223,7 @@
 									<?php
 								}
 							?>
-							@endforeach -->
+							@endforeach
 						</a>
 					</div>
 					@endforeach

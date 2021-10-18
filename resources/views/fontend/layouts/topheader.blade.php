@@ -5,21 +5,19 @@
             <div class="col-md-6 col-lg-6 col-xl-6 col-sm-6 col-6 left-side-top">
                 <div class="phone-details-top">
                     <i class="fas fa-phone"></i>
-                    <span>01600000000</span>
+                    <span>+8809696070055</span>
                 </div>
                 <div class="mail-details-top">
                     <i class="far fa-envelope"></i>
-                    <span>sapport@chabikathi.com</span>
+                    <span>info@chabikathi.com.bd</span>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-6 col-sm-12 col-12 right-side-top">
                 <div class="sell-details-top">
                     <i class="far fa-store"></i>
                     <a href="{{route('seller.loginView')}}">Sell on Chabikathi</a>
-                    {{-- <span>Sell on Chabikathi</span> --}}
                 </div>
                 <div class="app-details-top">
-                    <!-- <img class="img-fluid" src="asset/img/Logo-2.png"> -->
                     <i class="fas fa-mobile-alt"></i>
                     <span>Save big on our App!</span>
                 </div>
@@ -45,27 +43,6 @@
                     <div>
                         <div class="search-box">
                             <div class="search-box-border">
-                                <!-- <div class="search-box-border-select">
-                                    <div class="pr-5 s-container">
-                                        <div class="selecton-wrapper">
-                                            <div class="select " style="width: 150px;" data-toggle="dropdown"
-                                                role="button" aria-haspopup="true" aria-expanded="false">
-                                                <span>product</span>
-                                                <span>
-                                                    <i class="fas fa-chevron-down"></i>
-                                                </span>
-                                            </div>
-                                            <div class="selection-values dropdown-menu">
-                                                <ul>
-                                                    <li value="product">Product</li>
-                                                    <li value="shop">Shop</li>
-                                                    <li value="brand">Brand</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
- -->
                                 <div class="searching-area-wrapper">
                                     <div class="ant-select-show-search ant-select-auto-complete ant-select">
                                         <div class="ant-select-selection">

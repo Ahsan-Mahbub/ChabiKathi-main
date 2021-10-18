@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Stock;
 use App\Models\Product;
+use App\Models\StockVariation;
+use App\Models\AllStockProduct;
 use Toastr;
 use Validator;
 
@@ -18,7 +20,15 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stocks = Stock::orderBy('id', 'desc')->where('seller_id',auth('seller')->user()->id)->get();
+        // $stocks = Stock::with(['stockVariation' => function($q){
+        //     $q->with::(['color']);
+        // }])->orderBy('id', 'desc')->where('seller_id',auth('seller')->user()->id)->paginate();
+        // return view('seller.stock.index', compact('stocks'));
+
+        $stocks = Stock::with(['stockVariation' => function($q) {
+                $q->with('color','size','weight');
+            }])->orderBy('id', 'desc')->where('seller_id',auth('seller')->user()->id)->paginate();
+        
         return view('seller.stock.index', compact('stocks'));
     }
 
@@ -48,47 +58,33 @@ class StockController extends Controller
             'perches_price' => 'required',
             'sell_price' => 'required'
         ]);
+        \DB::transaction(function () use( $request ) {
+            $stock = new Stock();
+            $formData = $request->all();
+            $stock->status = 1;
+            $stock->approval = 0;
+            $stock->fill($formData)->save();
 
-        $stock = new Stock();
-        $formData = $request->all();
-        $stock->status = 1;
-        $stock->approval = 0;
-        $stock->fill($formData)->save();
+            $variation = new StockVariation();
+            $formData = $request->all();
+            $variation->seller_id = $request->seller_id;
+            $variation->stock_id = $stock->id;
+            $variation->product_id = $request->product_id;
+            $variation->fill($formData)->save();
+            // dd($request->quantity);
+
+            if($request->quantity > 0){
+                for ($i=1; $i <= $request->quantity; $i++) { 
+                    $data = new AllStockProduct();
+                    $formData = $request->all();
+                    $data->stock_id = $stock->id;
+                    $data->barcode = 'product'.'-'. random_int(10000000, 99999999);
+                    $data->fill($formData)->save();
+                }
+            }
+        });
         Toastr::success('Stock Create Successfully', 'Success');
         return redirect()->route('seller.stock.list');
-
-
-        // $preInsert = Stock::where('product_id',$request->product_id)->first();
-        // //dd($preInsert);
-        // if($preInsert==''){
-        //     $stock = new Stock();
-        //     $formData = $request->all();
-        //     $stock->status = 1;
-        //     $stock->fill($formData)->save();
-        //     Toastr::success('Stock Create Successfully');
-        //     return redirect()->route('seller.stock.list');
-        // }else if (($preInsert->size_id == $request->size_id) && ($preInsert->color_id == $request->color_id)) {
-        //     $product= ($request->quantity)+($preInsert->quantity);
-        //     $user = Stock::find($preInsert->id);
-        //     $user->quantity = $product;
-        //     $user->save();
-        //     Toastr::success('Size Color Match! Quantity Updated');
-        //     return redirect()->route('seller.stock.list');
-        // }else if (($preInsert->size_id == $request->size_id) || ($preInsert->color_id == $request->color_id)) {
-        //     $stock = new Stock();
-        //     $formData = $request->all();
-        //     $stock->status = 1;
-        //     $stock->fill($formData)->save();
-        //     Toastr::success('Stock Create Successfully');
-        //     return redirect()->route('seller.stock.list');
-        // }else if($preInsert->weight_id == $request->weight_id){
-        //     $product= ($request->quantity)+($preInsert->quantity);
-        //     $user = Stock::find($preInsert->id);
-        //     $user->quantity = $product;
-        //     $user->save();
-        //     Toastr::success('Weight Match! Quantity Updated');
-        //     return redirect()->route('seller.stock.list');
-        // }
     }
 
     /**

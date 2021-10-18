@@ -21,27 +21,11 @@ class HomeController extends Controller
     //     return view('fontend.layouts.header',compact('categories'));
     // }
     public function home(){
-
-
-        // $products = Category::has('product')
-        //     ->with(['product' => function($q) {
-        //         $q->with(['stock' => function($m){
-        //             $m->where('status',1)->where('approval',1);
-        //         }])->where('status',1)->where('approval',1)->orderBy('id', 'desc');
-        //     }])
-        //     ->where('status', 1)
-        //     ->orderBy('category_priority','asc')
-        //     ->paginate(5)
-        //     ->map(function( $category ){
-        //         $category->product = $category->product->take(6);
-        //     return $category;
-        // });
-
-        $shops = Shop::where('status',1)->where('approval',1)->where('holiday',1)->paginate(6);
-        // dd($shops);
         $products = Category::has('product')
             ->with(['product' => function($q) {
-                $q->where('status',1)->where('approval',1)->orderBy('id', 'desc');
+                $q->with(['stock' => function($m){
+                    $m->groupBy('product_id')->selectRaw('sum(quantity) as sum, product_id')->where('status',1)->where('approval',1);
+                }])->where('status',1)->where('approval',1)->orderBy('id', 'desc');
             }])
             ->where('status', 1)
             ->orderBy('category_priority','asc')
@@ -51,11 +35,27 @@ class HomeController extends Controller
             return $category;
         });
 
-        $stocks = Stock::groupBy('product_id')
-            ->selectRaw('sum(quantity) as sum, product_id')
-            ->get();
+        //dd($products);
+
+        $shops = Shop::where('status',1)->where('approval',1)->where('holiday',1)->paginate(6);
+        // dd($shops);
+        // $products = Category::has('product')
+        //     ->with(['product' => function($q) {
+        //         $q->where('status',1)->where('approval',1)->orderBy('id', 'desc');
+        //     }])
+        //     ->where('status', 1)
+        //     ->orderBy('category_priority','asc')
+        //     ->paginate(5)
+        //     ->map(function( $category ){
+        //         $category->product = $category->product->take(6);
+        //     return $category;
+        // });
+
+        // $stocks = Stock::groupBy('product_id')
+        //     ->selectRaw('sum(quantity) as sum, product_id')
+        //     ->get();
         // dd($stocks);
-        return view('fontend.pages.home', compact('products','shops','stocks'));
+        return view('fontend.pages.home', compact('products','shops'));
     }
 
     public function campaign(){
