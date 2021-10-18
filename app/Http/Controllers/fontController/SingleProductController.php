@@ -5,29 +5,23 @@ namespace App\Http\Controllers\fontController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Stock;
 use DB;
 
 class SingleProductController extends Controller
 {
     public function singleProduct($slug){
         // $productDetails = Product::with(['stock'=> function($q){
-        //     $q->with('color','size','weight');
-        // }])->get();
+        //     $q->with(['stockVariation'=> function($s){
+        //         $s->groupBy('product_id')->with('color','size','weight');
+        //     }])->get();
+        // }])->where('slug', $slug)->first();
 
-        // $productDetails = Stock::whereHas('product')->get();
-        // $productDetails = Product::with('stock')->get();
- 
-        $product = Product::where('slug', $slug)->first();
-        $productDetails = Product::with(['stock'=> function($q){
-            $q->orderBy('color_id');
+        $product = Product::with(['stockVariation'=> function($q){
+            $q->with('size','color','weight')->groupBy(['size_id','color_id','weight_id']);
         }])->where('slug', $slug)->first();
-        //$colors = Stock::whereHas('color')->where('product_id', $product->id)->get();
-        dd($productDetails);
-
-        $related_product = DB::table('products')->select('*')->join('categories','categories.id', '=', 'products.category_id')->where('categories.id', $product->category_id)->where('products.status',1)->where('products.approval',1)->orderBy('products.id','desc')->paginate(18);
-        // dd($related_product);
-
+        // dd($product);
+        $related_product = DB::table('products')->join('categories','categories.id', '=', 'products.category_id')->select('categories.id','categories.category_name', 'products.*')->where('categories.id', $product->category_id)->where('products.status',1)->where('products.approval',1)->orderBy('products.id','desc')->paginate(18);
+        //dd($related_product);
         return view('fontend.pages.single_product',compact('product','related_product'));
     }
 }

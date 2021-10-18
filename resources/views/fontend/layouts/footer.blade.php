@@ -6,29 +6,23 @@
         <div class="row">
           <div class="col-lg-5 col-md-6 col-sm-12">
             <div class="section pr-50">
+              <div class="part-title">
+                <h3 class="section-heading">Contact Us</h3>
+              </div>
               <div class="section-content">
-                <div class="mt-10 download-apps">
-                  <div class="dev-flex-l">
-                    <a href="" title="Google Play">
-                        <img src="{{ asset('asset/fontend/asset/img/googleplay.png')}}" alt="Google Play">
-                    </a>
-                    <a href="" title="Apple Store">
-                      <img src="{{ asset('asset/fontend/asset/img/apple.png')}}" alt="Apple Store">
-                    </a>
-                  </div>
-                </div>
-                <p class="mb-40">Buy &amp; sell online with chabikathi</p>
+                <p class="mb-40">Buy &amp; Sell with Chabikathi</p>
                 <p class="m-0 mobile">
-                  <span>Got Question? Call us 24/7</span>
-                  <a href="tel:09638113366">09638113366</a>
+                  <span>Any Question? Call us 24/7</span>
+                  <a href="tel:+8809696070055">+8809696070055</a>
                 </p>
               </div>
             </div>
           </div>
+
           <div class="col-lg-2 col-md-6 col-sm-12">
             <div class="section">
               <div class="part-title">
-                <h3 class="section-heading">Information</h3>
+                <h3 class="section-heading">Quick Link</h3>
               </div>
               <ul class="section-content">
                 <li><a title="" href="/about">About Us</a></li>
@@ -44,9 +38,9 @@
                 <h3 class="section-heading">Customer Service</h3>
               </div>
               <ul class="section-content">
-                <li><a title="Order &amp; Payment" href="/payment">Order &amp; Payment</a></li>
                 <li><a title="" href="/privacy">Privacy &amp; Policy</a></li>
-                <li><a title="" href="/account">My Account</a></li><li><a title="" href="/cart">Shopping cart</a></li>
+                <li><a title="" href="/account">My Account</a></li>
+                <li><a title="" href="/cart">Add to Cart</a></li>
               </ul>
             </div>
           </div>
@@ -54,33 +48,40 @@
             <div class="section">
               <div class="m-0">
                 <div class="part-title">
-                  <h3 class="section-heading">Get In Touch</h3></div>
+                  <h3 class="section-heading">Address</h3></div>
                   <div class="section-content">
-                    <div class="address">Aqua Tower, Level 8,<br> 43 Bir Uttam AK Khandakar Sarak<br>Mohakhali C/A, Gulshan <br>
+                    <div class="address">House-10 Road-16<br>
+                      Sector-03 Uttara Dhaka 1230 Dhaka,<br>
+                      Dhaka Division, Bangladesh<br>
                       <p class="m-0">
-                        <a href="">&nbsp;support@chabikathi.com</a>
-                      </p>
+                        <a href="">&nbsp;info@chabikathi.com.bd</a>
+                      </p><br>
                     </div>
                     <div>
                       <ul class="social-icon" style="padding-left: 0">
                         <li class="social-icon-li">
-                          <a href="" title="Facebook" class="facebook" target="_blank">
+                          <a href="https://www.facebook.com/chabikathi.com.bd/" title="Facebook" class="facebook" target="_blank">
                             <i class="fab fa-facebook"></i>
                           </a>
                         </li>
                         <li class="social-icon-li">
-                          <a href="" title="Youtube" class="youtube" target="_blank">
+                          <a href="https://www.instagram.com/chabikathi.com.bd/" title="Instragram" class="facebook" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                          </a>
+                        </li>
+                        <li class="social-icon-li">
+                          <a href="https://www.youtube.com/channel/UC_LchBJOmxCIHzJXFcHU8OQ" title="Youtube" class="youtube" target="_blank">
                             <i class="fab fa-youtube"></i>
                           </a>
                         </li>
                         <li class="social-icon-li">
-                          <a href="" title="Google" class="google" target="_blank">
-                            <i class="fab fa-google"></i>
+                          <a href="+880 1313-970055" title="whatsapp" class="google" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
                           </a>
                         </li>
                         <li class="social-icon-li">
-                          <a href="" title="Linkedin" class="linkedin" target="_blank">
-                            <i class="fab fa-linkedin"></i>
+                          <a href="https://twitter.com/chabikathibd?fbclid=IwAR0LG8_ZSsVxhEr2ZUsoeXshnHKYG3MgLsdxriKGoHnfHg1bOImWEwf8JWM" title="twitter" class="linkedin" target="_blank">
+                            <i class="fab fa-twitter"></i>
                           </a>
                         </li>
                       </ul>
@@ -96,20 +97,15 @@
     <div class="footer-lower">
       <div class="container">
         <div class="row">
-          <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="footer-lower-copyr">
-              <p class="m-0">Copyright © 2021<a class="highlighted-txt" href="/"> ChabiKathi</a>, Developed By <a class="highlighted-txt" href="/"> Biz IT BD</a>.</p>
+              <p class="m-0 text-center">Copyright © 2021<a class="highlighted-txt" href="/"> ChabiKathi</a>, Developed By <a class="highlighted-txt" href="/"> Biz IT BD</a>.</p>
             </div>
           </div>
-          <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-right">
+          <!-- <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 text-right">
             <div class="footer-lower-imgs">
               <div class="footer-lower-imgs-img">
-                <img src="{{ asset('asset/fontend/asset/img/visa.svg')}}">
-              </div>
-            </div>
-            <div class="footer-lower-imgs">
-              <div class="footer-lower-imgs-img">
-                <img src="{{ asset('asset/fontend/asset/img/mastercard.svg')}}">
+                <img src="{{ asset('asset/fontend/asset/img/BKash.svg')}}">
               </div>
             </div>
             <div class="footer-lower-imgs">
@@ -119,10 +115,10 @@
             </div>
             <div class="footer-lower-imgs">
               <div class="footer-lower-imgs-img">
-                <img src="{{ asset('asset/fontend/asset/img/okwallet.png')}}">
+                <img src="{{ asset('asset/fontend/asset/img/rocket.png')}}">
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

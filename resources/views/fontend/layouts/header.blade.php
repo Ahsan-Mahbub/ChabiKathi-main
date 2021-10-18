@@ -7,7 +7,6 @@
     $categories = \App\Models\Category::with(['subcategory' => function($q) {
                 $q->with('subsubcategory')->where('status',1)->orderBy('id', 'desc');
             }])->where('status',1)->orderBy('id', 'desc')->get();
-    //print_r($categories);
     ?>
     <section class="site-banner">
       <div class="container site-banner-container">
@@ -54,18 +53,18 @@
                 <div class="category-box">
                   <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
                     <img src="{{ asset('asset/fontend/asset/img/voucher.svg')}}">
-                    <span><a href="/">Voucher Shop</a></span>
+                    <span><a href="/">Voucher</a></span>
                   </div>
                   <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
                     <img src="{{ asset('asset/fontend/asset/img/prime.svg')}}">
                     <span><a href="/">Prime Shops</a></span>
                   </div>
                   <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
-                    <img src="{{ asset('asset/fontend/asset/img/rocket.svg')}}">
-                    <span><a href="/">Rocket</a></span>
+                    <img src="{{ asset('asset/fontend/asset/img/buy-money.svg')}}">
+                    <span><a href="/">Best Buy</a></span>
                   </div>
                   <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
-                    <img src="{{ asset('asset/fontend/asset/img/offers.jpeg')}}">
+                    <img src="{{ asset('asset/fontend/asset/img/offers.svg')}}">
                     <span><a href="/">Offers</a></span>
                   </div>
                 </div>
@@ -116,18 +115,18 @@
                 <div class="category-box">
                   <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
                     <img src="{{ asset('asset/fontend/asset/img/voucher.svg')}}">
-                    <span><a href="/">Voucher Shop</a></span>
+                    <span><a href="/">Voucher</a></span>
                   </div>
                   <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
                     <img src="{{ asset('asset/fontend/asset/img/prime.svg')}}">
                     <span><a href="/">Prime Shops</a></span>
                   </div>
                   <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                    <img src="{{ asset('asset/fontend/asset/img/rocket.svg')}}">
-                    <span><a href="/">Rocket</a></span>
+                    <img src="{{ asset('asset/fontend/asset/img/buy-money.svg')}}">
+                    <span><a href="/">Best Buy</a></span>
                   </div>
                   <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                    <img src="{{ asset('asset/fontend/asset/img/offers.jpeg')}}">
+                    <img src="{{ asset('asset/fontend/asset/img/offers.svg')}}">
                     <span><a href="/">Offers</a></span>
                   </div>
                 </div>
@@ -200,18 +199,18 @@
             <div class="category-box">
               <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
                 <img src="{{ asset('asset/fontend/asset/img/voucher.svg')}}">
-                <span><a href="/">Voucher Shop</a></span>
+                <span><a href="/">Voucher</a></span>
               </div>
               <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
                 <img src="{{ asset('asset/fontend/asset/img/prime.svg')}}">
                 <span><a href="/">Prime Shops</a></span>
               </div>
               <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                <img src="{{ asset('asset/fontend/asset/img/rocket.svg')}}">
-                <span><a href="/">Rocket</a></span>
+                <img src="{{ asset('asset/fontend/asset/img/buy-money.svg')}}">
+                <span><a href="/">Best Buy</a></span>
               </div>
               <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                <img src="{{ asset('asset/fontend/asset/img/offers.jpeg')}}">
+                <img src="{{ asset('asset/fontend/asset/img/offers.svg')}}">
                 <span><a href="/">Offers</a></span>
               </div>
             </div>

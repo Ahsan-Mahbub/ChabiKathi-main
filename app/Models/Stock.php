@@ -13,33 +13,17 @@ class Stock extends Model
     protected $fillable = [
         'product_id',
         'quantity',
-        'color_id',
-        'size_id',
-        'weight_id',
         'seller_id',
         'perches_code',
         'perches_price',
         'sell_price'
     ];
-
-    // public function product()
-    // {
-    //     return $this->belongsTo(Product::class, 'product_id');
-    // }
     public function product()
     {
         return $this->belongsTo(Product::class);
     }
-    public function color()
+    public function stockVariation()
     {
-        return $this->belongsTo(Color::class);
-    }
-    public function size()
-    {
-        return $this->belongsTo(Size::class);
-    }
-    public function weight()
-    {
-        return $this->belongsTo(Weight::class);
+        return $this->hasOne(StockVariation::class);
     }
 }

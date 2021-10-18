@@ -21,6 +21,10 @@ class StockController extends Controller
     {
         $stocks = Stock::orderBy('id', 'desc')->paginate();
         return view('backend.stock.index', compact('stocks'));
+        $stocks = Stock::with(['stockVariation' => function($q) {
+                $q->with('color','size','weight');
+        }])->orderBy('id', 'desc')->paginate();
+        return view('backend.stock.index', compact('stocks'));
     }
 
     /**

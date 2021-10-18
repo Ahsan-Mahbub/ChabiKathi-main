@@ -67,47 +67,69 @@
                     <span class="pdp-label">SKU: </span>
                     <a class="pdp-shop-link">{{$product->sku}}</a>
                   </div>
+                  <div class="row">
+                    <div class="col-md-6 col-12">
+                      <div class="shop-name mb-10">
+                        <span class="pdp-label">Color: &nbsp;</span>
+                          <select class="form-control" id="exampleFormControlSelect1">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                      <div class="shop-name mb-10">
+                        <span class="pdp-label">Color: &nbsp;</span>
+                          <select class="form-control" id="exampleFormControlSelect1">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                      </div>
+                    </div>
+                  </div>
+                  @foreach($product['stockVariation'] as $proVariation)
+                  {{$proVariation->color}}
+                  {{$proVariation->size}}
+                  @if($proVariation->color)
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Color: &nbsp;</span>
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                      <label class="form-check-label" for="inlineRadio1">Black</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio8" value="option2">
-                      <label class="form-check-label" for="inlineRadio8">Red</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio7" value="option2">
-                      <label class="form-check-label" for="inlineRadio7">Green</label>
+                      <label class="form-check-label" for="inlineRadio1">
+                      
+                      </label>
                     </div>
                   </div>
+                  @endif
+                  @if($proVariation->size)
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Size: &nbsp;</span>
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" value="option1">
-                      <label class="form-check-label" for="inlineRadio6">M</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option2">
-                      <label class="form-check-label" for="inlineRadio5">XL</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option2">
-                      <label class="form-check-label" for="inlineRadio4">XXL</label>
+                      <label class="form-check-label" for="inlineRadio6">
+                      {{$proVariation->size->size_name}}
+                      </label>
                     </div>
                   </div>
+                  @endif
+                  @if($proVariation->weight)
                   <div class="shop-name mb-10">
                     <span class="pdp-label">Weight: &nbsp;</span>
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option2">
-                      <label class="form-check-label" for="inlineRadio3">10 kg</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                      <label class="form-check-label" for="inlineRadio2">12 kg</label>
+                      <label class="form-check-label" for="inlineRadio3">
+                      {{$proVariation->weight->weight_name}}
+                      </label>
                     </div>
                   </div>
+                  @endif
+                  @endforeach
                   <div class="product-view-single-product-area-r-quantity">
                     <form action="#">
                       <div class="attr-wrapper">
@@ -175,25 +197,6 @@
                     </div>
                   </li>
                 </ul>
-<!--                 <h4 class="mb-10 small-title">Return and Warranty</h4>
-                <ul class="delivery-options warrenty">
-                  <li>
-                    <div class="details">
-                      <p class="title">Doorstep Return
-                        <span class="sub-title">(Easy Product Return from Your Doorstep)</span>
-                      </p>
-                      <p class="sub-title">Change of mind not available</p>
-                      <p class="title">
-                        <a href="/terms">Terms and Conditions</a>
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="details">
-                      <p class="title">Warranty is not available</p>
-                    </div>
-                  </li>
-                </ul> -->
                 <div class="product-view-single-product-area-r-sharing mt-30">
                 </div>
               </div>

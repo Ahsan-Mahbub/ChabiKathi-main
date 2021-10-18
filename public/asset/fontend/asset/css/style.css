@@ -747,7 +747,7 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
     padding: 20px 0;
 }
 .footer-lower-copyr {
-    display: flex;
+    /*display: flex;*/
     justify-content: start;
     align-items: center;
 }
@@ -926,6 +926,9 @@ select, textarea, input[type="password"], input[type="text"], input[type="email"
         text-align: center;
         float: right;
         margin: 0;
+    }
+    .site-footer{
+        text-align: center;
     }
 }
 @media only screen and (max-width: 424px){
