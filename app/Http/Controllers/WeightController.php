@@ -16,7 +16,7 @@ class WeightController extends Controller
      */
     public function index()
     {
-        $weights = Weight::orderBy('id', 'desc')->paginate();
+        $weights = Weight::orderBy('id', 'desc')->get();
         return view('backend.weight.index', compact('weights'));
     }
 

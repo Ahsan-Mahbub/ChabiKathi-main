@@ -17,9 +17,12 @@ class CreateStockVariationsTable extends Migration
             $table->id();
             $table->integer('seller_id');
             $table->integer('stock_id');
-            $table->integer('color_id')->nullable();
-            $table->integer('size_id')->nullable();
-            $table->integer('weight_id')->nullable();
+            $table->foreignId('color_id')->nullable();
+            $table->foreignId('size_id')->nullable();
+            $table->foreignId('weight_id')->nullable();
+            $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
+            $table->foreign('size_id')->references('id')->on('sizes')->onDelete('cascade');
+            $table->foreign('weight_id')->references('id')->on('weights')->onDelete('cascade');
             $table->timestamps();
         });
     }

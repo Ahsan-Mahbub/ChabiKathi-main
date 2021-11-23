@@ -15,7 +15,7 @@ class CreateShopsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
-            $table->integer('seller_id');
+            $table->foreignId('seller_id');
             $table->string('shop_name')->unique();
             $table->string('slug')->nullable();
             $table->string('image')->nullable();
@@ -23,6 +23,7 @@ class CreateShopsTable extends Migration
             $table->integer('approval')->default(0);
             $table->integer('holiday')->default(1);
             $table->timestamps();
+            $table->foreign('seller_id')->references('id')->on('sellers')->onDelete('cascade');
         });
     }
 

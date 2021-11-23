@@ -20,7 +20,7 @@ class PreviousProductController extends Controller
     public function index()
     {
         $shops = Shop::where('status',1)->where('approval',1)->get();
-        $products = Product::orderBy('id', 'desc')->where('status',1)->where('approval',1)->paginate();
+        $products = Product::orderBy('id', 'desc')->where('status',1)->where('approval',1)->get();
         return view('backend.product.previous_product',compact('products','shops'));
     }
 

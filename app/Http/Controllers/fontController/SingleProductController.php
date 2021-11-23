@@ -16,10 +16,11 @@ class SingleProductController extends Controller
         //     }])->get();
         // }])->where('slug', $slug)->first();
 
-        $product = Product::with(['stockVariation'=> function($q){
-            $q->with('size','color','weight')->groupBy(['size_id','color_id','weight_id']);
-        }])->where('slug', $slug)->first();
+        // $product = Product::with(['stockVariation'=> function($q){
+        //     $q->with('size','color','weight')->groupBy(['size_id','color_id','weight_id']);
+        // }])->where('slug', $slug)->first();
         // dd($product);
+        $product = Product::where('slug', $slug)->first();
         $related_product = DB::table('products')->join('categories','categories.id', '=', 'products.category_id')->select('categories.id','categories.category_name', 'products.*')->where('categories.id', $product->category_id)->where('products.status',1)->where('products.approval',1)->orderBy('products.id','desc')->paginate(18);
         //dd($related_product);
         return view('fontend.pages.single_product',compact('product','related_product'));

@@ -35,7 +35,7 @@ $('.stock_product').click(function(){
 function getBrand(){
     let id = $("#shop_id").val();
     // alert(id);
-    let url = '/admin/product/brand/'+id;
+    let url = '/kathi/cbmin/product/brand/'+id;
     $.ajax({
         type: "get",
         url: url,
@@ -43,6 +43,8 @@ function getBrand(){
         success: function (response) {
             let html = '';
             console.log(response)
+            html+=`<option value="">`+'Select Brand'+`</option>`
+            html+=`<option value="0">`+'No Band'+`</option>`
             response.forEach(element => {
                 html+='<option value='+element.id+'>'+element.brand_name+'</option>'
             });

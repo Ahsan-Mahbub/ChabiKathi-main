@@ -23,14 +23,9 @@ class SubSubCategoryRequest extends FormRequest
      */
     public function rules()
     {
-        // return [
-        //     'category_name',
-        //     'category_priority',
-        // ];
-
         return [
             'sub_sub_category_name' => 'required|unique:sub_sub_categories,sub_sub_category_name,'.$this->id,
-            'slug' => 'required|unique:sub_sub_categories,slug'.$this->id,
+            'slug' => 'required|unique:sub_sub_categories,slug,'.$this->id,
         ];
     }
 }

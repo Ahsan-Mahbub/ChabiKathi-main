@@ -44,9 +44,9 @@
                         <div class="form-group">
                             @php($subcategory = \App\Models\SubCategory::where('status',1)->orderBy('id','desc')->get())
                             <div class="form-material">
-                                <select class="js-select2 form-control js-select2-enabled select2-hidden-accessible" id="val-select22" name="subCategory_id" style="width: 100%;" data-placeholder="Choose one.." data-select2-id="val-select22" tabindex="-1" aria-hidden="true">
+                                <select class="js-select2 form-control js-select2-enabled select2-hidden-accessible" id="val-select22" name="sub_category_id" style="width: 100%;" data-placeholder="Choose one.." data-select2-id="val-select22" tabindex="-1" aria-hidden="true">
                                     @foreach($subcategory as $value)
-                                    <option value="{{$value->id}}" {{ $subsubcategory->subCategory_id == $value->id ? 'selected' : ''}}>{{$value->sub_category_name}} </option>
+                                    <option value="{{$value->id}}" {{ $subsubcategory->sub_category_id == $value->id ? 'selected' : ''}}>{{$value->sub_category_name}} </option>
                                     @endforeach
                                 </select>
                                 <label for="val-select2">Sub Category Name</label>

@@ -15,8 +15,9 @@ class CreateCommissionsTable extends Migration
     {
         Schema::create('commissions', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id')->unique();
+            $table->foreignId('category_id')->unique();
             $table->string('commission');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

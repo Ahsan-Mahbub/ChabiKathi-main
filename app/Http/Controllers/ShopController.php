@@ -15,7 +15,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $shopes = Shop::orderBy('id', 'desc')->paginate();
+        $shopes = Shop::orderBy('id', 'desc')->get();
         return view('backend.shop.index', compact('shopes'));
     }
 

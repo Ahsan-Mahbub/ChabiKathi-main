@@ -25,6 +25,8 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\AdminSellerController;
 use App\Http\Controllers\AdminCreateController;
 use App\Http\Controllers\PreviousProductController;
+use App\Http\Controllers\ChildCategoryController;
+use App\Http\Controllers\GrandChildCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +49,6 @@ Route::get('/product/{slug}', [SingleProductController::class, 'singleProduct'])
 Route::get('/all-shop', [ShopProductController::class, 'index']);
 Route::get('/shop/{slug}', [ShopProductController::class, 'shopProduct']);
 
-
 // Extra Pages
 Route::get('/campaign', [HomeController::class, 'campaign'])->name('campaign');
 Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
@@ -55,9 +56,8 @@ Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
 Route::get('/marchent-login', [HomeController::class, 'marchentlogin'])->name('marchent-login');
 Route::get('/marchent-registration', [HomeController::class, 'marchentregistration'])->name('marchent-registration');
 
-
 // Back View Route
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => '/kathi/cbmin'], function () {
     Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
         return view('backend/layouts/content');
     })->name('admin');
@@ -93,6 +93,26 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('edit/{id}', [SubSubCategoryController::class, 'edit'])->name('sub-sub-category.edit');
         Route::post('update/{id}', [SubSubCategoryController::class, 'update'])->name('sub-sub-category.update');
         Route::delete('delete/{id}', [SubSubCategoryController::class, 'destroy'])->name('sub-sub-category.delete');
+    });
+    // Child Category Route
+    Route::group(['prefix' => 'child-category'], function () {
+        Route::get('/list', [ChildCategoryController::class, 'index'])->name('child-category.list');
+        Route::get('create', [ChildCategoryController::class, 'create'])->name('child-category.create');
+        Route::post('store', [ChildCategoryController::class, 'store'])->name('child-category.store');
+        Route::get('status/{id}/{status}', [ChildCategoryController::class, 'status'])->name('child-category.status');
+        Route::get('edit/{id}', [ChildCategoryController::class, 'edit'])->name('child-category.edit');
+        Route::post('update/{id}', [ChildCategoryController::class, 'update'])->name('child-category.update');
+        Route::delete('delete/{id}', [ChildCategoryController::class, 'destroy'])->name('child-category.delete');
+    });
+    // Grand Child Category Route
+    Route::group(['prefix' => 'grand-child-category'], function () {
+        Route::get('/list', [GrandChildCategoryController::class, 'index'])->name('grand-child-category.list');
+        Route::get('create', [GrandChildCategoryController::class, 'create'])->name('grand-child-category.create');
+        Route::post('store', [GrandChildCategoryController::class, 'store'])->name('grand-child-category.store');
+        Route::get('status/{id}/{status}', [GrandChildCategoryController::class, 'status'])->name('grand-child-category.status');
+        Route::get('edit/{id}', [GrandChildCategoryController::class, 'edit'])->name('grand-child-category.edit');
+        Route::post('update/{id}', [GrandChildCategoryController::class, 'update'])->name('grand-child-category.update');
+        Route::delete('delete/{id}', [GrandChildCategoryController::class, 'destroy'])->name('grand-child-category.delete');
     });
     //Commission Route
     Route::group(['prefix' => 'commission'], function () {
@@ -145,6 +165,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/list', [BrandController::class, 'index'])->name('brand.list');
         Route::get('approval/{id}', [BrandController::class, 'approval'])->name('brand.approval');
         Route::get('status/{id}/{status}', [BrandController::class, 'status'])->name('brand.status');
+        Route::get('approval/{id}', [BrandController::class, 'approval'])->name('brand.approval');
         Route::delete('delete/{id}', [BrandController::class, 'destroy'])->name('brand.delete');
     });
     // Product Route
@@ -160,6 +181,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
         Route::get('subcategory/{id}', [ProductController::class, 'subcategory'])->name('product.subcategory');
         Route::get('subsubcategory/{id}', [ProductController::class, 'subsubcategory'])->name('product.subsubcategory');
+        Route::get('child-category/{id}', [ProductController::class, 'childcategory'])->name('product.child-category');
+        Route::get('grand-child-category/{id}', [ProductController::class, 'grandchildcategory'])->name('product.grand-child-category');
 
         Route::get('brand/{id}', [ProductController::class, 'brand'])->name('product.brand');
         // Previous Product Controller

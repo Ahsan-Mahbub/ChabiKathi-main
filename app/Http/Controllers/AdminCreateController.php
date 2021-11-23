@@ -23,7 +23,7 @@ class AdminCreateController extends Controller
      */
     public function index()
     {
-        $admins = User::orderBy('id', 'desc')->paginate();
+        $admins = User::orderBy('id', 'desc')->get();
         return view('backend.admin.index', compact('admins'));
     }
 

@@ -26,14 +26,14 @@ class ProfileController extends Controller
     {
        
 
-            if($request->hasFile('banner')) {
-                if($request->old_img!=''){
-                    unlink($request->old_img);
-                }
-                $image_type = $request->file('banner')->getClientOriginalExtension();
-                $path = "asset/backend/assets/images/seller/";
-                $name = 'seller_'.time().".".$image_type;
-                $image = $request->file('banner')->move($path,$name);
+        if($request->hasFile('banner')) {
+            if($request->old_img!=''){
+                unlink($request->old_img);
+            }
+            $image_type = $request->file('banner')->getClientOriginalExtension();
+            $path = "asset/backend/assets/images/seller/";
+            $name = 'seller_'.time().".".$image_type;
+            $image = $request->file('banner')->move($path,$name);
             
             $data = [
                 'first_name'   => $request->first_name,

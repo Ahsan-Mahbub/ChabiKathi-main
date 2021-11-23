@@ -17,7 +17,7 @@ class SubSubCategoryController extends Controller
      */
     public function index()
     {
-        $subsubcategories = SubSubCategory::orderBy('id', 'desc')->paginate();
+        $subsubcategories = SubSubCategory::orderBy('id', 'desc')->get();
         return view('backend.sub-sub-category.index', compact('subsubcategories'));
     }
 
@@ -87,7 +87,6 @@ class SubSubCategoryController extends Controller
     {
         $s_cat_update = SubSubCategory::findOrFail($id);
         $formData = $request->all();
-
         $s_cat_update->fill($formData)->save();
         Toastr::success('Update Successfully');
         return redirect()->route('sub-sub-category.list');

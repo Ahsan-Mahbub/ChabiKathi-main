@@ -10,8 +10,10 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('js/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/fontend/asset/css/owl.css')}}" />
     <title>Chabikathi – Anything At Anywhere</title>
     <link rel="icon" href="{{ asset('asset/fontend/asset/img/Logo-2.png')}}" sizes="16x16">
     <!-- Script -->
@@ -34,10 +36,41 @@
     </script>
     <script src="{{ asset('js/swal.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{{ asset('asset/fontend/asset/js/owl.js')}}"></script>
     <script src="{{ asset('asset/fontend/asset/js/scroll.js')}}"></script>
     <script src="{{ asset('js/toastr.min.js')}}"></script>
     {{-- <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script> --}}
     {!! Toastr::message() !!}
+    <script>
+        $('.slider-inner').owlCarousel({
+            loop:true,
+            margin:10,
+            items: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            autoplayHoverPause: false,
+            nav: true,
+            navText:['<i class="fas fa-chevron-left prev"></i>','<i class="fas fa-chevron-right next"></i>'],
+            responsive:{
+                0:{
+                    items:1,
+                    nav:true
+                },
+                600:{
+                    items:1,
+                    nav:true
+                },
+                1000:{
+                    items:1,
+                    nav:true,
+                },
+                1200:{
+                    items:1,
+                    nav:true,
+                }
+            }
+        })
+    </script>
     @yield('script')
 </body>
 

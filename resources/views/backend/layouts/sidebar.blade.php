@@ -124,6 +124,30 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="">
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span
+                                    class="sidebar-mini-hide">Child Categories</span></a>
+                            <ul>
+                                <li>
+                                    <a href="{{route('child-category.list')}}"><span class="sidebar-mini-hide">Child Categories List</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{route('child-category.create')}}"><span class="sidebar-mini-hide">Add Child Categories</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span
+                                    class="sidebar-mini-hide">Grand Child Categories</span></a>
+                            <ul>
+                                <li>
+                                    <a href="{{route('grand-child-category.list')}}"><span class="sidebar-mini-hide">Grand Child Categories List</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{route('grand-child-category.create')}}"><span class="sidebar-mini-hide">Add Grand Child Categories</span></a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li>

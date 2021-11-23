@@ -93,43 +93,7 @@
                       </div>
                     </div>
                   </div>
-                  @foreach($product['stockVariation'] as $proVariation)
-                  {{$proVariation->color}}
-                  {{$proVariation->size}}
-                  @if($proVariation->color)
-                  <div class="shop-name mb-10">
-                    <span class="pdp-label">Color: &nbsp;</span>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                      <label class="form-check-label" for="inlineRadio1">
-                      
-                      </label>
-                    </div>
-                  </div>
-                  @endif
-                  @if($proVariation->size)
-                  <div class="shop-name mb-10">
-                    <span class="pdp-label">Size: &nbsp;</span>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" value="option1">
-                      <label class="form-check-label" for="inlineRadio6">
-                      {{$proVariation->size->size_name}}
-                      </label>
-                    </div>
-                  </div>
-                  @endif
-                  @if($proVariation->weight)
-                  <div class="shop-name mb-10">
-                    <span class="pdp-label">Weight: &nbsp;</span>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option2">
-                      <label class="form-check-label" for="inlineRadio3">
-                      {{$proVariation->weight->weight_name}}
-                      </label>
-                    </div>
-                  </div>
-                  @endif
-                  @endforeach
+                  <!--  -->
                   <div class="product-view-single-product-area-r-quantity">
                     <form action="#">
                       <div class="attr-wrapper">

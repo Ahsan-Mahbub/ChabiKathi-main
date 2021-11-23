@@ -89,10 +89,27 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="subsubcategory_id" name="subsubcategory_id">
-                                    <option value="0">Select</option>
+                                <select class="form-control" id="subsubcategory_id" name="subsubcategory_id" onclick="getChildCategory()">
+                                    <option value="">Select</option>
                                 </select>
                                 <label for="subsubcategory_id">Select Sub Sub Category</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-material">
+                                <select class="form-control" id="child_category_id" name="child_category_id" onclick="getGrandChildCategory()">
+                                    <option value="">Select</option>
+                                </select>
+                                <label for="child_category_id">Select Child Category</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-material">
+                                <select class="form-control" id="grand_child_category_id" name="grand_child_category_id">
+                                    <option value="">Select</option>
+                                </select>
+                                <label for="grand_child_category_id">Select Grand Child Category</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -150,7 +167,7 @@
                         <div class="form-group">
                             <div class="form-material">
                                 <select class="form-control" id="brand_id" name="brand_id">
-                                    <option value="0" selected="">Select Brand</option>
+                                    <option value="" selected="">Select Brand</option>
                                 </select>
                                 <label for="brand_id">Select Brand</label>
                             </div>
@@ -166,6 +183,14 @@
                                     <input class="custom-control-input" type="radio" name="is_veriation" id="example-inline-radio2" value="0">
                                     <label class="custom-control-label" for="example-inline-radio2">No Veriation</label>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-material">
+                                <input type="text" class="form-control" name="video_url" 
+                                    placeholder="Enter Video URL..">
+                                <label>Video URL </label>
                             </div>
                         </div>
 
