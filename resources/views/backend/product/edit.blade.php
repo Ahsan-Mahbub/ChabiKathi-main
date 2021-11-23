@@ -72,21 +72,30 @@
                                 <label for="category_id">Select Sub Category<span class="text-danger">*</span></label>
                             </div>
                         </div>
-
-                        <!-- <div class="form-group">
-                            <div class="form-material">
-                                <select class="form-control" id="subcategory_id" name="subcategory_id" onclick="getSubSubCategory()">
-                                    <option value="0">Select</option>
-                                </select>
-                                <label for="subcategory_id">Select Sub Category</label>
-                            </div>
-                        </div> -->
+                        
                         <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="subsubcategory_id" name="subsubcategory_id">
-                                    <option value="0">Select</option>
+                                <select class="form-control" id="subsubcategory_id" name="subsubcategory_id" onclick="getChildCategory()">
+                                    <option value="">Select</option>
                                 </select>
                                 <label for="subsubcategory_id">Select Sub Sub Category</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-material">
+                                <select class="form-control" id="child_category_id" name="child_category_id" onclick="getGrandChildCategory()">
+                                    <option value="">Select</option>
+                                </select>
+                                <label for="child_category_id">Select Child Category</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-material">
+                                <select class="form-control" id="grand_child_category_id" name="grand_child_category_id">
+                                    <option value="">Select</option>
+                                </select>
+                                <label for="grand_child_category_id">Select Grand Child Category</label>
                             </div>
                         </div>
 
@@ -99,12 +108,6 @@
                                 <label for="totalprice">Product Main Price <span class="text-danger">*</span> </label>
                             </div>
                         </div>
-                        <!-- <div class="form-group">
-                            <div class="form-material">
-                                <input type="checkbox" id="percentage-box" {{($product->percentage ? ' checked' : '')}}>
-                                <label for="percentage-box">Use Prcentage?</label>
-                            </div>
-                        </div> -->
                         <div id="percentage_price">
                             <div class="form-group">
                                 <div class="form-material">
@@ -129,13 +132,10 @@
                             </div>
                         </div>
 
-
-
-
                         <div class="form-group">
                             <div class="form-material">
                                 <select class="form-control" id="shop_id" name="shop_id" required="" onclick="getBrand()">
-                                    <option value="0" selected="">Select Shop</option>
+                                    <option value="" selected="">Select Shop</option>
                                     @foreach($shop as $value)
                                         <option value="{{$value->id}}" {{ $product->shop_id == $value->id ? 'selected' : ''}}>{{$value->shop_name}} </option>
                                     @endforeach
@@ -149,7 +149,7 @@
                         <div class="form-group">
                             <div class="form-material">
                                 <select class="form-control" id="brand_id" name="brand_id">
-                                    <option value="0" selected="">Select Brand</option>
+                                    <option value="" selected="">Select Brand</option>
                                 </select>
                                 <label for="brand_id">Select Brand</label>
                             </div>
@@ -169,6 +169,14 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <div class="form-material">
+                                <input type="text" value="{{$product->video_url}}" class="form-control" name="video_url" 
+                                    placeholder="Enter Video URL..">
+                                <label>Video URL </label>
+                            </div>
+                        </div>
+
                         <label>Main Image <span class="text-danger">*</span></label>
                         <input type='file' name="product_img" value="{{$product->product_img}}" onchange="readURL(this);" />
                         <img id="blah" src="{{$product->product_img ? '/' . $product->product_img :  '/asset/backend/assets/media/photos/image.png'}}" height="200" width="200" alt="your image" /><br>
@@ -183,7 +191,6 @@
                         <label>Optional Image</label>
                         <input type='file' name="product_img_3" value="{{$product->product_img_3}}" onchange="readURL3(this);" />
                         <img id="blah3" src="{{$product->product_img_3 ? '/' . $product->product_img_3 :  '/asset/backend/assets/media/photos/image.png'}}" height="200" width="200" alt="your image" /><br>
-
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-alt-primary">Submit</button>

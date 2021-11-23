@@ -19,9 +19,11 @@ class CreateProductsTable extends Migration
             $table->string('product_name')->nullable();
             $table->string('slug')->nullable();
             $table->longText('product_desc')->nullable();
-            $table->integer('category_id');
-            $table->integer('subcategory_id')->nullable();
+            $table->foreignId('category_id');
+            $table->foreignId('subcategory_id')->nullable();
             $table->integer('subsubcategory_id')->nullable();
+            $table->integer('child_category_id')->nullable();
+            $table->integer('grand_child_category_id')->nullable();
             $table->integer('price');
             $table->integer('percentage')->nullable();
             $table->integer('discount')->nullable();
@@ -35,7 +37,11 @@ class CreateProductsTable extends Migration
             $table->integer('status')->default(1);
             $table->integer('approval')->default(0);
             $table->integer('is_veriation')->default(0);
+            $table->integer('video_url')->nullable();
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('subcategory_id')->references('id')->on('sub_categories')->onDelete('cascade');
         });
     }
 

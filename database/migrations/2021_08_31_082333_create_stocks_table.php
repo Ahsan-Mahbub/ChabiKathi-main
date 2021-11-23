@@ -19,11 +19,12 @@ class CreateStocksTable extends Migration
             $table->integer('perches_price');
             $table->integer('perches_code');
             $table->integer('sell_price');
-            $table->integer('product_id');
+            $table->foreignId('product_id');
             $table->integer('quantity');
             $table->string('status')->default(1);
             $table->integer('approval')->default(0);
             $table->timestamps();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

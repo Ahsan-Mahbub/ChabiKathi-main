@@ -26,7 +26,10 @@ class Product extends Model
         'product_img',
         'product_img_2',
         'product_img_3',
-        'is_veriation'
+        'is_veriation',
+        'child_category_id',
+        'grand_child_category_id',
+        'video_url',
     ];
 
     public function category()
@@ -40,6 +43,14 @@ class Product extends Model
     public function subsubcategory()
     {
         return $this->belongsTo(SubSubCategory::class, 'subsubcategory_id');
+    }
+    public function childcategory()
+    {
+        return $this->belongsTo(ChildCategory::class, 'child_category_id');
+    }
+    public function grandchildcategory()
+    {
+        return $this->belongsTo(GrandChildCategory::class, 'grand_child_category_id');
     }
     public function brand()
     {

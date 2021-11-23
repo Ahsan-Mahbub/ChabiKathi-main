@@ -69,7 +69,7 @@ class StockController extends Controller
             $formData = $request->all();
             $variation->seller_id = $request->seller_id;
             $variation->stock_id = $stock->id;
-            $variation->product_id = $request->product_id;
+            // $variation->product_id = $request->product_id;
             $variation->fill($formData)->save();
             // dd($request->quantity);
 

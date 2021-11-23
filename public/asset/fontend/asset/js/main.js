@@ -9,4 +9,6 @@ $(document).ready(function() {
       $('.sc-fixed-nav').css('transform', 'scale(0)');
     }
   })
+
+  
 });

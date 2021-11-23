@@ -4,10 +4,6 @@
 @endsection
 @extends('fontend.layouts.app')
 @section('content')
-<?php
-// $stocks = DB::table('stocks')->select('*')->join('products','products.id', '=', 'stocks.product_id')->get();
-// $related_product = DB::table('products')->select('*')->join('categories','categories.id', '=', 'products.category_id')->where('categories.id', $product->category_id)->where('products.status',1)->where('products.approval',1)->orderBy('products.id','desc')->paginate(18);
-?>
 <main>
 	<!-- Flash Sale Section -->
 	<section class="product-part">
@@ -237,6 +233,5 @@
 @endsection
 @section('script')
 <script src="{{ asset('asset/fontend/asset/js/main.js')}}"></script>
-<script src="{{ asset('asset/fontend/asset/js/cursol.js')}}"></script>
 <script src="{{ asset('asset/fontend/asset/js/timer.js')}}"></script>
 @endsection

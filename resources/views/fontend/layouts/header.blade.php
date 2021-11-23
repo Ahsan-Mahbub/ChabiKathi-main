@@ -52,20 +52,20 @@
                 <!-- Category Box Section -->
                 <div class="category-box">
                   <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
-                    <img src="{{ asset('asset/fontend/asset/img/voucher.svg')}}">
-                    <span><a href="/">Voucher</a></span>
+                    <img src="{{ asset('asset/fontend/asset/img/free-shipping.svg')}}">
+                    <span><a href="/">Free Shipping</a></span>
                   </div>
                   <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
-                    <img src="{{ asset('asset/fontend/asset/img/prime.svg')}}">
-                    <span><a href="/">Prime Shops</a></span>
+                    <img src="{{ asset('asset/fontend/asset/img/campaign.svg')}}">
+                    <span><a href="/">Campaign</a></span>
                   </div>
                   <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
-                    <img src="{{ asset('asset/fontend/asset/img/buy-money.svg')}}">
-                    <span><a href="/">Best Buy</a></span>
+                    <img src="{{ asset('asset/fontend/asset/img/ck-moll.svg')}}">
+                    <span><a href="/">CK Moll</a></span>
                   </div>
                   <div class="col-md-3 col-sm-6 col-lg-3 col-xl-3 box">
-                    <img src="{{ asset('asset/fontend/asset/img/offers.svg')}}">
-                    <span><a href="/">Offers</a></span>
+                    <img src="{{ asset('asset/fontend/asset/img/sohoj.svg')}}">
+                    <span><a href="/">Sohoj Sheba</a></span>
                   </div>
                 </div>
                 <!-- End Category Box Section -->
@@ -114,20 +114,20 @@
                 <!-- Category Box Section -->
                 <div class="category-box">
                   <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                    <img src="{{ asset('asset/fontend/asset/img/voucher.svg')}}">
-                    <span><a href="/">Voucher</a></span>
+                    <img src="{{ asset('asset/fontend/asset/img/free-shipping.svg')}}">
+                    <span><a href="/">Free Shipping</a></span>
                   </div>
                   <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                    <img src="{{ asset('asset/fontend/asset/img/prime.svg')}}">
-                    <span><a href="/">Prime Shops</a></span>
+                    <img src="{{ asset('asset/fontend/asset/img/campaign.svg')}}">
+                    <span><a href="/">Campaign</a></span>
                   </div>
                   <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                    <img src="{{ asset('asset/fontend/asset/img/buy-money.svg')}}">
-                    <span><a href="/">Best Buy</a></span>
+                    <img src="{{ asset('asset/fontend/asset/img/ck-moll.svg')}}">
+                    <span><a href="/">CK Moll</a></span>
                   </div>
                   <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                    <img src="{{ asset('asset/fontend/asset/img/offers.svg')}}">
-                    <span><a href="/">Offers</a></span>
+                    <img src="{{ asset('asset/fontend/asset/img/sohoj.svg')}}">
+                    <span><a href="/">Sohoj Sheba</a></span>
                   </div>
                 </div>
                 <!-- End Category Box Section -->
@@ -176,7 +176,19 @@
       <!-- Main Slider Section -->
       <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 home-banner">
         <div class="slider" >
-          <div class="slideshow-container">
+          <div class="slider-inner owl-carousel">
+            @php($sliders = \App\Models\Slider::where('status',1)->orderBy('id','desc')->get())
+            @foreach($sliders as $slider)
+            <div class="slider-item">
+              <img src="/{{$slider->slider_img}}" alt="">
+              <div class="text">
+                <!-- <h5>{{$slider->slider_name}}</h5>
+                <p>{{$slider->slider_title}}</p> -->
+              </div>
+            </div>
+            @endforeach
+          </div>
+         <!--  <div class="slideshow-container">
             @php($sliders = \App\Models\Slider::where('status',1)->orderBy('id','desc')->get())
             @foreach($sliders as $slider)
               <div class="mySlides fade">
@@ -192,26 +204,26 @@
             @endforeach
               <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
               <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            </div>
+            </div> -->
         </div>
             <!-- End Main Slider Section -->
             <!-- Category Box Section -->
             <div class="category-box">
               <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                <img src="{{ asset('asset/fontend/asset/img/voucher.svg')}}">
-                <span><a href="/">Voucher</a></span>
+                <img src="{{ asset('asset/fontend/asset/img/free-shipping.svg')}}">
+                <span><a href="/">Free Shipping</a></span>
               </div>
               <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                <img src="{{ asset('asset/fontend/asset/img/prime.svg')}}">
-                <span><a href="/">Prime Shops</a></span>
+                <img src="{{ asset('asset/fontend/asset/img/campaign.svg')}}">
+                <span><a href="/">Campaign</a></span>
               </div>
               <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                <img src="{{ asset('asset/fontend/asset/img/buy-money.svg')}}">
-                <span><a href="/">Best Buy</a></span>
+                <img src="{{ asset('asset/fontend/asset/img/ck-moll.svg')}}">
+                <span><a href="/">CK Moll</a></span>
               </div>
               <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3 box">
-                <img src="{{ asset('asset/fontend/asset/img/offers.svg')}}">
-                <span><a href="/">Offers</a></span>
+                <img src="{{ asset('asset/fontend/asset/img/sohoj.svg')}}">
+                <span><a href="/">Sohoj Sheba</a></span>
               </div>
             </div>
             <!-- End Category Box Section -->

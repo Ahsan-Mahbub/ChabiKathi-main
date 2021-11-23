@@ -66,13 +66,14 @@ $(function(){
 $(document).ready(function () {
     function getSubCategory(){
     let id = $("#category_id").val();
-    let url = '/admin/product/subcategory/'+id;
+    let url = '/kathi/cbmin/product/subcategory/'+id;
     $.ajax({
         type: "get",
         url: url,
         dataType: "json",
         success: function (response) {
            let html = $();
+           html+=`<option value="">`+'Select Sub Category'+`</option>`
             $.each(response, function (i, item) {
                 html = html.add("<option value=" + item.id +" >" + item.sub_category_name + "</option>")
             });
@@ -85,14 +86,14 @@ getSubCategory();
 
 function getSubCategory(){
     let id = $("#category_id").val();
-    // alert(id);
-    let url = '/admin/product/subcategory/'+id;
+    let url = '/kathi/cbmin/product/subcategory/'+id;
     $.ajax({
         type: "get",
         url: url,
         dataType: "json",
         success: function (response) {
             let html = '';
+            html+=`<option value="">`+'Select Sub Category'+`</option>`
             response.forEach(element => {
                 html+='<option value='+element.id+'>'+element.sub_category_name+'</option>'
             });
@@ -102,12 +103,8 @@ function getSubCategory(){
 }
 $(document).ready(function () {
     function getSubSubCategory(){
-        // let id = $("#subcategory_id").val();
-        // console.log(id)
         var id = $('#subcategory_id :selected').val();
-        console.log(id);
-
-        let url = '/admin/product/subsubcategory/'+id;
+        let url = '/kathi/cbmin/product/subsubcategory/'+id;
         $.ajax({
             type: "get",
             url: url,
@@ -115,8 +112,8 @@ $(document).ready(function () {
             success: function (response) {
                 // console.log(response)
                 let html = $();
+                html+=`<option value="">`+'Select Sub Sub Category'+`</option>`
                 $.each(response, function (i, item) {
-                    console.log(item)
                     html = html.add("<option value=" + item.id +" >" + item.sub_sub_category_name + "</option>")
                 });
                 $("#subsubcategory_id").html(html);
@@ -125,18 +122,17 @@ $(document).ready(function () {
     }
 getSubSubCategory();
 });
-
 function getSubSubCategory(){
     let id = $("#subcategory_id").val();
     // alert(id);
-    let url = '/admin/product/subsubcategory/'+id;
+    let url = '/kathi/cbmin/product/subsubcategory/'+id;
     $.ajax({
         type: "get",
         url: url,
         dataType: "json",
         success: function (response) {
-            console.log(response)
             let html = '';
+            html+=`<option value="">`+'Select Sub Sub Category'+`</option>`
             response.forEach(element => {
                 html+='<option value='+element.id+'>'+element.sub_sub_category_name+'</option>'
             });
@@ -144,6 +140,95 @@ function getSubSubCategory(){
         }
     });
 }
+$(document).ready(function () {
+    function getChildCategory(){
+        var id = $('#subsubcategory_id :selected').val();
+        console.log(id)
+        let url = '/kathi/cbmin/product/child-category/'+id;
+        $.ajax({
+            type: "get",
+            url: url,
+            dataType: "json",
+            success: function (response) {
+                // console.log(response)
+                let html = $();
+                html+=`<option value="">`+'Select Child Category'+`</option>`
+                $.each(response, function (i, item) {
+                    console.log(item)
+                    html = html.add("<option value=" + item.id +" >" + item.child_category_name + "</option>")
+                });
+                $("#child_category_id").html(html);
+            }
+        });
+    }
+getChildCategory();
+});
+function getChildCategory(){
+    let id = $("#subsubcategory_id").val();
+    // alert(id);
+    let url = '/kathi/cbmin/product/child-category/'+id;
+    $.ajax({
+        type: "get",
+        url: url,
+        dataType: "json",
+        success: function (response) {
+            let html = '';
+            console.log(response)
+            html+=`<option value="">`+'Select Child Category'+`</option>`
+            response.forEach(element => {
+                html+='<option value='+element.id+'>'+element.child_category_name+'</option>'
+            });
+            $("#child_category_id").html(html);
+        }
+    });
+}
+
+
+function getGrandChildCategory(){
+    let id = $("#child_category_id").val();
+    // alert(id);
+    let url = '/kathi/cbmin/product/grand-child-category/'+id;
+    $.ajax({
+        type: "get",
+        url: url,
+        dataType: "json",
+        success: function (response) {
+            let html = '';
+            console.log(response)
+            html+=`<option value="">`+'Select Grand Child Category'+`</option>`
+            response.forEach(element => {
+                html+='<option value='+element.id+'>'+element.grand_child_category_name+'</option>'
+            });
+            $("#grand_child_category_id").html(html);
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function getBrand(){
     let id = $("#shop_id").val();

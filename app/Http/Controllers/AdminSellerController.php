@@ -15,7 +15,7 @@ class AdminSellerController extends Controller
      */
     public function index()
     {
-        $sellers = Seller::orderBy('id', 'desc')->paginate();
+        $sellers = Seller::orderBy('id', 'desc')->get();
         return view('backend.seller.index', compact('sellers'));
     }
 

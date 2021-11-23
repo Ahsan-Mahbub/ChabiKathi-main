@@ -28,7 +28,7 @@
                         <td class="font-w600 text-center">{{$value->sub_sub_category_name}}</td>
                         <td class="font-w600 text-center">{{$value->slug}}</td>
                         <td class="text-center">
-                            {{$value->parent? $value->parent->sub_category_name : 'null'}}
+                            {{$value->subcategory? $value->subcategory->sub_category_name : 'null'}}
                         </td>
                         <td class="text-center">
                             <input type="checkbox" data-toggle="toggle" data-on="Active" data-off="Inactive" id="status"

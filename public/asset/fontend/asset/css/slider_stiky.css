@@ -112,4 +112,12 @@ padding: 0;
   width: 20%;
   margin-top: 12px;
 }
+
+.home-banner .owl-item .slider-item {
+  width: 100%;
+}
+
+.home-banner .owl-item .slider-item img  {
+  width: 100%;
+}
 /*End Sticky*/

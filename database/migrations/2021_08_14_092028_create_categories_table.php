@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('category_name')->unique();
             $table->string('slug')->nullable();
-            $table->integer('category_priority');
+            $table->integer('category_priority')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();
         });

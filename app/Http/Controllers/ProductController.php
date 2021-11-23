@@ -8,6 +8,8 @@ use App\Models\SubCategory;
 use App\Models\SubSubCategory;
 use App\Models\Brand;
 use App\Models\Shop;
+use App\Models\ChildCategory;
+use App\Models\GrandChildCategory;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use Toastr;
@@ -27,7 +29,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('id', 'desc')->paginate();
+        $products = Product::orderBy('id', 'desc')->get();
         return view('backend.product.index', compact('products'));
     }
 
@@ -55,6 +57,17 @@ class ProductController extends Controller
         return response()->json($subsubcategories, 200);
     }
 
+    public function childcategory($id)
+    {   
+        $childcategories = ChildCategory::where('sub_sub_category_id', $id)->get();
+        return response()->json($childcategories, 200);
+    }
+    public function grandchildcategory($id)
+    {   
+        $grandchildcategories = GrandChildCategory::where('child_category_id', $id)->get();
+        return response()->json($grandchildcategories, 200);
+    }
+
     public function brand($id)
     {
         $brand = Brand::where('shop_id', $id)->where('status',1)->where('approval',1)->get();
@@ -67,17 +80,8 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ProductRequest $request)
-    {
+    {  
         // dd($request->all());
-
-        $validator  = $request->validate([
-            'product_name'  => 'required|unique:products',
-            'slug'  => 'required',
-            'product_desc'  => 'required',
-            'category_id'  => 'required',
-            'price'  => 'required',
-            'shop_id' => 'required',
-        ]);
         $shops = Shop::where('id', $request->shop_id)->first();
         $seller = $shops->seller_id;
 
@@ -86,6 +90,7 @@ class ProductController extends Controller
         $product->status = 1;
         $product->slug = $request->slug;
         $product->approval = 0;
+        $product->seller_id = $seller;
         $product->sku .= 'sku-' . $request->product_name . '-'.time();
 
         if ($request->hasFile('product_img')) {
@@ -111,7 +116,7 @@ class ProductController extends Controller
             $request->file('product_img_3')->move($path, $name);
             $requested_data['product_img_3'] = $path . $name;
         }
-        //dd($requested_data);
+        // dd($requested_data);
         $save = $product->fill($requested_data)->save();
         if($save){
             Toastr::success('Product Create Successfully', 'Success');
@@ -176,7 +181,7 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-
+        dd($request->all());
         $update = Product::findOrFail($id);
         $update->slug = $request->slug;
         $formData = $request->all();

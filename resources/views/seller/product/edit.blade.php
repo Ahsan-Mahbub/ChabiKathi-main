@@ -49,7 +49,7 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <textarea name="product_desc" id="editor" cols="30" rows="20" class="form-control">{{$product->product_desc}}</textarea>
+                                <textarea name="product_desc" id="editor" cols="30" rows="20" class="form-control" required>{{$product->product_desc}}</textarea>
                                 @error('product_desc')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -59,7 +59,7 @@
 
                         <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="category_id" name="category_id" onclick="getSubCategory()">
+                                <select class="form-control" id="category_id" required name="category_id" onclick="getSubCategory()">
                                     <option disabled="" selected="">Select Category</option>
                                     @foreach($category as $value)
                                         <option value="{{$value->id}}" {{ $product->category_id == $value->id ? 'selected' : ''}}>{{$value->category_name}} </option>
@@ -71,14 +71,6 @@
                                 <label for="category_id">Select Category<span class="text-danger">*</span></label>
                             </div>
                         </div>
-                        <!-- <div class="form-group">
-                            <div class="form-material">
-                                <select class="form-control" id="subcategory_id" name="subcategory_id" onclick="getSubSubCategory()">
-                                    <option value="0">Select</option>
-                                </select>
-                                <label for="subcategory_id">Select Sub Category</label>
-                            </div>
-                        </div> -->
                         <div class="form-group">
                             <div class="form-material">
                                 <select class="form-control" id="subcategory_id" name="subcategory_id" onclick="getSubSubCategory()">
@@ -90,12 +82,29 @@
                                 <label for="category_id">Select Sub Category<span class="text-danger">*</span></label>
                             </div>
                         </div>
-                        <div class="form-group">
+                         <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="subsubcategory_id" name="subsubcategory_id">
-                                    <option value="0">Select</option>
+                                <select class="form-control" id="subsubcategory_id" name="subsubcategory_id" onclick="getChildCategory()">
+                                    <option value="">Select</option>
                                 </select>
                                 <label for="subsubcategory_id">Select Sub Sub Category</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-material">
+                                <select class="form-control" id="child_category_id" name="child_category_id" onclick="getGrandChildCategory()">
+                                    <option value="">Select</option>
+                                </select>
+                                <label for="child_category_id">Select Child Category</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-material">
+                                <select class="form-control" id="grand_child_category_id" name="grand_child_category_id">
+                                    <option value="">Select</option>
+                                </select>
+                                <label for="grand_child_category_id">Select Grand Child Category</label>
                             </div>
                         </div>
 
@@ -136,7 +145,7 @@
                         <div class="form-group">
                             <div class="form-material">
                                 <select class="form-control" id="shop_id" name="shop_id" required="" onclick="getBrand()">
-                                    <option value="0" selected="">Select Shop</option>
+                                    <option value="" selected="">Select Shop</option>
                                         <option value="{{$shop->id}}" {{ $product->shop_id == $shop->id ? 'selected' : ''}}>{{$shop->shop_name}} </option>
                                 </select>
                                 @error('shop_id')
@@ -148,7 +157,7 @@
                         <div class="form-group">
                             <div class="form-material">
                                 <select class="form-control" id="brand_id" name="brand_id">
-                                    <option value="0" selected="">Select Brand</option>
+                                    <option value="" selected="">Select Brand</option>
                                 </select>
                                 <label for="brand_id">Select Brand</label>
                             </div>
@@ -167,7 +176,13 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <div class="form-material">
+                                <input type="text" value="{{$product->video_url}}" class="form-control" name="video_url" 
+                                    placeholder="Enter Video URL..">
+                                <label>Video URL </label>
+                            </div>
+                        </div>
                         <label>Main Image <span class="text-danger">*</span></label>
                         <input type='file' name="product_img" value="{{$product->product_img}}" onchange="readURL(this);" />
                         <img id="blah" src="{{$product->product_img ? '/' . $product->product_img :  '/asset/backend/assets/media/photos/image.png'}}" height="200" width="200" alt="your image" /><br>
