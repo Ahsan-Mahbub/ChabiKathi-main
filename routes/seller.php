@@ -11,6 +11,7 @@ use App\Http\Controllers\Seller\BrandController;
 use App\Http\Controllers\Seller\PreviousProductController;
 use App\Http\Controllers\Seller\StockController;
 use App\Http\Controllers\Seller\CommissionController;
+use App\Http\Controllers\Seller\VariationController;
 
 
 Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
@@ -19,7 +20,7 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
     Route::get('sellercheck', [SellerController::class, 'index'])->name('seller');
     Route::get('registers', [AuthController::class, 'register'])->name('registers');
     Route::post('store', [AuthController::class, 'store'])->name('store');
-    Route::get('loginView', [LoginController::class, 'loginView'])->name('loginView');
+    Route::get('login', [LoginController::class, 'loginView'])->name('loginView');
     Route::post('login', [LoginController::class, 'login'])->name('login');
     Route::get('forget', [AuthController::class, 'forget'])->name('forget');
     Route::get('forget_password/{token}', [AuthController::class, 'forgotPasswordValidate']);
@@ -53,15 +54,16 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
         Route::get('previous-product', [PreviousProductController::class, 'index'])->name('product.previous');
         Route::post('previous-productprevious-store', [PreviousProductController::class, 'store'])->name('productprevious.store');
     });
-    // Brand Route
-    Route::group(['prefix' => 'brand'], function () {
-        Route::get('/list', [BrandController::class, 'index'])->name('brand.list');
-        Route::get('create', [BrandController::class, 'create'])->name('brand.create');
-        Route::post('store', [BrandController::class, 'store'])->name('brand.store');
-        Route::get('status/{id}/{status}', [BrandController::class, 'status'])->name('brand.status');
-        Route::get('edit/{id}', [BrandController::class, 'edit'])->name('brand.edit');
-        Route::post('update/{id}', [BrandController::class, 'update'])->name('brand.update');
-        Route::delete('delete/{id}', [BrandController::class, 'destroy'])->name('brand.delete');
+    // Variation Route
+    Route::group(['prefix' => 'variation'], function () {
+        Route::get('/brand/create', [BrandController::class, 'create'])->name('brand.create');
+        Route::post('brand/store', [BrandController::class, 'store'])->name('brand.store');
+        Route::get('/color/create', [VariationController::class, 'colorcreate'])->name('color.create');
+        Route::post('color/store', [VariationController::class, 'colorstore'])->name('color.store');
+        Route::get('/size/create', [VariationController::class, 'sizecreate'])->name('size.create');
+        Route::post('size/store', [VariationController::class, 'sizestore'])->name('size.store');
+        Route::get('/weight/create', [VariationController::class, 'weightcreate'])->name('weight.create');
+        Route::post('weight/store', [VariationController::class, 'weightstore'])->name('weight.store');
     });
     // Stock Route
     Route::group(['prefix' => 'stock'], function () {
@@ -77,6 +79,8 @@ Route::group(['namespace' => 'seller', 'as' => 'seller.'], function () {
     Route::group(['prefix' => 'commission'], function () {
         Route::get('/list', [CommissionController::class, 'index'])->name('commission.list');
     });
+
+    Route::get('/category/{value}', [VariationController::class, 'getCategory']);
 
 });
 

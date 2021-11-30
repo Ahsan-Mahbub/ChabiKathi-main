@@ -10,7 +10,6 @@
                 <thead>
                     <tr>
                         <th class="text-center">S/L</th>
-                        <th class="text-center"> Shop Name</th>
                         <th class="text-center"> Brand Name</th>
                         <th class="text-center"> Brand Slug</th>
                         <th class="text-center" style="width: 15%;">Status</th>
@@ -22,26 +21,16 @@
                     @foreach($brands as $brand)
                     <tr>
                         <td class="text-center">{{$sl++}}</td>
-                        <td class="text-center">
-                            {{$brand->parent? $brand->parent->shop_name : 'null'}}
-                        </td>
                         <td class="font-w600 text-center">{{$brand->brand_name}}</td>
                         <td class="font-w600 text-center">{{$brand->slug}}</td>
                         <td class="text-center">
-                            <input type="checkbox" data-toggle="toggle" data-on="Active" data-off="Inactive" id="brand"
-                                data="{{$brand->id}}" {{$brand->status==1 ? 'checked' : ''}}>
+                            <input type="checkbox" data-toggle="toggle" data-on="Active" data-off="Inactive"
+                                id="brand_status" data="{{$brand->id}}" {{$brand->status==1 ? 'checked' : ''}}>
                         </td>
                         <td class="text-center">
-                            <?php
-                                if ($brand->approval == 0) {
-                                    ?>
-                            <a class="btn btn-sm btn-secondary m-5" href="{{route('brand.approval',$brand->id)}}">
-                                <i class="fa fa-check text-danger mr-5"></i> Approval
+                            <a class="btn btn-sm btn-secondary m-5" href="{{route('brand.edit',$brand->id)}}">
+                                <i class="fa fa-pencil text-primary mr-5"></i> Edit
                             </a>
-                            <?php
-                                 } 
-                            ?>
-
                             <a class="btn btn-sm btn-secondary m-5 delete-confirm"
                                 href="{{route('brand.delete',$brand->id)}}" data="{{$brand->id}}" id="delete"
                                 type="button">
@@ -93,26 +82,26 @@
         });
 </script>
 
-<script type="text/javascript">
-    $(document).on("change","#brand",function(){
-var id=$(this).attr('data');
-if(this.checked)
-{
-    status=1
-}else{
-    status=0
-}
-$.ajax({
-    url:"/admin/brand/status/"+id+'/'+status,
-    type:"get",
-    datatype:"json",
-    success:function(response)
-    {
-       toastr.success("Status Change Successfully", "Success");
-               console.log(response);
-    }
 
-});
+<script type="text/javascript">
+    $(document).on("change","#brand_status",function(){
+    var id=$(this).attr('data');
+    if(this.checked){
+        var status=1;
+    }else{
+        var status=0;
+    }
+    $.ajax({
+            url: '/kathi/cbmin/brand/status/'+id+'/'+status,
+            type: 'get',
+            dataType: 'json',
+            success: function(response) {
+                toastr.success("Status Change Successfully", "Success");
+               console.log(response);
+            }
+ 
+    });
+
 });
 
 </script>

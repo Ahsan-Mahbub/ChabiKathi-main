@@ -15,7 +15,7 @@
             <div class="col-md-6 col-lg-6 col-xl-6 col-sm-12 col-12 right-side-top">
                 <div class="sell-details-top">
                     <i class="far fa-store"></i>
-                    <a href="{{route('seller.loginView')}}">Sell on Chabikathi</a>
+                    <a href="{{route('seller.login')}}">Sell on Chabikathi</a>
                 </div>
                 <div class="app-details-top">
                     <i class="fas fa-mobile-alt"></i>

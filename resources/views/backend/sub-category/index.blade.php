@@ -98,7 +98,7 @@
                         dataType: "json",
                         success: function (response) {
                             toastr.warning(" Deleted successfully", "!!!");
-                            window.location.href = "/admin/sub-category/list" ;
+                            window.location.href = "/kathi/cbmin/sub-category/list" ;
                         },
                     });
                 }
@@ -117,7 +117,7 @@
         var status=0
     }
 $.ajax({
-    url:"/admin/sub-category/status/"+id+'/'+status,
+    url:"/kathi/cbmin/sub-category/status/"+id+'/'+status,
     type:"get",
     datatype:"json",
     success:function(response){

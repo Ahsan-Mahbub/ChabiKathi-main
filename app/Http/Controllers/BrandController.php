@@ -27,7 +27,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.brand.create');
     }
 
     /**
@@ -38,7 +38,18 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator  = $request->validate([
+            'brand_name'      => 'required|unique:brands',
+            'slug'      => 'required|unique:brands',
+        ]);
+
+        $brand = new Brand();
+        $requested_data = $request->all();
+        $brand->status = 1;
+        $brand->fill($requested_data)->save();
+        Toastr::success('Save Successfully');
+        return redirect()->route('brand.list')
+            ->with('success', 'Seller created successfully.');
     }
 
     /**
@@ -47,27 +58,22 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function status($id)
+    public function status($id, $status)
     {
-        $status = Brand::findOrFail($id);
-        if ($status->status == 0) {
-            $status->status = 1;
-        } else {
-            $status->status = 0;
-        }
-        $status->save();
-        Toastr::success('Status Change Successfully', 'Success');
-        return redirect()->back();
+        $brand_status = Brand::findOrFail($id);
+        $brand_status->status=$status;
+        $brand_status->save();
+        return response()->json(['message'=>'success']);
     }
 
-    public function approval($id)
-    {
-        $approval = Brand::findOrFail($id);
-        $approval->approval = 1;
-        $approval->save();
-        Toastr::success('Brand Approved', 'Success');
-        return redirect()->back();
-    }
+    // public function approval($id)
+    // {
+    //     $approval = Brand::findOrFail($id);
+    //     $approval->approval = 1;
+    //     $approval->save();
+    //     Toastr::success('Brand Approved', 'Success');
+    //     return redirect()->back();
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -77,7 +83,8 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+        $brand = Brand::findOrFail($id);
+        return view('backend.brand.edit', compact('brand'));
     }
 
     /**
@@ -89,7 +96,20 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validation=Validator::make($request->all(),[
+            'brand_name'      => 'required',
+            'slug'      => 'required|unique:brands,slug,'.$id,
+        ]);
+        if ($validation->fails()) {
+            return back()->withInput()->withErrors($validation);
+        }
+
+        $update = Brand::findOrFail($id);
+        $formData = $request->all();
+
+        $update->fill($formData)->save();
+        Toastr::success('Update Successfully');
+        return redirect()->route('brand.list');
     }
 
     /**

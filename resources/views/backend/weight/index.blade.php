@@ -78,7 +78,7 @@
                         success: function (response) {
                            
                             toastr.warning(" Deleted successfully", "!!!");
-                            window.location.href = "/admin/weight/list" ;
+                            window.location.href = "/kathi/cbmin/weight/list" ;
                         },
                     });
                 }
@@ -96,7 +96,7 @@ if(this.checked)
     status=0
 }
 $.ajax({
-    url:"/admin/weight/status/"+id+'/'+status,
+    url:"/kathi/cbmin/weight/status/"+id+'/'+status,
     type:"get",
     datatype:"json",
     success:function(response)

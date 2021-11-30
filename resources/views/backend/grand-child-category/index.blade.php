@@ -79,7 +79,7 @@
                         success: function (response) {
                            
                             toastr.warning(" Deleted successfully", "!!!");
-                            window.location.href = "/admin/grand-child-category/list" ;
+                            window.location.href = "/kathi/cbmin/grand-child-category/list" ;
                         },
                     });
                 }
@@ -95,7 +95,7 @@
             var status=0;
         }
         $.ajax({
-            url: '/admin/grand-child-category/status/'+id+'/'+status,
+            url: '/kathi/cbmin/grand-child-category/status/'+id+'/'+status,
             type: 'get',
             dataType: 'json',
             success: function(response) {

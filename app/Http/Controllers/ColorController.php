@@ -39,11 +39,6 @@ class ColorController extends Controller
      */
     public function store(ColorRequest $request)
     {
-        // $validated = $request->validated();
-        // $validator  = $request->validate([
-        //     'color_code'  => 'required|unique:colors',
-        //     'color_name'      => 'required',
-        // ]);
 
         $color = new Color();
         $requested_data = $request->all();
