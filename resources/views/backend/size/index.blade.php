@@ -76,7 +76,7 @@
                         success: function (response) {
                            
                             toastr.warning(" Deleted successfully", "!!!");
-                            window.location.href = "/admin/size/list" ;
+                            window.location.href = "/kathi/cbmin/size/list" ;
                         },
                     });
                 }
@@ -94,7 +94,7 @@ if(this.checked)
     status=0
 }
 $.ajax({
-    url:"/admin/size/status/"+id+'/'+status,
+    url:"/kathi/cbmin/size/status/"+id+'/'+status,
     type:"get",
     datatype:"json",
     success:function(response)

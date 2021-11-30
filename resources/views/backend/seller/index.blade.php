@@ -87,7 +87,7 @@
                         success: function (response) {
                            
                             toastr.warning(" Deleted successfully", "!!!");
-                            window.location.href = "/admin/seller/list" ;
+                            window.location.href = "/kathi/cbmin/seller/list" ;
                         },
                     });
                 }
@@ -105,7 +105,7 @@ if(this.checked)
     status=0
 }
 $.ajax({
-    url:"/admin/seller/status/"+id+'/'+status,
+    url:"/kathi/cbmin/seller/status/"+id+'/'+status,
     type:"get",
     datatype:"json",
     success:function(response)

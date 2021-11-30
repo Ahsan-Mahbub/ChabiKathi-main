@@ -99,7 +99,7 @@
                         success: function (response) {
                            
                             toastr.warning(" Deleted successfully", "!!!");
-                            window.location.href = "/admin/stock/list" ;
+                            window.location.href = "/kathi/cbmin/stock/list" ;
                         },
                     });
                 }

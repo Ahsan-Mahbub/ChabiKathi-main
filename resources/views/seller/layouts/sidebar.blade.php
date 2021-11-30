@@ -92,18 +92,6 @@
                 <li>
                     <a href="{{route('seller.shop_view')}}"><i class="si si-drawer"></i>Shop Update</a>
                 </li>
-                <li>
-                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-badge"></i><span
-                            class="sidebar-mini-hide">Brand</span></a>
-                    <ul>
-                        <li>
-                            <a href="{{route('seller.brand.list')}}">Brand List</a>
-                        </li>
-                        <li>
-                            <a href="{{route('seller.brand.create')}}">Add Brand</a>
-                        </li>
-                    </ul>
-                </li>
 
                 <li>
                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-bag"></i><span

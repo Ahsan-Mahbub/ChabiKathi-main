@@ -72,7 +72,7 @@
                         success: function (response) {
                            
                             toastr.warning(" Deleted successfully", "!!!");
-                            window.location.href = "/admin/commission/list" ;
+                            window.location.href = "/kathi/cbmin/commission/list" ;
                         },
                     });
                 }

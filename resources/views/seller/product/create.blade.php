@@ -1,5 +1,15 @@
 @extends('seller.layouts.app')
 @section('content')
+<style type="text/css">
+    #catefory_suggestion{
+        display: none;
+        padding: 0px 2px;
+    }
+    #category_name_sugg{
+        max-height: 255px;
+        overflow: auto;
+    }
+</style>
 <div class="container">
     @if ($errors->any())
         @foreach ($errors->all() as $error)
@@ -26,18 +36,19 @@
                     data-action="content_toggle"><i class="si si-arrow-up"></i></button>
             </div>
         </div>
-        <div class="block-content">
-            <div class="row justify-content-center py-20">
-                <div class="col-xl-12">
-                    <form role="form" action="{{route('seller.product.store')}}" method="post"
-                        enctype="multipart/form-data">
-                        @csrf
+        <form role="form" action="{{route('seller.product.store')}}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="content">
+                <div class="block">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Basic Information</h3>
+                    </div>
+                    <div class="block-content">
                         <input type="hidden" name="seller_id" value="{{auth('seller')->user()->id}}">
                         <div class="form-group">
                             <div class="form-material">
                                 <input type="text" class="form-control" id="product_name" name="product_name"
-                                    placeholder="Enter Product Name.." required="">
-
+                                    placeholder="Enter Product Name.." required="" onkeyup="getRelatedCategory(this.value)">
                                 @error('product_name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -54,6 +65,34 @@
                                 <label for="product_slug">Product Slug <span class="text-danger">*</span></label>
                             </div>
                         </div>
+
+                        <div class="form-group" id="catefory_suggestion">
+                            <label for="product_name">Category Suggestions</label>
+                            <div class="custom-control custom-radio mb-5" id="category_name_sugg">
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-material">
+                                <input type="text" class="form-control"  name="product_category"
+                                    placeholder="Enter Product Category.." required="">
+
+                                @error('product_name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <label for="product_name">Product Category <span class="text-danger">*</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="block">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Product Details</h3>
+                    </div>
+                    <div class="block-content">
                         <div class="form-group">
                             <div class="form-material">
                                 <textarea name="product_desc" id="editor" cols="30" rows="20"
@@ -166,10 +205,19 @@
                         </div>
                         <div class="form-group">
                             <div class="form-material">
-                                <select class="form-control" id="brand_id" name="brand_id">
-                                    <option value="" selected="">Select Brand</option>
+                                <select class="js-select2 form-control js-select2-enabled select2-hidden-accessible" id="color_id" style="width: 100%;" data-placeholder="Choose one.." data-select2-id="color_id" tabindex="-1" aria-hidden="true">
+                                    <option disabled="" selected="">Select Brand</option>
+                                    @php($brand = \App\Models\Brand::where('status',1)->orderBy('id','desc')->get())
+                                    @foreach($brand as $value)
+                                    <option value="{{$value->id}}">{{$value->brand_name}}</option>
+                                    @endforeach
+                                    <option value="0">No Brand</option>
                                 </select>
-                                <label for="brand_id">Select Brand</label>
+                                <label for="brand_id">Select Brand <span class="text-danger">*</span>
+                                    <a href="{{route('seller.brand.create')}}" class="btn btn-sm btn-circle btn-alt-success mr-5 mb-5">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </label>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -193,7 +241,74 @@
                                 <label>Video URL </label>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="block">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Product Stock</h3>
+                    </div>
+                    <div class="block-content">
+                        <div class="form-group">
+                            <div class="form-material">
+                                <select class="js-select2 form-control js-select2-enabled select2-hidden-accessible" id="color_id" style="width: 100%;" data-placeholder="Choose one.." data-select2-id="color_id" tabindex="-1" aria-hidden="true">
+                                    <option disabled="" selected="">Select Color</option>
+                                    @php($color = \App\Models\Color::where('status',1)->orderBy('id','desc')->get())
+                                    @foreach($color as $value)
+                                    <option value="{{$value->id}}">{{$value->color_name}}</option>
+                                    @endforeach
+                                </select>
+                                <label for="brand_id">Select Color
+                                    <a href="{{route('seller.color.create')}}" class="btn btn-sm btn-circle btn-alt-success mr-5 mb-5">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <div class="form-material">
+                                <select class="js-select2 form-control js-select2-enabled select2-hidden-accessible" id="color_id" style="width: 100%;" data-placeholder="Choose one.." data-select2-id="color_id" tabindex="-1" aria-hidden="true">
+                                    <option disabled="" selected="">Select Size</option>
+                                    @php($size = \App\Models\Size::where('status',1)->orderBy('id','desc')->get())
+                                    @foreach($size as $value)
+                                    <option value="{{$value->id}}">{{$value->size_name}}</option>
+                                    @endforeach
+                                </select>
+                                <label for="brand_id">Select Size
+                                    <a href="{{route('seller.size.create')}}" class="btn btn-sm btn-circle btn-alt-success mr-5 mb-5">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-material">
+                                <select class="js-select2 form-control js-select2-enabled select2-hidden-accessible" id="color_id"  style="width: 100%;" data-placeholder="Choose one.." data-select2-id="color_id" tabindex="-1" aria-hidden="true">
+                                    <option disabled="" selected="">Select Weight</option>
+                                    @php($weight = \App\Models\Weight::where('status',1)->orderBy('id','desc')->get())
+                                    @foreach($weight as $value)
+                                    <option value="{{$value->id}}">{{$value->weight_name}}</option>
+                                    @endforeach
+                                </select>
+                                <label for="brand_id">Select Weight
+                                    <a href="{{route('seller.weight.create')}}" class="btn btn-sm btn-circle btn-alt-success mr-5 mb-5">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="block">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Product Image</h3>
+                    </div>
+                    <div class="block-content">
                         <label>Main Image <span class="text-danger">*</span></label>
                         <input type='file' name="product_img" required="" onchange="readURL(this);" />
                         <img id="blah" src="{{asset('asset/backend/assets/media/photos/image.png')}}" height="200"
@@ -214,14 +329,35 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-alt-primary">Submit</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 @endsection
 @section('script')
 <script src="{{ asset('asset/sitejs/product/price_calculate.js')}}"></script>
 <script src="{{ asset('asset/sitejs/product/product.js')}}"></script>
+<script type="text/javascript">
+    function getRelatedCategory(value) {
+        $("#catefory_suggestion").show();
+        let url = '/seller/category/'+value;
+        $.ajax({
+            type: "get",
+            url: url,
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+
+                let html = '';
+                response.forEach(element => {
+                    html+= `<input class="custom-control-input" type="radio" name="category" id="id" value="option1">
+                                <label class="custom-control-label" for="id">`+element.category_name+`>` +element.sub_category_name+`>` +element.sub_sub_category_name+`>` +element.child_category_name+ `>` +element.grand_child_category_name+`</label><br>`
+                });
+                $("#category_name_sugg").html(html);
+            }
+        });
+    }
+</script>
 @endsection

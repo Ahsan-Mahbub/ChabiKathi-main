@@ -104,7 +104,7 @@
                         dataType: "json",
                         success: function (response) {
                             toastr.warning(" Product Deleted Successfully", "Success");
-                            window.location.href = "/admin/product/list" ;
+                            window.location.href = "/kathi/cbmin/product/list" ;
                         },
                     });
                 }
@@ -122,7 +122,7 @@
         status=0
     }
     $.ajax({
-        url:"/admin/product/status/"+id+'/'+status,
+        url:"/kathi/cbmin/product/status/"+id+'/'+status,
         type:"get",
         datatype:"json",
         success:function(response)

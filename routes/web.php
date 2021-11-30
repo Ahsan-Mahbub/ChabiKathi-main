@@ -163,10 +163,13 @@ Route::group(['prefix' => '/kathi/cbmin'], function () {
     // Brand Route
     Route::group(['prefix' => 'brand'], function () {
         Route::get('/list', [BrandController::class, 'index'])->name('brand.list');
-        Route::get('approval/{id}', [BrandController::class, 'approval'])->name('brand.approval');
         Route::get('status/{id}/{status}', [BrandController::class, 'status'])->name('brand.status');
-        Route::get('approval/{id}', [BrandController::class, 'approval'])->name('brand.approval');
         Route::delete('delete/{id}', [BrandController::class, 'destroy'])->name('brand.delete');
+
+        Route::get('create', [BrandController::class, 'create'])->name('brand.create');
+        Route::post('store', [BrandController::class, 'store'])->name('brand.store');
+        Route::get('edit/{id}', [BrandController::class, 'edit'])->name('brand.edit');
+        Route::post('update/{id}', [BrandController::class, 'update'])->name('brand.update');
     });
     // Product Route
     Route::group(['prefix' => 'product'], function () {

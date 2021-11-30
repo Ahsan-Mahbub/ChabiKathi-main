@@ -95,7 +95,7 @@
             var status=0;
         }
         $.ajax({
-            url: '/admin/child-category/status/'+id+'/'+status,
+            url: '/kathi/cbmin/child-category/status/'+id+'/'+status,
             type: 'get',
             dataType: 'json',
             success: function(response) {

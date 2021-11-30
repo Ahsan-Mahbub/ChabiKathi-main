@@ -194,6 +194,22 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="">
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span
+                                    class="sidebar-mini-hide">Brand</span></a>
+                            <ul>
+                                <li>
+                                    <a href="{{route('brand.list')}}"><span class="sidebar-mini-hide">Brand
+                                            List</span></a>
+                                </li>
+                                <li>
+                                    <a href="{{route('brand.create')}}"><span class="sidebar-mini-hide">Add
+                                            Brand</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li class="">
                             <a class="nav-submenu" data-toggle="nav-submenu" href="#"><span
                                     class="sidebar-mini-hide">Color Code</span></a>
@@ -238,10 +254,6 @@
 
                 <li>
                     <a href="{{route('shop.list')}}"><i class="si si-drawer"></i>Shop List</a>
-                </li>
-
-                <li>
-                    <a href="{{route('brand.list')}}"><i class="si si-badge"></i>Brand List</a>
                 </li>
 
                 <li class="nav-main-heading"><span class="sidebar-mini-visible">A.S</span><span

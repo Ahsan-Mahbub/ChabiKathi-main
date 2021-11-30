@@ -84,7 +84,7 @@
                         success: function (response) {
                            
                             toastr.warning(" Deleted successfully", "!!!");
-                            window.location.href = "/admin/slider/list" ;
+                            window.location.href = "/kathi/cbmin/slider/list" ;
                         },
                     });
                 }
@@ -102,7 +102,7 @@ if(this.checked)
     status=0
 }
 $.ajax({
-    url:"/admin/slider/status/"+id+'/'+status,
+    url:"/kathi/cbmin/slider/status/"+id+'/'+status,
     type:"get",
     datatype:"json",
     success:function(response)
